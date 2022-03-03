@@ -5,7 +5,8 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "outFile": "./JS/index.js",
-        "sourceMap": true
+        "sourceMap": true,
+        "lib": ["ES5", "ES2015", "DOM", "ScriptHost"]
     },
     "include": ["ts/index.ts"],
     "exclude": ["node_modules", "**/*.spec.ts"]
