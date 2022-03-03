@@ -120,9 +120,17 @@
 // let media: PrintMedia = getMedia("Forbes");
 // console.log(media);
 
+// // class implement interfaces
+
 // // oop
+// Encapsulation
+// Inheritance
+// Polymorphism
+// Abstraction
 
 // // generic
 
 // // decorator
-const p: Promise<string> = new Promise((resolve, reject) => {});
+// const p: Promise<string | void> = new Promise((resolve, reject) => {
+//     resolve("hello");
+// }).then(console.log);
