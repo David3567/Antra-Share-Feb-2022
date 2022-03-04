@@ -1,0 +1,26 @@
+
+<h1 class="title" [ngStyle]="{ color: TitleColor }">
+    Click Button to Change the Color
+  </h1>
+  <ul>
+    <li
+      *ngFor="let card of cardlist"
+      [ngClass]="card.color + ' li-container'"
+      [ngStyle]="{
+        'box-shadow': card.id === FocusId ? '2px 2px 2px ' + card.color : 'none',
+        'border-radius': '10px',
+        border: card.id === FocusId ? '2px solid ' + card.color : 'none'
+      }"
+    >
+      <h2>{{ card.title }}</h2>
+      <p>{{ card.body }}</p>
+      <button
+        class="button"
+        [ngStyle]="{ backgroundColor: card.color }"
+        (click)="clickChangeTitleColor(card)"
+        
+      >
+        Set {{ card.color }}
+      </button>
+    </li>
+  </ul>
