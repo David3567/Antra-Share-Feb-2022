@@ -12,6 +12,7 @@ export class ContextContainerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
   emitColor() {
     this.getcontextcolor.emit(this.contextinfo.color);
   }
