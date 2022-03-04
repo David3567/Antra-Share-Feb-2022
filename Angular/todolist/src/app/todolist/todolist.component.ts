@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Todo } from '../interfaces/todo.model';
+import { TodolistService } from '../services/todolist.service';
 
 @Component({
   selector: 'app-todolist',
@@ -11,30 +12,15 @@ export class TodolistComponent implements OnInit {
   counter = 3;
   isdisabled = true;
 
-  todolist: Todo[] = [
-    {
-      userId: 1,
-      id: 1,
-      title: 'delectus aut autem',
-      completed: false,
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'quis ut nam facilis et officia qui',
-      completed: false,
-    },
-    {
-      userId: 1,
-      id: 3,
-      title: 'fugiat veniam minus',
-      completed: false,
-    },
-  ];
+  todolist!: Todo[];
 
-  constructor() {}
+  constructor(private todolistService: TodolistService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.todolistService.getTodos().subscribe((data: Todo[]) => {
+      this.todolist = data;
+    });
+  }
 
   add() {
     this.counter++;
