@@ -1,30 +1,12 @@
-# Antra-Share-Feb-2022
-AntraShare Project
+<!-- The script tag should live in the head of your page if at all possible -->
+<script type="text/javascript" async src="https://play.vidyard.com/embed/v4.js"></script>
 
-This is a repo to record the Antra-Share assignments and notes.
-
-## How to record your Antra Share assignments by using this repo:
-
-### Clone this repo:
-
-open your teminal
-
-```bash
-cd your_work_dir
-git clone https://github.com/David3567/Antra-Share-Feb-2022.git
-```
-
-### Create your Personal feature branch to implement the assignment.
-
-```bash
-git branch by_your_name/notes
-git checkout by_your_name/notes
-implement the assignment under this feature branch.
-```
-### Create your Team feature branch to implement the assignment.
-
-```bash
-git branch by_Team_name/notes
-git checkout by_Team_name/notes
-implement the assignment under this feature branch.
-```
+<!-- Put this wherever you would like your player to appear -->
+<img
+  style="width: 100%; margin: auto; display: block;"
+  class="vidyard-player-embed"
+  src="https://play.vidyard.com/LQxGKvUcGre2qdacGa7agM.jpg"
+  data-uuid="LQxGKvUcGre2qdacGa7agM"
+  data-v="4"
+  data-type="inline"
+/>

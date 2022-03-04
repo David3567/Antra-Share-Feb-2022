@@ -1,0 +1,27 @@
+
+h1{
+    text-align: center;
+}
+.container{
+    background-color: whitesmoke;
+    width:100%;
+    
+}
+.container-article{
+    padding-left: 2.5%;
+    width:45%;
+    float: left;
+}
+button{
+    color: white;
+    padding: 5px;
+    margin-bottom: 3px;
+
+}
+@media only screen and (max-width: 600px) {
+    .container-article{
+        padding-left: 2.5%;
+        width:90%;
+        
+    }
+  }
