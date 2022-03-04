@@ -7,16 +7,9 @@ import { CardlistComponent } from './cardlist/cardlist.component';
 import { CarditemComponent } from './carditem/carditem.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CardlistComponent,
-    CarditemComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, CardlistComponent, CarditemComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

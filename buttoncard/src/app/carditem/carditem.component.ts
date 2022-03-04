@@ -4,18 +4,17 @@ import { Card } from '../interfaces/card.model';
 @Component({
   selector: 'app-carditem',
   templateUrl: './carditem.component.html',
-  styleUrls: ['./carditem.component.scss']
+  styleUrls: ['./carditem.component.scss'],
 })
 export class CarditemComponent implements OnInit {
   @Input() carditem!: Card;
   @Output() cardEmiter = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeColor() {
-    console.log("Got it");
+    console.log('Got it');
   }
 }
