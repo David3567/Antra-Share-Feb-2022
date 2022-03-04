@@ -6,10 +6,9 @@
     green: carditem.id === 4
   }"
 >
-  <span>
-    <h2>{{ carditem.title }}</h2>
-    <p>{{ carditem.body }}</p>
-  </span>
+  <h2>{{ carditem.title }}</h2>
+  <p>{{ carditem.body }}</p>
+
   <button
     class="button"
     (click)="clickChangeTitleColor($event)"
