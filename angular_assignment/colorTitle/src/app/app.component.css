@@ -1,0 +1,68 @@
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-style: dashed;
+}
+
+h1 {
+  font-size: 25px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+.article {
+  width: 400px;
+  height: 400px;
+  padding: 0px 16px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.article:hover {
+  border-style: none outset outset none;
+  border-width: thick;
+}
+
+#blue {
+  border-color: blue;
+}
+
+#black {
+  border-color: black;
+}
+
+#red {
+  border-color: red;
+}
+
+#green {
+  border-color: green;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  height: 40px;
+  width: 100px;
+  color: white;
+}
+
+#blue button {
+  background-color: blue;
+}
+
+#black button {
+  background-color: black;
+}
+
+#red button {
+  background-color: red;
+}
+
+#green button {
+  background-color: green;
+}
