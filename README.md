@@ -1,4 +1,5 @@
-## TEAM: by_ALJ-team
+## TEAM: ALJ-team
+    git checkout Release/ALJ_team
     Adib Thaqif
     Loc Luu
     John Hanzhang (John) Bai
