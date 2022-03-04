@@ -1,0 +1,5 @@
+<li [ngStyle]="{'box-shadow': checkCurrent()}">
+    <h2>{{item.title}}</h2>
+    <p>{{item.body}}</p>
+    <button (click)="clickSelector()" [ngStyle]="{'background-color': item.color}">this</button>
+</li>
