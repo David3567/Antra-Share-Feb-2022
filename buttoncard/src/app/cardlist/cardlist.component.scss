@@ -23,3 +23,9 @@ app-carditem {
   flex: 50%;
   padding: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+  app-carditem {
+    flex: 100%;
+  }
+}
