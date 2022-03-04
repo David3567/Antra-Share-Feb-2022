@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+
+button{
+    color: white;
+    border-radius: 4px;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.container>*{
+    flex: 45%;
+}
+
+.holder{
+    border-radius: 8px;
+    width: 300px;
+    margin: 10px;
+}
+
+h1{
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    .container>*{
+        flex: 100%;
+    }
+  }
+
