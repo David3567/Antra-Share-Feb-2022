@@ -1,5 +1,5 @@
 import { getCurrencySymbol } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Article } from '../interfaces/article.model';
 
 @Component({
@@ -9,16 +9,14 @@ import { Article } from '../interfaces/article.model';
 })
 export class ArticleItemComponent implements OnInit {
   @Input() item! : Article;
-  status: boolean = false;
+  @Output() emitColor = new EventEmitter();
   
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onClick() {
-    this.status = !this.status;
-    console.log(this.status);
-    console.log(this.item.id);
+  setColor() {
+    this.emitColor.emit(this.item.color);
   }
 }

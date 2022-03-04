@@ -7,6 +7,7 @@ import { Article } from '../interfaces/article.model';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
+  titlecolor: string = '';
 
   article: Article[] = [
     {
@@ -38,6 +39,11 @@ export class ArticleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setTitleColor(color: string) {
+    console.log(color);
+    this.titlecolor = color;
   }
 
 }
