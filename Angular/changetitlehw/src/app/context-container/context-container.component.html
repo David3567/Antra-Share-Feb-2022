@@ -1,0 +1,13 @@
+<div class="contextinfo_container">
+  <h2 class="title">
+    <strong>{{ contextinfo.title }}</strong>
+  </h2>
+  <p class="info">{{ contextinfo.info }}</p>
+  <button
+    mat-raised-button
+    [ngStyle]="{ background: contextinfo.color }"
+    (click)="emitColor()"
+  >
+    Set {{ contextinfo.color }}
+  </button>
+</div>
