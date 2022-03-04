@@ -9,16 +9,16 @@ import { Article } from '../interfaces/article.model';
 })
 export class ArticleItemComponent implements OnInit {
   @Input() item! : Article;
-  status: boolean = true;
+  status: boolean = false;
   
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  changeColor() {
-    return this.item.color;
-    //this.status = !this.status;
+  onClick() {
+    this.status = !this.status;
+    console.log(this.status);
+    console.log(this.item.id);
   }
-
 }
