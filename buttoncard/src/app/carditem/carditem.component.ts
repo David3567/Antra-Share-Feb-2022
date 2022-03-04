@@ -28,6 +28,9 @@ export class CarditemComponent implements OnInit {
   }
 
   focusChangeLiColor(event: Event) {
+    this.TitleColor = window
+      .getComputedStyle(event.target as HTMLButtonElement, null)
+      .getPropertyValue('background-color');
     const test = (event.target as HTMLButtonElement).parentElement;
     test!.style.border = '2px solid ' + this.TitleColor;
     test!.style.boxShadow = '5px 5px 5px ' + this.TitleColor;
