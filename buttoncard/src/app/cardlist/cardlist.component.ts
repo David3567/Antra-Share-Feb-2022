@@ -7,7 +7,7 @@ import { Card } from '../interfaces/card.model';
   styleUrls: ['./cardlist.component.scss'],
 })
 export class CardlistComponent implements OnInit {
-  TitleColor!:string;
+  TitleColor!: string;
   cardlist: Card[] = [
     {
       id: 1,
@@ -37,6 +37,5 @@ export class CardlistComponent implements OnInit {
 
   changeTitleColor(TitleColor: string) {
     this.TitleColor = TitleColor;
-    console.log(this.TitleColor);
   }
 }
