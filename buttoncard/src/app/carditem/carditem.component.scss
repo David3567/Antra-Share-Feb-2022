@@ -11,8 +11,13 @@ li {
   height: 100%;
   border-radius: 5px;
   padding: 5px;
-}
+  display: flex;
+  flex-direction: column;
 
+}
+li p {
+  flex-grow: 1;
+}
 .button {
   color: white;
   border-radius: 5px;
@@ -20,9 +25,7 @@ li {
   height: 30px;
   border: none;
   outline: none;
-  position: absolute;
-  bottom: 2%;
-  left: 1%;
+  flex-grow: 0;
 }
 
 .blue button {

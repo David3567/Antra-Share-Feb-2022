@@ -1,4 +1,8 @@
-<h1 class="title">Click Button to Change the Color</h1>
+<h1 class="title" [ngStyle]="{ color: TitleColor }">
+  Click Button to Change the Color
+</h1>
 <ul>
-  <app-carditem *ngFor="let card of cardlist" [carditem]="card"></app-carditem>
+  <app-carditem *ngFor="let card of cardlist" [carditem]="card" (TitleColorEmiter)="changeTitleColor($event)" >{{
+    TitleColor
+  }}</app-carditem>
 </ul>

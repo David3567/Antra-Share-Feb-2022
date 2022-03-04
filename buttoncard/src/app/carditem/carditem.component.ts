@@ -8,34 +8,31 @@ import { Card } from '../interfaces/card.model';
 })
 export class CarditemComponent implements OnInit {
   @Input() carditem!: Card;
-  @Output() cardEmiter = new EventEmitter();
-  Style: String[] = ['blue', 'black', 'red', 'green'];
+  @Output() TitleColorEmiter = new EventEmitter();
 
+  TitleColor!: string;
   constructor() {}
 
   ngOnInit(): void {}
 
   clickChangeTitleColor(event: Event) {
-    const test = document.querySelector('.title') as HTMLElement;
-    test.style.color = window
+    // const test = document.querySelector('.title') as HTMLElement;
+    // test.style.color = window
+    //   .getComputedStyle(event.target as HTMLButtonElement, null)
+    //   .getPropertyValue('background-color');
+    this.TitleColor = window
       .getComputedStyle(event.target as HTMLButtonElement, null)
       .getPropertyValue('background-color');
+      // console.log(this.TitleColor);
+    this.TitleColorEmiter.emit(this.TitleColor);
   }
 
   focusChangeLiColor(event: Event) {
+    
     const test = (event.target as HTMLButtonElement).parentElement;
-    let border_style =
-      '2px solid ' +
-      window
-        .getComputedStyle(event.target as HTMLButtonElement, null)
-        .getPropertyValue('background-color');
-    test!.style.border = border_style;
-    let box_shadow_style =
-      '5px 5px 5px ' +
-      window
-        .getComputedStyle(event.target as HTMLButtonElement, null)
-        .getPropertyValue('background-color');
-    test!.style.boxShadow = box_shadow_style;
+    test!.style.border = '2px solid ' + this.TitleColor;
+    test!.style.boxShadow = '5px 5px 5px ' + this.TitleColor;
+
   }
 
   focusoutChangeLiColor(event: Event) {
