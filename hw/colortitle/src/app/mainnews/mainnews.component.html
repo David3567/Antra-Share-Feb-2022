@@ -1,0 +1,19 @@
+<header>
+    <h1 [ngStyle]="{'color': titleColor}">Main title</h1>
+</header>
+<div class="container">
+    <app-subnews 
+    *ngFor="let new of news"
+    [newsitem]="new"
+    [ngStyle]="{'border': titleColor === new.color
+                ? ' 1px solid ' + new.color
+                : '',
+                'border-radius': '5px',
+                'box-shadow': titleColor === new.color 
+                ? ' 2px 2px 2px ' + new.color 
+                : ''
+            }"
+    (myChange)="changeColor($event)"></app-subnews>
+</div>
+
+
