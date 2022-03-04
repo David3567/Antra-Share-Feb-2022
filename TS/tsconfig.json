@@ -6,6 +6,7 @@
         "preserveConstEnums": true,
         "outFile": "./JS/index.js",
         "sourceMap": true,
+        "experimentalDecorators": true,
         "lib": ["ES5", "ES2015", "DOM", "ScriptHost"]
     },
     "include": ["ts/index.ts"],
