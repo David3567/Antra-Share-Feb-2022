@@ -1,7 +1,21 @@
-<li>
+<li
+  [ngClass]="{
+    blue: carditem.id == 1,
+    black: carditem.id == 2,
+    red: carditem.id == 3,
+    green: carditem.id == 4
+  }"
+>
   <span>
     <h2>{{ carditem.title }}</h2>
     <p>{{ carditem.body }}</p>
   </span>
-  <button (click)="changeColor()">button</button>
+  <button
+    class="button"
+    (click)="clickChangeTitleColor($event)"
+    (focus)="focusChangeLiColor($event)"
+    (focusout)="focusoutChangeLiColor($event)"
+  >
+    button
+  </button>
 </li>

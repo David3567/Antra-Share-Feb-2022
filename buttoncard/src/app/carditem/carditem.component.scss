@@ -1,3 +1,64 @@
-li {
-  list-style: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: cursive;
 }
+
+li {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.button {
+  color: white;
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  border: none;
+  outline: none;
+  position: absolute;
+  bottom: 2%;
+  left: 1%;
+}
+
+.blue button {
+  background-color: blue;
+}
+
+.black button {
+  background-color: black;
+}
+
+.red button {
+  background-color: red;
+}
+
+.green button {
+  background-color: green;
+}
+
+// .blue {
+//   border: 2px solid blue;
+//   box-shadow: 5px 5px 5px blue;
+// }
+
+// .black {
+//   border: 2px solid black;
+//   box-shadow: 5px 5px 5px black;
+// }
+
+// .red {
+//   border: 2px solid red;
+//   box-shadow: 5px 5px 5px red;
+// }
+
+// .green {
+//   border: 2px solid green;
+//   box-shadow: 5px 5px 5px green;
+// }
+
+
