@@ -1,7 +1,7 @@
 main {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   border-style: dashed;
 }
 
@@ -18,28 +18,28 @@ h2 {
   width: 400px;
   height: 400px;
   padding: 0px 16px;
-  margin: 10px;
+  margin: 10px 0px;
   border-radius: 10px;
 }
 
-.article:hover {
+.toggle {
   border-style: none outset outset none;
   border-width: thick;
 }
 
-#blue {
+.blue {
   border-color: blue;
 }
 
-#black {
+.black {
   border-color: black;
 }
 
-#red {
+.red {
   border-color: red;
 }
 
-#green {
+.green {
   border-color: green;
 }
 
@@ -51,18 +51,18 @@ button {
   color: white;
 }
 
-#blue button {
+.blue button {
   background-color: blue;
 }
 
-#black button {
+.black button {
   background-color: black;
 }
 
-#red button {
+.red button {
   background-color: red;
 }
 
-#green button {
+.green button {
   background-color: green;
 }

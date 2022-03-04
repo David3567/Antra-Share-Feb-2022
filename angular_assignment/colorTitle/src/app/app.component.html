@@ -3,7 +3,7 @@
   over two weeks
 </h1>
 <main>
-  <div class="article" id="blue">
+  <div class="article blue" [ngClass]="{ toggle: header === 'blue' }">
     <h2>
       Wisconsin Democratic election official: Don't water Trump's 'plant of
       baloney'
@@ -15,7 +15,7 @@
     </p>
     <button (click)="color('blue')">Set blue</button>
   </div>
-  <div class="article" id="black">
+  <div class="article black" [ngClass]="{ toggle: header === 'black' }">
     <h2>Current and former Trump officials quietly reach out to Biden team</h2>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto corrupti
@@ -24,7 +24,7 @@
     </p>
     <button (click)="color('black')">Set black</button>
   </div>
-  <div class="article" id="red">
+  <div class="article red" [ngClass]="{ toggle: header === 'red' }">
     <h2>Republicans need to decide whether they believe in democracy</h2>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto corrupti
@@ -33,7 +33,7 @@
     </p>
     <button (click)="color('red')">Set red</button>
   </div>
-  <div class="article" id="green">
+  <div class="article green" [ngClass]="{ toggle: header === 'green' }">
     <h2>Republicans need to decide whether they believe in democracy</h2>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto corrupti
