@@ -1,7 +1,7 @@
-## TEAM: by_ALJ-team
+## TEAM: Release/ALJ_team
     Adib Thaqif
     Loc Luu
-    John Hanzhang (John) Bai
+    John - Hanzhang Bai
     
 # Antra-Share-Feb-2022
 AntraShare Project
