@@ -10,44 +10,6 @@
     column-gap: 30px;
 }
 
-.normal {
-    padding: 4px;
-}
-
-.blue {
-    border-radius: 5px;
-    outline: 2px solid blue;
-    box-shadow: 3px 3px 2px 2px blue;
-}
-
-.black {
-    border-radius: 5px;
-    outline: 2px solid black;
-    box-shadow: 3px 3px 2px 2px black;
-}
-
-.red {
-    border-radius: 5px;
-    outline: 2px solid red;
-    box-shadow: 3px 3px 2px 2px red;
-}
-
-.green {
-    border-radius: 5px;
-    outline: 2px solid green;
-    box-shadow: 3px 3px 2px 2px green;
-}
-
-button {
-    padding: 10px 15px;
-    color: white;
-    background-color: blue;
-    border: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
 @media only screen and (max-width: 768px) {
     .container {
         grid-template-columns: auto;

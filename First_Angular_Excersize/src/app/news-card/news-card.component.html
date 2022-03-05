@@ -1,0 +1,13 @@
+<div 
+    class="normal" 
+    [ngClass]="topic.hasBoxShadow ? topic.color : 'none'">
+    <p>
+        <span>{{topic.location}} -- </span>
+        {{topic.content}}
+    </p>
+    <button 
+        (click)="setColor(topic.id)" 
+        [ngStyle]="{backgroundColor: topic.color}"
+        >Set {{topic.color}}
+    </button>
+</div>

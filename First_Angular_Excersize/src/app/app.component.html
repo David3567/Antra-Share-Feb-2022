@@ -1,19 +1,10 @@
 <h1 [ngStyle]="{'color': titleColor}">
     More than 900 Mayo Clinic staff members diagnosed with Covid-19 in Midwest over
     two weeks</h1>
-
 <div class="container">
-    <div *ngFor="let topic of newsList; let i = index" class="normal"
-        [ngClass]="topic.hasBoxShadow ? topic.color : none">
-        <p>
-            <span>{{topic.location}} -- </span>
-            {{topic.content}}
-        </p>
-        <button 
-            (click)="setColor(i)" 
-            [ngStyle]="{'backgroundColor': topic.color}"
-            >Set {{topic.color}}
-        </button>
-    </div>
-
+    <app-news-card 
+        *ngFor="let topic of newsList" 
+        [topic]="topic" 
+        (buttonClicked)="setColor($event)">
+    </app-news-card>
 </div>

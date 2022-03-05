@@ -46,7 +46,8 @@ export class AppComponent {
   ];
 
   setColor(index: number) {
-    this.titleColor = this.newsList.filter((topic) => topic.id === index)[0].color;
+
+    this.titleColor = this.newsList[index].color;
 
     this.newsList = this.newsList.map((topic) => {
       if (topic.id === index) {
