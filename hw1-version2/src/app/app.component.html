@@ -1,0 +1,13 @@
+
+<h1 [ngStyle]="{ color: textcolor }">
+  Lorem Ipsum
+</h1>
+<div class="container">
+  <!-- 2. property binding                      2a              2b-->          
+  <app-article class="container-article" *ngFor="let article of articles"[art]="article" (btnClick)="getcolor($event)"
+  [ngStyle]="{
+    'box-shadow':
+    textcolor === article.color ? '2px 2px 5px 2px ' + article.color : 'none'
+  }"
+  ></app-article> 
+</div>

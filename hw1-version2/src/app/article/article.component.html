@@ -1,0 +1,8 @@
+<!-- 3a. -->
+<h3>{{ art.title }}</h3>
+<p>{{ art.content }}</p>
+<button 
+(click)="onClickBtn()"
+[ngStyle]="{ background: art.color }"
+>Set {{ art.color }}
+</button>
