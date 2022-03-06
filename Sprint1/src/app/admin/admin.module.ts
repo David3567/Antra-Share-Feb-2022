@@ -6,12 +6,7 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { AdminComponent } from './admin.component';
 
 @NgModule({
-  declarations: [
-    UserinfoComponent,
-    UserlistComponent,
-    AdminComponent],
-  imports: [
-    CommonModule
-  ]
+  declarations: [UserinfoComponent, UserlistComponent, AdminComponent],
+  imports: [CommonModule],
 })
-export class AdminModule { }
+export class AdminModule {}
