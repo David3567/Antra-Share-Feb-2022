@@ -1,1 +1,11 @@
-<p>todolist works!</p>
+<h2>Todo List</h2>
+<input 
+ type="text"
+ (keypress)="addNewTodo($event)">
+<ul>
+    <app-todo-item 
+    *ngFor="let todo of todoList;" 
+    [todo]="todo"    
+    (idEmitter)="deleteTodo($event)"
+    ></app-todo-item>
+</ul>

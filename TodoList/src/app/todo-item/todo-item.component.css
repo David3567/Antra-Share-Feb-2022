@@ -1,0 +1,15 @@
+li {
+    margin: 10px 0;
+    width: 400px;
+}
+
+div {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    width: 27px;
+    height: 23px;
+    cursor: pointer;
+}
