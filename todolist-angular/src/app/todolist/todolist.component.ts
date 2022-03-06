@@ -9,7 +9,7 @@ import { TodolistService } from '../services/todolist.service';
 })
 export class TodolistComponent implements OnInit {
 
-  todolist : Todo[]=[];
+  todolist! : Todo[];
   text!:string;
 
 
@@ -27,20 +27,20 @@ export class TodolistComponent implements OnInit {
     this.todolist = this.todolist.filter((todo)=>todo.id !==id)
   }
   keyUp(event:any){
-    if(event.key ==='Enter' && this.text !== ''){
+    if(this.text !== ''){
       const newtodo ={
-        "userId":1,
+        "userId": 1,
         "title": this.text,
         "completed": false,
       }
       console.log(this.text);
-      this.todolistService.addTodo(newtodo).subscribe((newtodo)=>{
-        this.todolist.push();
-        // console.log(newtodo);
+      this.todolistService.addTodo(newtodo).subscribe((todo: Todo)=>{
+        // this.todolist.push(todo);
+        this.todolist = [todo, ...this.todolist];
+        console.log(newtodo);
       })
       this.text ='';
     }
-     
   }
 
 }

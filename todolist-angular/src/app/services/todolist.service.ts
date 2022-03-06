@@ -14,6 +14,6 @@ export class TodolistService {
     return this.http.get([this.baseUrl,this.path].join('/')) as Observable<Todo[]>;
   }
   addTodo(todo:Todo){
-    return this.http.post([this.baseUrl,this.path].join('/'),todo) as Observable<Todo[]>;
+    return this.http.post([this.baseUrl,this.path].join('/'), todo) as Observable<Todo>;
   }
 }
