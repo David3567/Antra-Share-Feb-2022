@@ -1,0 +1,26 @@
+
+  ul {
+    height: 500px;
+    width: 400px;
+    overflow: auto;
+    background-color: lightgoldenrodyellow;
+    border-radius: 5px;
+  }
+
+  ul .todo_item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ul .todo_item:hover {
+    background-color: grey;
+  }
+
+  .todolist-input {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+  }
