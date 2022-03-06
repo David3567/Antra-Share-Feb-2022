@@ -1,13 +1,12 @@
-<h1 [ngStyle]="{color: color}">{{title}}</h1>
+<h1 [ngStyle]="{color: titleColor}">{{title}}</h1>
 
-<div class="container">
-    <div class="holder" *ngFor="let contents of content" [ngStyle]="{
-      boxShadow: contents.id === id ? '5px 5px 5px ' + contents.color : 'none',
-      border: contents.id === id ? '2px solid ' + contents.color : 'none'
-    }">
-        <h3>{{contents.title}}</h3>
-        <p>{{contents.paragraph}}</p>
-        <button [ngStyle]="{backgroundColor: contents.color}" (click)="clickChangeColor(contents)">Set
-            {{contents.color}}</button>
-    </div>
+<div class = "container">
+  <app-contentlist *ngFor = "let contents of content" 
+  [contentlist] = "contents"
+  [ngStyle] = "{
+    'border': titleColor === contents.color ? '2px solid ' + contents.color : 'none',
+    'box-shadow': titleColor === contents.color ? '5px 5px 2px ' + contents.color : 'none'}"
+    (changeColor) = "clickChangeColor($event)"
+    class = "holder">
+  </app-contentlist>
 </div>

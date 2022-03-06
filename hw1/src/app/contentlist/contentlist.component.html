@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="holder">
+        <h3>{{contentlist.title}}</h3>
+        <p>{{contentlist.paragraph}}</p>
+        <button [ngStyle]="{backgroundColor: contentlist.color}" (click) = "emitColor()">
+            Set {{contentlist.color}}</button>
+    </div>
+</div>
