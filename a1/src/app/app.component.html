@@ -1,1 +1,15 @@
-<h1>hello</h1>
+<h1 [ngStyle]="{color: titlecolor}"> 
+        More than 900 Mayo Clinic staff members diagnosed 
+    with Covid-19 in Midwest over two weeks
+   
+</h1>
+
+<div class="card-container">
+    <app-card 
+    *ngFor="let cards of contentCard" 
+    [cardsitems]="cards" 
+    (cardColor) ="changecolor($event)"
+    class="container"
+    >
+    </app-card>
+</div>

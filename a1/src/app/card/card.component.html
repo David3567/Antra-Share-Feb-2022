@@ -1,1 +1,8 @@
-<p>card works!</p>
+<div class="card-container">
+    <h2>{{cardsitems.title}}</h2>
+    <p>{{cardsitems.info}}</p>
+    <button 
+    (click) = "getcolor()"
+    [ngStyle]="{background:cardsitems.color}"
+    >set color</button>
+</div>
