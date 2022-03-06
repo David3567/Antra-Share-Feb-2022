@@ -1,0 +1,22 @@
+<h1>{{ name }}</h1>
+<h2 [ngStyle]="{ color: color }">This is the title for changing color</h2>
+<div class="container">
+  <ul>
+    <app-card
+      *ngFor="let content of contents"
+      [contents]="content"
+      (colorEmiter)="changeColorBtn($event)"
+      [ngStyle]="{
+        border:
+          color === content.color
+            ? '3px solid ' + content.color
+            : '3px solid transparent',
+        'border-radius': '10px',
+        'box-shadow':
+          color === content.color
+            ? '5px 5px 2px ' + content.color
+            : '5px 5px 2px transparent'
+      }"
+    ></app-card>
+  </ul>
+</div>

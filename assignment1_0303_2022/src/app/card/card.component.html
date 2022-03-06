@@ -1,0 +1,19 @@
+<!-- <p>{{ counter }}</p>
+
+<button (click)="add()">Click me</button>
+<button [disabled]="isdisabled">temp</button>
+
+<input type="text" [(ngModel)]="counter" /> -->
+
+<li>
+  <span>
+    {{ contents.title }}
+  </span>
+  <p>{{ contents.text }}</p>
+  <button
+    (click)="clickChangeColor()"
+    [ngStyle]="{ background: contents.color, color: 'white' }"
+  >
+    Click {{ contents.color }}
+  </button>
+</li>
