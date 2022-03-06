@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.userlist_title_container {
+  width: 100%;
+  height: 3em;
+  line-height: 3em;
+  display: flex;
+  flex-direction: row;
+  background-color:orange;
+  border-top-right-radius: 1.5em;
+  border-bottom-right-radius: 1.5em;
+}
+
+.userlist_title_name,
+.userlist_title_email 
+{
+    flex: 50%;
+    text-align: left;
+    font-size: 1.3em;
+    padding: 0 .5em;
+    display: block;
+}
+
+.userlist_container {
+  width: 100%;
+  border-radius: 5px;
+}
+

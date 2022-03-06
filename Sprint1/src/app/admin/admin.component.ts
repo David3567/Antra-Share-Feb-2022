@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserlistService } from './services/userlist.service';
+import { User } from './interface/user.model';
+import { UserlistService } from '../services/userlist.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,7 +8,10 @@ import { UserlistService } from './services/userlist.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  userlist!: any;
+  userlist!: User[];
+  FocusUser!: User;
+  FocusId!:number;
+  searchUser!: User[];
   
   constructor(private userListService: UserlistService) {}
 
@@ -16,5 +20,11 @@ export class AdminComponent implements OnInit {
       this.userlist = data;
       console.log(this.userlist);
     });
+  }
+  getFocus(focusid: number) {
+    this.FocusUser = this.userlist.filter((search) => {return search.id == focusid;})[0];
+    console.log(this.FocusUser);
+    this.FocusId = this.FocusUser.id;
+    console.log('Focusid: ',this.FocusId);
   }
 }

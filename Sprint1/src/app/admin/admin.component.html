@@ -1,1 +1,17 @@
 <p>admin works!</p>
+<div class="userlist_title_container" role="link">
+  <p class="userlist_title_name"><strong>Full Name</strong></p>
+  <p class="userlist_title_email"><strong> Email </strong></p>
+</div>
+<ul class="userlist_container">
+  <app-userlist
+    *ngFor="let user of userlist"
+    [userinfo]="user"
+    [ngStyle]="{
+      'background-color': user.id === FocusId ? 'orange' : '',
+      color: user.id === FocusId ? 'orange' : ''
+    }"
+    class="user_container"
+    (userInfoEmiter)="getFocus($event)"
+  ></app-userlist>
+  </ul>
