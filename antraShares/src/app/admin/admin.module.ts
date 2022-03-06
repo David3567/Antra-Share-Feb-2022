@@ -11,7 +11,7 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
     CommonModule
   ],
   exports:[
-    AdminComponent
+    AdminComponent,UserinfoComponent
   ]
 })
 export class AdminModule { }
