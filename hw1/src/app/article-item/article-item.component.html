@@ -1,4 +1,7 @@
-<div>
+<div [ngStyle]="{
+  'border': '2px solid ' + borderColor,
+  'box-shadow': '5px 5px ' + borderColor
+}" get-siblings>
   <h2>{{ item.title }}</h2>
   <div>{{ item.body }}</div>
   <button (click)="setColor()" [ngStyle]="{

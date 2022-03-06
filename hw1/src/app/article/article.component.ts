@@ -42,7 +42,6 @@ export class ArticleComponent implements OnInit {
   }
 
   setTitleColor(color: string) {
-    console.log(color);
     this.titlecolor = color;
   }
 

@@ -1,5 +1,6 @@
 import { getCurrencySymbol } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ArticleComponent } from '../article/article.component';
 import { Article } from '../interfaces/article.model';
 
 @Component({
@@ -10,6 +11,8 @@ import { Article } from '../interfaces/article.model';
 export class ArticleItemComponent implements OnInit {
   @Input() item! : Article;
   @Output() emitColor = new EventEmitter();
+
+    borderColor: String = 'none';
   
   constructor() { }
 
@@ -18,5 +21,6 @@ export class ArticleItemComponent implements OnInit {
 
   setColor() {
     this.emitColor.emit(this.item.color);
+    this.borderColor = this.item.color;
   }
 }
