@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "sax": "^1.2.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^13.2.5",
+    "jasmine": "^4.0.2"
   }
 }
