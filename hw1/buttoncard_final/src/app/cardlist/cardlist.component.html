@@ -1,0 +1,11 @@
+<li class="container">
+  <h2 class="title">{{ carditem.title }}</h2>
+  <p>{{ carditem.body }}</p>
+  <button
+    class="button"
+    (click)="changeColor()"
+    [ngStyle]="{ backgroundColor: carditem.color }"
+  >
+    Set {{ carditem.color }}
+  </button>
+</li>

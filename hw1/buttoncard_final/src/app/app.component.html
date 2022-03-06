@@ -1,0 +1,19 @@
+<h1 class="title" [ngStyle]="{ color: TitleColor }">
+  Click Button to Change the Color
+</h1>
+
+<ul class="cardlist_container">
+  <app-cardlist
+  class="container"
+  *ngFor = "let card of cardlist"
+  [carditem] = "card"
+  [ngStyle] = "{
+    boxShadow: card.id === FocusId ? '5px 5px 5px ' + card.color : 'none',
+    border: card.id === FocusId ? '2px solid ' + card.color : '2px solid white'
+  }"
+  (getCardColor) = "getcolor($event)"
+  ></app-cardlist>
+</ul>
+
+
+
