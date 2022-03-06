@@ -4,25 +4,22 @@
   box-sizing: border-box;
 }
 
+
 .user_container {
-  width: 80%;
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
   display: flex;
   flex-direction: row;
-  margin: 1% 20px;
-  border-top-right-radius: 1em;
-  border-bottom-right-radius: 1em;
-  border: .5px solid silver;
-  border-left: none;
 }
 
 .user_name,
 .user_email {
-  height: 20px;
   flex: 50%;
   text-align: left;
   // overflow: hidden;
-  padding: .5em;
-  border: 1px solid red;
+  padding: .7rem 0.5rem;
+
   -webkit-touch-callout:none ;
   -webkit-text-size-adjust:none ;
   -webkit-tap-highlight-color:transparent ;
@@ -30,7 +27,12 @@
   user-select: none;
 }
 
-.user_container:hover{
-    background-color: silver;
-}
 
+@media (max-width: 840px) {
+  .user_name{
+    flex: 100%;
+  }
+  .user_email{
+    display: none;
+  }
+}

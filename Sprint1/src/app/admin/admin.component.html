@@ -1,17 +1,36 @@
-<p>admin works!</p>
-<div class="userlist_title_container" role="link">
-  <p class="userlist_title_name"><strong>Full Name</strong></p>
-  <p class="userlist_title_email"><strong> Email </strong></p>
+<div class="admin_container">
+  <h1 class="page_title">User Manager</h1>
+  <div class="usermanager_container">
+    <!-- left part -->
+    <div class="userlist_container">
+      <div class="userlist_title_container">
+        <p class="userlist_title_name"><strong>Full Name</strong></p>
+        <p class="userlist_title_email"><strong> Email </strong></p>
+      </div>
+      <div class="userlist_list_container">
+        <app-userlist
+          *ngFor="let user of userlist"
+          [userinfo]="user"
+          [ngStyle]="{
+            'background-color': user.id === FocusId ? 'lightcyan' : '',
+            'border-left':
+              user.id === FocusId ? '4px solid cyan' : '4px solid transparent'
+          }"
+          class="user_container"
+          (userInfoEmiter)="getFocus($event)"
+        ></app-userlist>
+      </div>
+      <div class="user_addbutton_container">
+        <button class="user_addbutton">-- Add User --</button>
+      </div>
+    </div>
+
+    <!-- right part -->
+    <div class="userinfo_container">
+      <app-userinfo
+        [showuser]="FocusUser"
+        [ngStyle]="{ display: showInfo }"
+      ></app-userinfo>
+    </div>
+  </div>
 </div>
-<ul class="userlist_container">
-  <app-userlist
-    *ngFor="let user of userlist"
-    [userinfo]="user"
-    [ngStyle]="{
-      'background-color': user.id === FocusId ? 'orange' : '',
-      color: user.id === FocusId ? 'orange' : ''
-    }"
-    class="user_container"
-    (userInfoEmiter)="getFocus($event)"
-  ></app-userlist>
-  </ul>

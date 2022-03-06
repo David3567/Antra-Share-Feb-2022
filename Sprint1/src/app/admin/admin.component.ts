@@ -12,6 +12,7 @@ export class AdminComponent implements OnInit {
   FocusUser!: User;
   FocusId!:number;
   searchUser!: User[];
+  showInfo:string = 'none';
   
   constructor(private userListService: UserlistService) {}
 
@@ -19,12 +20,13 @@ export class AdminComponent implements OnInit {
     this.userListService.getUsers().subscribe((data: any) => {
       this.userlist = data;
       console.log(this.userlist);
+      this.FocusUser = this.userlist[0];
     });
   }
   getFocus(focusid: number) {
     this.FocusUser = this.userlist.filter((search) => {return search.id == focusid;})[0];
     console.log(this.FocusUser);
     this.FocusId = this.FocusUser.id;
-    console.log('Focusid: ',this.FocusId);
+    this.showInfo = 'block';
   }
 }

@@ -1,6 +1,15 @@
-<h1>Hello World!</h1>
-<nav>
-  <a routerLink="/admin">Admin Page</a>
-  <a routerLink="login">Login Page</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="main_container">
+  <ul class="main_header">
+    <li><a routerLink="/admin">Admin Page</a></li>
+    <li><a routerLink="login">Login Page</a></li>
+    <!-- <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+     -->
+  </ul>
+
+  <div class="main_body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
