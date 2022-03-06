@@ -1,0 +1,37 @@
+div {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    border: 1px solid blue;
+    height: 22rem;
+    width: 45%;
+}
+
+button {
+    border: none;
+    border-radius: 6px;
+    color: white;
+    height: 40px;
+    width: 70px
+    
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#btnRed {
+    background-color: red;
+}
+
+#btnBlack {
+    background-color: black;
+}
+
+#btnGreen {
+    background-color: green;
+}
+
+#btnBlue {
+    background-color: blue;
+}
