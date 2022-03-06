@@ -1,0 +1,5 @@
+
+<h1>todolist</h1>
+<input type="text" name="text" id="text" [(ngModel)]="text" placeholder="add new todo" (keyup)="keyUp($event)">
+<p>{{text}}</p>
+<app-todoitem *ngFor="let todo of todolist" [todoitem]="todo" (deleteTodo)="deleteTodo($event)"></app-todoitem>
