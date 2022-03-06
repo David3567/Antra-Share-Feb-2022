@@ -43,6 +43,5 @@ export class AppComponent {
   getcolor(arr:[string, number]){
     this.TitleColor = arr[0];
     this.FocusId = arr[1];
-    console.log(this.FocusId);
   }
 }
