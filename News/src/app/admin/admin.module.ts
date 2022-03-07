@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 
 
-
+// TEMPORARY COMMENT TO CHECK MERGE REQUEST
 @NgModule({
   declarations: [
     AdminComponent
