@@ -14,8 +14,7 @@
           [userinfo]="user"
           [ngStyle]="{
             'background-color': user.id === FocusId ? 'lightcyan' : '',
-            'border-left':
-              user.id === FocusId ? '8px solid cyan' : 'none'
+            'border-left': user.id === FocusId ? '8px solid cyan' : 'none'
           }"
           class="user_container"
           (userInfoEmiter)="getFocus($event)"
@@ -24,16 +23,43 @@
       </div>
 
       <div class="user_addbutton_container">
-        <button class="user_addbutton">-- Add User --</button>
+        <button class="user_addbutton" (click)="oppenaddForm()">
+          -- Add User --
+        </button>
       </div>
     </div>
 
     <!-- right part -->
     <div class="userinfo_container">
-      <app-userinfo
-        class="userinfo"
-        [showuser]="FocusUser"
-      ></app-userinfo>
+      <app-userinfo class="userinfo" [showuser]="FocusUser"></app-userinfo>
     </div>
+  </div>
+</div>
+
+<div class="addUser_container" [ngStyle]="{ display: addFormStyle }">
+  <div class="addUser_Close_btn">
+    <div></div>
+    <button (click)="closeaddForm()">X</button>
+  </div>
+
+  <div class="addUser_Form_container">
+    <form
+      #myForm="ngForm"
+      (ngSubmit)="addUser(myForm.value)"
+      class="addUser_Form"
+    >
+      <div>
+        <input ngModel name="name" type="text" />
+      </div>
+      <div><input ngModel name="email" type="email" /></div>
+      <div><input ngModel name="mobile" type="number" /></div>
+      <div ngModelGroup="passwordInfo">
+        <div><input ngModel name="password" type="password" /></div>
+        <div>
+          <input ngModel name="passwordComfirm" type="password" />
+        </div>
+      </div>
+      <button type="submit"></button>
+    </form>
   </div>
 </div>
