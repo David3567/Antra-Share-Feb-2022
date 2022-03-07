@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .user_container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(146, 145, 145);
+    margin: 10px 0px;
+    border: .5px solid silver;
+    border-left: none; 
+    text-align: center;
+    align-items: center;
+
+  }
+  
+  .user_name{
+    height: 40px;
+    flex: 50%;
+    text-align: center;
+  }
+  
+  .user_container:hover{
+      background-color: silver;
+  }
+
+  .deleteBtn {
+      width: 20px;
+      height: 20px;
+  }

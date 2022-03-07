@@ -1,0 +1,35 @@
+<div class="admin_container">
+    <div class="userlist_title_container" role="link">
+        <ul class="userlist_container">
+            <app-userlist
+            *ngFor="let user of userlist"
+            [userinfo]="user"
+            [ngStyle]="{
+            'background-color': user.id === FocusId ? 'orange' : 'silver',
+            color: user.id === FocusId ? 'gold' : 'white'
+            }"
+            class="user_container"
+            (userInfoEmiter)="getFocus($event)"
+            (userDeleteEmiter)="deleteUser($event)"
+        ></app-userlist>
+        
+        </ul>
+
+        <button type="button" class="addBtn" >Add User Button</button>
+       
+    </div>
+
+    <div class="userinfo_panel" role="link">
+        <app-userinfo
+            *ngFor="let user of userlist"
+            [userinfo]="user"
+            [ngStyle]="{
+            'color': user.id === FocusId ? 'black' : 'white',
+            'display': user.id === FocusId ?'block' : 'none'
+            }"
+        ></app-userinfo>
+        
+    </div>
+
+
+</div>
