@@ -1,15 +1,18 @@
-.button {
+.contextinfo_container {
+    padding: 5px;
+  }
+  
+  .title,
+  .info,
+  button {
+    padding: 5px;
+  }
+  .title {
+    font-family: "Dancing Script", cursive;
+    font-weight: bold;
+  }
+  
+  button {
+    color: white;
     width: 100px;
-    position: absolute;
-    flex-direction: row;
-}
-
-ul{
-    display: flex;
-    
-}
-li {
-    align-items: center;
-    list-style: none;
-
-}
+  }
