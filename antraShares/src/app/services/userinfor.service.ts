@@ -22,7 +22,7 @@ export class UserinforService {
   }
   deleteUser(user:Users){
     const url = `${this.baseUrl}/${this.path}/${user.id}`;
-    return this.http.delete<Task>(url);
+    return this.http.delete<Users>(url);
     // return this.http.delete([this.baseUrl, this.path, user.id]) as Observable<Users>
     // return this.http.delete([this.baseUrl,this.path].join('/'), user) as Observable<Users[]>;
   }
