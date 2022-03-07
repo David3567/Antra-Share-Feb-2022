@@ -21,3 +21,34 @@ li {
   background-color: grey;
   height: 50px;
 }
+
+li button {
+  float: right;
+  margin: 10px;
+  height: 30px;
+  width: 70px;
+  background-color: red;
+  color: white;
+}
+
+li button:hover {
+  background-color: white;
+  color: red;
+}
+
+.addBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.addBtn button {
+  height: 50px;
+  width: 200px;
+  color: green;
+}
+
+.addBtn button:hover {
+  background-color: green;
+  color: white;
+}
