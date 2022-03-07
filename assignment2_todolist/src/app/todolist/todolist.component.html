@@ -1,4 +1,5 @@
 <p>todolist works!</p>
+<input type="text" placeholder="add an item" (keyup.enter)="addItem($event)" />
 <ul>
   <app-todoitem
     *ngFor="let todo of todolist"

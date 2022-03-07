@@ -17,7 +17,19 @@ export class TodolistComponent implements OnInit {
       this.todolist = data;
     });
   }
-
+  addItem(event: any) {
+    console.log(event.target.value);
+    if (event.target.value != '') {
+      this.todolist.unshift({
+        userId: 1,
+        id: this.todolist.length + 1,
+        title: event.target.value,
+        completed: false,
+      });
+      console.log(this.todolist[0].id);
+    }
+    event.target.value = '';
+  }
   deletetodo(id: number) {
     console.log('todolist: todo item id is ', id);
     this.todolist = this.todolist.filter((todo) => todo.id !== id);
