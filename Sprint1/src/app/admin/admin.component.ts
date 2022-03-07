@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
       this.FocusUser = this.userlist[0];
     });
   }
+  
   getFocus(focusid: number) {
     this.FocusUser = this.userlist.filter((search) => {return search.id == focusid;})[0];
     // console.log(this.FocusUser);
