@@ -1,15 +1,24 @@
-<h1>todolist</h1>
-<input
-  type="text"
-  name="text"
-  id="text"
-  [(ngModel)]="text"
-  placeholder="add new todo"
-  (keyup.enter)="keyUp($event)"
-/>
-<p>{{ text }}</p>
-<app-todoitem
-  *ngFor="let todo of todolist"
-  [todoitem]="todo"
-  (deleteTodo)="deleteTodo($event)"
-></app-todoitem>
+<header class="header">implement a todo list</header>
+
+<main class="container">
+  <section class="todolist">
+    <header class="todolist-header">todolist</header>
+    <input
+      class="todolist-input"
+      type="text"
+      name="text"
+      id="text"
+      [(ngModel)]="text"
+      placeholder="add new todo"
+      (keyup.enter)="keyUp($event)"
+    />
+    <p>{{ text }}</p>
+    <ul class="todolist-container">
+      <app-todoitem
+        *ngFor="let todo of todolist"
+        [todoitem]="todo"
+        (deleteTodo)="deleteTodo($event)"
+      ></app-todoitem>
+    </ul>
+  </section>
+</main>

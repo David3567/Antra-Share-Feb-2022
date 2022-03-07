@@ -18,13 +18,15 @@ export class TodolistComponent implements OnInit {
   ngOnInit(): void {
     //help get data
     this.todolistService.getTodos().subscribe((data : Todo[])=>{
-      this.todolist = data;
+      this.todolist = data.reverse();
     })
     
   }
   deleteTodo(id:number){
-    // console.log(id)
-    this.todolist = this.todolist.filter((todo)=>todo.id !==id)
+    console.log(id);
+    this.todolistService.deleteTodo(id).subscribe(()=>{
+      this.todolist = this.todolist.filter((todo)=>todo.id !==id)
+    }) 
   }
   keyUp(event:any){
     if(this.text !== ''){
@@ -37,7 +39,7 @@ export class TodolistComponent implements OnInit {
       this.todolistService.addTodo(newtodo).subscribe((todo: Todo)=>{
         // this.todolist.push(todo);
         this.todolist = [todo, ...this.todolist];
-        console.log(newtodo);
+        // console.log(newtodo);
       })
       this.text ='';
     }

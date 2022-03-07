@@ -1,0 +1,64 @@
+:root {
+    --height-header: 60px;
+    --height-todolist: 300px;
+    --height-todolist-header: 30px;
+
+    --width-todolist: 400px;
+
+    --color-green: rgb(255, 0, 140);
+    --color-red-button: rgb(187, 9, 9);
+    --color-red-li-hover: rgb(60, 226, 38);
+}
+
+
+
+
+
+.header {
+    height: var(--height-header);
+    line-height: var(--height-header);
+    /* background: linear-gradient(to right, black, var(--color-green)); */
+    color: white;
+
+    padding-left: 10px;
+    font-size: 2.3rem;
+
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+.container {
+    background-color: beige;
+    height: calc(100% - var(--height-header));
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todolist {
+    height: var(--height-todolist);
+    width: var(--width-todolist);
+    /* background-color: var(--color-green); */
+    /* box-shadow: 5px 5px 2px black; */
+    border-radius: 5px;
+}
+
+.todolist-header,
+.todolist-input,
+ul li {
+    height: var(--height-todolist-header);
+    line-height: var(--height-todolist-header);
+    width: 100%;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+
+    list-style: none;
+    border: none;
+    outline: none;
+}
+.todolist-header {
+    text-align: center;
+    font-size: 1.7rem;
+}
