@@ -1,0 +1,5 @@
+<input type="text" (keypress)="addNewTodo($event)"/>
+<ul>
+  <app-todolistitem *ngFor="let todo of todoList" [todoitem]="todo" (todoIdEmitter)="deletetodo ($event)"></app-todolistitem>
+</ul>
+
