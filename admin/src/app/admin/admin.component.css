@@ -2,7 +2,3 @@
   display: flex;
   justify-content: space-around;
 }
-
-app-userslist {
-  border: 1px solid black;
-}

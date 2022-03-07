@@ -10,6 +10,8 @@ import { StoryComponent } from './story/story.component';
 import { NewFeedComponent } from './new-feed/new-feed.component';
 import { UserslistComponent } from './admin/userslist/userslist.component';
 import { UserDetailedInfoPanelComponent } from './admin/user-detailed-info-panel/user-detailed-info-panel.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserlistService } from './services/userlist.service';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,8 @@ import { UserDetailedInfoPanelComponent } from './admin/user-detailed-info-panel
     UserslistComponent,
     UserDetailedInfoPanelComponent,
   ],
-  imports: [BrowserModule],
-  providers: [],
+  imports: [BrowserModule, HttpClientModule],
+  providers: [UserlistService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
