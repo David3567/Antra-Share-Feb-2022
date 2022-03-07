@@ -4,13 +4,6 @@
 
 <button type="button" (click)="addtodo(newtodo.value)">Add</button>
 
-<!-- <input #newTodo 
-    (keyup.enter)="addtodo(newTodo.value)" 
-    (blur)="addtodo(newTodo.value)"
-    placeholder='Another Todo...' 
-/>
-<p>{{values}}</p> -->
-
 <ul>
     <app-todoitem
         *ngFor="let todo of todolist"

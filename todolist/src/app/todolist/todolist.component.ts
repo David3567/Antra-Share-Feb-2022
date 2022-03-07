@@ -11,7 +11,6 @@ export class TodolistComponent implements OnInit {
 
   id = 201;
   userId = 8
-
   todolist!: TodoInterface[];
 
   constructor(private todolistService: TodolistService) {}
@@ -24,10 +23,7 @@ export class TodolistComponent implements OnInit {
 
   addtodo(newtodo: string) {
     if (!newtodo) return;
-    // userId: Number;
-    // id?: Number;
-    // title: String;
-    // completed: Boolean;
+
     let todo: TodoInterface = {
       userId: this.userId,
       id: this.id,
@@ -37,7 +33,6 @@ export class TodolistComponent implements OnInit {
 
     this.todolist = [todo, ...this.todolist];
     this.id++;
-    
   }
 
   deletetodo(id: number) {

@@ -15,4 +15,5 @@ export class TodolistService {
   getTodos() {
     return this.http.get([this.baseUrl, this.path].join('/')) as Observable<TodoInterface[]>;
   }
+
 }
