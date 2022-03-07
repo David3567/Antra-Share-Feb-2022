@@ -1,7 +1,15 @@
 <h3>User Detailed Info Panel</h3>
-<p>{{ userDetail === undefined ? "" :"UserName: "+ userDetail.name }} </p>
+<!-- <p>{{ userDetail === undefined ? "" :"UserName: "+ userDetail.name }} </p>
 <p>{{ userDetail === undefined ? "" :"Pawwword: "+ userDetail.password }} </p>
 <p>{{ userDetail === undefined ? "" :"Usermail: "+ userDetail.userEmail }} </p>
 <p>{{ userDetail === undefined ? "" :"Gender: "+ userDetail.gender }} </p>
 <p>{{ userDetail === undefined ? "" :"Age: "+ userDetail.age }} </p>
-<p>{{ userDetail === undefined ? "" :"phone: "+ userDetail.phone }} </p>
+<p>{{ userDetail === undefined ? "" :"phone: "+ userDetail.phone }} </p> -->
+<p *ngIf="userDetail !== undefined">
+    UserName: {{userDetail.name}} <br> <br>
+    Password: {{userDetail.password}} <br> <br>
+    Usermail: {{userDetail.userEmail}} <br> <br>
+    Gender: {{userDetail.gender}} <br> <br>
+    Age:  {{userDetail.age}} <br> <br>
+    phone:  {{userDetail.phone}} <br> <br>
+</p>
