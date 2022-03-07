@@ -1,1 +1,20 @@
-<p>todolist works!</p>
+<input #newtodo
+(keyup.enter)="addtodo(newtodo.value)"
+(blur)="addtodo(newtodo.value); newtodo.value='' ">
+
+<button type="button" (click)="addtodo(newtodo.value)">Add</button>
+
+<!-- <input #newTodo 
+    (keyup.enter)="addtodo(newTodo.value)" 
+    (blur)="addtodo(newTodo.value)"
+    placeholder='Another Todo...' 
+/>
+<p>{{values}}</p> -->
+
+<ul>
+    <app-todoitem
+        *ngFor="let todo of todolist"
+        [todoitem]="todo"
+        (todoitemEvent)="deletetodo($event)"
+    ></app-todoitem>
+</ul>
