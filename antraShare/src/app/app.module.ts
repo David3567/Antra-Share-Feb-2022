@@ -9,6 +9,10 @@ import { UserinfoComponent } from './admin/userinfo/userinfo.component';
 import { UserlistService } from './service/userlist.service';
 import { UserlistComponent } from './admin/userlist/userlist.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { SettingComponent } from './setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import { FormsModule } from '@angular/forms';
     UserinfoComponent,
     UserinfoComponent,
     UserlistComponent,
+    LoginComponent,
+    ProfileComponent,
+    NewsfeedComponent,
+    SettingComponent,
   ],
   imports: [
     BrowserModule,
