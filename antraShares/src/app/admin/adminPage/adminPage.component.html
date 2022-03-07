@@ -1,0 +1,6 @@
+<cdk-accordion class="example-accordion">
+  <div *ngFor="let userInfo of userInfoList; let index = index"
+    class="example-accordion-item" role="button" >
+    <app-userInfoPanel [userInfo]="userInfo"></app-userInfoPanel>
+  </div>
+</cdk-accordion>

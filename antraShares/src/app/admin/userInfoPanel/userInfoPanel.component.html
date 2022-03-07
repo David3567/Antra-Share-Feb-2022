@@ -1,0 +1,18 @@
+<div class="example-accordion-item-header">
+  {{ userInfo.name }}
+  <span class="example-accordion-item-description">
+    Click to open/close
+  </span>
+  <button (click)="clickdelete()">X</button>
+</div>
+<div class="example-accordion-item-body" role="region">
+  <li>
+    <span>
+      {{ userInfo.userName }}
+      {{ userInfo.password }}
+      {{ userInfo.userEmail }}
+      {{ userInfo.age }}
+      {{ userInfo.gender }}
+    </span>
+  </li>
+</div>
