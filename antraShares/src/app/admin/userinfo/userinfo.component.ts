@@ -8,22 +8,15 @@ import { Users } from 'src/app/interfaces/userlist.model';
   styleUrls: ['./userinfo.component.css'],
 })
 export class UserinfoComponent implements OnInit {
-  //get data from admin c
-  // @Input() item = "";
 
   @Input() userDetail! :Users;
 
-  // @Output() deleteUserBtn = new EventEmitter();
+  constructor() {
 
-  
-  constructor() {}
+  }
 
   ngOnInit(): void {
+    
   }
-  // onDeleteBtn(){
-  //   this.deleteUserBtn.emit(this.user.id);
-  // }
-  // onUserDetail(){
-  //   this.userDetail.emit(this.user.id);
-  // }
+  
 }

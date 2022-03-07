@@ -1,25 +1,36 @@
 export interface Users {
-  id: number;
+  // id: number;
+  // name: string;
+  // username: string;
+  // email: string;
+  // address: {
+  //   street: string;
+  //   suite: string;
+  //   city: string;
+  //   zipcode: number;
+  //   geo: {
+  //     lat: number;
+  //     lng: number;
+  //   };
+  // };
+  // phone: string;
+  // website: string;
+  // company: {
+  //   name: string;
+  //   catchPhrase: string;
+  //   bs: string;
+  // };
+  id?: number;
   name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: number;
-    geo: {
-      lat: number;
-      lng: number;
-    };
+  userName: string;
+  userEmail: string;
+  password: string;
+  userRole: {
+    role: string;
+    require: boolean;
   };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
+  age: number;
+  gender: string;
+  phone: number;
+  avata: string;
 }
-
-

@@ -1,4 +1,7 @@
-<h1>User Detailed Info Panel</h1>
-<p>
-  {{ userDetail == null ? "" : userDetail.id }}
-</p>
+<h3>User Detailed Info Panel</h3>
+<p>{{ userDetail === undefined ? "" :"UserName: "+ userDetail.name }} </p>
+<p>{{ userDetail === undefined ? "" :"Pawwword: "+ userDetail.password }} </p>
+<p>{{ userDetail === undefined ? "" :"Usermail: "+ userDetail.userEmail }} </p>
+<p>{{ userDetail === undefined ? "" :"Gender: "+ userDetail.gender }} </p>
+<p>{{ userDetail === undefined ? "" :"Age: "+ userDetail.age }} </p>
+<p>{{ userDetail === undefined ? "" :"phone: "+ userDetail.phone }} </p>

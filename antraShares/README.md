@@ -9,4 +9,4 @@ This is the basic setting 5 modules:  Login, Profile, NewsFeed, Setting, Admin
 #data form child to parent b
 1.set @ouput in child .ts @output oname then emit to a function with data to tranfer
 2.in parent .html event binding (oname)="methodName($event)"
-3.in parent .ts and function methodName()
+3.in parent .ts and function methodName()ls
