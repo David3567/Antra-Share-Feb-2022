@@ -1,6 +1,5 @@
 # Antra-Share-Feb-2022
-AntraShare Project (changed by Luke new  new March/7/22)
-this is Luke's change
+AntraShare Project 
 
 This is a repo to record the Antra-Share assignments and notes.
 
@@ -29,3 +28,4 @@ git branch by_Team_name/notes
 git checkout by_Team_name/notes
 implement the assignment under this feature branch.
 ```
+add something here by Luke
