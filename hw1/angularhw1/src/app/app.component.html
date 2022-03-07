@@ -1,0 +1,5 @@
+<h1 class="titleArea-title" [style.color]="currentColor">This is title</h1>
+<div class="displayArea">
+  <app-card *ngFor="let color of colorArr" [color]="color" (colorEmiter)="changeColor($event)">
+  </app-card>
+</div>

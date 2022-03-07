@@ -1,0 +1,11 @@
+<li class="listitem">
+    <span class="listitem_text" [style.text-decoration]="textDecorator">
+        {{todo.title}}
+    </span>
+    <button class="listitem_completebtn"(click)="markComplete()">
+        O
+    </button>
+    <button class="listitem_deletebtn" (click)="deleteTodo()">
+        X
+    </button>
+</li>

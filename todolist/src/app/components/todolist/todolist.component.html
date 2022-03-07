@@ -1,0 +1,18 @@
+<div class="todolist">
+    <div class="todolist_input-container">
+        <input class="todolist_input-box" 
+        type="text"
+        [(ngModel)] = "keyword"
+        placeholder="Write new todo here, hit enter to add"
+        (keyup)="addtodo($event)"/> 
+    </div>
+    <hr>
+    <ul>
+        <app-todolistitem 
+        *ngFor="let todo of todolist" 
+        [todo]="todo" 
+        (todoIDEmiter)="deleteTodo($event)" 
+        (todoCompleteIdEmiter)="completeTodo($event)">
+        </app-todolistitem>
+    </ul>
+</div>

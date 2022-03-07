@@ -1,0 +1,25 @@
+ul{
+    list-style: none;
+}
+
+.todolist{
+    max-width: 800px;
+    min-width: 400px;
+    padding-left: 10%;
+}
+
+.todolist_addbtn{
+    width: 3rem;
+    margin-right: 10%;
+}
+
+.todolist_input-container{
+    display: flex;
+}
+
+.todolist_input-box{
+    flex: 1;
+    height: 20px;
+    margin-left: 5%;
+    margin-right: 10%;
+}
