@@ -1,0 +1,5 @@
+
+<li class="listItem" nz-menu-item [nzSelected]="selectedFlag" class = "menuitem">
+    <button  nz-button nzDanger nzType="primary" nzShape="circle" (click)="deleteUser()"><i nz-icon nzType="close-circle"></i></button>
+    <span (click)="selectUser()">{{user.name}}</span>  
+</li>
