@@ -8,10 +8,13 @@ import { User } from '../interfaces';
 })
 export class UsertagComponent implements OnInit {
   @Input() userdetails!:User;
-  @Output() info:User = this.userdetails;
+  @Output() info = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
+  }
+  showdetails(){
+    this.info.emit(this.userdetails);
   }
 
 }

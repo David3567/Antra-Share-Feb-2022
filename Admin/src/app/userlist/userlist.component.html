@@ -3,12 +3,16 @@
         <app-usertag
             *ngFor = "let user of Userlist"
             [userdetails] = "user"
+            (info)="show($event)"
         ></app-usertag>
     </ul>
 </div>
 
 <div class="user-info">
-    <app-userinfo
-    [(ngModel)] = "info"
-    ></app-userinfo>
+    <h2>User Detailed Info Panel</h2>
+    <h3>username:{{info.name}}</h3>
+    <h3>Passworld:</h3>
+    <h3>Useremail:</h3>
+    <h3>Gender:</h3>
+    <h3>Age:</h3>
 </div>

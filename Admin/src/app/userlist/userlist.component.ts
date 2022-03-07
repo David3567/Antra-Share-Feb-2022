@@ -17,6 +17,9 @@ export class UserlistComponent implements OnInit {
       this.Userlist = data;
     })
   }
-  
+  show(details:User){
+    console.log(details);
+    this.info = details;
+  }
 
 }
