@@ -12,6 +12,7 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
   ],
   exports:[
     AdminComponent,UserinfoComponent
-  ]
+  ],
+  
 })
 export class AdminModule { }

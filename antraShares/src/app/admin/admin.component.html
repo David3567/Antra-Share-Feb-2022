@@ -1,1 +1,16 @@
-<p>admin works!</p>
+<h1>Admin page</h1>
+<div>
+  <p *ngFor="let user of users" >
+    <span (click)="onUserDetail(user)" >User tag {{ user.id }} </span>
+    <button (click)="onDeleteBtn(user.id)">Delete</button>
+  </p>
+  <button>Add User</button>
+</div>
+<div>
+    <app-userinfo [userDetail]="userDetail" >
+
+    </app-userinfo>
+
+</div>
+
+<!-- <p *ngFor ="let user of users">{{user.id}} X __</p> -->
