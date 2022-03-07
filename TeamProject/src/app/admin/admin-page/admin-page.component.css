@@ -1,0 +1,23 @@
+body {
+  border-style: dashed;
+  height: 100%;
+  width: 30vw;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 20px;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+
+li {
+  background-color: grey;
+  height: 50px;
+}
