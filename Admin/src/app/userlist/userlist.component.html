@@ -1,0 +1,14 @@
+<div class="user-list">
+    <ul>
+        <app-usertag
+            *ngFor = "let user of Userlist"
+            [userdetails] = "user"
+        ></app-usertag>
+    </ul>
+</div>
+
+<div class="user-info">
+    <app-userinfo
+    [(ngModel)] = "info"
+    ></app-userinfo>
+</div>
