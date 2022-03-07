@@ -1,7 +1,7 @@
 <p>userslist works!</p>
 <ul>
   <li *ngFor="let user of userlist">
-    <span> {{ user.name }} </span>
+    <span (click)="showinfo($event)"> {{ user.name }} </span>
     <button (click)="clickdelete()">X</button>
   </li>
 </ul>

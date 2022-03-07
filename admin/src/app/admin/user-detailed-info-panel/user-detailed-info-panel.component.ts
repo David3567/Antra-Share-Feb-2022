@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../../interfaces/user.model';
 @Component({
   selector: 'app-user-detailed-info-panel',
   templateUrl: './user-detailed-info-panel.component.html',
-  styleUrls: ['./user-detailed-info-panel.component.css']
+  styleUrls: ['./user-detailed-info-panel.component.css'],
 })
 export class UserDetailedInfoPanelComponent implements OnInit {
+  @Input() showDetailed!: User[];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
