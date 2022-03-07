@@ -11,20 +11,20 @@ export class AdminComponent implements OnInit {
   userlist!: User[];
   FocusUser!: User;
   FocusId!:number;
-  searchUser!: User[];
+  // searchUser!: User[];
   
   constructor(private userListService: UserlistService) {}
 
   ngOnInit(): void {
     this.userListService.getUsers().subscribe((data: any) => {
       this.userlist = data;
-      console.log(this.userlist);
+      // console.log(this.userlist);
       this.FocusUser = this.userlist[0];
     });
   }
   getFocus(focusid: number) {
     this.FocusUser = this.userlist.filter((search) => {return search.id == focusid;})[0];
-    console.log(this.FocusUser);
+    // console.log(this.FocusUser);
     this.FocusId = this.FocusUser.id;
   }
 }
