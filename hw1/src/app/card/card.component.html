@@ -1,1 +1,8 @@
-<p>card works!</p>
+<div class="cards" [ngClass]="news.hasBoxShadow ? news.color : 'none'">
+  <p>
+    <span>{{news.location}} -- </span>
+    {{news.content}}
+  </p>
+  <button (click)="setColor(news.id)" [ngStyle]="{backgroundColor: news.color}">Set {{news.color}}
+  </button>
+</div>

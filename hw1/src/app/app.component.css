@@ -1,0 +1,21 @@
+* {
+  font-family: cursive;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px 30px;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: auto;
+  }
+}
