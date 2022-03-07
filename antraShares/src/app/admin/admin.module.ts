@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { UsersListComponent } from "./usersList/usersList.component";
 import { UserinforService } from "../services/userinfor.service";
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { CurrentUserInfoComponent } from "../admin/currentUserInfo/currentUserInfo.component";
 @NgModule({
-  declarations: [AdminComponent, UsersListComponent],
+  declarations: [AdminComponent, UsersListComponent, CurrentUserInfoComponent],
   imports: [
-    CommonModule,HttpClientModule
+    CommonModule, HttpClientModule
   ],
   exports: [
     AdminComponent, UsersListComponent

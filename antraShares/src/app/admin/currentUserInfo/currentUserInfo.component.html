@@ -1,0 +1,29 @@
+<div class="userinfo_container">
+
+  <h1>Detailed info for the selected user</h1>
+
+
+  <span>{{"Name: "+ currentUser.name}}</span>
+  <br>
+
+
+  <span>{{"Username: "+ currentUser.username}}</span>
+
+  <br>
+  <span>{{"Email: "+ currentUser.email}}</span>
+
+  <div>
+    <p>Address: </p>
+    <br>
+    <span>{{currentUser.address.street + " " + currentUser.address.suite}}</span>
+    <br>
+    <span>{{currentUser.address.city + " " + currentUser.address.zipcode}}</span>
+    <br>
+  </div>
+
+  <span>{{"Phone: " + currentUser.phone}}</span>
+  <br>
+
+
+  <span>{{"Website: " + currentUser.website}}</span>
+</div>

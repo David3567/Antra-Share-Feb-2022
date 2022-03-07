@@ -1,2 +1,24 @@
-<p>admin works!</p>
-<app-usersList></app-usersList>
+<div class="mgmt_container">
+    <!-- LHS -->
+    <div class="userlist_container">
+        <div class="userlist_title_container">
+            <p class="userlist_title_fullname"><strong>Full Name</strong></p>
+            <p class="userlist_username"><strong> Username </strong></p>
+        </div>
+
+        <div class="userlist_list_container">
+            <app-usersList *ngFor="let user of usersList" [userinfo]="user" class="user_container"
+                (uie)="wrapperFunction($event)"></app-usersList>
+        </div>
+
+        <div class="user_addbutton_container">
+            <button>Add User</button>
+        </div>
+    </div>
+
+    <!-- RHS -->
+    <div class="userinfo_container">
+        <app-currentUserInfo [currentUser]="focusUser"></app-currentUserInfo>
+
+    </div>
+</div>

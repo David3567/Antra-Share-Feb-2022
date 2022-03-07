@@ -1,3 +1,8 @@
-<p>
-  usersList works!
-</p>
+<div class="user_container" *ngIf="hideDelete===false">
+  <div class="user_container" (click)="emitUID()" *ngIf="hideDelete===false">
+    <p class="user_fullname" *ngIf="hideDelete===false">{{userinfo.name===undefined?'':userinfo.name}}</p>
+    <p class="user_username" *ngIf="hideDelete===false">{{ userinfo.username }}</p>
+  </div>
+
+  <button (click)="removeUID()" *ngIf="hideDelete===false">Delete</button>
+</div>
