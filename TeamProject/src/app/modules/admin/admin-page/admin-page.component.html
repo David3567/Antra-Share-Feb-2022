@@ -1,0 +1,24 @@
+<header><button class="admin">Admin</button></header>
+<div class="container">
+    <nav>
+        <h2>Users List</h2>
+        <ul>
+            <li *ngFor="let user of userList" (click)="showUserDetails(user)"
+                [ngClass]="user.id === userToShow.id ? 'selected': null">
+                <div>
+                    <span>{{ user.name }}</span>
+                    <button class="delete" (click)="deleteUser(user.id)">X</button>
+                </div>
+        </ul>
+        <div>
+            <button class="newUser">Add new User</button>
+        </div>
+    </nav>
+
+    <app-user-info-panel [userDetails]="userToShow"></app-user-info-panel>
+</div>
+<footer>
+    <button>My Profile</button>
+    <button>News Feed</button>
+    <button>Settings</button>
+</footer>
