@@ -11,6 +11,7 @@ export class AdminComponent implements OnInit {
   userlist!: User[];
   FocusUser!: User;
   FocusId!:number;
+  newUser!: User;
   // searchUser!: User[];
   
   constructor(private userListService: UserlistService) {}
@@ -22,10 +23,21 @@ export class AdminComponent implements OnInit {
       this.FocusUser = this.userlist[0];
     });
   }
-  
+
   getFocus(focusid: number) {
     this.FocusUser = this.userlist.filter((search) => {return search.id == focusid;})[0];
     // console.log(this.FocusUser);
     this.FocusId = this.FocusUser.id;
   }
+
+  addUser(user: User){
+    this.userListService.addUsers(user).subscribe((user:any) => this.userlist.push(user));
+    this.userlist.push(user);
+  }
+
+  deleteUser(id: number){
+    this.userListService.deleteUser(id).subscribe();
+    this.userlist = this.userlist.filter((search) => {return search.id !== id});
+  }
+
 }
