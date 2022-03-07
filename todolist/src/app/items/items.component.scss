@@ -1,0 +1,21 @@
+li button{
+    margin-right: 10px;
+    font-size: 25px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+li button:hover{
+    font-size: 35px;
+    background-color: goldenrod
+}
+
+li button:active{
+    font-size: 20px;
+}
+
+li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
