@@ -3,11 +3,11 @@ import { User } from '../interfaces';
 import { AdminService } from '../admin.service';
 
 @Component({
-  selector: 'app-userlist',
-  templateUrl: './userlist.component.html',
-  styleUrls: ['./userlist.component.css']
+  selector: 'app-admin-page',
+  templateUrl: './admin-page.component.html',
+  styleUrls: ['./admin-page.component.css']
 })
-export class UserlistComponent implements OnInit {
+export class AdminPageComponent implements OnInit {
   Userlist!:User[];
   info!:User;
   constructor(private adminservice:AdminService) { }
@@ -23,3 +23,4 @@ export class UserlistComponent implements OnInit {
   }
 
 }
+

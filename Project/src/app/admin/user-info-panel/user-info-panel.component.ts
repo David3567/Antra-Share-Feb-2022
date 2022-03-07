@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../interfaces';
 
+
 @Component({
-  selector: 'app-usertag',
-  templateUrl: './usertag.component.html',
-  styleUrls: ['./usertag.component.css']
+  selector: 'app-user-info-panel',
+  templateUrl: './user-info-panel.component.html',
+  styleUrls: ['./user-info-panel.component.css']
 })
-export class UsertagComponent implements OnInit {
+export class UserInfoPanelComponent implements OnInit {
   @Input() userdetails!:User;
   @Output() info = new EventEmitter();
   constructor() { }
