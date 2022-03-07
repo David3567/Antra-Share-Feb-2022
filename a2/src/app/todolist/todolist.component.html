@@ -1,0 +1,17 @@
+<div class="todolist">
+  <header class="todolist-header">todolist</header>
+  <input
+      type="text"
+      class="todolist-input"
+      placeholder="Input your todo..."
+      [(ngModel)]="addvalue"
+      (keyup.enter)="addtodo($event)"
+  />
+  <ul>
+      <app-todoitem
+        *ngFor="let todo of todolist"
+        [todoitem]="todo"
+        (todoIdEmiter)="deletetodo($event)"
+      ></app-todoitem>
+    </ul>
+</div>

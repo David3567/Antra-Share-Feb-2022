@@ -1,0 +1,27 @@
+li:hover {
+    background-color: var(--color-red-li-hover);
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+span {
+    height: 100%;
+    line-height: var(--height-todolist-header);
+    overflow: hidden;
+}
+li button {
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-red-button);
+}
+li button:hover {
+    font-size: 1.7rem;
+}
+li button:active {
+    font-size: 1.3rem;
+}
