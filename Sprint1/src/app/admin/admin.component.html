@@ -7,6 +7,7 @@
         <p class="userlist_title_name"><strong>Full Name</strong></p>
         <p class="userlist_title_email"><strong> Email </strong></p>
       </div>
+
       <div class="userlist_list_container">
         <app-userlist
           *ngFor="let user of userlist"
@@ -20,6 +21,7 @@
           (userInfoEmiter)="getFocus($event)"
         ></app-userlist>
       </div>
+
       <div class="user_addbutton_container">
         <button class="user_addbutton">-- Add User --</button>
       </div>
@@ -28,8 +30,8 @@
     <!-- right part -->
     <div class="userinfo_container">
       <app-userinfo
+        class="userinfo"
         [showuser]="FocusUser"
-        [ngStyle]="{ display: showInfo }"
       ></app-userinfo>
     </div>
   </div>

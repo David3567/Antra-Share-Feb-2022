@@ -12,7 +12,6 @@ export class AdminComponent implements OnInit {
   FocusUser!: User;
   FocusId!:number;
   searchUser!: User[];
-  showInfo:string = 'none';
   
   constructor(private userListService: UserlistService) {}
 
@@ -27,6 +26,5 @@ export class AdminComponent implements OnInit {
     this.FocusUser = this.userlist.filter((search) => {return search.id == focusid;})[0];
     console.log(this.FocusUser);
     this.FocusId = this.FocusUser.id;
-    this.showInfo = 'block';
   }
 }

@@ -1,3 +1,34 @@
-<p>
-  userinfo works! {{showuser.id}}
-</p>
+<div class="userinfo_container">
+
+  <h1>User Detailed Info</h1>
+
+  <div>
+    <h3>Name: </h3>
+    <span>{{showuser.name}}</span>
+  </div>
+
+  <div>
+    <h3>Username: </h3>
+    <span>{{showuser.username}}</span>
+  </div>
+
+  <div>
+    <h3>Email: </h3>
+    <span>{{showuser.email}}</span>
+  </div>
+
+  <div>
+    <h3>Address: </h3>
+    <span>{{[showuser.address.street, showuser.address.suite, showuser.address.city, showuser.address.zipcode].join(' ')}}</span>
+  </div>
+
+  <div>
+    <h3>Phone: </h3>
+    <span>{{[showuser.phone]}}</span>
+  </div>
+
+  <div>
+    <h3>Website: </h3>
+    <span>{{[showuser.website]}}</span>
+  </div>
+</div>

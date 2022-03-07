@@ -1,0 +1,32 @@
+.userinfo_container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+//   border: 1px solid black;
+}
+
+.userinfo_container h1 {
+  padding: .5em;
+}
+.userinfo_container div {
+  align-self: center;
+  // flex-grow: 1;
+  // flex-shrink: 1;
+//   margin: 1em;
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  // height: 100px;
+  justify-content: center;
+//   border: 1px solid black;
+  // line-height: 100px;
+}
+
+.userinfo_container div h2,
+.userinfo_container div h3,
+.userinfo_container div span {
+  padding: 1em;
+  flex: 50%;
+  border: 1px solid wheat;
+}
