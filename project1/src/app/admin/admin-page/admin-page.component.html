@@ -1,7 +1,7 @@
 <div id="adminPageContainer">
   <div id="userList">
-    <li *ngFor="let item of user">
-      <span (click)="sendUserInfo(item)">{{ item.username }}</span>
+    <li *ngFor="let item of user" (click)="sendUserInfo(item)">
+      <span>{{ item.username }}</span>
       <button id="matIconContainer" (click)="deleteUser(item.id)">
         <mat-icon>delete</mat-icon>
       </button>
