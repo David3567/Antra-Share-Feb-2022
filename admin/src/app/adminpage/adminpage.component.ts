@@ -10,15 +10,14 @@ import { UserlistService } from '../service/userlist.service';
 export class AdminpageComponent implements OnInit {
 
   userlist!: Users[];
-  user!: Users;
-  userid!: number;
+  userinfos!: Users;
+  userid!: any;
 
   constructor(private userlistService: UserlistService) { }
 
   ngOnInit(): void {
     this.userlistService.getUser().subscribe((data: any) => {
       this.userlist = data;
-      this.user = this.userlist[0];
     });
   }
 
@@ -27,8 +26,9 @@ export class AdminpageComponent implements OnInit {
     this.userlist = this.userlist.filter((user) => user.id !== id);
   }
 
-  getInfo(searchid: number){
-    this.user = this.userlist.filter((findId) => {return findId.id === searchid;})[0];
+  getInfo(id: number){
+    this.userid = id;
+    this.userinfos = this.userlist[this.userid - 1];
+    console.log(this.userinfos);
   }
-
 }

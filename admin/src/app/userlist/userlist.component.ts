@@ -9,6 +9,7 @@ import { Users } from '../interface/interface.model';
 export class UserlistComponent implements OnInit {
   @Input() userinfo!: Users;
   @Output() deleteEmiter = new EventEmitter();
+  @Output() userinfoEmiter = new EventEmitter();
 
 
   constructor() { }
@@ -17,6 +18,10 @@ export class UserlistComponent implements OnInit {
 
   deletebtn(){
     this.deleteEmiter.emit(this.userinfo.id)
+  }
+
+  userInfo(){
+    this.userinfoEmiter.emit(this.userinfo.id);
   }
 
 
