@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
   userlist!: User[];
-  FocusUser!: User;
+  FocusUser = new User();
   FocusId!: number;
   newUser!: User;
   addFormStyle = 'none'
@@ -21,8 +21,6 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.userListService.getUsers().subscribe((data: any) => {
       this.userlist = data;
-      // console.log(this.userlist);
-      this.FocusUser = this.userlist[0];
     });
   }
 
@@ -30,7 +28,6 @@ export class AdminComponent implements OnInit {
     this.FocusUser = this.userlist.filter((search) => {
       return search.id == focusid;
     })[0];
-    // console.log(this.FocusUser);
     this.FocusId = this.FocusUser.id;
   }
 
