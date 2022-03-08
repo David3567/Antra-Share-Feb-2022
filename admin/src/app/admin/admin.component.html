@@ -1,6 +1,10 @@
 <h1>Admin Page</h1>
 
 <div class="container">
-  <app-userslist></app-userslist>
+  <app-userslist
+    *ngfor="let user of userDetailed"
+    [userDetailed]="user"
+  ></app-userslist>
+
   <app-user-detailed-info-panel></app-user-detailed-info-panel>
 </div>

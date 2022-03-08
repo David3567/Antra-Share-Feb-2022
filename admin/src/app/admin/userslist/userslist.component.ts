@@ -9,20 +9,16 @@ import { User } from '../../interfaces/user.model';
   styleUrls: ['./userslist.component.css'],
 })
 export class UserslistComponent implements OnInit {
-  @Input() userlist!: User[];
+  @Input() userDetailed!: User;
   @Output() userInfoEmiter = new EventEmitter();
   constructor(private userlistService: UserlistService) {}
 
-  ngOnInit(): void {
-    this.userlistService.getUsers().subscribe((data: User[]) => {
-      this.userlist = data;
-    });
-  }
+  ngOnInit(): void {}
 
   clickdelete() {}
 
   showinfo(e: any) {
-    console.log('this userinfo:', this.userlist);
-    this.userInfoEmiter.emit(this.userlist);
+    console.log('this userinfo:', this.userDetailed);
+    this.userInfoEmiter.emit(this.userDetailed);
   }
 }
