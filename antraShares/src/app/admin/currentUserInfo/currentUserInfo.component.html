@@ -1,29 +1,30 @@
 <div class="userinfo_container">
 
   <h1>Detailed info for the selected user</h1>
-
-
-  <span>{{"Name: "+ currentUser.name}}</span>
-  <br>
-
-
-  <span>{{"Username: "+ currentUser.username}}</span>
-
-  <br>
-  <span>{{"Email: "+ currentUser.email}}</span>
-
-  <div>
-    <p>Address: </p>
+  <div *ngIf="currentUser!==undefined">
+    <span>{{"Name: "+ currentUser.name}}</span>
     <br>
-    <span>{{currentUser.address.street + " " + currentUser.address.suite}}</span>
+
+
+    <span>{{"Username: "+ currentUser.username}}</span>
+
     <br>
-    <span>{{currentUser.address.city + " " + currentUser.address.zipcode}}</span>
+    <span>{{"Email: "+ currentUser.email}}</span>
+
+    <div>
+      <p>Address: </p>
+      <span>{{currentUser.address.street + " " + currentUser.address.suite}}</span>
+      <br>
+      <span>{{currentUser.address.city + " " + currentUser.address.zipcode}}</span>
+      <br>
+    </div>
+    <div>
+      <span>{{"Phone: " + currentUser.phone}}</span>
+      <br>
+    </div>
     <br>
+    <span>{{"Website: " + currentUser.website}}</span>
   </div>
 
-  <span>{{"Phone: " + currentUser.phone}}</span>
-  <br>
 
-
-  <span>{{"Website: " + currentUser.website}}</span>
 </div>
