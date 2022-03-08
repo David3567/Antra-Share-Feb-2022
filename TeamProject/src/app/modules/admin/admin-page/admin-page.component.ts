@@ -9,6 +9,7 @@ import { userDataService } from 'src/app/services/userdata.service';
 })
 export class AdminPageComponent implements OnInit {
   userlist: userTemplate[] = [];
+  selected: userTemplate[] = [];
 
   constructor(private userdata: userDataService) {}
 
@@ -18,8 +19,21 @@ export class AdminPageComponent implements OnInit {
 
   getData() {
     this.userdata.getUser().subscribe((response) => {
-      console.log(response);
       this.userlist = response;
+      console.log(response);
     });
+  }
+
+  deleteUser(id: number) {
+    console.log(id);
+    this.userlist = this.userlist.filter((user) => user.id !== id);
+    console.log(this.userlist);
+  }
+
+  displayUser(user: any) {
+    this.selected = user;
+    //add null value to address missing key(s) from api
+    this.selected['missing'] = '<null>';
+    console.log(this.selected);
   }
 }

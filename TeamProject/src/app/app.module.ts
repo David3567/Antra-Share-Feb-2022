@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from 'src/app/modules/admin/admin.module';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, AdminModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,125 @@
+nav {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 75px;
+  margin: -10px -10px 10px;
+  background-color: #272a33;
+}
+
+nav button {
+  height: 50px;
+  width: 100px;
+  margin-right: 20px;
+  border-radius: 5px;
+  background-color: #ee5f95;
+  font-weight: bold;
+}
+
+nav button:hover {
+  background-color: #ae466d;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.list-wrapper {
+  height: 750px;
+  width: 45vw;
+  border-style: ridge;
+  overflow: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.addBtn {
+  height: 50px;
+  width: 50px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: #ee5f95;
+  font-weight: bold;
+}
+
+.addBtn button:hover {
+  background-color: #ae466d;
+}
+
+ul {
+  list-style-type: none;
+  margin: 20px;
+  padding: 0px;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+
+li {
+  height: 50px;
+  background-color: grey;
+}
+
+li button {
+  float: right;
+  height: 30px;
+  width: 70px;
+  margin: 10px;
+  background-color: red;
+  color: white;
+}
+
+li button:hover {
+  background-color: white;
+  color: red;
+}
+
+nav {
+  display: flex;
+  height: 75px;
+  width: 100vw;
+  margin: -10px -10px 10px;
+  justify-content: right;
+  align-items: center;
+  background-color: #272a33;
+}
+
+footer {
+  display: flex;
+  height: 75px;
+  margin: 50px -10px -10px;
+  justify-content: center;
+  align-items: center;
+  background-color: #272a33;
+}
+
+footer button {
+  height: 50px;
+  width: 100px;
+  margin-left: 5px;
+  border-radius: 5px;
+  border-style: ridge;
+  background-color: #272a33;
+  color: #ee5f95;
+  font-weight: bold;
+}
+
+footer button:hover {
+  background-color: #ee5f95;
+  color: white;
+}
+
+@media screen and (max-width: 622px) {
+  .list-wrapper {
+    width: 280px;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .list-wrapper {
+    width: 425px;
+  }
+}

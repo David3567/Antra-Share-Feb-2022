@@ -1,0 +1,21 @@
+<nav>
+  <button>Admin</button>
+</nav>
+<main>
+  <div class="list-wrapper">
+    <h1>Users List</h1>
+    <button class="addBtn">User +</button>
+    <ul *ngFor="let user of userlist">
+      <li (click)="displayUser(user)">
+        {{ user.username }}
+        <button (click)="deleteUser(user.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  <app-user-info-panel [userinfo]="selected"></app-user-info-panel>
+</main>
+<footer>
+  <button>My Profile</button>
+  <button>News Feed</button>
+  <button>Settings</button>
+</footer>

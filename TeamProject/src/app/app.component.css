@@ -1,3 +1,9 @@
 body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.admin {
   display: flex;
+  justify-content: center;
 }
