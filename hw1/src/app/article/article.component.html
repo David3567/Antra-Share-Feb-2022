@@ -1,8 +1,0 @@
-<h1 [ngStyle]="{'color' : titlecolor}">Change my color by clicking the buttons below!</h1>
-<div id="articleContainer">
-  <app-article-item 
-    *ngFor="let item of article" 
-    [item]="item"
-    (emitColor)="setTitleColor($event)"
-  ></app-article-item>
-</div>
