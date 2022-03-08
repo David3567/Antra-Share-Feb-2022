@@ -18,18 +18,18 @@ import { Customer } from 'src/app/interface/customer.model';
   changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './child.component.html',
 })
-export class ChildComponent
-  implements
-    OnDestroy,
-    OnChanges,
-    OnInit,
-    DoCheck,
-    AfterContentChecked,
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit
-{
+// implements
+// OnDestroy,
+// OnChanges,
+// OnInit,
+// DoCheck,
+// AfterContentChecked,
+// AfterContentInit,
+// AfterViewChecked,
+// AfterViewInit
+export class ChildComponent {
   @Input() message: string | undefined;
+  newmessage: any = '_';
 
   customer: Customer = new Customer();
   newCustomer: any;
@@ -43,31 +43,32 @@ export class ChildComponent
   }
 
   ngOnInit(): void {
+    this.newmessage = this.message;
     console.log('  ChildComponent:ngOnInit');
   }
 
-  ngDoCheck(): void {
-    // this.newCustomer = { ...this.customer };
-    console.log('  ChildComponent:DoCheck');
-  }
+  // ngDoCheck(): void {
+  //   // this.newCustomer = { ...this.customer };
+  //   console.log('  ChildComponent:DoCheck');
+  // }
 
-  ngAfterContentInit(): void {
-    console.log('  ChildComponent:ngAfterContentInit');
-  }
+  // ngAfterContentInit(): void {
+  //   console.log('  ChildComponent:ngAfterContentInit');
+  // }
 
-  ngAfterContentChecked(): void {
-    console.log('  ChildComponent:AfterContentChecked');
-  }
+  // ngAfterContentChecked(): void {
+  //   console.log('  ChildComponent:AfterContentChecked');
+  // }
 
-  ngAfterViewInit(): void {
-    console.log('  ChildComponent:AfterViewInit');
-  }
+  // ngAfterViewInit(): void {
+  //   console.log('  ChildComponent:AfterViewInit');
+  // }
 
-  ngAfterViewChecked(): void {
-    console.log('  ChildComponent:AfterViewChecked');
-  }
+  // ngAfterViewChecked(): void {
+  //   console.log('  ChildComponent:AfterViewChecked');
+  // }
 
-  ngOnDestroy(): void {
-    console.log('  ChildComponent:ngOnDestroy');
-  }
+  // ngOnDestroy(): void {
+  //   console.log('  ChildComponent:ngOnDestroy');
+  // }
 }

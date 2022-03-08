@@ -1,6 +1,8 @@
 <h2>Child Component</h2>
-<p>Message {{ message }}</p>
-<p>Customer Name {{ customer.name }}</p>
+<p>Message: {{ message }}</p>
+<h1>
+  Customer Name: <span style="color: red">{{ customer.name }}</span>
+</h1>
 <ul>
   <li *ngFor="let log of changelog">{{ log }}</li>
 </ul>

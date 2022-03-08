@@ -19,17 +19,16 @@ import { FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './main.component.html',
 })
-export class MainComponent
-  implements
-    OnDestroy,
-    OnChanges,
-    OnInit,
-    DoCheck,
-    AfterContentChecked,
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit
-{
+// implements
+//   OnDestroy,
+//   OnChanges,
+//   OnInit,
+//   DoCheck,
+//   AfterContentChecked,
+//   AfterContentInit,
+//   AfterViewChecked,
+//   AfterViewInit
+export class MainComponent {
   name = 'Angular ' + VERSION.major;
 
   message = 'Hello'; // hello
@@ -41,38 +40,39 @@ export class MainComponent
     console.log('AppComponent:Contructed');
   }
 
-  ngOnChanges(): void {
-    console.log('AppComponent:ngOnChanges');
-  }
+  // ngOnChanges(): void {
+  //   // @Input
+  //   console.log('AppComponent:ngOnChanges');
+  // }
 
   ngOnInit(): void {
     console.log('AppComponent:ngOnInit');
   }
 
-  ngDoCheck(): void {
-    // this.interval = setInterval(() => console.log('hello'), 1000);
-    console.log('AppComponent:DoCheck');
-  }
+  // ngDoCheck(): void {
+  //   // this.interval = setInterval(() => console.log('hello'), 1000);
+  //   console.log('AppComponent:DoCheck');
+  // }
 
-  ngAfterContentInit(): void {
-    console.log('AppComponent:ngAfterContentInit');
-  }
+  // ngAfterContentInit(): void {
+  //   console.log('AppComponent:ngAfterContentInit');
+  // }
 
-  ngAfterContentChecked(): void {
-    console.log('AppComponent:AfterContentChecked');
-  }
+  // ngAfterContentChecked(): void {
+  //   console.log('AppComponent:AfterContentChecked');
+  // }
 
-  ngAfterViewInit(): void {
-    console.log('AppComponent:AfterViewInit');
-  }
+  // ngAfterViewInit(): void {
+  //   console.log('AppComponent:AfterViewInit');
+  // }
 
-  ngAfterViewChecked(): void {
-    console.log('AppComponent:AfterViewChecked');
-  }
+  // ngAfterViewChecked(): void {
+  //   console.log('AppComponent:AfterViewChecked');
+  // }
 
-  ngOnDestroy(): void {
-    // clearInterval(this.interval);
+  // ngOnDestroy(): void {
+  //   // clearInterval(this.interval);
 
-    console.log('AppComponent:ngOnDestroy');
-  }
+  //   console.log('AppComponent:ngOnDestroy');
+  // }
 }

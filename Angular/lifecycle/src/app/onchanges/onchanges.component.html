@@ -1,9 +1,9 @@
 <h1>{{ title }}!</h1>
 <p>Message : <input type="text" [(ngModel)]="message" /></p>
-<p>Code : <input type="text" [(ngModel)]="code" /></p>
-<p>Name : <input type="text" [(ngModel)]="name" /></p>
+<p>Code : <input type="text" [(ngModel)]="customer.code" /></p>
+<p>Name : <input type="text" [(ngModel)]="customer.name" /></p>
 <p>
-  <button (click)="updateCustomer()">Update</button>
+  <!-- <button (click)="updateCustomer()">Update</button> -->
   <app-onchanges-child
     [message]="message"
     [customer]="customer"

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
@@ -11,6 +12,7 @@ import { Customer } from '../interface/customer.model';
   selector: 'app-onchanges-child',
   templateUrl: './onchanges-child.component.html',
   styleUrls: ['./onchanges-child.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OnchangesChildComponent implements OnInit, OnChanges {
   @Input() message!: string;
