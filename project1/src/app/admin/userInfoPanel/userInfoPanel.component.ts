@@ -8,7 +8,7 @@ import { User } from '../users.model';
 })
 export class UserInfoPanelComponent implements OnInit {
 
-  @Input() DisplayUserDetail:String[] = [];
+  @Input() DisplayUserDetail: any;
 
 
   constructor() { }

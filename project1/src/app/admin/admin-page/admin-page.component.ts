@@ -9,13 +9,14 @@ import { User } from '../users.model';
   styleUrls: ['./admin-page.component.scss']
 })
 
-@Injectable()
+//@Injectable()
 export class AdminPageComponent implements OnInit {
   
   url = 'http://localhost:3000/users'
   
   public user: User[] = [];
-  public DisplayUserDetail: string[] = []; 
+  // public DisplayUserDetail: string[] = []; 
+  DisplayUserDetail = {};
 
   test = this.user;
   constructor(private http: HttpClient) { }
@@ -41,20 +42,28 @@ export class AdminPageComponent implements OnInit {
     )
   }
 
-  sendUserInfo(id: number) {
-    if(this.DisplayUserDetail.length != 0) {
-      this.DisplayUserDetail = [];
-    }
-    this.DisplayUserDetail.push('UserID: ' + this.user[id-1].id);
-    this.DisplayUserDetail.push('Name: ' + this.user[id-1].name);
-    this.DisplayUserDetail.push('Username: ' + this.user[id-1].username);
-    this.DisplayUserDetail.push('Email: ' + this.user[id-1].email);
-    this.DisplayUserDetail.push('Address: ' + this.user[id-1].address.street + ', ' + this.user[id-1].address.suite + ', ' + this.user[id-1].address.city + ', ' + this.user[id-1].address.zipcode);
-    this.DisplayUserDetail.push('Lattitude / Longitude: ' + this.user[id-1].address.geo.lat + ' / ' + this.user[id-1].address.geo.lng);
-    this.DisplayUserDetail.push('Phone: ' + this.user[id-1].phone);
-    this.DisplayUserDetail.push('Website: ' + this.user[id-1].website);
-    this.DisplayUserDetail.push('Company Name: ' + this.user[id-1].company.name);
-    this.DisplayUserDetail.push('Company Slogan: ' + this.user[id-1].company.catchPhrase);
-    this.DisplayUserDetail.push('Company Type: ' + this.user[id-1].company.bs);
+  sendUserInfo(item: any) {
+    console.log(item);
+    this.DisplayUserDetail = {
+      name: null,
+      id: null,
+      ...item
+    };
+    console.log(this.DisplayUserDetail);
+    
+    // if(this.DisplayUserDetail.length != 0) {
+    //   this.DisplayUserDetail = [];
+    // }
+    // this.DisplayUserDetail.push('UserID: ' + this.user[id-1].id);
+    // this.DisplayUserDetail.push('Name: ' + this.user[id-1].name);
+    // this.DisplayUserDetail.push('Username: ' + this.user[id-1].username);
+    // this.DisplayUserDetail.push('Email: ' + this.user[id-1].email);
+    // this.DisplayUserDetail.push('Address: ' + this.user[id-1].address.street + ', ' + this.user[id-1].address.suite + ', ' + this.user[id-1].address.city + ', ' + this.user[id-1].address.zipcode);
+    // this.DisplayUserDetail.push('Lattitude / Longitude: ' + this.user[id-1].address.geo.lat + ' / ' + this.user[id-1].address.geo.lng);
+    // this.DisplayUserDetail.push('Phone: ' + this.user[id-1].phone);
+    // this.DisplayUserDetail.push('Website: ' + this.user[id-1].website);
+    // this.DisplayUserDetail.push('Company Name: ' + this.user[id-1].company.name);
+    // this.DisplayUserDetail.push('Company Slogan: ' + this.user[id-1].company.catchPhrase);
+    // this.DisplayUserDetail.push('Company Type: ' + this.user[id-1].company.bs);
   }
 }
