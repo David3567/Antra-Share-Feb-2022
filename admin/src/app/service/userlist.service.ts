@@ -7,7 +7,7 @@ import { Users } from '../interface/interface.model';
   providedIn: 'root'
 })
 export class UserlistService {
-  private baseUrl = 'https://jsonplaceholder.typicode.com';
+  private baseUrl = 'http://localhost:3000';
   private path = 'users';
 
   constructor(private http: HttpClient) {}
