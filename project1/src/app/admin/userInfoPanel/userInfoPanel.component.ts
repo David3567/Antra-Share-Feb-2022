@@ -8,7 +8,7 @@ import { User } from '../users';
 })
 export class UserInfoPanelComponent implements OnInit {
 
-  @Input() DisplayUser:String[] = [];
+  @Input() DisplayUserDetail:String[] = [];
 
 
   constructor() { }
@@ -17,9 +17,9 @@ export class UserInfoPanelComponent implements OnInit {
   }
 
   showDetail(id: number) {
-    if(this.DisplayUser.length != 0) {
-      this.DisplayUser = [];
+    if(this.DisplayUserDetail.length != 0) {
+      this.DisplayUserDetail = [];
     }
-    console.log(this.DisplayUser);
+    console.log(this.DisplayUserDetail);
   }
 }

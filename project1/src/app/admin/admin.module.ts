@@ -5,7 +5,6 @@ import { UserInfoPanelComponent } from './userInfoPanel/userInfoPanel.component'
 import {MatIconModule} from '@angular/material/icon';
 
 
-
 @NgModule({
   declarations: [
     AdminPageComponent,
