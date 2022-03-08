@@ -1,0 +1,32 @@
+<div>
+    <nz-layout>
+        <nz-header>
+          <div class="logo"></div>
+          <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+            <li nz-menu-item nzSelected>nav 1</li>
+            <li nz-menu-item>nav 2</li>
+            <li nz-menu-item>nav 3</li>
+          </ul>
+        </nz-header>
+        <nz-layout class="contentArea">
+          <nz-sider nzWidth="200px" nzTheme="light">
+            <ul nz-menu nzMode="inline" class="sider-menu">
+              <li nz-submenu nzClose nzIcon="user" nzTitle="User List">
+                <ul class="contentArea-sideBar_ul">
+                  <app-useritems *ngFor="let user of userlist" 
+                  [user]="user" 
+                  (userIdEmiter)="deleteUser($event)"
+                  (userEmiter)="selectUser($event)"></app-useritems>
+                </ul>
+              </li>
+            </ul>
+          </nz-sider>
+          <nz-layout class="inner-layout">
+            <nz-content>
+              <app-userdetail [user]="selectedUser"></app-userdetail>
+            </nz-content>
+          </nz-layout>
+        </nz-layout>
+        <nz-footer>This is footer</nz-footer>
+    </nz-layout>
+</div>
