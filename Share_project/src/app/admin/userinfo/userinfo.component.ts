@@ -30,5 +30,4 @@ export class UserinfoComponent implements OnInit {
       this.user = data;
     });
   }
-
 }
