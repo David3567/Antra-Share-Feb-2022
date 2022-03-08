@@ -1,0 +1,7 @@
+<mat-list-item class="user-tag">
+    <mat-icon>account_circle</mat-icon>
+    <p>{{user.username}}</p>
+    <span class="tag-spacer"></span>
+    <button class="delete-button" mat-raised-button color="warn" (click)="clickdelete()">Delete</button>
+    <mat-divider [inset]="true"></mat-divider>
+</mat-list-item>
