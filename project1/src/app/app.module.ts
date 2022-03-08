@@ -6,6 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
+import { LoginModule } from './login/login.module';
+import { NewsfeedModule } from './newsfeed/newsfeed.module';
+import { ProfileModule } from './profile/profile.module';
+import { SettingModule } from './setting/setting.module';
 
 
 @NgModule({
@@ -18,7 +22,11 @@ import { AdminModule } from './admin/admin.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    AdminModule
+    AdminModule,
+    LoginModule,
+    NewsfeedModule,
+    ProfileModule,
+    SettingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
