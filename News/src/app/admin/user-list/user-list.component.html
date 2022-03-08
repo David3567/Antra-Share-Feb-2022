@@ -1,39 +1,27 @@
-<div class="user-container">
-    <ul class="user-list">
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-        <li  class="user-item">
-            <div>User Tag</div>
-            <button type="butotn">Delete</button>
-        </li>
-    </ul>
-    <button type="button" class="add-user-btn">
-        Add User Button
-    </button>
+<div class="container">
+    <div class="user-container">
+        <ul class="user-list">
+            <app-user
+                *ngFor="let currentUser of userlist"
+                [user]="currentUser"
+                (userEvent)="deleteUser($event)"
+                (userEvent)="showUser($event)"
+            ></app-user>
+        </ul>
+        <button type="button" class="add-user-btn">
+            Add User Button
+        </button>
+    </div>
+    <div class="user-details-container">
+        <h1>User Detailed Info Panel</h1>
+        <ul class="user-info">
+            <li>id: <span> {{current.id}} </span></li>
+            <li>name: <span>{{current.name}}</span></li>
+            <li>username: <span>{{current.username}}</span></li>
+            <li>email: <span>{{current.email}}</span></li>
+            <li>phone: <span>{{current.phone}}</span></li>
+            <li>website: <span>{{current.website}}</span></li>
+            <li>company: <span>{{current.company.name}}</span></li>
+        </ul>
+    </div>
 </div>

@@ -1,0 +1,25 @@
+.user-item {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #89898a;
+    padding: 10px 20px;
+    color: white;
+}
+
+.user-item button {
+    position: absolute;
+    right: 1rem;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 0.25rem;
+    color: white;
+    background: #212125;
+    transition: background-color 0.4s;
+}
+
+.user-item button:hover {
+    background-color: rgb(192, 0, 0);
+}

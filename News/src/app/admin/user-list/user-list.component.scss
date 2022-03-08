@@ -1,3 +1,7 @@
+.container {
+    display: flex;
+}
+
 .user-container {
     width: 33.33vw;
     display: flex;
@@ -8,41 +12,13 @@
 }
 
 .user-list {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
     overflow-y: auto;
     max-height: calc(100vh - 48px - 5rem);
-}
-
-.user-item {
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #89898a;
-    padding: 10px 20px;
-    color: white;
-}
-
-.user-item:first-child {
-    margin-top: 1rem;
-}
-
-.user-item:last-child {
-    margin-bottom: 1rem;
-}
-
-.user-item button {
-    position: absolute;
-    right: 1rem;
-    padding: 4px 8px;
-    border: none;
-    border-radius: 0.25rem;
-    color: white;
-    background: #212125;
-    transition: background-color 0.4s;
 }
 
 .add-user-btn {
@@ -56,10 +32,31 @@
     transition: opacity 0.4s;
 }
 
-.user-item button:hover {
-    background-color: rgb(192, 0, 0);
-}
-
 .add-user-btn:hover {
     opacity: 0.7;
+}
+
+//USER DETAILS
+
+.user-details-container {
+    background: rgb(80, 80, 80);
+    width: 66.67vw;
+    min-height: calc(100vh - 48px);
+}
+
+.user-details-container h1 {
+    padding-top: 1rem;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+.user-info {
+    color: white;
+    margin: 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.5rem;
 }
