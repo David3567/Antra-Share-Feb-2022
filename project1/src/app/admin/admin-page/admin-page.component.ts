@@ -42,16 +42,13 @@ export class AdminPageComponent implements OnInit {
     )
   }
 
-  // David:
   sendUserInfo(item: any) {
-    console.log(item);
 
     this.DisplayUserDetail = {
       name: null,
       id: null,
       ...item
     };
-    console.log(this.DisplayUserDetail);
   }
 }
 
