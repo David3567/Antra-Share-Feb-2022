@@ -9,13 +9,22 @@ import { User } from '../interfaces';
 })
 export class UserInfoPanelComponent implements OnInit {
   @Input() userdetails!:User;
-  @Output() info = new EventEmitter();
+  @Output() info = new EventEmitter(); delete = new EventEmitter();
+
+  data:number = 0;
   constructor() { }
 
   ngOnInit(): void {
   }
   showdetails(){
-    this.info.emit(this.userdetails);
+    //this.info = this.userdetails
+    this.data= this.userdetails.id;
+    this.info.emit(this.data);
+  }
+
+  deletbtn(){
+    this.data= this.userdetails.id;
+    this.delete.emit(this.data);
   }
 
 }

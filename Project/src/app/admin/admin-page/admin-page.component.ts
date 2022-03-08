@@ -9,7 +9,8 @@ import { AdminService } from '../admin.service';
 })
 export class AdminPageComponent implements OnInit {
   Userlist!:User[];
-  info!:User;
+  infoid!:any;
+  infodetails!:User;
   constructor(private adminservice:AdminService) { }
 
   ngOnInit(): void {
@@ -17,9 +18,15 @@ export class AdminPageComponent implements OnInit {
       this.Userlist = data;
     })
   }
-  show(details:User){
-    console.log(details);
-    this.info = details;
+  getinfoid(id:number){
+    this.infoid = id;
+    this.infodetails = this.Userlist[this.infoid];
+    console.log(this.infodetails);
+  }
+  
+  deleteuser(id:number){
+    console.log("delete")
+    this.Userlist = this.Userlist.filter((user) => user.id !== id);
   }
 
 }

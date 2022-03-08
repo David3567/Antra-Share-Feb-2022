@@ -3,16 +3,19 @@
         <app-user-info-panel
             *ngFor = "let user of Userlist"
             [userdetails] = "user"
-            (info)="show($event)"
+            (info)="getinfoid($event)"
+            
         ></app-user-info-panel>
     </ul>
 </div>
 
-<div class="user-info">
+<div class="user-info" >
+    <p>{{infoid}}</p>
     <h2>User Detailed Info Panel</h2>
-    <h3>username:{{info.name}}</h3>
+    <h3>username:{{infodetails}}</h3>
     <h3>Passworld:</h3>
     <h3>Useremail:</h3>
     <h3>Gender:</h3>
     <h3>Age:</h3>
+    
 </div>
