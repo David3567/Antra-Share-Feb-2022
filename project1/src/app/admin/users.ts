@@ -20,12 +20,4 @@ export interface User {
     catchPhrase: string,
     bs: string
   }
-
-}
-
-export interface AllData {
-  movies: string[],
-  posts: string[],
-  todos: string[],
-  users: string[]
 }

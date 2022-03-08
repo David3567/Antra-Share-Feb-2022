@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../users';
 
 @Component({
   selector: 'app-userInfoPanel',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserInfoPanelComponent implements OnInit {
 
+  @Input() DisplayUser:String[] = [];
+
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  showDetail(id: number) {
+    if(this.DisplayUser.length != 0) {
+      this.DisplayUser = [];
+    }
+    console.log(this.DisplayUser);
+  }
 }

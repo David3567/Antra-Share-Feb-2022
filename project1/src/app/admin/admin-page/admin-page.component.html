@@ -1,18 +1,12 @@
 <div id="adminPageContainer">
-  <div id="userInfoPanel">
-    <li *ngFor="let item of user" (click)="showDetail(item.id)">
+  <div id="userList">
+    <li *ngFor="let item of user" (click)="sendUserInfo(item.id)">
       {{ item.username }}
-      <button (click)="deleteUser(item.id)">Delete</button>
-      </li>
-      <li><button>Add User</button></li>
+      <button id="matIconContainer" (click)="deleteUser(item.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <li>Add User</li>
   </div>
-  <div id="userDetail">
-    <div>
-      {{DisplayUser[0]}}
-    </div>
-    <div>
-      {{DisplayUser[1]}}
-    </div>
-  </div>
+  <app-userInfoPanel [DisplayUser]="DisplayUser"></app-userInfoPanel>
 </div>
 

@@ -1,0 +1,20 @@
+#userInfoPanel {
+  box-sizing: border-box;
+  height: 100vh;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  padding: 20px;
+}
+
+li {
+  height: 2rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0;
+  font-size: 1.5rem;
+}
