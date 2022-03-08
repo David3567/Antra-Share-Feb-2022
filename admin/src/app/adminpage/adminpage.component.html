@@ -1,0 +1,14 @@
+<h1>Admin Page</h1>
+
+<div>
+    <app-userlist *ngFor="let user of userlist" [userinfo]="user" (deleteEmiter)="deleteUser($event)">
+    </app-userlist>
+
+    <app-userinfo *ngFor="let user of userlist" [userinfo]="user" (userinfoEmiter = "getInfo($event)")> -->
+    </app-userinfo>
+</div>
+
+
+
+
+<button>Add User</button>
