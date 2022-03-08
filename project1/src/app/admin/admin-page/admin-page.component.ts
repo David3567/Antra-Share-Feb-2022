@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, reduce } from 'rxjs';
-import { User } from '../users';
+import { User } from '../users.model';
 
 @Component({
   selector: 'app-admin-page',
