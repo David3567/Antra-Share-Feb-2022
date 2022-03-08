@@ -1,0 +1,49 @@
+nav {
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212125;
+    padding: 0rem 2rem;
+}
+
+nav div {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+
+nav div h2 {
+    cursor: pointer;
+    color: white;
+    font-size: 1.4rem;
+    transition: color 0.4s;
+}
+
+nav button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #bd0464;
+    color: white;
+    
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0.25rem;
+    padding: 5px 10px;
+
+    transition: border-radius .5s, opacity .5s;
+}
+
+nav div h2:hover {
+    color: rgba($color: #fff, $alpha: 0.7);
+}
+
+nav button:active  {
+    transform: translateY(2px);
+}
+
+nav button:hover {
+    border-radius: 0.75rem;
+    opacity: 0.8;
+}
