@@ -4,11 +4,12 @@
         <h2>Users List</h2>
         <ul>
             <li *ngFor="let user of userList" (click)="showUserDetails(user)"
-                [ngClass]="user.id === userToShow.id ? 'selected': null">
+                [ngClass]="{selected: user.id === userToShow.id}">
                 <div>
                     <span>{{ user.name }}</span>
                     <button class="delete" (click)="deleteUser(user.id)">X</button>
                 </div>
+            </li>
         </ul>
         <div>
             <button class="newUser">Add new User</button>
