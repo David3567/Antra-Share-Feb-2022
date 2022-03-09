@@ -1,6 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { from, fromEvent, Observable, of } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { from, fromEvent, interval, Observable, of, Subscription } from 'rxjs';
+import { filter, map, take, takeWhile, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,12 +14,16 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('inputbox', { static: true }) inputbox!: ElementRef;
 
   title = 'observable';
   observable$ = from([3, 4, 5]);
   val = '';
+  clear: any = [];
+
+  // sbp$ = new Subscription()
+  sbp$!: Subscription;
 
   getUsers$ = this.http.get('https://jsonplaceholder.typicode.com/users').pipe(
     map((users: any) => {
@@ -32,11 +42,33 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    fromEvent(this.inputbox.nativeElement, 'keyup')
-      .pipe(filter((e: any) => e.code === 'Enter'))
-      .subscribe((e) => {
-        console.log(this.val);
-      });
+    // of(1, 2, 3)
+    // of(1, 2, 3, 1, 2, 3, 1, 2, 3).pipe(take(4)).subscribe(console.log);
+    // this.sbp$ = fromEvent(this.inputbox?.nativeElement, 'keyup')
+    //   .pipe(filter((e: any) => e.code === 'Enter'))
+    //   .subscribe((e) => {
+    //     console.log(this.val);
+    //   });
+  }
+
+  ngOnDestroy(): void {
+    this.sbp$.unsubscribe();
+  }
+
+  onclickthebtn() {
+    let num = 0;
+    this.clear.push(
+      setInterval(() => {
+        console.log(num);
+        num++;
+      }, 1000)
+    );
+  }
+  stopalldatastream() {
+    console.log(this.clear);
+    this.clear.forEach((ele: any) => {
+      clearInterval(ele);
+    });
   }
 
   getUsers() {
