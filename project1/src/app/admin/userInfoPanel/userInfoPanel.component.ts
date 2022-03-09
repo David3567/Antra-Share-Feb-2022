@@ -1,25 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../users.model';
 
 @Component({
   selector: 'app-userInfoPanel',
   templateUrl: './userInfoPanel.component.html',
   styleUrls: ['./userInfoPanel.component.scss']
 })
+
 export class UserInfoPanelComponent implements OnInit {
 
   @Input() DisplayUserDetail: any;
+  
+  i = 0;
 
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.i++;
   }
 
-  showDetail(id: number) {
-    if(this.DisplayUserDetail.length != 0) {
-      this.DisplayUserDetail = [];
-    }
-    console.log(this.DisplayUserDetail);
+  disablePipeSort() {
+    return 0;
   }
 }
+

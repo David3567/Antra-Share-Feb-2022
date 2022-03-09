@@ -35,15 +35,13 @@ export class AdminPageComponent implements OnInit {
     //also deletes items with same userid in other arrays - todos, posts
     this.http.delete(this.url + '/' + id).subscribe(
       result => {
-        console.log('item deleted');
         this.getUsers();
-        console.log(this.url + '/' + id);
       }
     )
   }
 
   sendUserInfo(item: any) {
-
+    
     this.DisplayUserDetail = {
       name: null,
       id: null,
