@@ -30,5 +30,6 @@ export class AdminpageComponent implements OnInit {
     this.userid = id;
     this.userinfos = this.userlist[this.userid - 1];
     console.log(this.userinfos);
+    console.log(this.userinfos.name);
   }
 }

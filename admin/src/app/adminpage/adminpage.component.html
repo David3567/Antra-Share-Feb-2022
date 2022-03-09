@@ -1,20 +1,14 @@
-<h1>Admin Page</h1>
-
-
-<div>
-    <ul>
+<div class="container">
+    <div class="holder">
         <app-userlist *ngFor="let user of userlist" [userinfo]="user" (deleteEmiter)="deleteUser($event)"
             (userinfoEmiter)="getInfo($event)">
         </app-userlist>
-    </ul>
-</div>
+    </div>
 
-<div>
-    <p>id: {{userid}}</p>
-    <p>name: </p>
-    <p>username: </p>
-    <p>email: </p>
+    <div *ngFor="let info of userinfos | keyvalue" class="info">
+        <span>{{info.key}} : </span>
+        <span>{{info.value}}</span>
+    </div>
 </div>
-
 
 <button>Add User</button>
