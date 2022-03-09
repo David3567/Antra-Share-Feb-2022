@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { UserInfo } from '../interfaces/userInfo.model'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserinforService {
   private baseUrl = 'http://localhost:3000';
-  private path = 'users';
-  constructor(private http:HttpClient) { }
+  private path = 'antraUsers';
+  constructor(private http: HttpClient) { }
   getUsers() {
-    return this.http.get([this.baseUrl, this.path].join('/'));
+    return this.http.get([this.baseUrl, this.path].join('/')) as Observable<
+      UserInfo[]
+    >;
   }
 }
