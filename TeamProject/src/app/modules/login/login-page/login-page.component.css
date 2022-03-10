@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    border: 2px solid black;
+    padding: 20px;
+    width: 300px;
+}
+
+img {
+    width: 200px;
+    align-self: center;
+}
+
+input[type='text'] {
+    padding: 5px;
+}
+
+button {
+    background-color: rgba(0, 0, 255, 0.801);
+    color: white;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.agreement {
+    display: flex;
+}
+
+form>a {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.formFooter {
+    display: flex;
+    justify-content:space-between;
+}
