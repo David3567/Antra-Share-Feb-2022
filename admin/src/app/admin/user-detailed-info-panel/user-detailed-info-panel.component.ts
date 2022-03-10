@@ -6,7 +6,7 @@ import { User } from '../../interfaces/user.model';
   styleUrls: ['./user-detailed-info-panel.component.css'],
 })
 export class UserDetailedInfoPanelComponent implements OnInit {
-  @Input() userDetailed!: User[];
+  @Input() userDetailed!: User;
   constructor() {}
 
   ngOnInit(): void {

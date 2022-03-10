@@ -1,0 +1,16 @@
+ul {
+  padding: 0px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+li {
+  padding: 0;
+
+  list-style: none;
+  margin: 10px;
+}
+
+p {
+  padding: 15px 0px 13px 0px;
+}

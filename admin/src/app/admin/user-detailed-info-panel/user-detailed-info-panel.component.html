@@ -1,7 +1,9 @@
 <p>user-detailed-info-panel works!</p>
 
 <div class="userinfo">
-  <h4>
-    Name: <span>{{ userDetailed[0].name }}</span>
-  </h4>
+  <p>Name:{{ userDetailed.name }}</p>
+  <p>Email: {{ userDetailed.email }}</p>
+  <p>City: {{ userDetailed.address.city }}</p>
+  <p>Company: {{ userDetailed.company.name }}</p>
+  <p>Phone: {{ userDetailed.phone }}</p>
 </div>

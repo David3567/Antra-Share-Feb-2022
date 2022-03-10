@@ -2,9 +2,11 @@
 
 <div class="container">
   <app-userslist
-    *ngfor="let user of userDetailed"
-    [userDetailed]="user"
+    [userDetailed]="userDetailed"
+    (userInfoEmiter)="showUser($event)"
   ></app-userslist>
 
-  <app-user-detailed-info-panel></app-user-detailed-info-panel>
+  <app-user-detailed-info-panel
+    [userDetailed]="selectedUserInfo"
+  ></app-user-detailed-info-panel>
 </div>
