@@ -1,0 +1,8 @@
+.main_container {
+    height: 100%;
+}
+
+.main_container > div {
+    display: flex;
+    flex-direction: row;
+}

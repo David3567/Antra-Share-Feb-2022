@@ -1,0 +1,20 @@
+<div class="main">
+
+    <div class="userlist">
+        <app-userslist 
+            *ngFor="let user of userslist" 
+            [userdetails]="user" 
+
+            class="users_container"
+            (userDetailsEmitter)="displayUser($event)"
+
+            ></app-userslist>
+    </div>
+
+    <div class="userdetails">
+        <app-userdetail 
+            [displayuser]="displayuser" 
+        ></app-userdetail>
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+<div class="main_container">
+    <h2>User Details</h2>
+
+    <div>
+        <h4>Name:</h4>
+        <span>{{ displayuser.name }}</span>
+    </div>
+
+    <div>
+        <h4>Username:</h4>
+        <span>{{ displayuser.username }}</span>
+    </div>
+
+    <div>
+        <h4>Email Address:</h4>
+        <span>{{ displayuser.email }}</span>
+    </div>
+
+    <div>
+        <h4>Address:</h4>
+        <span>{{ [displayuser.address.street, displayuser.address.suite, displayuser.address.city, displayuser.address.zipcode].join(' ') }}</span>
+    </div>
+
+    <div>
+        <h4>Contact:</h4>
+        <span>{{ displayuser.phone }}</span>
+    </div>
+
+    <div>
+        <h4>Website:</h4>
+        <span>{{ displayuser.website }}</span>
+    </div>
+
+    <div>
+        <h4>Company:</h4>
+        <span>{{ displayuser.company }}</span>
+    </div>
+
+</div>
