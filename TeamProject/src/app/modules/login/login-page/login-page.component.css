@@ -24,10 +24,12 @@ input[type='text'] {
 }
 
 button {
-    background-color: rgba(0, 0, 255, 0.801);
-    color: white;
     padding: 5px;
-    border-radius: 2px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: white;
+    font-size: 16px;
+    background-color: #428BCA;
 }
 
 .agreement {
