@@ -1,7 +1,7 @@
 .info-wrapper {
+  position: fixed;
   height: 200px;
-  width: 45vw;
-  margin-left: 20px;
+  width: 425px;
   border-style: ridge;
 }
 
@@ -9,14 +9,8 @@ ul {
   list-style: none;
 }
 
-@media screen and (max-width: 622px) {
+@media screen and (max-width: 475px) {
   .info-wrapper {
-    width: 280px;
-  }
-}
-
-@media screen and (min-width: 950px) {
-  .info-wrapper {
-    width: 425px;
+    margin-left: 20px;
   }
 }
