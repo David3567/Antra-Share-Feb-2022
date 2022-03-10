@@ -1,0 +1,17 @@
+.container {
+    background-color: #0097e6;
+    height: 80vh;
+    display: flex;
+}
+
+h2 {
+    padding: 10px 0;
+    text-decoration: underline;
+    margin-left: 50px;
+}
+
+ul {
+    padding-left: 65px;
+    list-style: none;
+    font-size: 20px;
+}
