@@ -1,10 +1,12 @@
 {
 	"folders": [
 		{
-			"path": "../../.."
+			"name": "json-server",
+			"path": "../../../../../../Desktop/json-server"
 		},
 		{
-			"path": "../../../../../../Desktop/json-server"
+			"name": "Antra-Share-Feb-2022",
+			"path": "../../.."
 		}
 	],
 	"settings": {}
