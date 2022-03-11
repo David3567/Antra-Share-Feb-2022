@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="username">UserName: </label>
+    <input type="text" id="username" formControlName="username" />
+  </p>
+  <p>
+    <label for="password">PassWord: </label>
+    <input type="text" id="password" formControlName="password" />
+  </p>
+
+  {{ username?.value }}
+
+  <button type="submit">Submit</button>
+</form>

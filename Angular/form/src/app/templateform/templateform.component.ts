@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-templateform',
   templateUrl: './templateform.component.html',
-  styleUrls: ['./templateform.component.scss'],
+  styleUrls: ['./templateform.component.css'],
 })
 export class TemplateformComponent implements OnInit {
   title = 'Template driven forms';
@@ -21,8 +21,8 @@ export class TemplateformComponent implements OnInit {
   }
 
   onSubmit(contactForm: any) {
-    console.log(contactForm);
-    console.log(this.contact);
+    console.log(contactForm.form.controls);
+    // console.log(this.contact);
   }
 
   setDefaults() {
