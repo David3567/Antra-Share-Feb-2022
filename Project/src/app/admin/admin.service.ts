@@ -14,4 +14,10 @@ export class AdminService {
     User[]
     >;
   }
+  // addUsers(newtodo: User) {
+  //   return this.http.post([this.baseUrl, this.path].join('/'), newuser) as Observable<
+  //     User
+  //   >;
+  //   // fetch(url, body)
+  // }
 }

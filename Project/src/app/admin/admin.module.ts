@@ -7,6 +7,9 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -15,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     UserInfoPanelComponent
   ],
   imports: [
-    CommonModule,BrowserModule,FormsModule, HttpClientModule
+    CommonModule,BrowserModule,FormsModule, HttpClientModule,
+    MatGridListModule,MatListModule, MatDividerModule
   ],
   providers: [
     AdminService,

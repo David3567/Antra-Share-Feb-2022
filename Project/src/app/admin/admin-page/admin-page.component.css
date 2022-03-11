@@ -1,0 +1,10 @@
+ul {
+    overflow:hidden; 
+    overflow-y:scroll;
+}
+
+.admin-container {
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-right: 10%;
+}

@@ -11,6 +11,7 @@ export class AdminPageComponent implements OnInit {
   Userlist!:User[];
   infoid!:any;
   infodetails!:User;
+  newuser!:User;
   constructor(private adminservice:AdminService) { }
 
   ngOnInit(): void {
@@ -18,16 +19,22 @@ export class AdminPageComponent implements OnInit {
       this.Userlist = data;
     })
   }
-  getinfoid(id:number){
+  getselectedId(id:number){
     this.infoid = id;
-    this.infodetails = this.Userlist[this.infoid];
-    console.log(this.infodetails);
+    this.infodetails = this.Userlist[this.infoid-1];
   }
   
-  deleteuser(id:number){
+  deleteUser(id:any){
     console.log("delete")
     this.Userlist = this.Userlist.filter((user) => user.id !== id);
   }
+  // adduser(){
+  //   // if (e.key === 'Enter')
+  //     // console.log(e.target.value);
 
+  //   this.adminservice.addUsers(this.newuser).subscribe((user: User) => {
+  //     this.Userlist = [user, ...this.Userlist];
+  //   });
+  // }
 }
 

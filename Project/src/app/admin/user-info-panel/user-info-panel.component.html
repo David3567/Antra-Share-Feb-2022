@@ -1,6 +1,8 @@
-<li (click)="showdetails()">
+
+<li (click)="showUserId()">
     {{userdetails.name}}     {{userdetails.id}}        
     <span>
-        <button >delete</button>
+        <button (click)="deleteUserId()">delete</button>
     </span>
 </li>
+<mat-divider></mat-divider>
