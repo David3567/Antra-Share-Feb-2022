@@ -24,7 +24,7 @@ export class AdminPageComponent implements OnInit {
     this.infodetails = this.Userlist[this.infoid-1];
   }
   
-  deleteUser(id:any){
+  deleteUser(id:number){
     console.log("delete")
     this.Userlist = this.Userlist.filter((user) => user.id !== id);
   }

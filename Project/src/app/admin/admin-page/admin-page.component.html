@@ -2,30 +2,30 @@
     <mat-grid-list cols="2" rowHeight="1:1">
         <mat-grid-tile>
                 <div class="user-list">
+                    <h2>User List:</h2>
                     <ul>
                         
                         <app-user-info-panel
                             *ngFor = "let user of Userlist"
                             [userdetails] = "user"
-                            
                             (userId)="getselectedId($event)"
                             (deleteId)="deleteUser($event)"
                         ></app-user-info-panel>
                         
-                        <mat-list-item>
-                        <button>Add User</button>
-                        </mat-list-item>
+                        <li>
+                        <button>+</button>
+                        </li>
                     </ul>
                 
                 </div>
         </mat-grid-tile>
         <mat-grid-tile>    
             <div class="user-info"  *ngIf="infoid">
-                <h2>User Detailed Info Panel</h2>
-                <h4>Name:{{infodetails.name}}</h4>
-                <h4>Userid:{{infodetails.id}}</h4>
-                <h4>username:{{infodetails.username}}</h4>
-                <h4>Useremail:{{infodetails.email}}</h4>
+                <h2>User Info:</h2>
+                <h4>Name: {{infodetails.name}}</h4>
+                <h4>Userid: {{infodetails.id}}</h4>
+                <h4>username: {{infodetails.username}}</h4>
+                <h4>Useremail: {{infodetails.email}}</h4>
             </div>
         </mat-grid-tile>
 

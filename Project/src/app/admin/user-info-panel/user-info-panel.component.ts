@@ -12,7 +12,6 @@ export class UserInfoPanelComponent implements OnInit {
   @Output() userId = new EventEmitter(); 
   @Output() deleteId = new EventEmitter();
   selectedId:number = 0;
-  deletedId:number=0;
   constructor() { }
 
   ngOnInit(): void {
@@ -24,10 +23,9 @@ export class UserInfoPanelComponent implements OnInit {
     this.userId.emit(this.selectedId);
   }
   deleteUserId(){
-    
     //this.info = this.userdetails
-    this.deletedId= this.userdetails.id;
-    this.userId.emit(this.deletedId);
+    console.log("deleteuserid");
+    this.deleteId.emit(this.userdetails.id);
   }
 
 
