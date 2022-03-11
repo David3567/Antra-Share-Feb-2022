@@ -1,5 +1,6 @@
 .info-wrapper {
   position: fixed;
+  box-sizing: border-box;
   height: 200px;
   width: 425px;
   border-style: ridge;
@@ -7,10 +8,4 @@
 
 ul {
   list-style: none;
-}
-
-@media screen and (max-width: 475px) {
-  .info-wrapper {
-    margin-left: 20px;
-  }
 }

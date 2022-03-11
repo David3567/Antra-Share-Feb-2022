@@ -5,6 +5,7 @@ nav {
   justify-content: right;
   align-items: center;
   height: 75px;
+  min-width: 450px;
   background-color: #272a33;
 }
 
@@ -22,44 +23,48 @@ nav button:hover {
   background-color: #ae466d;
 }
 
-main {
+.content-container {
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 245px);
   margin: 10px 0px;
 }
 
-main > :nth-child(1) {
+.content-container > :nth-child(1) {
   width: 45%;
 }
 
-main > :nth-child(2) {
+.content-container > :nth-child(2) {
   width: 45%;
   margin-left: 20px;
 }
 
 .list-wrapper {
   float: right;
+  box-sizing: border-box;
+  height: 620px;
   width: 425px;
   border: ridge;
+  overflow-y: auto;
+  resize: vertical;
+}
+
+.list-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+.list-wrapper::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+.list-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ee5f95;
+  border-radius: 10px;
 }
 
 h1 {
   text-align: center;
-}
-
-.addBtn {
-  height: 50px;
-  width: 50px;
-  margin-left: 20px;
-  border-radius: 5px;
-  background-color: #ee5f95;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.addBtn:hover {
-  background-color: #ae466d;
 }
 
 ul {
@@ -91,12 +96,37 @@ li button:hover {
   color: red;
 }
 
-footer {
+.addBtn-container {
   display: flex;
-  height: 75px;
   justify-content: center;
   align-items: center;
+  height: 75px;
+  min-width: 450px;
+  margin-right: 475px;
+}
+
+.addBtn {
+  float: right;
+  height: 50px;
+  width: 100px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: #ee5f95;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: #ae466d;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
   background-color: #272a33;
+  min-width: 450px;
 }
 
 footer button {
@@ -117,16 +147,19 @@ footer button:hover {
 }
 
 @media screen and (max-width: 475px) {
-  main {
+  .content-container {
     flex-direction: column-reverse;
   }
 
-  main > :nth-child(1) {
+  .content-container > :nth-child(1) {
     width: 451px;
   }
 
-  main > :nth-child(2) {
-    margin-left: 0px;
+  .content-container > :nth-child(2) {
     height: 215px;
+  }
+
+  .addBtn-container {
+    margin-right: 0px;
   }
 }
