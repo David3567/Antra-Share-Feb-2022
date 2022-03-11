@@ -52,10 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         })
       )
-      .subscribe(
-        (val) => console.log(val),
-        (err) => {}
-      );
+      .subscribe((val) => console.log(val));
   }
   ngOnDestroy(): void {
     this.sbp$.unsubscribe();
