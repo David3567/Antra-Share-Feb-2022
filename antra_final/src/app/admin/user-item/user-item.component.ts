@@ -16,7 +16,7 @@ export class UserItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete() {
+  onDelete() {
     this.deletedId.emit(this.userInfo.id);
   }
 
