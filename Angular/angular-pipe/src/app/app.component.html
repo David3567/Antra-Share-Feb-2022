@@ -1,0 +1,18 @@
+<!-- <app-custompipe></app-custompipe> -->
+<!-- <h1>{{ obj }}</h1> -->
+
+<!-- <div *ngFor="let ele of obj | keyvalue: removeSort">
+  {{ ele.key }} : {{ ele.value }}
+</div> -->
+
+<!-- <div *ngFor="let user of users">
+  {{ user.username }}
+</div> -->
+<!-- 
+<div *ngFor="let user of users$ | async">
+  {{ user.username }}
+</div> -->
+
+<div (click)="control()">
+  {{ pipeString | myp: showString }}
+</div>
