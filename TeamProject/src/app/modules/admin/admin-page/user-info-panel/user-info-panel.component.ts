@@ -7,7 +7,6 @@ import { userTemplate } from 'src/app/interfaces/user.model';
   styleUrls: ['./user-info-panel.component.css'],
 })
 export class UserInfoPanelComponent implements OnInit {
-  //interface userInterface can't be used here since 'missing' key was added in parent
   @Input() userinfo: any;
 
   constructor() {}
