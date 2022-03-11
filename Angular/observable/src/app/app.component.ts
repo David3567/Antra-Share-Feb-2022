@@ -5,9 +5,27 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { from, fromEvent, interval, Observable, of, Subscription } from 'rxjs';
-import { filter, map, take, takeWhile, tap } from 'rxjs/operators';
+import {
+  fromEvent,
+  interval,
+  Observable,
+  of,
+  Subscription,
+  throwError,
+} from 'rxjs';
+import {
+  filter,
+  map,
+  take,
+  takeWhile,
+  tap,
+  switchMap,
+  catchError,
+  debounceTime,
+  mergeMap,
+} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -17,61 +35,29 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('inputbox', { static: true }) inputbox!: ElementRef;
 
-  title = 'observable';
-  observable$ = from([3, 4, 5]);
-  val = '';
-  clear: any = [];
-
-  // sbp$ = new Subscription()
   sbp$!: Subscription;
+  bookname = '';
+  booklist: any;
 
-  getUsers$ = this.http.get('https://jsonplaceholder.typicode.com/users').pipe(
-    map((users: any) => {
-      return users.map((user: any) => {
-        return {
-          ...user,
-          username: `${user.username} - (${user.name})`,
-        };
-      });
-    }),
-    tap((users) => {
-      console.log(users);
-    })
-  );
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
   ngOnInit(): void {
-    // of(1, 2, 3)
-    // of(1, 2, 3, 1, 2, 3, 1, 2, 3).pipe(take(4)).subscribe(console.log);
-    // this.sbp$ = fromEvent(this.inputbox?.nativeElement, 'keyup')
-    //   .pipe(filter((e: any) => e.code === 'Enter'))
-    //   .subscribe((e) => {
-    //     console.log(this.val);
-    //   });
+    fromEvent(this.inputbox?.nativeElement, 'keyup')
+      .pipe(
+        switchMap((_) => {
+          if (this.bookname.trim()) {
+            return this.dataService.getBook(this.bookname);
+          } else {
+            return of(null);
+          }
+        })
+      )
+      .subscribe(
+        (val) => console.log(val),
+        (err) => {}
+      );
   }
-
   ngOnDestroy(): void {
     this.sbp$.unsubscribe();
-  }
-
-  onclickthebtn() {
-    let num = 0;
-    this.clear.push(
-      setInterval(() => {
-        console.log(num);
-        num++;
-      }, 1000)
-    );
-  }
-  stopalldatastream() {
-    console.log(this.clear);
-    this.clear.forEach((ele: any) => {
-      clearInterval(ele);
-    });
-  }
-
-  getUsers() {
-    this.getUsers$.subscribe();
   }
 }
