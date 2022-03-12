@@ -1,6 +1,17 @@
+:host {
+    background-color: white;
+    background: white;
+}
 .admin_container{
     display: flex;
     flex-direction: row;
     width: 600px;
-    border: solid;
+}
+
+.detail_container {
+    margin: 0%;
+    padding: 8%;
+    // left: 250px;
+    width: 350px;
+    background: white;
 }

@@ -1,12 +1,10 @@
-
-    <ul>
-        <app-user-item
-            class="user_item"
-            *ngFor = "let user of userlist"
-            [userInfo]="user"
-            (deletedId)="deleteuser($event)"
-
-            (selectedId)="selectuser(user)"
-        ></app-user-item>
-    <ul>
-    <button> Add User </button>
+<ul>
+    <app-user-item
+        class="user_item"
+        *ngFor = "let user of userlist"
+        [userInfo]="user"
+        (deletedId)="deleteuser($event)"
+        (selectedId)="selectuser(user)"
+    ></app-user-item>
+<ul>
+<button mat-flat-button color="primary"> Add User </button>

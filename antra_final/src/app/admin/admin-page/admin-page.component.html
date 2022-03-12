@@ -1,12 +1,17 @@
 <div class="admin_container">
-    <app-user-info-panel
+    <div >
+        <app-user-info-panel
+        class="userinfopanel_container"
     (userWasSelected)="selectedUser = $event"
     ></app-user-info-panel>
-    <app-user-detail
-    *ngIf="selectedUser; else infoText"
-    [userInfo]="selectedUser"
-    ></app-user-detail>
-    <ng-template #infoText>
-        <p>Please select an user!</p>
-    </ng-template>
+    </div>
+    <div class="detail_container">
+        <app-user-detail
+        *ngIf="selectedUser; else infoText"
+        [userInfo]="selectedUser"
+        ></app-user-detail>
+        <ng-template #infoText>
+            <p>Please select an user!</p>
+        </ng-template>
+    </div>
 </div>

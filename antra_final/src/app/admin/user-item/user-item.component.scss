@@ -1,7 +1,15 @@
-
-   
 span {
-    width: 90%;
     overflow: hidden;
-    height: 20px;
   }
+
+.item_card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item_card:hover {
+  background-color: lightpink;
+  cursor: pointer;
+}

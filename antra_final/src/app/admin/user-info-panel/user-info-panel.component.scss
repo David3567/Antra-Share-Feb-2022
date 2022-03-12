@@ -1,18 +1,19 @@
-
+:host {
+  background: white;
+}
 
 ul {
+    margin: 0%;
+    padding: 5%;
     height: 400px;
-    width: 200px;
+    width: 300px;
     overflow: auto;
-    background-color: lightgoldenrodyellow;
-    border-radius: 5px;
+    background: white;
   }
 
   ul .user_item {
-    display: flex;
-    justify-content: space-between;
+    margin: 0%;
+    height: 100px;
   }
 
-  ul .user_item:hover {
-    background-color: grey;
-  }
+ 

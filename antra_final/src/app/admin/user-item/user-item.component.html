@@ -1,5 +1,11 @@
-<a (click)="onSelected()">
-    <span>{{ userInfo.name }}</span>
-    <button (click)="onDelete()">X</button>
+<a 
+class="item_card"
+(click)="onSelected()">
+    <div>
+        <span>{{ userInfo.name }}</span>
+    </div>
+    <div>
+        <button mat-mini-fab color="warn" 
+        (click)="onDelete()">X</button>
+    </div>
 </a>
-
