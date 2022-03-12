@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+header {
+  position: sticky;
+  top: 0px;
+  height: 75px;
+  min-width: 280px;
+  background-color: #192a56;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px);
+  min-width: 280px;
+  background-color: purple;
+}
+
+footer {
+  display: flex;
+  justify-content: spread-between;
+  height: 75px;
+  width: 100%;
+  min-width: 280px;
+  background-color: #192a56;
+}
+
+footer > button {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #273c75;
+  font-family: inherit;
+  font-size: 20px;
+  cursor: pointer;
+}
