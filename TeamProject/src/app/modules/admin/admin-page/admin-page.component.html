@@ -6,7 +6,7 @@
     <div class="list-panel">
       <div class="list-wrapper">
         <h1>Users List</h1>
-        <ul>
+        <ul *ngIf="userlist$ | async as userlist">
           <li *ngFor="let user of userlist" (click)="displayUser(user)">
             {{ user.username }}
             <button (click)="deleteUser(user.id)">Delete</button>
