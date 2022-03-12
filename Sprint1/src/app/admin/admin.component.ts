@@ -10,10 +10,10 @@ import { NgForm } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
   userlist!: User[];
-  FocusUser = new User();
+  // FocusUser = new User();
   FocusId!: number;
   newUser!: User;
-  addFormStyle = 'none'
+  addFormStyle = 'none';
   // searchUser!: User[];
 
   constructor(private userListService: UserlistService) {}
@@ -24,14 +24,14 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  getFocus(focusid: number) {
-    this.FocusUser = this.userlist.filter((search) => {
-      return search.id == focusid;
-    })[0];
-    this.FocusId = this.FocusUser.id;
-  }
+  // getFocus(focusid: number) {
+  //   this.FocusUser = this.userlist.filter((search) => {
+  //     return search.id == focusid;
+  //   })[0];
+  //   this.FocusId = this.FocusUser.id;
+  // }
 
-  addUser(user:NgForm){
+  addUser(user: NgForm) {
     console.log(user);
   }
   // addUser(user: User) {
@@ -41,11 +41,11 @@ export class AdminComponent implements OnInit {
   //   this.userlist.push(user);
   // }
 
-  oppenaddForm(){
+  oppenaddForm() {
     this.addFormStyle = 'block';
   }
 
-  closeaddForm(){
+  closeaddForm() {
     this.addFormStyle = 'none';
   }
   deleteUser(id: number) {
