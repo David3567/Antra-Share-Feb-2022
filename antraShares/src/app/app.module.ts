@@ -9,6 +9,10 @@ import { LoginModule } from './login/login.module';
 import { NewsfeedModule } from './newsfeed/newsfeed.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingModule } from './setting/setting.module';
+import { HttpClientModule } from '@angular/common/http';
+
+import { UserinforService } from './services/userinfor.service';
+
 
 
 @NgModule({
@@ -18,13 +22,14 @@ import { SettingModule } from './setting/setting.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AdminModule,
     LoginModule,
     NewsfeedModule,
     ProfileModule,
     SettingModule
   ],
-  providers: [],
+  providers: [UserinforService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
