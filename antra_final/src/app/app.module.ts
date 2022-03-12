@@ -8,6 +8,10 @@ import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+import { LoginModule } from './login/login.module';
+import { NewsFeedModule } from './news-feed/news-feed.module';
+import { ProfileModule } from './profile/profile.module';
+import { SettingModule } from './setting/setting.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { CoreModule } from './core/core.module';
     AdminModule,
     SharedModule,
     CoreModule,
+    LoginModule,
+    NewsFeedModule,
+    ProfileModule,
+    SettingModule,
     BrowserAnimationsModule
   ],
   providers: [],
