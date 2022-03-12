@@ -9,7 +9,12 @@ import { userDataService } from 'src/app/services/userdata.service';
 })
 export class AdminPageComponent implements OnInit {
   userlist: userTemplate[] = [];
-  selected: userTemplate[] = [];
+  selected: userTemplate;
+  emptytmp = {
+    password: '<null>',
+    gender: '<null>',
+    age: '<null>',
+  };
 
   constructor(private userdata: userDataService) {}
 
@@ -27,8 +32,10 @@ export class AdminPageComponent implements OnInit {
     this.userlist = this.userlist.filter((user) => user.id !== id);
   }
 
-  displayUser(user: any) {
-    this.selected = user;
-    this.selected['missing'] = '<null>';
+  displayUser(user: userTemplate) {
+    this.selected = {
+      ...this.emptytmp,
+      ...user,
+    };
   }
 }

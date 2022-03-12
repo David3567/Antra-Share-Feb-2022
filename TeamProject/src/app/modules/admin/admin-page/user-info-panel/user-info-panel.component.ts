@@ -7,7 +7,7 @@ import { userTemplate } from 'src/app/interfaces/user.model';
   styleUrls: ['./user-info-panel.component.css'],
 })
 export class UserInfoPanelComponent implements OnInit {
-  @Input() userinfo: any;
+  @Input() userinfo: userTemplate;
 
   constructor() {}
 
