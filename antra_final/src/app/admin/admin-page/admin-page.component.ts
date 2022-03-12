@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/core/interface/user.model';
+import { User } from 'src/app/interface/user.model';
 
 @Component({
   selector: 'app-admin-page',

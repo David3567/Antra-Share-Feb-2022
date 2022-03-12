@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { UserService } from 'src/app/user.service';
-import { User } from 'src/app/core/interface/user.model';
+import { UserService } from 'src/app/core/user.service';
+import { User } from 'src/app/interface/user.model';
 
 @Component({
   selector: 'app-user-info-panel',

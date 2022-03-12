@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     AdminModule,
     SharedModule,
+    CoreModule,
     BrowserAnimationsModule
   ],
   providers: [],
