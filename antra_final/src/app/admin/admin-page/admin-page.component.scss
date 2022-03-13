@@ -3,15 +3,18 @@
     background: white;
 }
 .admin_container{
+
     display: flex;
     flex-direction: row;
-    width: 600px;
+    width: 80%;
+    margin: 0 auto;
+    //background-color: rgb(241, 243, 208);
 }
 
 .detail_container {
+    width: 400px;
     margin: 0%;
     padding: 8%;
-    // left: 250px;
-    width: 350px;
-    background: white;
+    //width: 350px;
+    background: #D7DBD6;
 }

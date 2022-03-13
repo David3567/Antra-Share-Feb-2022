@@ -5,15 +5,21 @@
 ul {
     margin: 0%;
     padding: 5%;
-    height: 400px;
-    width: 300px;
+    // height: 300px;
+    // width: 300px;
+    width: 100%;
     overflow: auto;
-    background: white;
+    background: #D7DBD6;
   }
 
   ul .user_item {
+    // padding: 1px;
     margin: 0%;
     height: 100px;
   }
 
+  ul button {
+    background-color: black;
+    color: white;
+  }
  

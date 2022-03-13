@@ -1,5 +1,5 @@
 span {
-    overflow: hidden;
+    overflow: auto;
   }
 
 .item_card {
@@ -10,6 +10,21 @@ span {
 }
 
 .item_card:hover {
-  background-color: lightpink;
+  background-color: lightgray;
   cursor: pointer;
+}
+
+
+button {
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-red-button);
+}
+button:hover {
+  font-size: 1.7rem;
+}
+button:active {
+  font-size: 1.3rem;
 }

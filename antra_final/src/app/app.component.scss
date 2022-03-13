@@ -1,33 +1,31 @@
 * { 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :host{
-    background: lightgrey;
     position: fixed;
-    top:0;
-    left: 0;
     width: 100vw;
     height: 100vh; 
 }
 
 .root_container {
-    height:  100vh; 
-    width: 700px;
-    margin: 0%;
-    padding: 0%;
-    background: white;
-    position: sticky;
-    top: 100px;
-    left: 300px
+    // height:  100vh; 
+    // width: 700px;
+    height:  100%; 
+    width: 100%;
+    background: #F8FBF6;
 
 }
 
-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.main_container{
+    // width: 60%;
+    // height: 50%;
+    margin-left:15%;
+    margin-right:15%;
 }
 
 
