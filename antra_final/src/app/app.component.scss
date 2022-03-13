@@ -4,12 +4,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
+
 
 :host{
     position: fixed;
     width: 100vw;
     height: 100vh; 
+    --color-green-background: #F8FBF6;
+    --color-yellowgreen-main: #D7DBD6;
+    --color-grey-hover: lightgray;
+
 }
 
 .root_container {
@@ -17,7 +23,7 @@
     // width: 700px;
     height:  100%; 
     width: 100%;
-    background: #F8FBF6;
+    background: var(--color-green-background);
 
 }
 

@@ -5,16 +5,18 @@
 .admin_container{
 
     display: flex;
+    height: 500px;
     flex-direction: row;
     width: 80%;
     margin: 0 auto;
-    //background-color: rgb(241, 243, 208);
 }
+
+
 
 .detail_container {
     width: 400px;
     margin: 0%;
     padding: 8%;
     //width: 350px;
-    background: #D7DBD6;
+    background: var(--color-yellowgreen-main);
 }
