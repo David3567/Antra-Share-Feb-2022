@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* padding-bottom: 20px; */
+    padding: 20px;
+    margin-bottom: 5px;
+    background-color: antiquewhite;
+}
+.publiser{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+.hidden{
+    color: red;
+    
+}

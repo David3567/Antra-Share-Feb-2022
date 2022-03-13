@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Users } from '../interfaces/userlist.model';
-
 import { UserinforService } from '../services/userinfor.service';
 
 @Component({
@@ -8,6 +7,7 @@ import { UserinforService } from '../services/userinfor.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
 })
+
 export class AdminComponent implements OnInit {
   users!: Users[];
 

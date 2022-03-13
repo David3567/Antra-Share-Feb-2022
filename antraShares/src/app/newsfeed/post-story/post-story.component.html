@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="videoOrImageURL">Video or image URL</label>
+    <input
+      type="url"
+      id="videoOrImageURL"
+      formControlName="videoOrImageURL"
+      placeholder="https://example.com"
+    />
+  </p>
+  <!-- preview thing here -->
+  <button type="submit">Post</button>
+</form>
+
+
