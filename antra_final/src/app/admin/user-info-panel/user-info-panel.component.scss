@@ -1,0 +1,26 @@
+.userpanel_container {
+  margin: 0%;
+  background: var(--color-yellowgreen-main);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 500px;
+  
+}
+
+.userlist_upper {
+    border: dashed 1px;
+    margin: 0%;
+    padding: 5%;
+    height: 350px;
+    width: 100%;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+  button {
+    background-color: black;
+    color: white;
+    
+  }
+ 
