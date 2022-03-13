@@ -1,4 +1,6 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Story } from 'src/app/interfaces/story.model';
+
 
 
 @Component({
@@ -7,10 +9,10 @@ import { Component,  OnInit } from '@angular/core';
   styleUrls: ['./story.component.css']
 })
 export class StoryComponent implements OnInit {
+  @Input('inStory') storyDetail! : Story
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
