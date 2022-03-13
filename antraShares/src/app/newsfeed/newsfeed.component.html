@@ -1,1 +1,10 @@
-<p>newsfeed works!</p>
+<h1>News Feed Page</h1>
+
+<mat-grid-list cols="1" rowHeight="100px" *ngFor="let story of stories">
+  <h1>Story</h1>
+  <mat-grid-tile>
+    <button mat-button (click)="onClickLike(story)">
+      <mat-icon svgIcon="thumbs-up" class="icon" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+    </button >
+  </mat-grid-tile>
+</mat-grid-list>
