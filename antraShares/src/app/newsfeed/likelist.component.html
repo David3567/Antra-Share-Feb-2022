@@ -1,21 +1,16 @@
-<div class="container">
-    <div>
-        <div class="publiser">
-            <div>PublisherName</div>
-            <div>PublishedTime</div>
-        </div>
-        <div>Content</div>
-    </div>
-    <button class="hidden">Remove</button>
-</div>
 
-<div class="container">
-    <div>
-        <div class="publiser">
-            <div>PublisherName</div>
-            <div>PublishedTime</div>
+<div *ngIf="likeListStories.length > 0;else showNone">
+    <div class="container" *ngFor ="let story of likeListStories">
+        <div>
+            <div class="publiser">
+                <div>{{story.publisherName}}</div>
+                <div>{{story.publishedTime}}</div>
+            </div>
+            <div>Content</div>
         </div>
-        <div>Content</div>
+        <button class="hidden">Remove</button>
     </div>
-    <button class="hidden">Remove</button>
 </div>
+<ng-template #showNone>
+    <h1>You don't like any news</h1>
+</ng-template>
