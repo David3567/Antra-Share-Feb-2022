@@ -1,0 +1,27 @@
+
+.div-like {
+  width: 90%;
+  margin: 0 5%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+}
+.btn-liked-list {
+    font-size: 20px;
+    color: black;
+    border: none;
+    margin-right: 20px;
+    background-color: inherit;
+    
+}
+.form{
+
+  padding-top: 90px;
+}
+h1{
+  text-align: center;
+  cursor: pointer;
+}

@@ -1,1 +1,10 @@
-<p>newsfeed works!</p>
+<div class="div-like"> 
+    <!-- <a href="" class="liked-list"> Like List</a> -->
+    <button mat-button class="btn-liked-list" (click)="onClickLike()">Like List</button>
+</div>
+<div class="form">
+    <h1>Post News Feed Form</h1>
+</div>
+<!-- <p *ngFor="let story of stories">{{story.publisherName}}</p> -->
+
+<app-story *ngFor="let story of stories" [inStory]="story"></app-story>

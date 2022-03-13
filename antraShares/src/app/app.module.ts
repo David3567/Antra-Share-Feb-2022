@@ -12,6 +12,7 @@ import { SettingModule } from './setting/setting.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { UserinforService } from './services/userinfor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -27,9 +28,10 @@ import { UserinforService } from './services/userinfor.service';
     LoginModule,
     NewsfeedModule,
     ProfileModule,
-    SettingModule
+    SettingModule,
+    BrowserAnimationsModule
   ],
   providers: [UserinforService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

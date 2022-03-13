@@ -1,0 +1,33 @@
+
+  <div class="story">
+    <div class="story-user-detail">
+      <div>
+        <!-- avatar( get from user ) -->
+        <img
+          src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
+          alt="Avatar"
+          class="avatar"
+        />
+      </div>
+      <div>{{ storyDetail.publisherName }}</div>
+      <div>publishedTime : {{ storyDetail.publishedTime }}</div>
+    </div>
+    <div class="story-dashboard">
+      <div class="story-dashboard-content">
+        <img class="story-dashboard-content-img"
+          src="{{ storyDetail.content.image }}"
+          alt=""
+         
+        />
+      </div>
+
+      <div class="story-dashboard-viewer">
+        <div>Comment icon</div>
+        <div>Comment Number</div>
+        <div>Like icon</div>
+        <div>Like Number</div>
+      </div>
+    </div>
+  </div>
+
+<hr />
