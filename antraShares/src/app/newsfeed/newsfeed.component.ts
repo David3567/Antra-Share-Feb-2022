@@ -11,14 +11,10 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 
 export class NewsfeedComponent implements OnInit {
   stories! :Story[];
-
-
-
   constructor(private storyService : StoryService ,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.storyService.getStories().subscribe((storyData:Story[])=>{
-      // console.log(data)
       this.stories = storyData;
     })
   }
