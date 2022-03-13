@@ -28,8 +28,9 @@ export class AdminpageComponent implements OnInit {
 
   getInfo(id: number){
     this.userid = id;
-    this.userinfos = this.userlist[this.userid - 1];
+    this.userinfos = this.userlist.filter((user) => user.id === id)[0];
     console.log(this.userinfos);
     console.log(this.userinfos.name);
+    console.log(this.userinfos.email);
   }
 }

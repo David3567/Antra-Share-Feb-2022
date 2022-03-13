@@ -1,8 +1,8 @@
-<div class="holder">
+<div class="holder"  (click)="userInfo()">
     <button (click) = "deletebtn()" mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
         <mat-icon>delete</mat-icon>
     </button>
-    <span (click)="userInfo()">
+    <span>
         {{ userinfo.name }}
     </span> 
 </div>

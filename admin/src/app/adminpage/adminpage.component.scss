@@ -1,12 +1,16 @@
 .example-container{
     display:flex;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
 
 }
 
 .info{
     width: 300px;
     display: flex;
-    flex-direction: row;
+}
+
+.holder{
+    display: flex;
+    flex-direction: column
 }

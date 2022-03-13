@@ -12,12 +12,14 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { UserlistService } from './service/userlist.service';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserlistComponent,
-    AdminpageComponent
+    AdminpageComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
