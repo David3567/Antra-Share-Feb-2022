@@ -1,8 +1,22 @@
-<div>
+<div class="holder">
+    <button (click) = "deletebtn()" mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+    </button>
     <span (click)="userInfo()">
         {{ userinfo.name }}
-    </span>
-    <button (click) = "deletebtn()">delete</button>
+    </span> 
 </div>
 
 
+<!-- <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+        <span (click)="userInfo()">
+            {{ userinfo.name }}
+        </span>
+    </mat-sidenav>
+    <mat-drawer-content>
+        <button (click)="deletebtn()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-drawer-content>
+</mat-sidenav-container> -->

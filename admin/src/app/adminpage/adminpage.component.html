@@ -1,14 +1,27 @@
-<div class="container">
+<!-- <div class="container">
     <div class="holder">
         <app-userlist *ngFor="let user of userlist" [userinfo]="user" (deleteEmiter)="deleteUser($event)"
             (userinfoEmiter)="getInfo($event)">
         </app-userlist>
     </div>
+</div> -->
 
-    <div *ngFor="let info of userinfos | keyvalue" class="info">
+<!-- <div *ngFor="let info of userinfos | keyvalue" class="info">
+    <span>{{info.key}} : </span>
+    <span>{{info.value}}</span>
+</div> -->
+
+<mat-sidenav-container class="example-container">
+    <app-userlist mat-sidenav mode="side" opened *ngFor="let user of userlist" [userinfo]="user"
+        (deleteEmiter)="deleteUser($event)" (userinfoEmiter)="getInfo($event)">
+    </app-userlist>
+
+    <div mat-sidenav mode="side" opened *ngFor="let info of userinfos | keyvalue" class="info">
         <span>{{info.key}} : </span>
         <span>{{info.value}}</span>
     </div>
-</div>
 
-<button>Add User</button>
+</mat-sidenav-container>
+
+
+<button mat-stroked-button color="primary">Add User</button>

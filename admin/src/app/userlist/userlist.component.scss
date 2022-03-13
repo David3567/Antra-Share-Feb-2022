@@ -1,3 +1,15 @@
 span:hover{
     background-color: bisque;
+    border-radius: 8px;
+    color: black;
+}
+
+.holder{
+    display: flex;
+    align-items: center;
+}
+
+.holder button{
+    margin-right: 10px;
+
 }
