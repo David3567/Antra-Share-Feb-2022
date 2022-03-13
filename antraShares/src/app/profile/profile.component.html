@@ -1,1 +1,29 @@
-<p>profile works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>User Name</mat-card-title>
+    <mat-card-subtitle>User Email</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Profile header description
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <mat-grid-list cols="3" rowHeight="400px">
+      <mat-grid-tile *ngFor="let tile of tiles" [style.background]="tile.color">
+        {{tile.text}}
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="100px">
+      <mat-grid-tile class="tile" >
+        <mat-icon aria-hidden="false" class="icon" aria-label="Example home icon">photo</mat-icon>
+        <p>Amount of posts</p>
+      </mat-grid-tile>
+      <mat-grid-tile class="tile">
+        <mat-icon svgIcon="thumbs-up" class="icon" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+        <p>Amount of likes</p>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-actions>
+</mat-card>

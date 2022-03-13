@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Story } from 'src/app/interfaces/story.model';
+import { Component,  OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-story',
@@ -7,7 +7,7 @@ import { Story } from 'src/app/interfaces/story.model';
   styleUrls: ['./story.component.css']
 })
 export class StoryComponent implements OnInit {
-  @Input('inStory') storyDetail! : Story
+
   constructor() { }
 
   ngOnInit(): void {
