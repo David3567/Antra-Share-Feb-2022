@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminModule } from './modules/admin/admin.module';
+import { NewsFeedModule } from './modules/news-feed/news-feed.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { AdminModule } from './modules/admin/admin.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule
+    AdminModule,
+    NewsFeedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,6 +14,9 @@ import { StoryComponent } from './newsfeed-page/story/story.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    NewsfeedPageComponent
   ]
 })
 export class NewsFeedModule { }
