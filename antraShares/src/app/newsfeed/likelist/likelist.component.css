@@ -1,0 +1,15 @@
+.story {
+  max-width: 80%;
+  margin-left: 10%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.actions {
+  align-items: flex-start;
+}

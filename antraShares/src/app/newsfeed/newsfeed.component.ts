@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import { Story } from '../interfaces/story.model';
 import { StoryService } from '../services/story.service';
+import { LikeListComponent } from './likelist/likelist.component';
+import {MatDialog} from '@angular/material/dialog';
 
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+
 @Component({
   selector: 'app-newsfeed',
   templateUrl: './newsfeed.component.html',
@@ -21,13 +23,14 @@ export class NewsfeedComponent implements OnInit {
 
 
   onClickLike() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog,{
+    const dialogRef = this.dialog.open(LikeListComponent,{
       position:{
         'bottom' : '45px',
         right: '5%',
       },
       height: '70%',
-      width: '30%',
+      width: '50%',
+      data: this.stories
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -35,11 +38,3 @@ export class NewsfeedComponent implements OnInit {
     });  
   }
 }
-
-@Component({
-  selector: 'app-likelist',
-  templateUrl: 'likelist.component.html',
-  
-  styleUrls: ['likelist.component.css']
-})
-export class DialogContentExampleDialog {}
