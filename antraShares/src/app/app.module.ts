@@ -37,7 +37,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ProfileModule,
     SettingModule,
 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
 
     NoopAnimationsModule,
     MatButtonModule, MatCardModule, MatGridListModule, MatIconModule
