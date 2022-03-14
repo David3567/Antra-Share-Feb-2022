@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { newsTemplate } from 'src/app/interfaces/news.model';
+import { NewsdataService } from 'src/app/services/newsdata.service';
 
 @Component({
   selector: 'app-news-feed-page',
@@ -7,10 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsFeedPageComponent implements OnInit {
   status: boolean = false;
+  news$: Observable<newsTemplate[]>;
 
-  constructor() {}
+  constructor(private newsData: NewsdataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.news$ = this.newsData.getNews();
+  }
 
   onClick() {
     this.status = !this.status;

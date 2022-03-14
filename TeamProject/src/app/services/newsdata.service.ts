@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
 import { newsTemplate } from '../interfaces/news.model';
 
 @Injectable({
@@ -11,7 +12,9 @@ export class NewsdataService {
 
   constructor(private http: HttpClient) {}
 
-  getUser() {
-    return this.http.get<newsTemplate[]>([this.baseUrl, this.path].join('/'));
+  getNews() {
+    return this.http
+      .get<newsTemplate[]>([this.baseUrl, this.path].join('/'))
+      .pipe(tap(console.log));
   }
 }
