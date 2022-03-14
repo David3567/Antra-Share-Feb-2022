@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { AdminModule } from './admin/admin.module';
 import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
 import { NewsfeedModule } from './newsfeed/newsfeed.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingModule } from './setting/setting.module';
@@ -29,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NewsfeedModule,
     ProfileModule,
     SettingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RegisterModule
   ],
   providers: [UserinforService],
   bootstrap: [AppComponent],
