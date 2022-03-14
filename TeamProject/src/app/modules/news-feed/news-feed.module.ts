@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { NewsFeedPageComponent } from './news-feed-page/news-feed-page.component';
+import { PostComponent } from './news-feed-page/post/post.component';
+import { LikelistComponent } from './news-feed-page/likelist/likelist.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [NewsFeedPageComponent, PostComponent, LikelistComponent],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule],
+  exports: [NewsFeedPageComponent, PostComponent, LikelistComponent],
 })
-export class NewsFeedModule { }
+export class NewsFeedModule {}

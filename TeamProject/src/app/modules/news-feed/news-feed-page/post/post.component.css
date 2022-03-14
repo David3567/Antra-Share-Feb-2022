@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+mat-card {
+  height: 300px;
+  width: 800px;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.profile-pix {
+  background-position: center;
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+
+.profile-header {
+  margin-top: 10px;
+}
+
+ul {
+  list-style: none;
+  line-height: 30px;
+  color: white;
+}
+
+li {
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: grey;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: right;
+  margin: 0;
+  padding: 0;
+}

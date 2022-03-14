@@ -1,0 +1,58 @@
+<header>
+  <button mat-raised-button color="accent" (click)="onClick()">
+    Like List
+  </button>
+</header>
+<app-likelist [ngClass]="{ toggle: status === true }"></app-likelist>
+<div class="container">
+  <app-post></app-post>
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="profile-pix" title="Profile Picture"></div>
+      <div class="profile-header">
+        <mat-card-title>publisherName</mat-card-title>
+        <mat-card-subtitle>publishedTime</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li>image</li>
+        <li>video</li>
+        <li>text</li>
+        <li>_id</li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-icon-button color="accent" aria-label="favorite icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="profile-pix" title="Profile Picture"></div>
+      <div class="profile-header">
+        <mat-card-title>publisherName</mat-card-title>
+        <mat-card-subtitle>publishedTime</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li>image</li>
+        <li>video</li>
+        <li>text</li>
+        <li>_id</li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-icon-button color="accent" aria-label="favorite icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<footer>
+  <button>My Profile</button>
+  <button>News Feed</button>
+  <button>Settings</button>
+</footer>

@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  height: 75px;
+  min-width: 280px;
+  background-color: #192a56;
+}
+
+header > button {
+  height: 36px;
+  margin: 16px;
+}
+
+app-likelist {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.toggle {
+  position: fixed;
+  right: 0px;
+  width: 400px;
+  min-height: calc(100vh - 75px);
+  min-width: 280px;
+  z-index: 1;
+  background-color: black;
+  color: white;
+  visibility: visible;
+  opacity: 0.8;
+  transition: opacity 600ms, visibility 600ms;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px);
+  min-width: 280px;
+  background-color: #0097e6;
+}
+
+app-post {
+  margin-bottom: 20px;
+}
+
+mat-card {
+  height: 300px;
+  width: 600px;
+  margin-bottom: 10px;
+  overflow-y: auto;
+}
+
+.profile-pix {
+  background-position: center;
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+
+.profile-header {
+  margin-top: 10px;
+}
+
+ul {
+  list-style: none;
+  line-height: 30px;
+  color: white;
+}
+
+li {
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: grey;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: right;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  display: flex;
+  justify-content: spread-between;
+  height: 75px;
+  width: 100%;
+  min-width: 280px;
+  background-color: #192a56;
+}
+
+footer > button {
+  width: 100%;
+  background-color: #273c75;
+  font-family: inherit;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
