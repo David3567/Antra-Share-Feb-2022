@@ -1,0 +1,13 @@
+.story-card-container {
+    height:500px;
+    width: 100%;
+    border: black solid 1px;
+ 
+    
+}
+
+img {
+
+    height: 50px;
+    width: 50px;
+}

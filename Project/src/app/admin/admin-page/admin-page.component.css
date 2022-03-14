@@ -1,5 +1,5 @@
 ul {
-    overflow:auto; 
+    overflow: auto; 
     overflow-y:scroll;
     border: black solid 1px;
     width: 100%;
@@ -14,9 +14,6 @@ ul {
 
 
 
-li:hover {
-    background-color: var(--color-red-li-hover);
-}
 
 li {
     display: flex;
@@ -25,15 +22,13 @@ li {
 }
 span {
     height: 100%;
-    line-height: var(--height-todolist-header);
-    overflow: hidden;
+    overflow: auto;
 }
 li button {
     margin-right: 10px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
     font-size: 1.5rem;
-    color: var(--color-red-button);
 }
 li button:hover {
     font-size: 1.7rem;
@@ -41,3 +36,4 @@ li button:hover {
 li button:active {
     font-size: 1.3rem;
 }
+

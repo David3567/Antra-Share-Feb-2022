@@ -15,17 +15,35 @@ header {
 
     letter-spacing: 1px;
     text-transform: capitalize;
+    text-align: right;
 }
 .admin-container {
     background-color: beige;
-    height: calc(100% - 150px);
+    height: auto;
     width: 100%;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 footer{
     height: 100px;
     background-color: grey;
-    line-height: 60px;
+    line-height: 100px;
+    color:white;
+    text-align: center;
+}
+
+button {
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 1.5rem;
+    
+}
+button:hover {
+    font-size: 1.7rem;
+}
+button:active {
+    font-size: 1.3rem;
 }

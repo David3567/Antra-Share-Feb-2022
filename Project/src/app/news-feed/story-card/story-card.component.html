@@ -1,0 +1,12 @@
+<div class="story-card-container">
+    <div class="story-owner">
+        {{storiesdetail.publisherName}}
+        {{storiesdetail.publishedTime}}
+    </div>
+   <img src="{{storiesdetail.content.image}}">
+   <video src="{{storiesdetail.content.video}}"></video>
+   <p>{{storiesdetail.content.text}}</p>
+    <div class="commentlike-conatiner">
+        <button>Comment</button> <p></p><button>like</button><p>{{likeNum}}</p>
+    </div>
+</div>
