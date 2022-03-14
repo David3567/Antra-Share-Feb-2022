@@ -11,13 +11,16 @@ import { StoryService } from 'src/app/services/story.service';
 })
 export class StoryComponent implements OnInit {
   @Input('inStory') storyDetail! : any
-
+  
+  likeBtn : string = "Like me"
   constructor(private storyService : StoryService) { }
 
   ngOnInit(): void {
   }
   addToLikeList(story:any){
     // console.log(storyDetail._id);
+    
     this.storyService.pushIntoLikeList(story);
+    
   }
 }

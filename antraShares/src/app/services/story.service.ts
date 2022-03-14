@@ -10,9 +10,8 @@ export class StoryService {
   private baseUrl = 'http://localhost:4231/api';
   private path = 'news';
   //story the like list
-  likeListByUser:Story[] = [];
+  likeListByUser: Story[] = [];
   subjectLikeList$ = new BehaviorSubject(this.likeListByUser);
-
   constructor(private http: HttpClient) {}
   getStories() {
     return this.http.get(
@@ -23,12 +22,26 @@ export class StoryService {
     const findFeedsInLikeList = this.likeListByUser.find(
       (story) => story._id === likeStory._id
     );
-    if(!findFeedsInLikeList){
-      this.likeListByUser=[...this.likeListByUser,likeStory]
+    if (!findFeedsInLikeList) {
+      this.likeListByUser = [ likeStory,...this.likeListByUser];
     }
+
+    this.subjectLikeList$.next(this.likeListByUser);
+  }
+
+  removeNewsFromLikeList(likeStory: any) {
+    const deleteLike = this.likeListByUser.filter(
+      (story) => story._id !== likeStory._id
+    );
+   
+    this.likeListByUser = deleteLike;
+
     this.subjectLikeList$.next(this.likeListByUser);
   }
   // getLikeList() {
   //   return this.subjectLikeList$.asObservable();
   // }
+  getLikeBTn(status:string){
+    console.log("you like")
+  }
 }

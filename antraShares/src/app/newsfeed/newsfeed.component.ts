@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class NewsfeedComponent implements OnInit, OnDestroy {
   stories!: Story[];
-  subcribeStoryService! :Subscription;
+  subcribeStoryService!: Subscription;
   constructor(private storyService: StoryService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -19,9 +19,11 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     // this.storyService.getStories().subscribe((storyData: any) => {
     //   this.stories = storyData;
     // });
-    this.subcribeStoryService = this.storyService.getStories().subscribe((storyData: any) => {
+    this.subcribeStoryService = this.storyService
+      .getStories()
+      .subscribe((storyData: any) => {
         this.stories = storyData;
-     });
+      });
   }
 
   ngOnDestroy(): void {
@@ -50,10 +52,13 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
 
   styleUrls: ['likelist.component.css'],
 })
-export class DialogContentLikeList implements OnInit {
-  likeListStories!:Story[];
+export class DialogContentLikeList implements OnInit, OnDestroy {
+  likeListStories!: Story[];
   subscribeStoryService = new Subscription();
+
+
   constructor(private storyService: StoryService) {}
+
   ngOnInit(): void {
     // like list
     this.subscribeStoryService = this.storyService.subjectLikeList$.subscribe(
@@ -64,5 +69,14 @@ export class DialogContentLikeList implements OnInit {
         console.log("books: ", typeof(this.likeListStories));
       }
     );
+    
   }
+  ngOnDestroy(): void {
+    this.subscribeStoryService.unsubscribe();
+  }
+  onRemoveLike(story:Story){
+    console.log(123)
+    this.storyService.removeNewsFromLikeList(story);
+  }
+ 
 }

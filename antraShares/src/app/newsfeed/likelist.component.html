@@ -6,10 +6,14 @@
                 <div>{{story.publisherName}}</div>
                 <div>{{story.publishedTime}}</div>
             </div>
-            <div>Content</div>
+            <div>
+                <img src={{story.content.image}} alt="" style="width: 60%;">
+                <p> {{story.content.text}}</p>
+            </div>
         </div>
-        <button class="hidden">Remove</button>
+        <button class="hidden"(click)="onRemoveLike(story)">Remove</button>
     </div>
+    
 </div>
 <ng-template #showNone>
     <h1>You don't like any news</h1>
