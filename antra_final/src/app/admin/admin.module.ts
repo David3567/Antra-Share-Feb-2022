@@ -5,6 +5,7 @@ import { UserInfoPanelComponent } from './user-info-panel/user-info-panel.compon
 import { UserItemComponent } from './user-item/user-item.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule, 
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     AdminPageComponent,

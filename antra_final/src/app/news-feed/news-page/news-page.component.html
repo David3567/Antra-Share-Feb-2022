@@ -1,0 +1,11 @@
+<div class="newspage_container">
+    <div>
+        <button>Add new post</button>
+    </div>
+    <div class="newslist_container">
+        <div *ngFor="let news of newslist">
+            <app-news-item [newsInfo]="news"></app-news-item>
+        </div>
+    </div>
+    
+</div>

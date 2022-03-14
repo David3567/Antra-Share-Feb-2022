@@ -1,0 +1,14 @@
+.newspage_container {
+    background: var(--color-yellowgreen-main);
+    height: 500px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.newslist_container {
+    margin: 5%;
+    padding: 5%;
+    height: 300px;
+    overflow-y: auto;
+}

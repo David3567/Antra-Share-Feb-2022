@@ -28,7 +28,7 @@ import { SettingModule } from './setting/setting.module';
     NewsFeedModule,
     ProfileModule,
     SettingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

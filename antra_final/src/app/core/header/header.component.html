@@ -1,14 +1,14 @@
 <header>
     <div class="left">
-        <button mat-flat-button >Profile</button>
-        <button mat-flat-button >News Feed</button>
+        <button mat-flat-button>Profile</button>
+        <button mat-flat-button [routerLink]="['/news']">News Feed</button>
     </div>
 
-    <button mat-flat-button >Admin</button>
-    <button mat-flat-button >Liked</button>
+        <button mat-flat-button [routerLink]="['/admin']">Admin</button>
+        <button mat-flat-button [routerLink]="['/liked']">Liked</button>
 
-    <div class="right">
-        <button mat-flat-button >Settings</button>
+    <div class=" right">
+            <button mat-flat-button>Settings</button>
     </div>
 
 </header>

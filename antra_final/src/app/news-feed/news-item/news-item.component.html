@@ -1,0 +1,13 @@
+<div
+class="newsitem_container"> 
+    <div>
+        <p>{{ newsInfo.publisherName }}</p>
+        <p>{{ newsInfo.id }}</p>
+        <p>{{ newsInfo.publishedTime | date }}</p>
+    </div>
+    <div>
+        <button
+        (click)="addLiked(newsInfo)"
+        >Like</button>
+    </div>
+</div>
