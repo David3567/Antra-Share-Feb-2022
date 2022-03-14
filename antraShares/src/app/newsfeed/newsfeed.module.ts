@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsfeedComponent } from './newsfeed.component';
-
-
+import { LikelistComponent } from './likelist/likelist.component';
 
 @NgModule({
-  declarations: [NewsfeedComponent],
-  exports:[NewsfeedComponent],
+  declarations: [NewsfeedComponent, LikelistComponent],
+  exports: [NewsfeedComponent],
   imports: [
     CommonModule
   ]

@@ -1,0 +1,50 @@
+
+  
+  .header {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header div {
+    flex-grow: 1;
+  }
+  
+  app-likelist {
+    position: absolute;
+    display: none;
+  }
+  
+  .likelist {
+    padding: 2rem;
+    position: absolute;
+    right: 15px;
+    width: 20%;
+    background-color: gray;
+    color: white;
+    display: block;
+    height: calc(100% - 10em);
+  }
+  .newsfeed_container {
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;  
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FF0000;
+  }
+  .newsfeed {
+    height: 15rem;
+  }
+  
+  .newsfeed:nth-child(2n-1){
+    background-color:whitesmoke;
+  }
+   
+  .newsfeed p {
+    text-align: center;
+  }

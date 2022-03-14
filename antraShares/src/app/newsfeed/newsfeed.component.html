@@ -1,1 +1,43 @@
-<p>newsfeed works!</p>
+<div class="header">
+    <div></div>
+    <button (click)="toggleLikelist()">Likelist</button>
+</div>
+
+<div></div>
+
+<app-likelist [ngClass]="{ likelist: listStatus === true }"></app-likelist>
+
+<div class="news_container">
+    <div class="container-xl">
+        <div class="col-md-6 m-auto">
+            <div class="card text-dark bg-light mb-2">
+                <h1 class="text-center mt-3">What is on your mind</h1>
+                <form>
+                    <div class="mb-3 p-3">
+                        <label for="exampleInputEmail1" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3 p-3">
+                        <label class="form-label" for="customFile">Image</label>
+                        <input type="file" class="form-control" id="customFile" />
+                    </div>
+                    <div class="mb-3 p-3">
+                        <label class="form-label" for="customFile1">Video</label>
+                        <input type="file" class="form-control" id="customFile1" />
+                    </div>
+                    <button type="submit" class="btn btn-primary mx-3">Post</button>
+                </form>
+                <br>
+                <div></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="newsfeed_container">
+        <div class="newsfeed" *ngFor="let i of actualPosts">
+            <p>Placeholder</p>
+        </div>
+    </div>
+
+</div>
