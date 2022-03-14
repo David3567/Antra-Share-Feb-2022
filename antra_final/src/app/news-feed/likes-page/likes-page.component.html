@@ -1,11 +1,14 @@
-<p>The liked list:</p>
-<div *ngFor="let news of newsLikedList" >
-    <div>
-        <p>{{news.publisherName}}</p>
-        <p>{{news.publishedTime | date}}</p>
-        <p>{{news.content.text| shorten }}</p>
+<div class="likespage_container">
+    <p>The liked list:</p>
+    <div *ngFor="let news of newsLikedList">
+        <div>
+            <p>{{news.publisherName}}</p>
+            <p>{{news.publishedTime | date}}</p>
+            <p>{{news.content.text| shorten }}</p>
+        </div>
+        <div>
+            <button (click)="deleteLiked(news)">X</button>
+        </div>
     </div>
-<div>
-    <button (click)="deleteLiked(news)" >X</button>
-</div>
+    
 </div>
