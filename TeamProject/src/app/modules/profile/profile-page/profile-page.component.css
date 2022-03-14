@@ -23,9 +23,7 @@ header {
 }
 
 mat-card {
-  height: 475px;
   width: 600px;
-  overflow-y: auto;
 }
 
 .profile-pix {
@@ -47,7 +45,6 @@ ul {
 }
 
 li {
-  height: 30px;
   margin-bottom: 10px;
   background-color: grey;
 }
@@ -60,6 +57,7 @@ mat-card-actions {
 
 .button-container {
   display: flex;
+  padding-bottom: 10px;
 }
 
 .button-container > button:hover {
