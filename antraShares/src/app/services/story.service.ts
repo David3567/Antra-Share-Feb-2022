@@ -9,37 +9,30 @@ import { Story } from '../interfaces/story.model';
 export class StoryService {
   private baseUrl = 'http://localhost:4231/api';
   private path = 'news';
-  //story the like list
   likeListByUser: Story[] = [];
   subjectLikeList$ = new BehaviorSubject(this.likeListByUser);
   constructor(private http: HttpClient) {}
   getStories() {
     return this.http.get(
       [this.baseUrl, this.path].join('/')
-    ) as Observable<any>;
+    ) as Observable<Story>;
   }
-  pushIntoLikeList(likeStory: any) {
+  pushIntoLikeList(likeStory: Story) {
     const findFeedsInLikeList = this.likeListByUser.find(
       (story) => story._id === likeStory._id
     );
     if (!findFeedsInLikeList) {
-      this.likeListByUser = [ likeStory,...this.likeListByUser];
+      this.likeListByUser = [likeStory, ...this.likeListByUser];
     }
 
     this.subjectLikeList$.next(this.likeListByUser);
   }
 
-  removeNewsFromLikeList(likeStory: any) {
+  removeNewsFromLikeList(likeStory: Story) {
     const deleteLike = this.likeListByUser.filter(
       (story) => story._id !== likeStory._id
     );
-   
     this.likeListByUser = deleteLike;
-
     this.subjectLikeList$.next(this.likeListByUser);
   }
-  // getLikeList() {
-  //   return this.subjectLikeList$.asObservable();
-  // }
-  
 }

@@ -5,17 +5,16 @@ import { StoryComponent } from './story/story.component';
 import { PostStoryComponent } from './post-story/post-story.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [NewsfeedComponent, StoryComponent, PostStoryComponent, DialogContentLikeList],
-  exports:[NewsfeedComponent,],
-  imports: [
-    CommonModule,
- 
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule
-  ]
+  declarations: [
+    NewsfeedComponent,
+    StoryComponent,
+    PostStoryComponent,
+    DialogContentLikeList,
+  ],
+  exports: [NewsfeedComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule],
 })
-export class NewsfeedModule { }
+export class NewsfeedModule {}

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Story } from '../interfaces/story.model';
 import { StoryService } from '../services/story.service';
 
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-newsfeed',
@@ -15,10 +15,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   constructor(private storyService: StoryService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    //story display
-    // this.storyService.getStories().subscribe((storyData: any) => {
-    //   this.stories = storyData;
-    // });
     this.subcribeStoryService = this.storyService
       .getStories()
       .subscribe((storyData: any) => {
@@ -27,7 +23,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.subscribeBookService.unsubscribe();
     this.subcribeStoryService.unsubscribe();
   }
   onClickLike() {
