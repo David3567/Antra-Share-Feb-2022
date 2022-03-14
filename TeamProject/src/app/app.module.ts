@@ -5,7 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminModule } from './modules/admin/admin.module';
 import { NewsFeedModule } from './modules/news-feed/news-feed.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+ 
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +17,8 @@ import { NewsFeedModule } from './modules/news-feed/news-feed.module';
     BrowserModule,
     AppRoutingModule,
     AdminModule,
-    NewsFeedModule
+    NewsFeedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

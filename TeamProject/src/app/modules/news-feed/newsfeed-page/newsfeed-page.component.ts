@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NewsService } from '../service/news.service';
 
 @Component({
   selector: 'app-newsfeed-page',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsfeedPageComponent implements OnInit {
 
-  constructor() { }
+  newsList: any[];
+  likedStoryList: any[] = [];
+
+  constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
+    this.newsService.getNews().subscribe((news)=>{
+      this.likedStoryList = news;
+    })
   }
-
 }
