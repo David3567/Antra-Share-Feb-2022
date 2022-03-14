@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.userListService.getUsers().subscribe((data: any) => {
       this.userlist = data;
-      console.log(this.userlist)
+      // console.log(this.userlist)
       this.FocusUser = this.userlist[0];
       this.FocusId = this.FocusUser.id;
     });
