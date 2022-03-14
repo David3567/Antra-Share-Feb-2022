@@ -3,8 +3,6 @@ AntraShare Project
 
 This is a repo to record the Antra-Share assignments and notes.
 
-Suchen changed something here for test!!!!
-
 ## How to record your Antra Share assignments by using this repo:
 
 ### Clone this repo:
