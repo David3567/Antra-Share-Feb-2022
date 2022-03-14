@@ -41,7 +41,5 @@ export class StoryService {
   // getLikeList() {
   //   return this.subjectLikeList$.asObservable();
   // }
-  getLikeBTn(status:string){
-    console.log("you like")
-  }
+  
 }
