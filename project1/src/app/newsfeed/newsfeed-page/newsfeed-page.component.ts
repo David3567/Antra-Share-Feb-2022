@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GetNewsService } from 'src/services/getNews.service';
+import { News } from 'src/services/news.model';
 
 @Component({
   selector: 'app-newsfeed-page',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newsfeed-page.component.scss']
 })
 export class NewsfeedPageComponent implements OnInit {
+  news!: News[];
 
-  constructor() { }
+  constructor(private service: GetNewsService) { }
 
   ngOnInit() {
+    this.getNews();
   }
 
+  getNews() {
+    this.service.getNews().subscribe((result)=>{
+      this.news = result;
+    })
+  }
 }

@@ -1,18 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError} from 'rxjs/operators';
+import { News } from './news.model';
 
-@Injectable({
-  providedIn: 'root'
-})
 @Injectable()
 export class GetNewsService {
   baseURL: string = "http://localhost:4231/api/news";
 
-constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-getRepos(userName: string): Observable<any> {
-  return this.http.get(this.baseURL + 'users/' + userName + '/repos')
-}
-
+  getNews(): Observable<News[]> {
+    return this.http.get<News[]>(this.baseURL)
+  }
 }

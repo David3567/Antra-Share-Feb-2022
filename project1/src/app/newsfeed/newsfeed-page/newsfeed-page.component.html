@@ -1,3 +1,22 @@
-<p>
-  newsfeed-page works!
-</p>
+<div ngClass="newsfeedContainer">
+  <app-postNews></app-postNews>
+  <div ngClass="postContainer" *ngFor="let item of news">
+    <div ngClass="publisher">{{item.publisherName}}</div>
+    <div ngClass="publishDate">{{item.publishedTime | date: 'short'}}</div>
+    <!-- <video src="{{item.content.video}}"></video> -->
+    <div ngClass="contentContainer">
+      <div><img src="{{item.content.image}}"></div>
+      <div>{{item.content.text}}</div>
+    </div>
+    <div ngClass="reactionsContainer">
+      <div>
+        <div><button>Comment</button></div>
+        {{item.comment.length}} Comments
+      </div>
+      <div>
+        <div><button>Like</button></div>
+        {{item.likedIdList.length}} Likes
+      </div>
+    </div>
+  </div>
+</div>
