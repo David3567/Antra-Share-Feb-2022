@@ -1,0 +1,48 @@
+<nz-layout>
+    <nz-sider nzCollapsible>
+        <div class="sider_logo"></div>
+        <div>
+            <ul nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+                <li nz-submenu nzTitle="News Feed" nzIcon="book">
+                    <ul>
+                        <li nz-menu-item (click)="openLikedList()">
+                            View Liked
+                        </li>
+                    </ul>
+                </li>
+                <li nz-menu-item [routerLink]="['/login']">
+                    <i nz-icon nzType="pie-chart"></i>
+                    <span>Profile</span>
+                </li>
+            </ul>
+        </div>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>Header</nz-header>
+        <nz-content nz-row>
+            <div nz-col nzSpan="4"></div>
+            <div nz-col nzSpan="16">
+                <app-storycard *ngFor="let item of newsList" 
+                [news]="item"
+                (addLikeEmitter)="addLike($event)"
+                (removeLikeEmitter)="deleteLiked($event)">
+                </app-storycard>
+            </div>
+            <div nz-col nzSpan="4"></div>
+        </nz-content>
+        <nz-footer>Footer</nz-footer>
+    </nz-layout>
+    <nz-drawer
+    [nzClosable]="false"
+    [nzVisible]="visible"
+    nzPlacement="right"
+    nzTitle="Basic Drawer"
+    (nzOnClose)="closeLikedList()"
+  >
+    <ng-container *nzDrawerContent>
+      <app-likedstorycard *ngFor="let item of likedList"
+       [news]="item"
+       (newsIDEmitter)="deleteLiked($event)"></app-likedstorycard>
+    </ng-container>
+  </nz-drawer>
+</nz-layout>
