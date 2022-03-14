@@ -10,7 +10,10 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { AdminModule } from './pages/admin/admin.module';
 import { SharedModule } from './shared/shared.module';
+import { LoginModule } from './pages/login/login.module';
+
 import { UserlistService } from './services/userlist.service';
+
 import { TimeoutwindowComponent } from './components/timeoutwindow/timeoutwindow.component';
 import { AvartanameandblankComponent } from './components/avartanameandblank/avartanameandblank.component';
 import { NewsfeedingareaComponent } from './components/newsfeedingarea/newsfeedingarea.component';
@@ -36,7 +39,8 @@ import { StorycontentComponent } from './components/storycontent/storycontent.co
     NzLayoutModule,
     NzMenuModule,
     AdminModule,
-    SharedModule
+    SharedModule,
+    LoginModule
   ],
   providers: [UserlistService],
   bootstrap: [AppComponent]

@@ -3,28 +3,33 @@
         <nz-header>
           <div class="logo"></div>
           <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-            <li nz-menu-item nzSelected>option 1</li>
+            <li nz-menu-item>option 1</li>
             <li nz-menu-item>option 2</li>
             <li nz-menu-item>Add user</li>
           </ul>
         </nz-header>
-        <nz-layout class="contentArea">
+        <nz-layout class="contentArea" >
           <nz-sider nzWidth="200px" nzTheme="light">
             <ul nz-menu nzMode="inline" class="sider-menu">
               <li nz-submenu nzClose nzIcon="user" nzTitle="User List">
                 <ul class="contentArea-sideBar_ul">
-                  <app-useritems *ngFor="let user of userlist" 
-                  [user]="user" 
+                  <app-useritems *ngFor="let user of userlist; index as i" 
+                  [user]="user"
+                  [selected]="selectedList[i]"
                   (userIdEmiter)="deleteUser($event)"
-                  (userEmiter)="selectUser($event)"></app-useritems>
+                  (userEmiter)="selectUser($event)"
+                  (unselectSingleUserEmiter)="unSelectSingleUser()">
+                </app-useritems>
                 </ul>
               </li>
             </ul>
           </nz-sider>
           <nz-layout class="inner-layout">
+            <div *ngIf="selected">
             <nz-content>
               <app-userdetail [user]="selectedUser"></app-userdetail>
             </nz-content>
+          </div>  
           </nz-layout>
         </nz-layout>
         <nz-footer></nz-footer>

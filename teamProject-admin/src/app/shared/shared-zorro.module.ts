@@ -6,6 +6,12 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 export const SHARED_ZORRO_MODULES = [
     IconsProviderModule,
@@ -15,5 +21,11 @@ export const SHARED_ZORRO_MODULES = [
     NzMenuModule,
     NzPageHeaderModule,
     NzButtonModule,
-    NzDescriptionsModule
+    NzDescriptionsModule,
+    NzBadgeModule,
+    NzFormModule,
+    NzTabsModule,
+    NzInputModule,
+    NzCheckboxModule,
+    NzSelectModule,
 ]

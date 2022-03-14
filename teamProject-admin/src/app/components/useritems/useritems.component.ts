@@ -8,27 +8,27 @@ import { User } from 'src/app/interfaces/user.model';
 })
 export class UseritemsComponent implements OnInit {
   @Input() user!:User;
+  @Input() selected:boolean = false;
   @Output() userIdEmiter = new EventEmitter();
   @Output() userEmiter = new EventEmitter();
-
-  selectedFlag:boolean = false;
+  @Output() unselectSingleUserEmiter = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  selected(){
-    this.selectedFlag = true;
-  }
-
-  unSelect(){
-    this.selectedFlag = false;
-  }
-
   selectUser(){
-    this.selected();
-    this.userEmiter.emit(this.user);
+    if(this.selected)
+    {
+      this.selected=false;
+      console.log("unselect");
+      this.unselectSingleUserEmiter.emit();
+    }
+    else {
+      console.log("select");
+      this.userEmiter.emit(this.user);
+    }
   }
 
   deleteUser(){

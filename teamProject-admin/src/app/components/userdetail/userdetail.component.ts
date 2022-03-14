@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/interfaces/user.model';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+
 
 @Component({
   selector: 'app-userdetail',

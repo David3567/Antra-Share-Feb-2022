@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../interfaces/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserlistService {
   }
 
 
-  getUser(){
+  getUser():User[] {
     console.log("service: ", this.userList)
     return this.userList;
   }

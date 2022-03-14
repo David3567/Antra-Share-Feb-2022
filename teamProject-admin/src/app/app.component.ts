@@ -7,7 +7,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title: any;
-  
+export class AppComponent {  
 }

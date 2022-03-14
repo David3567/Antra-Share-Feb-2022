@@ -1,10 +1,13 @@
+import { Address } from "./address.model";
+import { Company } from "./company.model";
+
 export interface User{
     id:number;
     name:string;
     username:string;
     email:string;
-    address:object;
+    address:Address;
     phone:string;
     website:string;
-    company:object;
+    company:Company
 }
