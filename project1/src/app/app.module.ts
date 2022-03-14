@@ -14,8 +14,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { GetNewsService } from 'src/services/getNews.service';
-
 
 @NgModule({
   declarations: [	
@@ -37,7 +35,7 @@ import { GetNewsService } from 'src/services/getNews.service';
     MatButtonModule,
     MatIconModule
   ],
-  providers: [GetNewsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
