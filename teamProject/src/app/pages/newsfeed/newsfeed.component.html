@@ -14,6 +14,10 @@
                     <i nz-icon nzType="pie-chart"></i>
                     <span>Profile</span>
                 </li>
+                <li nz-menu-item [routerLink]="['/login']">
+                    <i nz-icon nzType="setting"></i>
+                    <span>Setting</span>
+                </li>
             </ul>
         </div>
     </nz-sider>
@@ -30,13 +34,12 @@
             </div>
             <div nz-col nzSpan="4"></div>
         </nz-content>
-        <nz-footer>Footer</nz-footer>
     </nz-layout>
     <nz-drawer
     [nzClosable]="false"
     [nzVisible]="visible"
     nzPlacement="right"
-    nzTitle="Basic Drawer"
+    nzTitle="Liked List"
     (nzOnClose)="closeLikedList()"
   >
     <ng-container *nzDrawerContent>

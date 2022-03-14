@@ -1,0 +1,60 @@
+<nz-layout>
+    <nz-sider nzCollapsible>
+        <div class="sider_logo"></div>
+        <div>
+            <ul nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+                <li nz-submenu nzTitle="News Feed" nzIcon="book">
+                    <ul>
+                        <li nz-menu-item (click)="open()">
+                            View Liked
+                        </li>
+                    </ul>
+                </li>
+                <li nz-menu-item>
+                    <i nz-icon nzType="pie-chart"></i>
+                    <span>Profile</span>
+                </li>
+                <li nz-menu-item>
+                    <i nz-icon nzType="setting"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </div>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>Header</nz-header>
+        <nz-content class="ProfileArea" nz-row>
+            <div nz-col nzSpan="4"></div>
+            <div nz-col nzSpan="16">
+                <nz-card  [nzActions]="[actionLike,  actionEllipsis]">
+                    <nz-card-meta
+                      nzTitle="UserName"
+                      nzDescription="email"
+                      [nzAvatar]="avatarTemplate"
+                    ></nz-card-meta>
+                  </nz-card>
+                  <ng-template #avatarTemplate>
+                    <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+                  </ng-template>
+                  <ng-template #actionLike>
+                    <i nz-icon nzType="like">123</i>
+                  </ng-template>
+                  <ng-template #actionEllipsis>
+                    <i nz-icon nzType="book">123</i>
+                  </ng-template>
+            </div>
+            <div nz-col nzSpan="4"></div>
+        </nz-content>
+        <nz-footer>Footer</nz-footer>
+    </nz-layout>
+    <nz-drawer
+    [nzClosable]="false"
+    [nzVisible]="visible"
+    nzPlacement="right"
+    nzTitle="Basic Drawer"
+    (nzOnClose)="close()"
+  >
+    <ng-container *nzDrawerContent>
+    </ng-container>
+  </nz-drawer>
+</nz-layout>
