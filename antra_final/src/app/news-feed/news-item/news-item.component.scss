@@ -1,5 +1,8 @@
 .newsitem_container {
     margin: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .newsitem_container:hover {
     background-color: var(--color-grey-hover);
@@ -7,6 +10,11 @@
 
 button:hover {
     cursor: pointer;
+}
+
+.newsitem_container .news_image {
+    height: 100px;
+    width: 100px;
 }
 
   

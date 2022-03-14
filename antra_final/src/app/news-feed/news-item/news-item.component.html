@@ -1,13 +1,14 @@
 <div
 class="newsitem_container"> 
     <div>
-        <p>{{ newsInfo.publisherName }}</p>
-        <p>{{ newsInfo.id }}</p>
+        <p>{{ newsInfo.publisherName | uppercase  }}</p>
         <p>{{ newsInfo.publishedTime | date }}</p>
+        <img class="news_image" [src]="newsInfo.content.image" />
+        <p>{{ newsInfo.content.text }}</p>
     </div>
     <div>
-        <button
+        <button mat-icon-button color="warn"
         (click)="addLiked(newsInfo)"
-        >Like</button>
+        ><mat-icon>favorite</mat-icon></button>
     </div>
 </div>

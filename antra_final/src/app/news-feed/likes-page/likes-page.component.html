@@ -3,7 +3,7 @@
     <div>
         <p>{{news.publisherName}}</p>
         <p>{{news.publishedTime | date}}</p>
-        <p>{{news.content | shorten }}</p>
+        <p>{{news.content.text| shorten }}</p>
     </div>
 <div>
     <button (click)="deleteLiked(news)" >X</button>
