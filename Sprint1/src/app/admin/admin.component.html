@@ -17,6 +17,7 @@
             'border-left': user.id === FocusId ? '8px solid cyan' : 'none'
           }"
           class="user_container"
+          (userInfoEmiter)="getFocus($event)"
           (userDeleteEmiter)="deleteUser($event)"
         ></app-userlist>
       </div>
@@ -30,7 +31,7 @@
 
     <!-- right part -->
     <div class="userinfo_container">
-      <app-userinfo class="userinfo"></app-userinfo>
+      <app-userinfo class="userinfo" [showuser]="FocusUser"></app-userinfo>
     </div>
   </div>
 </div>

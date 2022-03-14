@@ -9,9 +9,11 @@ import { User } from '../interface/user.model';
 export class UserinfoComponent implements OnInit {
   @Input() showuser!:User;
 
+
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
