@@ -16,8 +16,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     AdminModule,
     ProfileModule,
-    AdminModule,
-    LoginModule
+    LoginModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
