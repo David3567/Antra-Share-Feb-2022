@@ -27,11 +27,12 @@
   justify-content: space-between;
 }
 
+
 .userinfo_container {
   flex: 60%;
   height: 100%;
 }
-.usedrinfo {
+.usedrinfo{
   height: 100%;
 }
 
@@ -66,7 +67,7 @@
 }
 
 .userlist_list_container {
-  height: calc(100% - 6em);
+  height:calc(100% - 6em);
   width: 100%;
   // border-radius: 5px;
   display: flex;
@@ -106,7 +107,7 @@
 }
 
 .user_container:hover {
-  background-color: azure;
+  background-color:azure;
 }
 
 @media (max-width: 600px) {
@@ -137,10 +138,10 @@
   }
 }
 
-.addUser_container {
+.addUser_container{
   height: 30%;
   width: 30%;
-  background-color: whitesmoke;
+  background-color:whitesmoke;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -150,14 +151,14 @@
   border-top-right-radius: 1em;
 }
 
-.addUser_Form_container {
+.addUser_Form_container{
   height: 100%;
   width: 100%;
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: bisque;
+  background-color:bisque;
   opacity: 1;
   padding: 5%;
   border-radius: 2em;
@@ -169,7 +170,7 @@
 
 // }
 
-.addUser_Form {
+.addUser_Form{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -177,16 +178,16 @@
   height: 100%;
 }
 
-.addUser_Form * {
+.addUser_Form *{
   flex-grow: 1;
 }
 
-.addUser_Close_btn {
+.addUser_Close_btn{
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
-.addUser_Close_btn button {
+.addUser_Close_btn button{
   width: 2em;
   height: 2em;
   border-radius: 1em;

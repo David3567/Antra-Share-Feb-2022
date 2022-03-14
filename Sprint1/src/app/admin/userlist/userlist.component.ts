@@ -14,10 +14,13 @@ export class UserlistComponent implements OnInit {
 
   constructor(private userListService: UserlistService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("userlist", this.userinfo)
+  }
 
   emitId(){
     this.userInfoEmiter.emit(this.userinfo.id);
+    console.log(this.userinfo)
   }
   emitDeleteId(){
     this.userDeleteEmiter.emit(this.userinfo.id);
