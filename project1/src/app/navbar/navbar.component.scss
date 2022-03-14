@@ -1,0 +1,36 @@
+mat-toolbar-row {
+  margin: 0;
+  height: 8vh;
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid;
+}
+
+h1 {
+  font-size: 3rem;
+  width: 20rem;
+}
+
+a {
+  padding-left: 1rem;
+  font-size: 1.5rem;
+}
+
+/* #navLink {
+  display: flex;
+  justify-content: flex-start;
+} */
+
+#logOut {
+  border: 1px solid;
+  position: absolute;
+  right: 2rem;
+}
+
+$accentColor: red;
+
+#logOut:hover {
+  background-color: $accentColor;
+  color: white;
+}

@@ -1,7 +1,55 @@
-html, body {
-  height: 100%;
+// @import '@angular/material/prebuilt-themes/deeppurple-amber';
+
+// $accentColor: black;
+
+// *, ::after, ::before {
+//   margin: 0; 
+//   padding: 0;
+//   box-sizing: border-box;
+//   font-family: Roboto, sans-serif;
+// }
+
+// body, html {
+//   min-height: 100vh;
+//   max-width: 100vw;
+//   overflow-x: hidden;
+// }
+
+// app-root {
+//   display: grid;
+//   grid-template-rows: 8vh 1fr;
+// }
+
+
+
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+@import "./theme.scss";
+@import "./custom-component-themes.scss";
+
+@include angular-material-theme($theming-material-components-theme);
+@include custom-components-theme($theming-material-components-theme);
+
+.dark-theme {
+  @include angular-material-color($dark-theme);
 }
 
+@include angular-material-typography($typography);
+
+*, ::after, ::before {
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+}
+
+html,
 body {
-  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

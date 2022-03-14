@@ -1,0 +1,21 @@
+<!-- <mat-toolbar>
+  <span id="logoContainer"><h1>RATNA</h1></span>
+  <span><button mat-raised-button>My Profile</button></span>
+  <span><button mat-raised-button>Newsfeed</button></span>
+  <span><button mat-raised-button>Settings</button></span>
+</mat-toolbar> -->
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>ANTRA</h1> 
+    <div id="navLink">
+      <a mat-button [routerLink]="'/'">MY PROFILE</a>
+      <a mat-button [routerLink]="'/'">NEWSFEED</a>
+      <a mat-button [routerLink]="'/'">SETTING</a>
+      <a mat-button [routerLink]="'/admin'">ADMIN</a>
+    </div>
+    <div id="logOut">
+      <a mat-button [routerLink]="'/login'">SIGN OUT</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

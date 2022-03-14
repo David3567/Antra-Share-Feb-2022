@@ -1,12 +1,15 @@
-<div id="adminPageContainer">
-  <div id="userList">
+<mat-sidenav-container id="adminPageContainer">
+  <mat-sidenav mode="side" opened id="userList">
     <li *ngFor="let item of user" (click)="sendUserInfo(item)">
       <span>{{ item.username }}</span>
       <button id="matIconContainer" (click)="deleteUser(item.id)">
         <mat-icon>delete</mat-icon>
       </button>
-      <li>Add User</li>
-  </div>
-  <app-userInfoPanel [DisplayUserDetail]="DisplayUserDetail"></app-userInfoPanel>
-</div>
-
+    </li>
+    <li><button mat-button>Add User</button>
+    </li>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-userInfoPanel [DisplayUserDetail]="DisplayUserDetail"></app-userInfoPanel>
+  </mat-sidenav-content>
+</mat-sidenav-container>
