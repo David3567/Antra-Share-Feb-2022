@@ -11,13 +11,13 @@ import { NewsService } from '../service/news.service';
 export class NewsfeedPageComponent implements OnInit {
 
   newsList: any[];
-  likedStoryList: any[] = [];
+  likedStories: any[] = [];
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
     this.newsService.getNews().subscribe((news)=>{
-      this.likedStoryList = news;
+      this.likedStories = news;
     })
   }
 }
