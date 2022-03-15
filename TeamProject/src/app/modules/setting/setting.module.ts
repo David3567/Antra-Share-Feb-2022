@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { SettingPanelComponent } from './setting-panel/setting-panel.component';
 
 
@@ -10,10 +11,10 @@ import { SettingPanelComponent } from './setting-panel/setting-panel.component';
   ],
   imports: [
     CommonModule
-  ],
-  exports:[
-    SettingPanelComponent
   ]
+  // exports:[
+  //   SettingPanelComponent
+  // ]
 
 })
 export class SettingModule { }

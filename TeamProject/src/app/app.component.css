@@ -1,0 +1,29 @@
+.NavBar {
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(to right, rgb(109, 196, 236), rgb(50, 52, 189));
+    justify-content: flex-start;
+    list-style: none;
+
+  }
+
+.NavBar li {
+    text-align: center;
+    height: 100%;
+    width: 6em;
+    font-size: 20px;
+}
+
+a:link {
+    text-decoration: none;
+}
+  
+a:visited {
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
