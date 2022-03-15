@@ -1,21 +1,20 @@
 .likespage_container{
-    height: 500px;
     width: 80%;
     margin: 0 auto;
-    background-color: var(--color-yellowgreen-main);
+}
+
+.likeslist_container {
+  display: flex;
+  flex-direction: row;
 }
 
 button {
     margin-right: 10px;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    font-size: 1.5rem;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
   }
   
   button:hover {
-    font-size: 1.7rem;
-  }
-  
-  button:active {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }

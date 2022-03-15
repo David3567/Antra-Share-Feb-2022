@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NewsService } from 'src/app/core/news.service';
+import { News } from 'src/app/interface/news.model';
 
 @Component({
   selector: 'app-news-page',
@@ -8,13 +9,13 @@ import { NewsService } from 'src/app/core/news.service';
   styleUrls: ['./news-page.component.scss']
 })
 export class NewsPageComponent implements OnInit, OnDestroy {
-  newslist = [];
+  newslist: News[] = [];
   subscriptionNews$!: Subscription;
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    this.subscriptionNews$ = this.newsService.getAllNews().subscribe((data: any) => {
+    this.subscriptionNews$ = this.newsService.getAllNews().subscribe((data: News[]) => {
       this.newslist = data;
   })
  }
@@ -22,7 +23,5 @@ export class NewsPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptionNews$.unsubscribe();
   }
-
-
 
 }

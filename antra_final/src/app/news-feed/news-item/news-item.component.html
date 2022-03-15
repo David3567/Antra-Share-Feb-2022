@@ -1,14 +1,20 @@
-<div
-class="newsitem_container"> 
+<div class="newsitem_container">
     <div>
-        <p>{{ newsInfo.publisherName | uppercase  }}</p>
+        <p>{{ newsInfo.publisherName | uppercase }}</p>
         <p>{{ newsInfo.publishedTime | date }}</p>
         <img class="news_image" [src]="newsInfo.content.image" />
         <p>{{ newsInfo.content.text }}</p>
     </div>
     <div>
-        <button mat-icon-button color="warn"
-        (click)="addLiked(newsInfo)"
-        ><mat-icon>favorite</mat-icon></button>
+        <button *ngIf="like; else able" mat-icon-button color="accent" (click)="addLiked(newsInfo)">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <ng-template #able>
+            <button mat-icon-button color="primary" (click)="addLiked(newsInfo)">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </ng-template>
     </div>
+
+
 </div>
