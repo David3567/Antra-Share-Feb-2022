@@ -32,10 +32,8 @@ export class NewsfeedService {
 
       });
   }
-  getStoris() {
-    return this.http.get(this.baseUrl) as Observable<
-    Story[]
-    >;
+  getStoris(): Observable<Story[]> {
+    return this.http.get<Story[]>(this.baseUrl);
   }
 
   getLikedList() {
