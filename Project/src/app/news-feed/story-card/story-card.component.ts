@@ -8,7 +8,7 @@ import { Story,Comment } from '../interfaces';
 })
 export class StoryCardComponent implements OnInit {
   @Input() storiesdetail!: Story;
-
+  commentStatus!:boolean;
   //comments:Comment[] = this.storiesdetail.comment;
 
   //commentNum:number = this.comments.length;
@@ -19,5 +19,10 @@ export class StoryCardComponent implements OnInit {
     console.log(this.storiesdetail);
   }
 
-
+  showComment(){
+    this.commentStatus = true;
+  }
+  liked(){
+    this.likeNum +=1;
+  }
 }

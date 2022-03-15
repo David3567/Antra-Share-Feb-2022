@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit ,ElementRef,ViewChild} from '@angular/core';
+import { Story } from '../interfaces';
+import { NewsfeedService } from '../newsfeed.service';
 
 @Component({
   selector: 'app-like-list',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./like-list.component.css']
 })
 export class LikeListComponent implements OnInit {
-
-  constructor() { }
+  Likedlist!: Story[];
+  constructor(private newsfeedservice:NewsfeedService) { }
 
   ngOnInit(): void {
+    this.newsfeedservice.getLikedList().subscribe((data: Story[])=>{
+      this.Likedlist = data;
+    })
   }
 
 }

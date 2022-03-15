@@ -7,6 +7,8 @@
    <video src="{{storiesdetail.content.video}}"></video>
    <p>{{storiesdetail.content.text}}</p>
     <div class="commentlike-conatiner">
-        <button>Comment</button> <p></p><button>like</button><p>{{likeNum}}</p>
+        <button (click)="showComment()">Comment</button> 
+        <p *ngIf="commentStatus">{{storiesdetail.comment}}</p>
+        <button (click)="liked()">like</button><p>{{likeNum}}</p>
     </div>
 </div>
