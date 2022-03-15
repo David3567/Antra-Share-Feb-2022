@@ -18,7 +18,7 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getAllNews: () => Observable<any> = () =>
-    this.http.get([this.newsurl, this.newsPath].join('/')) as Observable<any[]>;
+    this.http.get([this.newsurl, this.newsPath].join('/'));
 
   addToLikedList(data: any) {
     const findNewsList = this.newsLikedList.find(

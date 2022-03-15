@@ -9,12 +9,12 @@ import { NewsService } from 'src/app/core/news.service';
 })
 export class LikesPageComponent implements OnInit, OnDestroy {
   newsLikedList: any[] = [];
-  subscriptionNews = new Subscription();
+  subscriptionNews$ = new Subscription();
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    this.subscriptionNews = this.newsService.
+    this.subscriptionNews$ = this.newsService.
     getLikedList().subscribe((data) => {
       this.newsLikedList = data;
     })
@@ -25,7 +25,6 @@ export class LikesPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptionNews.unsubscribe();
+    this.subscriptionNews$.unsubscribe();
   }
-
 }

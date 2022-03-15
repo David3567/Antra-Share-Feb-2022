@@ -16,8 +16,5 @@ export class NewsItemComponent implements OnInit {
 
   addLiked(data: any) {
     this.newService.addToLikedList(data);
-    
   }
-
-
 }
