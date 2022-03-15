@@ -2,15 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    margin: auto;
 }
 
 .main-container {
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    height: 900px;
-    width: 600px;
+    /* height: calc(100vh - 113px); */
+    width: 100%;
     
 }
 .container {
@@ -29,9 +28,10 @@
     height: 50%;
     border: 1px;
     background: grey;
-    margin-top: 10%;
-    margin-bottom: 5%;
-    font-size: 50px;
+    /* margin-top: 10%;
+    margin-bottom: 5%; */
+    padding: 20px;
+    font-size: 40px;
     text-align: center;
 
 }

@@ -17,7 +17,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 125px);
   min-width: 280px;
   background-color: #0097e6;
 }
