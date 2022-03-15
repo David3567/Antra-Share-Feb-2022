@@ -3,16 +3,15 @@
     line-height: 50px;
     display: flex;
     flex-direction: row;
-    background: linear-gradient(to right, rgb(109, 196, 236), rgb(50, 52, 189));
     justify-content: flex-start;
     list-style: none;
-
+    background: linear-gradient(to right, rgb(109, 196, 236), rgb(50, 52, 189));
   }
 
 .NavBar li {
     text-align: center;
     height: 100%;
-    width: 6em;
+    width: 150px;
     font-size: 20px;
 }
 
