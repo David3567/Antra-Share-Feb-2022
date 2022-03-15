@@ -3,7 +3,16 @@ export interface newsTemplate {
   publisherName: string;
   publishedTime: string;
   content: Content;
-  comment?: string;
+  comment?: Comment;
+  likedIdList: [];
+  __v: number;
+}
+
+interface Comment {
+  _id: string;
+  publisherName: string;
+  publishedTime: string;
+  content: Content;
 }
 
 interface Content {
