@@ -4,8 +4,8 @@
 
 main {
     display: flex;
-    height: calc(100vh - 75px);
-    margin-top: 75px;
+    height: calc(100vh - 113px);
+    /* margin-top: 75px; */
     width: 100%;
     border: 1px solid black;
 }
