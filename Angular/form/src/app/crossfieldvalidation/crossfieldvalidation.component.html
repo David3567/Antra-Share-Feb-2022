@@ -1,0 +1,29 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="password">Password : </label>
+    <input type="text" id="password" formControlName="password" />
+  </div>
+
+  <!-- <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+    <div *ngIf="password?.errors?.required">
+      this password and confirm not match!
+    </div>
+  </div> -->
+
+  <div>
+    <label for="confirm">Confirm : </label>
+    <input type="text" id="confirm" formControlName="confirm" />
+  </div>
+
+  <div *ngIf="!myForm.valid && (myForm.dirty || myForm.touched)">
+    <div *ngIf="myForm.errors?.notMatch">
+      this password and confirm not match!
+    </div>
+  </div>
+
+  <p>Is Form Valid : {{ myForm.status }}</p>
+
+  <p>
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  </p>
+</form>

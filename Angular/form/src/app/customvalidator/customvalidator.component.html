@@ -1,0 +1,27 @@
+<h1>Custom Validator in Angular</h1>
+
+<h2>Reactive Form</h2>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+  <div>
+    <label for="numVal">Number : </label>
+    <input type="text" id="numVal" name="numVal" formControlName="numVal" />
+
+    <div
+      *ngIf="!numVal?.valid && (numVal?.dirty || numVal?.touched)"
+      class="error"
+    >
+      <div *ngIf="numVal?.errors?.nan">pls input number!</div>
+
+      <div *ngIf="numVal?.errors?.minlen">
+        the number should longer then {{ numVal?.errors?.minlength }}!
+      </div>
+    </div>
+  </div>
+
+  <p>Is Form Valid: {{ myForm.valid }}</p>
+
+  <p>
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  </p>
+</form>
