@@ -1,0 +1,11 @@
+<main>
+    <app-navbar></app-navbar>
+    
+    <div class="storyList">
+        <app-post-new-story></app-post-new-story>
+
+        <app-story-card *ngFor="let story of storiesList" 
+        [story]="story" (likedStoryEmitter)="onLike($event)"></app-story-card>
+    </div>
+    
+</main>
