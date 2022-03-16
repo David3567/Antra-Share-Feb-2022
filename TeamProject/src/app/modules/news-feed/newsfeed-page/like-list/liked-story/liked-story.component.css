@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    justify-content: space-between; 
+    column-gap: 3px;
+    padding: 5px;
+    border-bottom: 2px solid black;
+    
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid grey;
+}
+
+.time {
+    font-size: 10px;
+}
+
+.content {
+    margin-top: 7px;
+}

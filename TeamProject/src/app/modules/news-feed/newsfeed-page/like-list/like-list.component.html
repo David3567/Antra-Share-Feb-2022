@@ -1,0 +1,11 @@
+<button 
+    color="accent" 
+    mat-raised-button 
+    [matMenuTriggerFor]="menu"
+  >Like List</button>
+  <mat-menu #menu="matMenu">
+    <app-liked-story
+          *ngFor="let story of likedStories"
+          [likedStory]="story"
+          (removeStoryEmitter)="onRemoveStory($event)"></app-liked-story>
+  </mat-menu>
