@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+header {
+    width: 100%; 
+    display: flex; 
+    justify-content: end; 
+    padding: 10px;
+    background-color: indigo;
+}
+
 main {
     display: flex;
     height: calc(100vh - 113px);
@@ -11,7 +19,6 @@ main {
 }
 
 .container {
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     row-gap: 20px;

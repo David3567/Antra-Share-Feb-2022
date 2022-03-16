@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./newsfeed-page.component.css']
 })
 export class NewsfeedPageComponent implements OnInit {
-  storiesList: any;
+  newsList: any[];
   likedStories: any[] = [];
 
   constructor(private http: HttpClient) { }
@@ -18,9 +18,7 @@ export class NewsfeedPageComponent implements OnInit {
   })
   }
 
-  onLike(e: Event) {
-    
+  onLike(e: Event) {    
     this.likedStories.push(this.storiesList.find(story => story._id, e));
   }
-
 }

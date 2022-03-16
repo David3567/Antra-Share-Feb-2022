@@ -5,19 +5,24 @@ import { PostNewStoryComponent } from './newsfeed-page/post-new-story/post-new-s
 import { StoryCardComponent } from './newsfeed-page/story-card/story-card.component';
 import { NavbarComponent } from './newsfeed-page/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LikeListComponent } from './newsfeed-page/like-list/like-list.component';
 
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     NewsfeedPageComponent,
     PostNewStoryComponent,
     StoryCardComponent,
-    NavbarComponent
+    NavbarComponent,
+    LikeListComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   exports: [
     NewsfeedPageComponent
