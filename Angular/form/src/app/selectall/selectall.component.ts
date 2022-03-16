@@ -43,8 +43,6 @@ export class SelectallComponent implements OnInit {
       ),
     });
 
-    // console.log(this.options);
-
     this.trackitem();
     this.selectallitem();
   }
@@ -56,7 +54,9 @@ export class SelectallComponent implements OnInit {
   }
 
   setAllItemsValue(val: boolean) {
-    Object.values(this.options.controls).forEach((control: any) => {
+    const controls = Object.values(this.options.controls) as FormControl[];
+
+    controls.forEach((control: FormControl) => {
       control.setValue(val);
     });
   }
