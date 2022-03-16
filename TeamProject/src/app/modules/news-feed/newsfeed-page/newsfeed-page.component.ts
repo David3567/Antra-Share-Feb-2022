@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-newsfeed-page',
@@ -6,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newsfeed-page.component.css']
 })
 export class NewsfeedPageComponent implements OnInit {
-
   newsList: any[];
   likedStories: any[] = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.get('http://localhost:4231/api/news').subscribe(stories => {
+      this.storiesList = stories;
+  })
+  }
+
+  onLike(e: Event) {    
+    this.likedStories.push(this.storiesList.find(story => story._id, e));
+  }
 }

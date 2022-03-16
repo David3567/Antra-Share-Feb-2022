@@ -1,0 +1,18 @@
+.container {
+    box-sizing: border-box;
+    height: 100%;
+    width: 15vw;
+    padding-top: 20px;
+    background-color: indigo;
+    color: white;
+}
+
+.select {
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.select:hover {
+    background-color: #EA1E63;
+}
