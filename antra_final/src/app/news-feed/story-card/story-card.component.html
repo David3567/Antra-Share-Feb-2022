@@ -1,0 +1,35 @@
+<mat-card class="story-card-container">
+    <div>
+        <mat-card-title-group>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title> {{storiesdetail.publisherName}}</mat-card-title>
+            <mat-card-subtitle>{{storiesdetail.publishedTime | date}}</mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-actions>
+            <div>
+                <button mat-icon-button color="warn" 
+                aria-label="Example icon-button with a heart icon"
+                (click)="liked(storiesdetail)">
+                    <mat-icon>favorite</mat-icon></button>
+                <!-- <p>{{likeNum}}</p> -->
+            </div>
+            <div>
+                <button mat-button (click)="showComment()">Comment</button>
+            </div>
+        </mat-card-actions>
+    </div>
+    <mat-card-content>
+        <p>{{storiesdetail.content.text}}</p>
+    </mat-card-content>
+
+
+
+    <div class="story-media">
+        <img mat-card-image src="{{storiesdetail.content.image}}" alt="image">
+        <video>
+            <source src="{{storiesdetail.content.video}}" type="text/html">
+        </video>
+    </div>
+
+    <p *ngIf="commentStatus">{{storiesdetail.comment | json}}</p>
+</mat-card>
