@@ -9,6 +9,7 @@ import { LikeListComponent } from './newsfeed-page/like-list/like-list.component
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { LikedStoryComponent } from './newsfeed-page/like-list/liked-story/liked-story.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
     PostNewStoryComponent,
     StoryCardComponent,
     NavbarComponent,
-    LikeListComponent
+    LikeListComponent,
+    LikedStoryComponent
   ],
   imports: [
     CommonModule,

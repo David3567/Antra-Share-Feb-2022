@@ -2,17 +2,18 @@
     <div>
         <div class="title">
             <div >
-                {{ likedStory.publisherName }}
+                {{ likedStory?.publisherName }}
             </div>
             <div class="time">
-                {{ likedStory.publishedTime | date:'MMM d h:mm a'}}
+                {{ likedStory?.publishedTime | date: 'MMM d h:mm a'}}
             </div>
         </div>
         <div class="content">
             {{ likedStory.content.text | slice:0:15}}{{ likedStory.content.text.length>15 ? "...": ""}}
+            
         </div>
     </div>
-    <div style="display: flex; align-items: center;">
+    <div class="buttonContainer">
     <button color="warn" mat-raised-button (click)="removeStory(likedStory._id)">Remove</button>
     </div>
 </div>

@@ -5,15 +5,14 @@
 header {
     width: 100%; 
     display: flex; 
-    justify-content: end; 
+    justify-content: flex-end; 
     padding: 10px;
-    background-color: indigo;
+    background-color: #273c75;
 }
 
 main {
     display: flex;
-    height: calc(100vh - 113px);
-    /* margin-top: 75px; */
+    height: calc(100vh - 50px);
     width: 100%;
     border: 1px solid black;
 }
@@ -32,9 +31,24 @@ main {
 .storyList {
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 50px;
     width: 100%;
     padding: 20px;
-    margin-left: 100px;
     overflow-y:auto;
+}
+
+.storyList>:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+app-like-list {
+    align-self: flex-end; 
+    margin-right: 10px;
+}
+
+app-post-new-story {
+    margin-top: -85px;
 }

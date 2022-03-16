@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-like-list',
@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LikeListComponent implements OnInit {
   @Input() likedStories: any[];
+  @Output() likedStoriesEmitter = new EventEmitter();
 
   constructor() { }
 
@@ -15,5 +16,6 @@ export class LikeListComponent implements OnInit {
 
   onRemoveStory(e:string) {
     this.likedStories = this.likedStories.filter((story)=> story._id !== e);
+    this.likedStoriesEmitter.emit(this.likedStories);
   }
 }

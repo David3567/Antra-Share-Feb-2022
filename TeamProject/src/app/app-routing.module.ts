@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// import { NewsfeedComponent } from './modules/news-feed/admin.component';
 import { LoginPageComponent } from './modules/login/login-page/login-page.component';
 import { RegisterPageComponent } from './modules/login/register-page/register-page.component';
 import { ProfilePageComponent } from './modules/profile/profile-page/profile-page.component';
 import { SettingPanelComponent } from './modules/setting/setting-panel/setting-panel.component';
 import { AdminPageComponent } from './modules/admin/admin-page/admin-page.component';
+import { NewsfeedPageComponent } from './modules/news-feed/newsfeed-page/newsfeed-page.component';
 
 
 const routes: Routes = [
@@ -18,10 +18,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterPageComponent,
   },
-  // {
-  //   path: 'newsfeed',
-  //   component: NewsfeedComponent,
-  // },
+  {
+    path: 'newsfeed',
+    component: NewsfeedPageComponent,
+  },
   {
     path: 'profile',
     component: ProfilePageComponent,
