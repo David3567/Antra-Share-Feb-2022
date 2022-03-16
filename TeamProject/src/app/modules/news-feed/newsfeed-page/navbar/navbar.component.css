@@ -1,9 +1,18 @@
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
 .container {
     box-sizing: border-box;
     height: 100%;
     width: 15vw;
     padding-top: 20px;
-    background-color: indigo;
+    background-color: #273c75;
     color: white;
 }
 
@@ -14,5 +23,5 @@
 }
 
 .select:hover {
-    background-color: #EA1E63;
+    background-color: #0097e6;
 }

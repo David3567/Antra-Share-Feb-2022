@@ -18,9 +18,9 @@ export class NewsfeedPageComponent implements OnInit {
   })
   }
 
-  onLike(e: Event) {
+  onLike(favorite: Event) {
     
-    this.likedStories.push(this.storiesList.find(story => story._id, e));
+    this.likedStories.push(this.storiesList.find(story => story._id, favorite));
   }
 
 }
