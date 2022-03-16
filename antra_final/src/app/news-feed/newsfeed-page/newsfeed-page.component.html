@@ -2,22 +2,16 @@
     <div class="like-list">
         <button mat-fab color="warn" aria-label="Example icon-button with a heart icon" [matMenuTriggerFor]="likemenu">
             <mat-icon>favorite</mat-icon>
-          </button>
+        </button>
         <mat-menu #likemenu="matMenu">
-           
-            <app-like-list
-            *ngFor = "let like of LikedLists"
-            [likedetails] = "like"
-            ></app-like-list>
-         
+
+            <app-like-list *ngFor="let like of LikedLists" [likedetails]="like"></app-like-list>
+
         </mat-menu>
-        
-        
+
+
     </div>
-    
+
     <app-post-card></app-post-card>
-    <app-story-card
-    *ngFor = "let stories of Storieslist"
-    [storiesdetail] = "stories"
-    ></app-story-card>
+    <app-story-card *ngFor="let stories of Storieslist" [storiesdetail]="stories"></app-story-card>
 </div>

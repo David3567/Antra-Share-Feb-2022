@@ -8,27 +8,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
+import { ShortenPipe } from '../core/shorten.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     NewsfeedPageComponent,
     StoryCardComponent,
     PostCardComponent,
-    LikeListComponent
+    LikeListComponent,
+    ShortenPipe,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MatCardModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule
+    SharedModule,
   ],
   exports: [
     NewsfeedPageComponent,

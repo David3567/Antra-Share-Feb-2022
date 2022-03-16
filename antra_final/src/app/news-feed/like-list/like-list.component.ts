@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit ,ElementRef,ViewChild, Input} from '@angular/core';
-import { Story } from '../interfaces';
+import { Component, OnInit, Input} from '@angular/core';
+import { Story } from '../story.interfaces';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 
 @Component({

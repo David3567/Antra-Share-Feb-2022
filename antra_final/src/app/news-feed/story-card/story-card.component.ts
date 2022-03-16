@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-import { Story,Comment } from '../interfaces';
+import { Story} from '../story.interfaces';
 
 
 @Component({

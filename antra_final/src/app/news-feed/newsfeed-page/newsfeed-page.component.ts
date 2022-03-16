@@ -1,9 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit ,ElementRef,ViewChild} from '@angular/core';
-import { observable,from, fromEvent,of } from 'rxjs';
-import { filter,map } from 'rxjs';
-import { Story } from '../interfaces';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog'; 
+import { Component, OnInit} from '@angular/core';
+import { Story } from '../story.interfaces';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 
 @Component({

@@ -1,12 +1,11 @@
 <div>
     <h3>{{likedetails.publisherName}}</h3>
     <h5>{{likedetails.publishedTime | date}}</h5>
-    <p>{{likedetails.content.text}}</p>
+    <p>{{likedetails.content.text | shorten}}</p>
 </div>
 
-<button mat-menu-item
-(click)="removeliked(likedetails)">
-            Remove
+<button mat-menu-item (click)="removeliked(likedetails)">
+    Remove
 </button>
 
-<hr/>
+<hr />
