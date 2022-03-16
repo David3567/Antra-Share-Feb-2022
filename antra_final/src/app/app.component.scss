@@ -9,7 +9,7 @@
 
 
 :host{
-    position: fixed;
+    //position: fixed;
     width: 100vw;
     height: 100vh; 
     --color-green-background: #F8FBF6;
@@ -17,14 +17,16 @@
     --color-grey-hover: lightgray;
 
 }
-
+body {
+    background: var(--color-green-background);
+   
+}
 .root_container {
     // height:  100vh; 
     // width: 700px;
-    height:  100%; 
+    height:  auto; 
     width: 100%;
     background: var(--color-green-background);
-
 }
 
 .main_container{

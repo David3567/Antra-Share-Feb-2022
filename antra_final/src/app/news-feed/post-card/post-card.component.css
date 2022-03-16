@@ -1,0 +1,41 @@
+.post-card-container {
+    width: 100%;
+    height:250px;
+    background-color: #D7DBD6;
+    border-radius: 50px;
+    padding: 3%;
+}
+
+.media-container {
+
+}
+
+input{
+    outline-style: none ;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    padding: 13px 14px;
+    width: 50vw;
+    font-size: 14px;
+    font-weight: 700;
+    margin:0.6%;
+
+}
+.content{
+    height: 5vw;
+}
+
+.post-card-container{
+    text-align: center;
+}
+
+button {
+    border-radius: 10px;
+    color:white;
+    background-color: black;
+    width: 100px;
+    height: 30px;
+}
+button:hover{
+    background-color: rgb(85, 85, 85);
+}
