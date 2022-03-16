@@ -9,6 +9,9 @@ import { ValidatorintemplateformComponent } from './validatorintemplateform/vali
 import { SetvalidatorComponent } from './setvalidator/setvalidator.component';
 import { CustomvalidatorComponent } from './customvalidator/customvalidator.component';
 import { CrossfieldvalidationComponent } from './crossfieldvalidation/crossfieldvalidation.component';
+import { FormarrayComponent } from './formarray/formarray.component';
+import { SetvalueformarrayComponent } from './setvalueformarray/setvalueformarray.component';
+import { SelectallComponent } from './selectall/selectall.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { CrossfieldvalidationComponent } from './crossfieldvalidation/crossfield
     SetvalidatorComponent,
     CustomvalidatorComponent,
     CrossfieldvalidationComponent,
+    FormarrayComponent,
+    SetvalueformarrayComponent,
+    SelectallComponent,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],

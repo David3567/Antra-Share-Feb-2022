@@ -1,0 +1,23 @@
+<form [formGroup]="form">
+  <p>
+    <input type="checkbox" id="selectall" formControlName="selectall" />
+    <label for="selectall">Select All</label>
+  </p>
+
+  <ul formGroupName="options">
+    <li *ngFor="let item of itemlist">
+      <p>
+        <input type="checkbox" id="item" [formControlName]="item" />
+        <label for="item">{{ item }}</label>
+      </p>
+    </li>
+  </ul>
+</form>
+<button (click)="clearall()">clear All</button>
+
+<hr />
+<div>
+  <ul>
+    <li *ngFor="let item of selectedvalues">{{ item }}</li>
+  </ul>
+</div>
