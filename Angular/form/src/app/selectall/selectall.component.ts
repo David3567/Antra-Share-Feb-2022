@@ -7,7 +7,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./selectall.component.css'],
 })
 export class SelectallComponent implements OnInit {
-  form: any;
+  form!: FormGroup;
 
   itemlist: string[] = [
     'Changjinhu (2021)',
@@ -24,10 +24,10 @@ export class SelectallComponent implements OnInit {
   selectedvalues: string[] = [];
 
   get options(): FormGroup {
-    return this.form.get('options');
+    return this.form.get('options') as FormGroup;
   }
   get selectall(): FormControl {
-    return this.form.get('selectall');
+    return this.form.get('selectall') as FormControl;
   }
 
   constructor(private fb: FormBuilder) {}
@@ -52,7 +52,6 @@ export class SelectallComponent implements OnInit {
       this.setAllItemsValue(val);
     });
   }
-
   setAllItemsValue(val: boolean) {
     const controls = Object.values(this.options.controls) as FormControl[];
 
