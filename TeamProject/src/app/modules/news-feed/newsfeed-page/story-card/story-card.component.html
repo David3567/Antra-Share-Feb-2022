@@ -13,14 +13,23 @@
         </div>
         <div class="reactionsContainer">
             <div class="comments">
-                <img src="./assets/images/comments_icon.jpg" alt="" width="25px">
+                <button 
+                    mat-icon-button 
+                    aria-label="post icon">
+                    <mat-icon>rate_review</mat-icon>
+                </button>
                 <div>Comments: #</div>
             </div>
             <div class="comments" >
-                <div 
+                <button 
+                    mat-icon-button
                     class="like" 
+                    aria-label="favorite icon"
                     [ngClass]="{'liked': toggleLike(story._id)}"
-                    (click)="like(story._id)">&#10084;</div>
+                    (click)="like(story._id)"
+                    >
+                    <mat-icon>favorite</mat-icon>
+                </button>
                 <div>Likes: #</div>
             </div>
         </div>

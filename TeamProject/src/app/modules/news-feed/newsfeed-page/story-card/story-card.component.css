@@ -67,6 +67,7 @@
     color: lightgray; 
     margin-bottom: 4px; 
     font-size: 25px;
+    
 }
 
 .liked {
@@ -75,5 +76,6 @@
 
 .like:hover {
     cursor: pointer;
-    font-weight:900;
+    font-size: 35px;
+    transform: scale(1.4);
 }

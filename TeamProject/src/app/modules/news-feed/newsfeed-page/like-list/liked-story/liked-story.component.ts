@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { newsTemplate } from 'src/app/interfaces/news.model';
 
 @Component({
   selector: 'app-liked-story',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./liked-story.component.css']
 })
 export class LikedStoryComponent implements OnInit {
-  @Input() likedStory: any;
+  @Input() likedStory: newsTemplate;
   @Output() removeStoryEmitter: any = new EventEmitter<string>();
 
   constructor() { }

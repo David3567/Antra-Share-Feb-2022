@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { newsTemplate } from 'src/app/interfaces/news.model';
 
 @Component({
   selector: 'app-story-card',
@@ -6,10 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./story-card.component.css']
 })
 export class StoryCardComponent implements OnInit {
-  @Input() likedStories: any[] = [];
-  @Input() story: any;
-  @Output() likedStoryEmitter = new EventEmitter();
-  isLiked: boolean = false;
+  @Input() likedStories: newsTemplate[] = [];
+  @Input() story: newsTemplate;
+  @Output() likedStoryEmitter = new EventEmitter<string>();
+  
 
   constructor() { }
 
@@ -17,7 +18,6 @@ export class StoryCardComponent implements OnInit {
   }
 
   like(id: string) {
-    this.isLiked = !this.isLiked;
     this.likedStoryEmitter.emit(id);
   }
 

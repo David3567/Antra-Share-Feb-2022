@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { newsTemplate } from 'src/app/interfaces/news.model';
 
 @Component({
   selector: 'app-like-list',
@@ -6,8 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./like-list.component.css']
 })
 export class LikeListComponent implements OnInit {
-  @Input() likedStories: any[];
-  @Output() likedStoriesEmitter = new EventEmitter();
+  @Input() likedStories: newsTemplate[];
+  @Output() likedStoriesEmitter = new EventEmitter<newsTemplate[]>();
 
   constructor() { }
 

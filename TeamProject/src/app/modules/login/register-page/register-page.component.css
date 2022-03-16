@@ -5,7 +5,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 113px);
+    height: calc(100vh - 50px);
+    background-color: #0097e6;
 }
 
 form {
@@ -15,6 +16,7 @@ form {
     border: 2px solid black;
     padding: 20px;
     width: 350px;
+    background-color: white;
 }
 
 h2 {
