@@ -50,10 +50,10 @@ export class RegisterPageComponent implements OnInit {
 
   buildform() {
     return {
-      username: ['', Validators.required],
-      password: ['', [characterCheck(6)]],
+      username: ['', [userLenth(5, 12), Validators.required]],
+      password: ['', [characterCheck(5)]],
       confirmPW: ['', Validators.required],
-      email: ['',[Validators.email]],
+      email: ['', [Validators.email]],
     };
   }
 
@@ -85,6 +85,14 @@ function characterCheck(minlen: number): ValidatorFn {
     } else if (!specialChar.test(control.value)) {
       return { needSpecial: true };
     } else if (control.value.length < minlen) {
+      return { minlen: true, minlength: minlen };
+    }
+    return null;
+  };
+}
+function userLenth(minlen: number, maxlen: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (control.value.length < minlen || control.value.length >= maxlen) {
       return { minlen: true, minlength: minlen };
     }
     return null;
