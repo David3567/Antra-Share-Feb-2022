@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  height: 75px;
+  min-width: 280px;
+  background-color: #192a56;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 50px);
+  min-width: 280px;
+  background-color: #0097e6;
+}
+
+mat-card {
+  width: 600px;
+}
+
+.profile-pix {
+  background-image: url("src/assets/images/siamese.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+
+.profile-header {
+  margin-top: 10px;
+}
+
+ul {
+  list-style: none;
+  line-height: 30px;
+  color: white;
+}
+
+li {
+  margin-bottom: 10px;
+  background-color: grey;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+
+.button-container {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.button-container > button:hover {
+  transform: scale(1.1);
+}
+
+.post {
+  margin-right: 50px;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+footer {
+  display: flex;
+  justify-content: spread-between;
+  height: 75px;
+  width: 100%;
+  min-width: 280px;
+  background-color: #192a56;
+}
+
+footer > button {
+  width: 100%;
+  background-color: #273c75;
+  font-family: inherit;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}

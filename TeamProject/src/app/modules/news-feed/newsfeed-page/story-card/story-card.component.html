@@ -1,0 +1,37 @@
+<div class="container">
+    <div>
+        <div class="userContainer">
+            <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar">
+            <div class="user">
+                <div>{{ story.publisherName }} -</div>
+                <div>{{ story.publishedTime | date: 'MMM d HH:mm a'}}</div>
+            </div>
+        </div>
+        <div class="contentContainer">
+            <img *ngIf="story.content.image.includes('https')" src={{story.content.image}} alt="Image" class="contentImg">
+            <div class="content">{{ story.content.text }}</div>
+        </div>
+        <div class="reactionsContainer">
+            <div class="comments">
+                <button 
+                    mat-icon-button 
+                    aria-label="post icon">
+                    <mat-icon>rate_review</mat-icon>
+                </button>
+                <div>Comments: #</div>
+            </div>
+            <div class="comments" >
+                <button 
+                    mat-icon-button
+                    class="like" 
+                    aria-label="favorite icon"
+                    [ngClass]="{'liked': toggleLike(story._id)}"
+                    (click)="like(story._id)"
+                    >
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <div>Likes: #</div>
+            </div>
+        </div>
+    </div>
+</div>

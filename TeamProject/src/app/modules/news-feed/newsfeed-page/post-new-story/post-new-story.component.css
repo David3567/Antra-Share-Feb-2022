@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    border: 1px solid black;
+    padding: 10px;
+    box-shadow: 0 0 5px 3px gray;
+    border-radius: 3px;
+    width: 580px;
+}
+
+img {
+    border: 1px solid black;
+    width: 65px;
+    height: 65px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    color: white;
+    border: transparent;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #273c75;
+}

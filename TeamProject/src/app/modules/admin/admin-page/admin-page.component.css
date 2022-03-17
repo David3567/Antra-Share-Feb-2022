@@ -26,7 +26,7 @@ header {
 
 .container {
     display: flex;
-    height: 80vh;
+    height: calc(100vh - 50px);
     background-color: #192a56;
 }
 
@@ -63,6 +63,10 @@ ul {
     background-color: #273c75;
     overflow-y: auto;
 }
+
+
+
+
 
 li {
     margin: 0 0;

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { usersTemplate } from 'src/app/interfaces/users.model';
 
 @Component({
   selector: 'app-user-info-panel',
@@ -6,12 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./user-info-panel.component.css']
 })
 export class UserInfoPanelComponent implements OnInit {
-  @Input() userDetails: any;
+  @Input() userDetails: usersTemplate;
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.userDetails = {name: "Test", username: "testUsername",email: "testEmail"};
-  }
+  ngOnInit(): void {}
 
 }

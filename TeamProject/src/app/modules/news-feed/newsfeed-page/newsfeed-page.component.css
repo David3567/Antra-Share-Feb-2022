@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%; 
+    display: flex; 
+    justify-content: flex-end; 
+    padding: 10px;
+    background-color: #273c75;
+}
+
+main {
+    display: flex;
+    height: calc(100vh - 50px);
+    width: 100%;
+    border: 1px solid black;
+    background-color: #0097e6;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    padding-top: 20px;
+}
+
+.storyList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+    width: 100%;
+    padding: 20px;
+    overflow-y:auto;
+}
+
+.storyList>:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+app-like-list {
+    align-self: flex-end; 
+    margin-right: 10px;
+}
+
+app-post-new-story {
+    margin-top: -85px;
+    background-color: white;
+}
+
+app-story-card {
+    background-color: white;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminPageService } from '../admin-page.service';
+import { usersTemplate } from 'src/app/interfaces/users.model';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -8,11 +9,11 @@ import { AdminPageService } from '../admin-page.service';
 })
 export class AdminPageComponent implements OnInit {
 
-  userList: any;
+  userList: usersTemplate[];
 
-  userToShow: any= "";
+  userToShow: usersTemplate;
 
-  constructor(private userService: AdminPageService) { }
+  constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe((users)=> {
@@ -21,7 +22,7 @@ export class AdminPageComponent implements OnInit {
     })
   }
 
-  showUserDetails(selectedUser:any) {
+  showUserDetails(selectedUser:usersTemplate) {
     this.userToShow = selectedUser;
   }
 
