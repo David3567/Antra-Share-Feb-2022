@@ -39,6 +39,7 @@ import { ContentpipePipe } from './pipe/contentpipe.pipe';
     ProfileModule,
     SettingModule,
 
+    
     BrowserAnimationsModule,
 
     NoopAnimationsModule,

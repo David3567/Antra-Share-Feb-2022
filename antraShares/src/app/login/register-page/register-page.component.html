@@ -7,31 +7,45 @@
     <label for="password">PassWord: </label>
     <input type="text" id="password" formControlName="password" />
   </p>
+
+  <div *ngIf="!form?.valid && (form?.dirty || form?.touched)" class="error">
+    <div *ngIf="password?.errors?.['needUpper']">
+      pls input at least a upper!
+    </div>
+
+    <div *ngIf="password?.errors?.['needNumber']">
+      pls input at least a number!
+    </div>
+
+    <div *ngIf="password?.errors?.['needSpecial']">
+      pls input at least a needSpecial!
+    </div>
+
+    <div *ngIf="password?.errors?.['needLower']">
+      pls input at least alower!
+    </div>
+
+    <div *ngIf="password?.errors?.['minlen']">
+      the number should longer then {{ password?.errors?.['minlength'] }}!
+    </div>
+  </div>
+
   <p>
     <label for="confirmPW">Confirm Password: </label>
     <input type="text" id="confirmPW" formControlName="confirmPW" />
   </p>
+
+  <div *ngIf="!form.valid && (form.dirty || form.touched)">
+    <div *ngIf="form.errors?.['notMatch']">
+      this password and confirm not match!
+    </div>
+  </div>
+
   <p>
     <label for="email">Email: </label>
-    <input type="text" id="email" formControlName="email"/>
+    <input type="text" id="email" formControlName="email" />
   </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   <button type="submit" [disabled]="!form.valid">Submit</button>
 </form>
+
