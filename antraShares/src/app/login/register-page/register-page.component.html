@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <p>
+    <label for="username">UserName: </label>
+    <input type="text" id="username" formControlName="username" />
+  </p>
+  <p>
+    <label for="password">PassWord: </label>
+    <input type="text" id="password" formControlName="password" />
+  </p>
+  <p>
+    <label for="confirmPW">Confirm Password: </label>
+    <input type="text" id="confirmPW" formControlName="confirmPW" />
+  </p>
+  <p>
+    <label for="email">Email: </label>
+    <input type="text" id="email" formControlName="email"/>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>
