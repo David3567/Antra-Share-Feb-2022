@@ -1,11 +1,68 @@
 <div class="container">
-    <form action="#">
+    <form (ngSubmit)="onSubmit(regForm)" #regForm="ngForm">
         <h2>Create an Account</h2>
-        <input type="text" name="username" placeholder="Enter username" required>
-        <input type="email" name="useremail" placeholder="Enter email" required>
-        <input type="text" name="password" placeholder="Enter password" required>
-        <input type="text" name="passwordConfirm" placeholder="Confirm password" required>
-        <button type="submit">Register</button>
+        <label for="username">Username</label>
+        <input 
+            type="text" 
+            id="username"  
+            name="username" 
+            minlength="5"
+            maxlength="12"
+            placeholder="Enter username"
+            #fName="ngModel"
+            ngModel 
+            required
+        />
+        <div 
+        style="color: red"
+        *ngIf="!fName.valid && (fName.touched && fName.dirty)"
+        >The Username needs to be between 5 and 12 characters {{regForm.valid | json}}</div>
+
+        <label for="useremail">Email</label>
+        <input 
+        type="email" 
+        id="email" 
+        name="email"
+        email
+        placeholder="Enter email"
+        #email="ngModel"
+        ngModel
+        required>
+        <div
+        style="color: red"
+        *ngIf="!email.valid && (email.touched && email.dirty)">Your entry needs to follow the email format</div>
+
+        <label for="password">Password</label>
+        <input 
+            type="text" 
+            id="password" 
+            name="password" 
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"
+            placeholder="Enter password" 
+            #password="ngModel"
+            ngModel
+            required>
+        <div 
+        style="color: red"
+        *ngIf="!password.valid && (password.touched && password.dirty)">Your password needs to be at least 5 characters long, have at least one upper & one lower case, and have at least 1 special character (@!#$% etc.)</div>
+            
+        <label for="confirm">Confirm Password</label>
+        <input 
+            type="text" 
+            id="confirm" 
+            name="confirm"            
+            placeholder="Confirm password"
+            #confirm = 'ngModel'
+            ngModel 
+            required>
+        <div
+        style="color: red"
+        *ngIf="!(confirm.value===password.value) && (confirm.touched && confirm.dirty)">Your password and confirmation need to match</div>
+
+        <button 
+            [disabled]="!regForm.valid"
+            type="submit"
+        >Register</button>
     </form>
 
 </div>
