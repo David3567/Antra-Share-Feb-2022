@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogContentLikeList, NewsfeedComponent } from './newsfeed.component';
+import {  NewsfeedComponent } from './newsfeed.component';
 import { StoryComponent } from './story/story.component';
 import { PostStoryComponent } from './post-story/post-story.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { LikelistComponent } from './likelist/likelist.component';
 
 @NgModule({
   declarations: [
     NewsfeedComponent,
     StoryComponent,
     PostStoryComponent,
-    DialogContentLikeList,
+   
+    LikelistComponent,
   ],
   exports: [NewsfeedComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule],

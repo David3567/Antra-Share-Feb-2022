@@ -4,6 +4,8 @@ import { StoryService } from '../services/story.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { LikelistComponent } from './likelist/likelist.component';
+
 @Component({
   selector: 'app-newsfeed',
   templateUrl: './newsfeed.component.html',
@@ -26,7 +28,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.subcribeStoryService.unsubscribe();
   }
   onClickLike() {
-    const dialogRef = this.dialog.open(DialogContentLikeList, {
+    const dialogRef = this.dialog.open(LikelistComponent, {
       position: {
         bottom: '45px',
         right: '5%',
@@ -41,37 +43,4 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   }
 }
 
-@Component({
-  selector: 'app-likelist',
-  templateUrl: 'likelist.component.html',
 
-  styleUrls: ['likelist.component.css'],
-})
-export class DialogContentLikeList implements OnInit, OnDestroy {
-  likeListStories!: Story[];
-  subscribeStoryService = new Subscription();
-
-
-  constructor(private storyService: StoryService) {}
-
-  ngOnInit(): void {
-    // like list
-    this.subscribeStoryService = this.storyService.subjectLikeList$.subscribe(
-      (story: any) => {
-        console.log("data1  :"+ story);
-        this.likeListStories = story;
-        console.log("books: ", this.likeListStories);
-        console.log("books: ", typeof(this.likeListStories));
-      }
-    );
-    
-  }
-  ngOnDestroy(): void {
-    this.subscribeStoryService.unsubscribe();
-  }
-  onRemoveLike(story:Story){
-    console.log(123)
-    this.storyService.removeNewsFromLikeList(story);
-  }
- 
-}
