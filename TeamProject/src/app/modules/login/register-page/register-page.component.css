@@ -15,6 +15,7 @@ form {
     flex-direction: column;
     row-gap: 15px;
     border: 2px solid black;
+    border-radius: 5px;
     padding: 20px;
     width: 350px;
     max-height: calc(100vh - 50px);

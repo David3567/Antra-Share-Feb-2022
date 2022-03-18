@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-page',
@@ -8,23 +8,33 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class RegisterPageComponent implements OnInit {
 
-  // regForm: FormGroup = new FormGroup({
-  //   username: new FormControl(''),
-  //   password: new FormControl(''),
-  //   confirm: new FormControl('')
-  // });
+  regForm: FormGroup;
 
-  constructor() { }
+  constructor(private build: FormBuilder) { }
 
   ngOnInit(): void {
-    // this.regForm = this.formgroup.group({
-    //   // Username minLength = 5 & maxLength = 12
-    //   username: ["",Validators.minLength, Validators.maxLength],
-    //   // Password minLength = 5, at least 1 upppercase and 1 special char (use regex)
-    //   password: ["",Validators.minLength,Validators.maxLength, Validators.pattern],
-    //   // Email should use formating with @
-    //   email: ["", Validators.email]
-    // });
+    this.regForm = this.build.group({
+      username: ["",[, Validators.minLength(5),Validators.maxLength(12),Validators.required]],
+      email: ["", [Validators.email, Validators.required]],
+      password: ["",[Validators.minLength(5),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
+      confirm: ["",Validators.required]
+    });
+  }
+
+  get username() {
+    return this.regForm.get('username');
+  }
+
+  get email() {
+    return this.regForm.get('email');
+  }
+
+  get password() {
+    return this.regForm.get('password');
+  }
+
+  get confirm() {
+    return this.regForm.get('confirm');
   }
 
   onSubmit(signUpForm: FormGroup) {
