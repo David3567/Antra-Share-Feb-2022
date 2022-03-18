@@ -4,6 +4,7 @@
     justify-content: center;
     height: calc(100vh - 50px);
     background-color: #0097e6;
+    overflow-y: auto;
 }
 
 form {
@@ -11,9 +12,13 @@ form {
     flex-direction: column;
     row-gap: 10px;
     border: 2px solid black;
+    border-radius: 5px;
     padding: 20px;
     width: 300px;
     background-color: white;
+    box-shadow: 6px 6px 3px 0 black;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
 }
 
 img {
@@ -46,4 +51,8 @@ form>a {
 .formFooter {
     display: flex;
     justify-content:space-between;
+}
+
+button[type='submit']:disabled {
+    background-color: lightgray;
 }

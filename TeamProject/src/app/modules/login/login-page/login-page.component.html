@@ -1,11 +1,28 @@
 <div class="container">
-    <form action="#">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
         <img src="./assets/images/ANTRA_Tech.jpg" alt="logo">
-        <label for="userName"></label>
-        <input type="text" name="userName" placeholder="UserName">
+        <label for="username"></label>
+        <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            formControlName="username"
+            placeholder="UserName">
+        <div style="color: red" *ngIf="!username.valid && (username.touched && username.dirty)">The Username needs to be
+            between 5 and 12 characters</div>
+
         <label for="password"></label>
-        <input type="text" name="password" placeholder="Password">
-        <button type="submit">Login</button>
+        <input 
+            type="text" 
+            id="password" 
+            name="password" 
+            formControlName="password"
+            placeholder="Password">
+        <div style="color: red" *ngIf="!password.valid && (password.touched && password.dirty)">Your password needs to
+            be at least 5 characters long, have at least one upper & one lower case, and have at least 1 special
+            character (@!#$% etc.)</div>
+
+        <button type="submit" [disabled]="!loginForm.valid">Login</button>
         <a href="#">No Accounts? Register Now!</a>
         <div class="formFooter">
             <div class="agreement">
