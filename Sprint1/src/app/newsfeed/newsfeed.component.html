@@ -1,54 +1,29 @@
-<div class="header">
-  <div></div>
-  <button (click)="onClick()"><mat-icon style="color: red;">favorite</mat-icon></button>
-</div>
-
-<div></div>
-
-<app-likelist [ngClass]="{ likelist: liststatus === true }"></app-likelist>
-
-<div class="news_container">
-  <div class="post">
-    <div>
-      <label for="newsfeed_input"> Title: </label>
-      <input type="text" class="newsfeed_input" placeholder="input title..." />
-    </div>
-    <div>
-      <label for="input"> Image: </label>
-      <input type="text" placeholder="input image..." />
-    </div>
-    <div>
-      <label for="input"> Video: </label>
-      <input type="text" placeholder="input video..." />
-    </div>
-    <button>Post</button>
-  </div>
-  <div class="newsfeed_container">
-    <div class="newsfeed" *ngFor="let i of test">
-      <div>
-        <label for=""> Title: </label>
-        <p class="newsfeed_title">Test here</p>
-      </div>
-      <div>
-        <label for=""> Video Image: Text here</label>
-      </div>
-      <div>
-        <label for=""> Content: Text here</label>
-      </div>
-      <div>
-        <label for=""> Title: Text here </label>
-      </div>
-
-      <div class="newsfeed_action">
-        <div>
-          <button><mat-icon style="color: dodgerblue;"> comment</mat-icon></button><span>number</span>
-        </div>
-        <div class="spaceholder"></div>
-        <div>
-          <button><mat-icon style="color: red;">favorite</mat-icon></button>
-          <label for="">number</label>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<nz-layout>
+    <nz-layout>
+        <nz-header>Header</nz-header>
+        <nz-content nz-row>
+            <div nz-col nzSpan="4"></div>
+            <div nz-col nzSpan="16">
+                <app-storycard *ngFor="let item of newsList" 
+                [news]="item"
+                (addLikeEmitter)="addLike($event)"
+                (removeLikeEmitter)="deleteLiked($event)">
+                </app-storycard>
+            </div>
+            <div nz-col nzSpan="4"></div>
+        </nz-content>
+    </nz-layout>
+    <nz-drawer
+    [nzClosable]="false"
+    [nzVisible]="visible"
+    nzPlacement="right"
+    nzTitle="Liked List"
+    (nzOnClose)="closeLikedList()"
+  >
+    <ng-container *nzDrawerContent>
+      <app-likedstorycard *ngFor="let item of likedList"
+       [news]="item"
+       (newsIDEmitter)="deleteLiked($event)"></app-likedstorycard>
+    </ng-container>
+  </nz-drawer>
+</nz-layout>

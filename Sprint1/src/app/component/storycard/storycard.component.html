@@ -1,0 +1,29 @@
+<div class = "cardContainer">
+  <nz-card class = "cardContainer_cards" [nzCover]="coverTemplate" [nzActions]="[actionEdit, actionEllipsis]">
+      <nz-card-meta
+        nzTitle= {{news.publisherName}}
+        nzDescription={{news.content.text}}
+        [nzAvatar]="avatarTemplate"
+      ></nz-card-meta>
+    </nz-card>
+  
+    <ng-template #avatarTemplate>
+      <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+    </ng-template>
+  
+    <ng-template #coverTemplate>
+      <img alt="example" src={{news.content.image}} />
+    </ng-template>
+  
+    <ng-template #actionEdit>
+      <i nz-icon nzType="edit"></i>
+    </ng-template>
+  
+      <ng-template #actionEllipsis>
+          <i *ngIf="like; else filled" nz-icon nzType="like" nzTheme="outline" (click)="addToLike()" ></i>
+              <ng-template #filled>
+                  <i nz-icon nzType="like" nzTheme="fill" (click)="addToLike()"></i>
+              </ng-template>
+      </ng-template>
+  </div>
+  
