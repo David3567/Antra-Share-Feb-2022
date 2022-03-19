@@ -8,34 +8,23 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class StoryCommentComponent implements OnInit {
   current = 0;
+  next = 4;
+  size = 4;
   comments!: Comment[];
-  commentsPerpage!:Comment[];
-  size = 3;
+  commentsPerpage!: Comment[];
   constructor(
     @Inject(MAT_DIALOG_DATA)
     private data: { story: Story }
   ) {
-    console.log("constructor");
-    this.comments =this.data.story.comment
+    console.log('constructor');
+    this.comments = this.data.story.comment;
   }
   ngOnInit(): void {
-    console.log("ngOnInit");
-    console.log(this.comments)
-    // this.comments = this.data.story.comment
-    // this.comments = this.paginate(this.current,this.commentPerPage)
-    this.commentsPerpage = [...this.comments.slice(this.current,this.size)];
-    console.log(this.commentsPerpage);
+    this.commentsPerpage = [...this.comments.slice(this.current, this.size)];
   }
-  onNext(page:number){
-    // this.current = page + 1;
-    // this.comments = this.paginate(this.current,this.commentPerPage)
-    this.current = this.current +page;
-    this.size = this.size+page;
-    this.commentsPerpage = [...this.comments.slice(this.current,this.size)];
-    console.log(this.commentsPerpage)
+  onNext(page: number) {
+    this.current = this.current + this.size;
+    this.next = this.next + this.size;
+    this.commentsPerpage = [...this.comments.slice(this.current, this.next)];
   }
-  paginate (current:number, perPage : number){
-    return [...this.comments.slice((current - 1) * perPage).slice(0, perPage)]
-  }
-  
 }
