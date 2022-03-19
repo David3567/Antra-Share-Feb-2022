@@ -1,14 +1,14 @@
 export interface Story {
-    "_id": Number,
+    "_id": String,
     "publisherName": String,
     "publishedTime": Date,
     "content": {
         "image": String,
         "video": String,
         "text": String,
-        "_id": Number
+        "_id": String
     }
-    "likedIdList": any[];
+    "likedIdList": [];
     "__v": Number
 }
 
@@ -19,8 +19,8 @@ export interface comment {
         "image": String,
         "video": String,
         "text": String,
-        "_id": Number
+        "_id": String
     },
-    "_id": Number
+    "_id": String
 
 }

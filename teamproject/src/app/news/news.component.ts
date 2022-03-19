@@ -21,7 +21,7 @@ export class NewsComponent implements OnInit {
     })
   }
 
-  unlike(id:number){
+  unlike(id:string){
     console.log(id);
     this.newslist = this.newslist.filter((user) => user._id !== id);
   }
