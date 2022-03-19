@@ -1,5 +1,13 @@
-<p>story-comment works!</p>
-
-<p>{{ singleStory.comment|json}}</p>
-   
-
+<div class="story" *ngFor="let comment of singleStory.comment">
+  <div class="story-user-detail">
+    <div>
+      <img
+        src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
+    </div>
+    <div>{{ comment.publisherName }}</div>
+    <div>{{ comment.content.text }}</div>
+  </div>
+</div>

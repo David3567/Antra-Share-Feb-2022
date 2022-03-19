@@ -14,7 +14,7 @@ export class StoryComponent implements OnInit {
   constructor(private storyService: StoryService, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
-  addToLikeList(story: any) {
+  addToLikeList(story: Story) {
     this.storyService.pushIntoLikeList(story);
   }
   onClickComment(story: Story) {
@@ -25,7 +25,6 @@ export class StoryComponent implements OnInit {
         story: story,
       },
     });
-    // console.log(storyDetail);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });

@@ -14,7 +14,6 @@ export class StoryCommentComponent implements OnInit {
   singleStory!: Story;
 
   ngOnInit(): void {
-    this.singleStory = this.data.story;
-    console.log(this.singleStory .comment)
+    this.singleStory = this.data.story;   
   }
 }
