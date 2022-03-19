@@ -34,9 +34,7 @@ export class ProfileComponent implements OnInit {
     { text: 'One',  color: color },
     { text: 'Two',  color: color },
     { text: 'Three',  color: color },
-    { text: 'Four',  color: color },
-    { text: 'Five',  color: color },
-    { text: 'Six',  color: color },
+   
   ];
 
   ngOnInit(): void {

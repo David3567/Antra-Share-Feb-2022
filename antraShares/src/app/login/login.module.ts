@@ -6,6 +6,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -16,6 +17,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+ 
+
   ],
   exports:[LoginComponent,]
 })

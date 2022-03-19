@@ -7,11 +7,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+
 @NgModule({
   declarations: [SettingComponent],
-  exports:[SettingComponent],
+  exports:[SettingComponent, ],
   imports: [
-    CommonModule, MatButtonModule, MatCardModule, MatGridListModule, MatIconModule
+    CommonModule, MatButtonModule, MatCardModule, MatGridListModule, MatIconModule,
   ]
 })
 export class SettingModule { }
