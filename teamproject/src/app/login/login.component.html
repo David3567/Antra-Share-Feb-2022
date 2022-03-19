@@ -1,1 +1,50 @@
-<p>login works!</p>
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <img src="../../../../antra.jpg" >
+        <h1>Login</h1>
+
+        <div class="username">
+            <mat-form-field appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" id="username" formControlName="username">
+                <div *ngIf="!username?.valid && (username?.dirty && username?.touched)">
+                    <div [hidden]="!username?.errors?.['required']">
+                        please enter a user name
+                    </div>
+                    <div [hidden]="!username?.errors?.['minlength']">
+                        Min Length is 5
+                    </div>
+                    <div [hidden]="!username?.errors?.['maxlength']">
+                        Max Length is 12
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+
+
+        <div class="pwd">
+            <mat-form-field appearance="fill">
+                <mat-label>password</mat-label>
+                <input matInput type="text" id="password" formControlName="password">
+                <div *ngIf="!password?.valid && (password?.dirty && password?.touched)">
+                    <div [hidden]="!password?.errors?.['required']">
+                        please enter password
+                    </div>
+                    <div [hidden]="!password?.errors?.['minlength']">
+                        password needs to be at least 5 character
+                    </div>
+                    <div [hidden]="!password?.errors?.['pattern']">
+                        Must includes at least 1 Uppercase, 1 special character
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+
+        <button mat-flat-button color="primary">Login</button>
+        <p><a href="">No Account? Register Now!</a></p>
+
+        <p><input type="checkbox">Agreement <a href="">Need Help?</a></p>
+
+    </form>
+
+</div>
