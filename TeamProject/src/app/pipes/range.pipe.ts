@@ -4,9 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'range',
 })
 export class RangePipe implements PipeTransform {
-  transform(value: any[], min: number, max: number): any {
-    while (min < max) {
-      value.push(min++);
+  transform(value: number[], min: number, max: number) {
+    while (min <= max) {
+      value.push(min);
+      min++;
     }
     return value;
   }

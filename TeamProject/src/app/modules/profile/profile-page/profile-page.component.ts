@@ -23,7 +23,7 @@ export class ProfilePageComponent implements OnInit {
       Validators.required,
       Validators.minLength(5),
       Validators.pattern(
-        '^(?=.*[A-Z])(?=.*[#?!@$%^&*])[A-Za-z0-9#?!@$%^&*]{5,}$'
+        '^(?=.*[A-Z])(?=.*[#?!@$%^&*])[A-Za-z0-9#?!@$%^&*]{0,}$'
       ),
     ]),
   });

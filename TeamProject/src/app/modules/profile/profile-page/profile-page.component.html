@@ -10,91 +10,77 @@
 
     <mat-card-content>
       <form [formGroup]="profile" (ngSubmit)="onSubmit()">
-        <mat-form-field class="full-width" appearance="fill">
+
+        <mat-form-field appearance="outline">
           <mat-label>Bio</mat-label>
-          <textarea
-            matInput
-            class="textarea-field"
-            maxlength="160"
-            placeholder="The Siamese cat is one of the first distinctly recognized breeds of Asian cat. Derived from the Wichianmat landrace, one of several varieties of cat native to Thailand."
-            formControlName="bio"
-          >
+          <textarea matInput maxlength="160" id="bio-textarea"
+            placeholder="The Siamese cat is one of the first distinctly recognized breeds of Asian cat."
+            formControlName="bio">
           </textarea>
         </mat-form-field>
 
-        <mat-form-field class="full-width" appearance="fill">
+        <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
-          <input matInput type="text" maxlength="50" formControlName="name" />
-          <mat-error
-            class="validation"
-            *ngIf="!nameFC.valid && (nameFC.dirty || nameFC.touched)"
-          >
+          <input matInput maxlength="50" formControlName="name" />
+          <mat-error *ngIf="!nameFC.valid && (nameFC.dirty || nameFC.touched)">
             <div [hidden]="!nameFC.errors.required">
-              Username can't be blank
+              Name can't be blank
             </div>
-            <div class="prompt" [hidden]="!nameFC.errors.minlength">
-              Length (5-12)
+            <div [hidden]="!nameFC.errors.minlength">
+              Min length (5) required
             </div>
             <div [hidden]="!nameFC.errors.maxlength">
-              Max Length (12) Exceeded
+              Max length (12) exceeded
             </div>
           </mat-error>
+          <mat-hint>Length (5-12)</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="full-width" appearance="fill">
+        <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput type="text" formControlName="email" />
+          <input matInput formControlName="email" />
         </mat-form-field>
 
-        <mat-form-field class="full-width" appearance="fill">
-          <mat-label>Age</mat-label>
-          <mat-select formControlName="age">
-            <mat-option *ngFor="let age of [] | range: 1:100" [value]="age">
-              {{ age }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="userinfo-container">
+          <mat-form-field id="age-field" appearance="outline">
+            <mat-label>Age</mat-label>
+            <mat-select formControlName="age">
+              <mat-option *ngFor="let age of [] | range: 1:100" [value]="age">
+                {{ age }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <div class="radio-container">
-          <mat-radio-group
-            aria-label="Select a gender"
-            formControlName="gender"
-          >
-            <mat-label id="gender-label">Gender</mat-label>
-            <mat-radio-button value="male">Male</mat-radio-button>
-            <mat-radio-button value="female">Female</mat-radio-button>
-            <mat-radio-button value="other">Other</mat-radio-button>
-          </mat-radio-group>
+          <div class="radio-container">
+            <mat-radio-group formControlName="gender">
+              <div id="gender-label">
+                <mat-label>Gender</mat-label>
+              </div>
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+              <mat-radio-button value="other">Other</mat-radio-button>
+            </mat-radio-group>
+          </div>
         </div>
 
-        <mat-form-field class="full-width password-container" appearance="fill">
+        <mat-form-field class="password-container" appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput type="text" formControlName="password" />
-          <mat-error
-            class="validation"
-            *ngIf="
-              !passwordFC.valid && (passwordFC.dirty || passwordFC.touched)
-            "
-          >
+          <input matInput formControlName="password" />
+          <mat-error *ngIf="!passwordFC.valid && (passwordFC.dirty || passwordFC.touched)">
             <div [hidden]="!passwordFC.errors.required">
               Password can't be blank
             </div>
-            <div class="prompt" [hidden]="!passwordFC.errors.minlength">
-              Min Length (5)
+            <div [hidden]="!passwordFC.errors.minlength">
+              Min length (5) required
             </div>
-            <div class="prompt" [hidden]="!passwordFC.errors.pattern">
-              Requires (1) UpperCase and (1) Special Character (#?!@$%^&*)
+            <div [hidden]="!passwordFC.errors.pattern">
+              (1) uppercase and (1) special character (#?!@$%^&*) required
             </div>
           </mat-error>
+          <mat-hint>Min length (5); Use (1) uppercase and (1) special character</mat-hint>
         </mat-form-field>
 
-        <button
-          mat-flat-button
-          mat-flat-button
-          type="submit"
-          [disabled]="!profile.valid"
-          color="primary"
-        >
+        <button mat-flat-button color="primary" type="submit" [disabled]="!profile.valid">
           Save
         </button>
       </form>
@@ -105,13 +91,13 @@
         <button mat-fab color="primary" aria-label="post icon">
           <mat-icon>rate_review</mat-icon>
         </button>
-        <p class="post total">#</p>
+        <div class="post total">#</div>
       </div>
       <div class="button-container">
         <button mat-fab color="accent" aria-label="favorite icon">
           <mat-icon>favorite</mat-icon>
         </button>
-        <p class="like total">#</p>
+        <div class="like total">#</div>
       </div>
     </mat-card-actions>
   </mat-card>

@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 50px);
-  min-width: 280px;
+  min-width: 390px;
   background-color: #0097e6;
 }
 
@@ -29,27 +29,27 @@ mat-card {
   margin-top: 10px;
 }
 
-form {
-  line-height: 30px;
-}
-
-.validation > p {
-  padding-left: 10px;
-  margin-bottom: 0;
-}
-
-.prompt {
-  color: black;
-}
-
-.full-width {
+mat-form-field {
   width: 100%;
 }
 
-.textarea-field {
+#bio-textarea {
   height: 70px;
   padding-bottom: 0;
   resize: none;
+}
+
+.userinfo-container {
+  display: flex;
+}
+
+#age-field {
+  width: 25%;
+  margin-right: 50px;
+}
+
+#gender-label {
+  padding-bottom: 10px;
 }
 
 .radio-container {
@@ -57,11 +57,7 @@ form {
 }
 
 mat-radio-button {
-  padding-right: 10px;
-}
-
-#gender-label {
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
 .password-container {
@@ -71,7 +67,7 @@ mat-radio-button {
 mat-card-actions {
   display: flex;
   justify-content: center;
-  margin: 0px;
+  margin: 0;
 }
 
 .button-container {
@@ -90,25 +86,6 @@ mat-card-actions {
 .total {
   display: flex;
   align-items: center;
-  margin-bottom: 0px;
   padding-left: 10px;
   font-weight: bold;
-}
-
-footer {
-  display: flex;
-  justify-content: spread-between;
-  height: 75px;
-  width: 100%;
-  min-width: 280px;
-  background-color: #192a56;
-}
-
-footer > button {
-  width: 100%;
-  background-color: #273c75;
-  font-family: inherit;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
 }
