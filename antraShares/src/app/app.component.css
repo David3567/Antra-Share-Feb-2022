@@ -11,7 +11,7 @@ body {
 }
 
 
-/* .footer{
+.footer{
     display: flex;
     justify-content: center;
     position: fixed;
@@ -23,7 +23,7 @@ body {
     color: white;
     margin: 0px auto 0px;
     padding: 0px 0px;
-} */
+}
 button{
     width: 30%;
 }
