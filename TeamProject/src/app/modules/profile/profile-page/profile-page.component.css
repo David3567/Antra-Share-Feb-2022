@@ -4,15 +4,6 @@
   box-sizing: border-box;
 }
 
-header {
-  position: sticky;
-  top: 0px;
-  z-index: 1;
-  height: 75px;
-  min-width: 280px;
-  background-color: #192a56;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -38,15 +29,43 @@ mat-card {
   margin-top: 10px;
 }
 
-ul {
-  list-style: none;
+form {
   line-height: 30px;
-  color: white;
 }
 
-li {
-  margin-bottom: 10px;
-  background-color: grey;
+.validation > p {
+  padding-left: 10px;
+  margin-bottom: 0;
+}
+
+.prompt {
+  color: black;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.textarea-field {
+  height: 70px;
+  padding-bottom: 0;
+  resize: none;
+}
+
+.radio-container {
+  padding-bottom: 1.34375em;
+}
+
+mat-radio-button {
+  padding-right: 10px;
+}
+
+#gender-label {
+  padding-right: 10px;
+}
+
+.password-container {
+  padding-bottom: 2em;
 }
 
 mat-card-actions {
