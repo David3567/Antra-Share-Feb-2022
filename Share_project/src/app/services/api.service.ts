@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../admin/models/user.model';
+import { News } from '../news-feed/models/news.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,15 @@ import { User } from '../admin/models/user.model';
 
 
 
-export class HttpService {
+export class apiService {
 
-  private baseUrl = "http://localhost:3000"
-  private path = "/users"
+  private userUrl = "https://jsonplaceholder.typicode.com/users"
 
   constructor(private http: HttpClient) { 
     
   }
 
   getUsers() {
-    return this.http.get([this.baseUrl, this.path].join('')) as Observable<User[]>;
+    return this.http.get<User>(this.userUrl);
   }
 }
