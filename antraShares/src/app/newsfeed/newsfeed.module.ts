@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { LikelistComponent } from './likelist/likelist.component';
+import { StoryCommentComponent } from './story-comment/story-comment.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { LikelistComponent } from './likelist/likelist.component';
     PostStoryComponent,
    
     LikelistComponent,
+         StoryCommentComponent,
   ],
   exports: [NewsfeedComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule],

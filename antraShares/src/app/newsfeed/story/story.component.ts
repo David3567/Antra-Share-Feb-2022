@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Story } from 'src/app/interfaces/story.model';
 import { StoryService } from 'src/app/services/story.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { StoryCommentComponent } from '../story-comment/story-comment.component';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -10,10 +11,23 @@ import { StoryService } from 'src/app/services/story.service';
 export class StoryComponent implements OnInit {
   @Input('inStory') storyDetail!: Story;
 
-  constructor(private storyService: StoryService) {}
+  constructor(private storyService: StoryService, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
   addToLikeList(story: any) {
     this.storyService.pushIntoLikeList(story);
+  }
+  onClickComment(story: Story) {
+    const dialogRef = this.dialog.open(StoryCommentComponent, {
+      height: '70%',
+      width: '50%',
+      data: {
+        story: story,
+      },
+    });
+    // console.log(storyDetail);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
