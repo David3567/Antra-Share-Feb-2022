@@ -48,7 +48,11 @@
 
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Age</mat-label>
-          <input matInput type="text" formControlName="age" />
+          <mat-select formControlName="age">
+            <mat-option *ngFor="let age of [] | range: 1:100" [value]="age">
+              {{ age }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <div class="radio-container">

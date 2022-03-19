@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./profile-page.component.css'],
 })
 export class ProfilePageComponent implements OnInit {
-  displayName: string = 'Name';
+  displayName: string = 'Apawcalypse♡';
 
   profile = new FormGroup({
     bio: new FormControl(''),

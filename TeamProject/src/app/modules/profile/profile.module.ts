@@ -7,11 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { RangePipe } from 'src/app/pipes/range.pipe';
 
 @NgModule({
-  declarations: [ProfilePageComponent],
+  declarations: [ProfilePageComponent, RangePipe],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,6 +23,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
+    MatSelectModule,
   ],
   exports: [ProfilePageComponent],
 })
