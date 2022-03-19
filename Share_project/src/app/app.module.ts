@@ -9,6 +9,12 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
 import { UserComponent } from './admin/user/user.component';
 import { UserinfoComponent } from './admin/userinfo/userinfo.component';
+import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { LoginComponent } from './login/login.component';
+import { LoginModule } from './login/login.module';
+import { StoryComponent } from './news-feed/story/story.component';
+import { FavoriteListComponent } from './news-feed/favorite-list/favorite-list.component';
+import { NewsFeedModule } from './news-feed/news-feed.module';
 
 
 @NgModule({
@@ -16,14 +22,21 @@ import { UserinfoComponent } from './admin/userinfo/userinfo.component';
     AppComponent,
     AdminComponent,
     UserComponent,
-    UserinfoComponent
+    UserinfoComponent,
+    NewsFeedComponent,
+    LoginComponent,
+    StoryComponent,
+    FavoriteListComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AdminModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginModule,
+    NewsFeedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

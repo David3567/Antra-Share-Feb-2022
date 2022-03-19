@@ -1,7 +1,7 @@
-<mat-list>
-    <mat-list-item>{{user.name}}</mat-list-item>
-    <mat-list-item>{{user.phone}}</mat-list-item>
-    <mat-list-item>{{user.email}}</mat-list-item>
-    <mat-list-item>{{user.username}}</mat-list-item>
-    <mat-list-item>{{user.website}}</mat-list-item>
+<mat-list [ngClass]="isVisiable ? 'show' : 'hide'">
+    <mat-list-item>Name: {{user.name}}</mat-list-item>
+    <mat-list-item>Phone: {{user.phone}}</mat-list-item>
+    <mat-list-item>UserEmail: {{user.email}}</mat-list-item>
+    <mat-list-item>UserName: {{user.username}}</mat-list-item>
+    <mat-list-item>Website: {{user.website}}</mat-list-item>
 </mat-list>

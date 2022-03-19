@@ -1,0 +1,16 @@
+<mat-card class="story-card">
+    <mat-card-header>
+        <mat-card-title>{{storyItem.publisherName}}</mat-card-title>
+        <mat-card-subtitle>{{storyItem.publishedTime}}</mat-card-subtitle> 
+    </mat-card-header>
+    <img mat-card-image src={{storyItem.content.image}}>
+    <mat-card-content>
+      <p>{{storyItem.content.text}}</p>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-footer>
+        <button mat-button>
+            <mat-icon>favorite_boarder</mat-icon>
+        </button>
+    </mat-card-footer>
+  </mat-card>
