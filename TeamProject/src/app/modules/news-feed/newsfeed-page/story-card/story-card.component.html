@@ -8,26 +8,20 @@
             </div>
         </div>
         <div class="contentContainer">
-            <img *ngIf="story.content.image.includes('https')" src={{story.content.image}} alt="Image" class="contentImg">
+            <img *ngIf="story.content.image.includes('https')" src={{story.content.image}} alt="Image"
+                class="contentImg">
             <div class="content">{{ story.content.text }}</div>
         </div>
         <div class="reactionsContainer">
             <div class="comments">
-                <button 
-                    mat-icon-button 
-                    aria-label="post icon">
+                <button mat-icon-button aria-label="post icon" (click)="openDialog()">
                     <mat-icon>rate_review</mat-icon>
                 </button>
                 <div>Comments: #</div>
             </div>
-            <div class="comments" >
-                <button 
-                    mat-icon-button
-                    class="like" 
-                    aria-label="favorite icon"
-                    [ngClass]="{'liked': toggleLike(story._id)}"
-                    (click)="like(story._id)"
-                    >
+            <div class="comments">
+                <button mat-icon-button class="like" aria-label="favorite icon"
+                    [ngClass]="{'liked': toggleLike(story._id)}" (click)="like(story._id)">
                     <mat-icon>favorite</mat-icon>
                 </button>
                 <div>Likes: #</div>
