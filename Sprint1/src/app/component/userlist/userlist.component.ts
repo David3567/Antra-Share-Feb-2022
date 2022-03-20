@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserlistService } from 'src/app/services/userlist.service';
-import { User } from '../interface/user.model';
+import { User } from 'src/app/services/interface/user.model';
 
 @Component({
   selector: 'app-userlist',

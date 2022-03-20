@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AdminModule } from './admin/admin.module';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NewsfeedModule } from './newsfeed/newsfeed.module';
-import { LoginModule } from './login/login.module';
-import { HomeModule } from './home/home.module';
+
+import { AdminModule } from './module/admin/admin.module';
+import { NewsfeedModule } from './module/newsfeed/newsfeed.module';
+import { HomeModule } from './module/home/home.module';
 
 @NgModule({
   declarations: [	AppComponent ],
@@ -18,7 +19,6 @@ import { HomeModule } from './home/home.module';
 
     AdminModule,
     NewsfeedModule,
-    LoginModule,
     HomeModule
   ],
   providers: [],

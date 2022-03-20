@@ -4,11 +4,11 @@ import { MatCard } from '@angular/material/card';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class LoginComponent implements OnInit {
   form!: FormGroup;
 
   hide: boolean = true;

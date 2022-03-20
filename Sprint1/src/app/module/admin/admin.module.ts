@@ -4,9 +4,9 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AdminComponent } from './admin.component';
-import { UserinfoComponent } from './userinfo/userinfo.component';
-import { UserlistComponent } from './userlist/userlist.component';
-import { UserlistService } from '../services/userlist.service';
+import { UserinfoComponent } from '../../component/userinfo/userinfo.component';
+import { UserlistComponent } from '../../component/userlist/userlist.component';
+import { UserlistService } from '../../services/userlist.service';
 
 @NgModule({
   declarations: [AdminComponent, UserinfoComponent, UserlistComponent],
