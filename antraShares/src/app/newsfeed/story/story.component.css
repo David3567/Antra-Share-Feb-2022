@@ -31,3 +31,25 @@
   height: 50px;
   border-radius: 50%;
 }
+
+.material-icons-favorite{
+  color: #884242;
+}
+.material-icons-favorite:hover{
+  cursor: pointer;
+  color: rgb(194, 104, 104);
+}
+button{
+  background-color:inherit;
+  border: none;
+}
+
+.liked{
+  cursor: pointer;
+  color: rgb(248, 4, 4);
+}
+
+/* button:hover{
+  background-color:red;
+} */
+

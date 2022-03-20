@@ -3,6 +3,7 @@ import { Story } from 'src/app/interfaces/story.model';
 import { StoryService } from 'src/app/services/story.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StoryCommentComponent } from '../story-comment/story-comment.component';
+import { VariableValue } from 'src/app/services/variable.service';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -10,11 +11,24 @@ import { StoryCommentComponent } from '../story-comment/story-comment.component'
 })
 export class StoryComponent implements OnInit {
   @Input('inStory') storyDetail!: Story;
-
-  constructor(private storyService: StoryService, public dialog: MatDialog) {}
+  likedme: boolean = false;
+  constructor(
+    private storyService: StoryService,
+    public dialog: MatDialog,
+    public variable: VariableValue
+  ) {}
 
   ngOnInit(): void {}
   addToLikeList(story: Story) {
+    this.likedme = !this.likedme;
+    if (this.variable.remove.indexOf(story._id) !== -1) {
+      this.likedme = !this.likedme;
+      this.variable.remove = this.variable.remove.filter(
+        (re) => re !== story._id
+      );
+      console.log(this.variable.remove);
+    }
+    console.log(this.variable.remove);
     this.storyService.pushIntoLikeList(story);
   }
   onClickComment(story: Story) {
