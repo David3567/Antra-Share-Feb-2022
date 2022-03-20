@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NewsfeedRoutingModule } from './newsfeed-routing.module';
 import { StorycardComponent } from 'src/app/components/storycard/storycard.component';
 import { LikedstorycardComponent } from 'src/app/components/likedstorycard/likedstorycard.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LikedstorycardComponent } from 'src/app/components/likedstorycard/liked
   imports: [
     CommonModule,
     SharedModule,
-    NewsfeedRoutingModule
+    NewsfeedRoutingModule,
+    NzModalModule
   ]
 })
 export class NewsfeedModule { }
