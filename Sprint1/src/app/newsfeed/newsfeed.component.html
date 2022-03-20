@@ -1,0 +1,57 @@
+<div class="header">
+  <div></div>
+  <button (click)="onClick()"><mat-icon>favorite</mat-icon></button>
+</div>
+
+<div></div>
+
+<app-likelist
+  [ngClass]="{ likelist: liststatus === true }"
+  *ngFor="let i of test"
+></app-likelist>
+
+<div class="news_container">
+  <div class="post">
+    <div>
+      <label for="newsfeed_input"> Title: </label>
+      <input type="text" class="newsfeed_input" placeholder="input title..." />
+    </div>
+    <div>
+      <label for="input"> Image: </label>
+      <input type="text" placeholder="input image..." />
+    </div>
+    <div>
+      <label for="input"> Video: </label>
+      <input type="text" placeholder="input video..." />
+    </div>
+    <button>Post</button>
+  </div>
+  <div class="newsfeed_container">
+    <div class="newsfeed" *ngFor="let i of test">
+      <div>
+        <label for=""> Title: </label>
+        <p class="newsfeed_title">Test here</p>
+      </div>
+      <div>
+        <label for=""> Video Image: Text here</label>
+      </div>
+      <div>
+        <label for=""> Content: Text here</label>
+      </div>
+      <div>
+        <label for=""> Title: Text here </label>
+      </div>
+
+      <div class="newsfeed_action">
+        <div>
+          <button><mat-icon> comment</mat-icon></button><span>number</span>
+        </div>
+        <!-- <div class="spaceholder"></div> -->
+        <div>
+          <button><mat-icon>favorite</mat-icon></button>
+          <label for="">number</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
