@@ -10,5 +10,7 @@
     </mat-card-actions>
 </mat-card>
 
-<app-story *ngFor="let list of newslist" [content] = "list" class="story">
-</app-story>
+<app-story *ngFor="let list of newslist" [content] = "list" class="story"></app-story>
+<app-comment *ngFor="let list of newslist" [content] = "list"></app-comment>
+
+

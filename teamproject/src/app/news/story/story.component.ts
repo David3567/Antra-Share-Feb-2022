@@ -10,22 +10,22 @@ import { CommentComponent } from '../comment/comment.component';
 })
 export class StoryComponent implements OnInit {
   @Input() content!: Story;
-  // @Output() addlikeEmiter = new EventEmitter();
-  // @Output() unlikeEmiter = new EventEmitter();
-
-  @Output() commentEmiter = new EventEmitter();
 
   constructor(private matDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  comments(){
-    this.commentEmiter.emit(this.content.comment.publisherName);
-  }
+  onOpenDialog(story: Story) {
+    const dialogRef = this.matDialog.open(CommentComponent, {
+      data: {
+        story: story.comment,
+      },
+    });
 
-  onOpenDialog(){
-    this.matDialog.open(CommentComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`)
+    })
   }
 
   // addlike(){
