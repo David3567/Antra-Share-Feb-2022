@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ContentpipePipe } from './pipe/contentpipe.pipe';
+import { VariableValue } from './services/variable.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { ContentpipePipe } from './pipe/contentpipe.pipe';
     NoopAnimationsModule,
     MatButtonModule, MatCardModule, MatGridListModule, MatIconModule
   ],
-  providers: [UserinforService],
+  providers: [UserinforService, VariableValue],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

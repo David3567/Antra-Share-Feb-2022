@@ -11,9 +11,13 @@
     <div>{{ comment.content.text }}</div>
   </div>
 </div>
-<br>
-<div>
-  <button (click)="onNext(4)">Privious</button>
-  <button (click)="onNext(4)">Next</button>
+<br />
+
+<div class="pagination">
+  <button (click)="onPrevious()" [disabled]="start <= 0">Privious</button>
+
+    <button *ngFor="let item of pages; let i = index" (click)="onGetPage(i+1)">{{i+1}}</button>
+
+  <button (click)="onNext()" [disabled]="end > max">Next</button>
 </div>
 
