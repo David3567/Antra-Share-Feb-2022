@@ -1,11 +1,14 @@
 <div class="header">
   <div></div>
-  <button (click)="onClick()"><mat-icon style="color: red;">favorite</mat-icon></button>
+  <button (click)="onClick()"><mat-icon>favorite</mat-icon></button>
 </div>
 
 <div></div>
 
-<app-likelist [ngClass]="{ likelist: liststatus === true }"></app-likelist>
+<app-likelist
+  [ngClass]="{ likelist: liststatus === true }"
+  *ngFor="let i of test"
+></app-likelist>
 
 <div class="news_container">
   <div class="post">
@@ -41,11 +44,11 @@
 
       <div class="newsfeed_action">
         <div>
-          <button><mat-icon style="color: dodgerblue;"> comment</mat-icon></button><span>number</span>
+          <button><mat-icon> comment</mat-icon></button><span>number</span>
         </div>
-        <div class="spaceholder"></div>
+        <!-- <div class="spaceholder"></div> -->
         <div>
-          <button><mat-icon style="color: red;">favorite</mat-icon></button>
+          <button><mat-icon>favorite</mat-icon></button>
           <label for="">number</label>
         </div>
       </div>

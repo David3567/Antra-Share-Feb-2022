@@ -28,10 +28,10 @@ export class AdminComponent implements OnInit {
   }
 
   getFocus(focusid: number) {
-    this.FocusUser = this.userlist.filter((search) => {
+    this.FocusUser = this.userlist.filter((search) => { // find
       return search.id == focusid;
     })[0];
-    this.FocusId = this.FocusUser.id;
+    // this.FocusId = this.FocusUser.id;
   }
 
   addUser(user:NgForm){
