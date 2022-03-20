@@ -14,10 +14,10 @@
         </div>
         <div class="reactionsContainer">
             <div class="comments">
-                <button mat-icon-button aria-label="post icon" (click)="openDialog()">
+                <button mat-icon-button aria-label="post icon" (click)="openDialog(story)">
                     <mat-icon>rate_review</mat-icon>
                 </button>
-                <div>Comments: #</div>
+                <div>Comments: {{ story.comment.length }}</div>
             </div>
             <div class="comments">
                 <button mat-icon-button class="like" aria-label="favorite icon"

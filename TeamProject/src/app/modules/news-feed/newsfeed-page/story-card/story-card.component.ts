@@ -17,8 +17,12 @@ export class StoryCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openDialog() {
-    const dialogRef = this.dialog.open(CommentDialogComponent);
+  openDialog(story: newsTemplate) {
+    const dialogRef = this.dialog.open(CommentDialogComponent, {
+      data: {
+        comment: story.comment,
+      },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
