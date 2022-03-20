@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { News } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
-
 
 @Component({
   selector: 'app-storycard',
@@ -9,14 +10,23 @@ import { NewsfeedService } from 'src/app/services/newsfeed.service';
   styleUrls: ['./storycard.component.less']
 })
 export class StorycardComponent implements OnInit {
+
   @Input() news!: News;
   @Output() addLikeEmitter = new EventEmitter();
   @Output() removeLikeEmitter = new EventEmitter();
+  
   like: boolean = true;
+  isVisible = false;
+  newsList!: any;
+  subscribeNewsService = new Subscription();
 
-  constructor(private newsfeedservice:NewsfeedService) { }
+
+  constructor(private newsfeedservice: NewsfeedService) { }
+
 
   ngOnInit(): void {
+    this.newsfeedservice.getNewsFromDataBase()
+      .subscribe((data) => { this.newsList = data })
   }
 
   addLike() {
@@ -39,4 +49,18 @@ export class StorycardComponent implements OnInit {
       this.removeLike();
     }
   }
+
+  showModal(): void {
+    this.isVisible = true;
+    for(let i = 0; i < this.news.comment.length; i++) {
+    }
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
+
 }
+
+
