@@ -1,0 +1,14 @@
+<mat-card class="newsfeed">
+    <mat-card-title class="h1">Post Your Story</mat-card-title>
+    <mat-form-field class="example" appearance="fill">
+        <mat-label>CONTENT</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+    <mat-card-actions class="btn">
+        <button mat-stroked-button color="primary">upload your images</button>
+        <button mat-stroked-button color="accent">POST</button>
+    </mat-card-actions>
+</mat-card>
+
+<app-story *ngFor="let list of newslist" [content] = "list" class="story">
+</app-story>

@@ -1,0 +1,22 @@
+<div>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{content.publisherName}}</mat-card-title>
+            <mat-card-subtitle>{{content.publishedTime}}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content class="contents">
+            <img mat-card-image src={{content.content.image}}>
+            <p>
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" 
+                (click) = "onOpenDialog()">Comments</button>
+            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
