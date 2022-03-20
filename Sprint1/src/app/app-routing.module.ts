@@ -6,11 +6,16 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { RegisterComponent } from './login/register/register.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
+    component: HomeComponent,
+  },
+  {
+    path: 'login2',
     component: LoginComponent,
   },
   {
@@ -33,6 +38,8 @@ const routes: Routes = [
     path: 'setting',
     component: SettingComponent,
   },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
