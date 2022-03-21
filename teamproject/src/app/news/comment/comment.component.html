@@ -1,3 +1,16 @@
-<p>comment works!</p>
+<mat-paginator
+    [length]="storycomment.comment.length"
+    [pageSize]="5"
+    (page)="clearPage()">
+</mat-paginator>
 
-<div>{{content.comment.publihserName}}</div>
+<div *ngFor="let comment of storycomment.comment" class="container">
+   <div>
+        {{comment.publishedTime}}
+        <br>
+        {{comment.publisherName}}
+   </div>
+   <div>
+       {{comment.content.text}}
+   </div>
+</div>

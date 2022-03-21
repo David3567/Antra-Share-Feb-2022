@@ -7,7 +7,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {matDialogAnimations, MatDialogModule} from '@angular/material/dialog';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,7 +44,8 @@ import { LikelistComponent } from './news/likelist/likelist.component'
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [NewsService],
   bootstrap: [AppComponent]

@@ -19,7 +19,7 @@ export class StoryComponent implements OnInit {
   onOpenDialog(story: Story) {
     const dialogRef = this.matDialog.open(CommentComponent, {
       data: {
-        story: story.comment,
+        story: story,
       },
     });
 
