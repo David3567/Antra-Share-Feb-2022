@@ -23,7 +23,8 @@ export class CommentDialogComponent implements OnInit {
     this.pageList = this.commentList.slice(this.head, this.tail);
     this.pageSize = Math.ceil(this.commentList.length / 5);
 
-    this.pageSize > 1 ? (this.nextBtn = false) : null;
+    console.log(this.head, this.tail, this.pageSize * 5);
+    this.nextBtn = this.pageSize > 1 ? false : this.nextBtn;
   }
 
   onPrevious() {
@@ -32,12 +33,9 @@ export class CommentDialogComponent implements OnInit {
     this.pageIndex--;
     this.pageList = this.commentList.slice(this.head, this.tail);
 
-    if (this.head === 0) {
-      this.previousBtn = true;
-      this.nextBtn = false;
-    } else {
-      this.nextBtn = false;
-    }
+    console.log(this.head, this.tail, this.pageSize * 5);
+    this.previousBtn = this.head === 0 ? true : this.previousBtn;
+    this.nextBtn = false;
   }
 
   onNext() {
@@ -46,11 +44,8 @@ export class CommentDialogComponent implements OnInit {
     this.pageIndex++;
     this.pageList = this.commentList.slice(this.head, this.tail);
 
-    if (this.tail === this.pageSize * 5) {
-      this.nextBtn = true;
-      this.previousBtn = false;
-    } else {
-      this.previousBtn = false;
-    }
+    console.log(this.head, this.tail, this.pageSize * 5);
+    this.nextBtn = this.tail === this.pageSize * 5 ? true : this.nextBtn;
+    this.previousBtn = false;
   }
 }

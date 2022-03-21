@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validator, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -10,14 +11,14 @@ export class RegisterPageComponent implements OnInit {
 
   regForm: FormGroup;
 
-  constructor(private build: FormBuilder) { }
+  constructor(private build: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.regForm = this.build.group({
-      username: ["",[, Validators.minLength(5),Validators.maxLength(12),Validators.required]],
+      username: ["", [, Validators.minLength(5), Validators.maxLength(12), Validators.required]],
       email: ["", [Validators.email, Validators.required]],
-      password: ["",[Validators.minLength(5),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
-      confirm: ["",Validators.required]
+      password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
+      confirm: ["", Validators.required]
     });
   }
 
@@ -39,6 +40,7 @@ export class RegisterPageComponent implements OnInit {
 
   onSubmit(signUpForm: FormGroup) {
     console.log(signUpForm.value);
+    this.router.navigate(['/login']);
   }
-  
+
 }
