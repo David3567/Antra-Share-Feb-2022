@@ -9,9 +9,8 @@
             placeholder="Enter a username"
             formControlName="username"
         />
-        <!--  && (regForm.value.username.touched && regForm.value.username.dirty) -->
-        <div 
-        style="color: red"
+        <div
+        class="errors" 
         *ngIf="!username.valid && (username.touched && username.dirty)"
         >The Username needs to be between 5 and 12 characters {{regForm.valid | json}}</div>
 
@@ -23,9 +22,7 @@
         placeholder="Enter email"
         formControlName="email"
         >
-        <!--  && (regForm.value.email.touched && regForm.value.email.dirty) -->
-        <div
-        style="color: red"
+        <div class="errors"
         *ngIf="!email.valid  && (email.touched && email.dirty)">Your entry needs to follow the email format</div>
 
         <label for="password">Password</label>
@@ -36,9 +33,7 @@
             placeholder="Enter password" 
             formControlName="password"
             >
-            <!--  && (regForm.value.password.touched && regForm.value.password.dirty) -->
-        <div 
-        style="color: red"
+        <div class="errors"
         *ngIf="!password.valid && (password.touched && password.dirty)">Your password needs to be at least 5 characters long, have at least one upper & one lower case, and have at least 1 special character (@!#$% etc.)</div>
             
         <label for="confirm">Confirm Password</label>
@@ -49,14 +44,12 @@
             placeholder="Confirm password"
             formControlName="confirm" 
             >
-            <!--  && (regForm.value.confirm.touched && regForm.value.confirm.dirty) -->
-        <div
-        style="color: red"
-        *ngIf="!(confirm === password) && (confirm.touched && confirm.dirty)">Your password and confirmation need to match <br>
+        <div class="errors"
+        *ngIf="(confirm.value !== password.value) && (confirm.touched && confirm.dirty)">Your password and confirmation need to match<br>
     </div>
 
         <button 
-            [disabled]="!regForm.valid"
+            [disabled]="!regForm.valid || confirm.value !== password.value"
             type="submit"
         >Register</button>
     </form>

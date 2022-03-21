@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validator, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-page',
@@ -40,5 +40,5 @@ export class RegisterPageComponent implements OnInit {
   onSubmit(signUpForm: FormGroup) {
     console.log(signUpForm.value);
   }
-
+  
 }

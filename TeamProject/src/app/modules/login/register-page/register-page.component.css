@@ -61,3 +61,7 @@ input {
 button[type='submit']:disabled {
     background-color: lightgray;
 }
+
+.errors {
+    color: red;
+}
