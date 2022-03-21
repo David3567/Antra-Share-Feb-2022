@@ -31,12 +31,8 @@ export class CommentDialogComponent implements OnInit {
     this.tail -= this.pageCapacity;
     this.currentPage--;
     this.pageList = this.commentList.slice(this.head, this.tail);
-    if (this.head === 0) {
-      this.prevBtnDisabled = true;
-      this.nextBtnDisabled = false;
-    } else {
-      this.nextBtnDisabled = false;
-    }
+    this.prevBtnDisabled = this. head === 0 ? true : false;
+    this.nextBtnDisabled = false;
   }
 
   onNext() {
@@ -44,11 +40,7 @@ export class CommentDialogComponent implements OnInit {
     this.tail += this.pageCapacity;
     this.currentPage++;
     this.pageList = this.commentList.slice(this.head, this.tail);
-    if (this.tail === this.pageSize * this.pageCapacity) {
-      this.nextBtnDisabled = true;
-      this.prevBtnDisabled = false;
-    } else {
-      this.prevBtnDisabled = false;
-    }
+    this.nextBtnDisabled = this. tail === this.pageSize * 5 ? true : false;
+    this.prevBtnDisabled = false;
   }
 }
