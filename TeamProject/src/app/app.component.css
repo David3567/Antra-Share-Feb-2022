@@ -5,7 +5,7 @@
     line-height: 50px;
     display: flex;
     list-style: none;
-    background: linear-gradient(to right, rgb(109, 196, 236), rgb(50, 52, 189));
+    background: linear-gradient(to right, rgb(109, 196, 236), rgb(87, 141, 223));
   }
 
 .NavBar li {
