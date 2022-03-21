@@ -1,5 +1,5 @@
 import { Component, NgModule, OnInit, Input } from '@angular/core';
-import { HttpService } from '../services/http.service';
+import { apiService } from '../services/api.service';
 import { User } from './models/user.model';
 
 @Component({
@@ -8,25 +8,35 @@ import { User } from './models/user.model';
   styleUrls: ['./admin.component.scss']
 })
 
-
-
 export class AdminComponent implements OnInit {
-
+  isInfoVisible: boolean = true;
   userlist!: User[];
 
-  constructor(private HttpService: HttpService) { }
+  constructor(private api: apiService) { }
 
   ngOnInit(): void {
-    this.HttpService.getUsers().subscribe((data: any) => {
+    this.api.getUsers().subscribe((data: any) => {
       this.userlist = data;
     });
     
+  }
+
+  ngDoCheck(): void {
+    console.log(this.isInfoVisible);
   }
 
   addUser() {
 
   }
 
-  deleteUser() {}
+  isInfoClicked(check:number) {
+    if(check > 0) {
+      this.isInfoVisible = true;
+    }
+  }
+
+  deleteUser(id:number) {
+    console.log(id);
+  }
 
 }

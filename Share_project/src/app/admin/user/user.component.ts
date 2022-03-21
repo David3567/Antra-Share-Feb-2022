@@ -9,15 +9,23 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class UserComponent implements OnInit {
   @Input() user!: User;
+  @Output() userIdEmitter = new EventEmitter ();
+  @Output() isClickedEmitter = new EventEmitter();
+
+  state:boolean = false;
 
   constructor(private commonService: CommonService) { }
 
   ngOnInit(): void {
-    console.log(123)
   }
 
-  clickdelete() {
-    this.commonService.deleteEvent(this.user);
+  clickInfo() {
+    this.commonService.getUserInfoEvent(this.user);
+    this.userIdEmitter.emit(this.user.id);
+  }
+
+  clickDelete() {
+    this.userIdEmitter.emit(this.user.id);
   }
 
 }

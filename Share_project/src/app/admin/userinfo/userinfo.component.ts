@@ -8,7 +8,7 @@ import { User } from '../models/user.model';
   styleUrls: ['./userinfo.component.scss']
 })
 export class UserinfoComponent implements OnInit {
-
+  isVisiable: boolean = false;
   user!: User;
   
   constructor(private commonService: CommonService) { }
@@ -25,9 +25,9 @@ export class UserinfoComponent implements OnInit {
       "company": ""
     };
     this.user = init;
-    this.commonService.deleteClickedEvent.subscribe((data:User) => {
-      console.log(data)
+    this.commonService.tagClickedEvent.subscribe((data:User) => {
       this.user = data;
+      this.isVisiable = true;
     });
   }
 }

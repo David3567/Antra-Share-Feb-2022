@@ -1,3 +1,8 @@
+:root {
+    --height-header: 60px;
+    --height-footer: 60px;
+}
+
 // .main {
 //     display: flex;
 //     flex-direction: column;
@@ -21,6 +26,8 @@
 // }
 
 .container {
+    min-height: calc(100vh - var(--height-header + --height-footer));
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content:flex-start;
@@ -29,13 +36,18 @@
 
 .user-list {
     min-width: 260px;
+    height: 100%;
 }
 
-// .add-user-button {
-//     position: relative;
-//     margin: 0;
-//     bottom: 0;
-// }
+.list-button-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-user-button {
+    position: relative;
+    bottom: 0;
+}
 
 .bottom-bar {
     position: absolute;

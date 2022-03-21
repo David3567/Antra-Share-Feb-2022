@@ -6,6 +6,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 
@@ -16,7 +18,8 @@ const AdminMaterialModules = [
     MatTabsModule,
     MatListModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ];
 
 

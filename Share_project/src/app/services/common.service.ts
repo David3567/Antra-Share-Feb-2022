@@ -7,12 +7,12 @@ import { User } from '../admin/models/user.model';
 export class CommonService {
 
 
-  @Output() deleteClickedEvent = new EventEmitter<User>();
+  @Output() tagClickedEvent = new EventEmitter<User>();
 
   constructor() { }
 
-  deleteEvent(user:User) {
-    this.deleteClickedEvent.emit(user);
+  getUserInfoEvent(user:User) {
+    this.tagClickedEvent.emit(user);
   }
 
 }
