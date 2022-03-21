@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { ShortenPipe } from '../core/shorten.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { CommentComponent } from './comment/comment.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     PostCardComponent,
     LikeListComponent,
     ShortenPipe,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     HttpClientModule,
     SharedModule,
+    MatDialogModule
+
   ],
   exports: [
     NewsfeedPageComponent,
