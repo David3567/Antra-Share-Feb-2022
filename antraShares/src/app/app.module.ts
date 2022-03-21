@@ -43,7 +43,11 @@ import { VariableValue } from './services/variable.service';
     SettingModule,
     BrowserAnimationsModule,
 
+
     RegisterModule,
+
+    BrowserAnimationsModule,
+
 
     NoopAnimationsModule,
     MatButtonModule, MatCardModule, MatGridListModule, MatIconModule,MatMenuModule

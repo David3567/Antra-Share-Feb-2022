@@ -52,6 +52,7 @@ body {
   color: var(--button-hover-color);
 } */
 
+
 /* .btn-dashboard:visited {
   color: red;
 } */
@@ -67,4 +68,3 @@ button:hover {
   background-color: var(--outline-color);
   color: var(--button-hover-color);
 }
-
