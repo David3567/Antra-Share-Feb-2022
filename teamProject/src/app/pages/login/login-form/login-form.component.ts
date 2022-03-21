@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -8,21 +8,38 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
 
-  validateForm!:FormGroup;
+  loginForm: FormGroup = this.fb.group(
+    {
+      username: ['', [Validators.minLength(5),Validators.maxLength(12),Validators.required]],
+      password: ['',[Validators.minLength(5),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]]
+    },
+    {
+      Validators: this.matchPassword,
+    }
+  );
 
-
-  constructor(private formbuilder:FormBuilder) { }
-
-  ngOnInit(): void {
-    this.validateForm = this.formbuilder.group({
-      userName:[null,[Validators.required]],
-      password:[null,[Validators.required]],
-      remember:[null],
-    })
+  get username(){
+    return this.loginForm.get('username');
   }
 
-  submitForm(): void{
+  get password(){
+    return this.loginForm.get('password');
+  }
 
+
+  constructor(private fb:FormBuilder) { }
+
+  ngOnInit(): void { }
+
+  onSubmit(){
+    console.log(this.loginForm.value);
+  }
+
+  matchPassword(group: FormGroup): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const username = group.get('username')?.value;
+
+    return password !== username ? { notMatch: true }: null;
   }
 
 }
