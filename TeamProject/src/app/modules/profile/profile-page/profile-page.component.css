@@ -4,21 +4,12 @@
   box-sizing: border-box;
 }
 
-header {
-  position: sticky;
-  top: 0px;
-  z-index: 1;
-  height: 75px;
-  min-width: 280px;
-  background-color: #192a56;
-}
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 50px);
-  min-width: 280px;
+  min-width: 390px;
   background-color: #0097e6;
 }
 
@@ -38,21 +29,45 @@ mat-card {
   margin-top: 10px;
 }
 
-ul {
-  list-style: none;
-  line-height: 30px;
-  color: white;
+mat-form-field {
+  width: 100%;
 }
 
-li {
-  margin-bottom: 10px;
-  background-color: grey;
+#bio-textarea {
+  height: 70px;
+  padding-bottom: 0;
+  resize: none;
+}
+
+.userinfo-container {
+  display: flex;
+}
+
+#age-field {
+  width: 25%;
+  margin-right: 50px;
+}
+
+#gender-label {
+  padding-bottom: 10px;
+}
+
+.radio-container {
+  padding-bottom: 1.34375em;
+}
+
+mat-radio-button {
+  padding-right: 20px;
+}
+
+.password-container {
+  padding-bottom: 2em;
 }
 
 mat-card-actions {
   display: flex;
   justify-content: center;
-  margin: 0px;
+  margin: 0;
 }
 
 .button-container {
@@ -71,25 +86,6 @@ mat-card-actions {
 .total {
   display: flex;
   align-items: center;
-  margin-bottom: 0px;
   padding-left: 10px;
   font-weight: bold;
-}
-
-footer {
-  display: flex;
-  justify-content: spread-between;
-  height: 75px;
-  width: 100%;
-  min-width: 280px;
-  background-color: #192a56;
-}
-
-footer > button {
-  width: 100%;
-  background-color: #273c75;
-  font-family: inherit;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
 }
