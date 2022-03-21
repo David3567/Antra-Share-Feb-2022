@@ -1,9 +1,18 @@
 <h1>Log In</h1>
 <div class="main-container">
-    <form>
-        <input type="email" class="email" placeholder="Email Address"><br>
-        <input type="password" class="passwd" placeholder="Password"><br>
+    <form [formGroup]="form" (ngSubmit)="onLogIn()">
+
+        <input type="username" placeholder="Username" formControlName="username"><br>
+        <div *ngIf="!username?.valid && (username?.dirty || username?.touched)" class="error">
+            <p>Invalid username</p>
+        </div>
+
+        <input type="password" placeholder="Password" formControlName="password"><br>
+        <div *ngIf="!password?.valid && (password?.dirty || password?.touched)" class="error">
+            <p>Invalid password</p>
+        </div>
+
         <p>New User? <a href="">Register</a></p>
-        <button class="login-button">Sign In</button>
+        <button type="login" class="login-button">Log In</button>
     </form>
 </div>

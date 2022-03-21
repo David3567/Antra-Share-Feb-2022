@@ -7,7 +7,7 @@
     padding: 10px;
 }
 
-input[type=email],input[type=password] {
+input[type=username],input[type=password] {
     padding: 12px 12px;
     display: inline-block;
     font-size: 14px;
@@ -52,4 +52,10 @@ p {
 
 .login-button:hover {
     background-color: #9b7862;
+}
+
+.error p{
+    margin-top: 0;
+    font-size: 12px;
+    color: red;
 }
