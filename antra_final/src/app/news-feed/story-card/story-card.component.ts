@@ -16,7 +16,7 @@ export class StoryCardComponent implements OnInit {
   //comments:Comment[] = this.storiesdetail.comment;
 
   //commentNum:number = this.comments.length;
-  likeNum:number = 0;
+  // likeNum:number = 0;
   constructor(private newsfeedservice:NewsfeedService, public dialog: MatDialog ) { }
   ngOnInit(): void {
   }
@@ -26,6 +26,7 @@ export class StoryCardComponent implements OnInit {
       data: this.storiesdetail.comment
     })
   }
+
   liked(data:Story){
     this.newsfeedservice.pushToLikedList(data);
   }
