@@ -8,13 +8,13 @@
                 <input type="text" nz-input formControlName="username"/>
               </nz-input-group>
               <div *ngIf="!username?.valid && (username?.dirty && username?.touched)">
-                <div [hidden]="!username?.errors?.['required']">
+                <div *ngIf="username?.errors?.['required']">
                     please enter a user name
                 </div>
-                <div [hidden]="!username?.errors?.['minlength']">
+                <div *ngIf="username?.errors?.['minlength']">
                     Min Length is 5
                 </div>
-                <div [hidden]="!username?.errors?.['maxlength']">
+                <div *ngIf="username?.errors?.['maxlength']">
                     Max Length is 12
                 </div>
             </div>
@@ -26,13 +26,13 @@
                 <input autocomplete="on" [placeholder]="'Password'" type="password" nz-input formControlName="password" placeholder="Password"/>
               </nz-input-group>
               <div *ngIf="!password?.valid && (password?.dirty && password?.touched)">
-                <div [hidden]="!password?.errors?.['required']">
+                <div *ngIf="password?.errors?.['required']">
                     please enter password
                 </div>
-                <div [hidden]="!password?.errors?.['minlength']">
+                <div *ngIf="password?.errors?.['minlength']">
                     password needs to be at least 5 character
                 </div>
-                <div [hidden]="!password?.errors?.['pattern']">
+                <div *ngIf="password?.errors?.['pattern']">
                     Must includes at least 1 Uppercase, 1 special character
                 </div>
               </div>
