@@ -2,33 +2,70 @@
         <nz-content class="ProfileArea" nz-row>
             <div nz-col nzSpan="4"></div>
             <div nz-col nzSpan="16">
-                <nz-card  [nzActions]="[actionLike,  actionEllipsis]">
+                <nz-card  [nzActions]="[actionEdit, actionLike,  actionEllipsis]">
                     <nz-card-meta
-                      nzTitle="UserName"
-                      nzDescription="email"
+                      nzTitle={{user.username}}
+                      nzDescription={{user.email}}
                       [nzAvatar]="avatarTemplate"
                     ></nz-card-meta>
                   </nz-card>
+                  <ng-template #actionEdit>
+                    <div (click)="showModal()">
+                      <i nz-icon nzType="setting"></i>
+                      <span>Edit Profile</span>
+                    </div>
+                  </ng-template>
                   <ng-template #avatarTemplate>
                     <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
                   </ng-template>
                   <ng-template #actionLike>
-                    <i nz-icon nzType="like">123</i>
+                    <div>
+                      <i nz-icon nzType="like"></i>
+                      <span>{{user.numberLikes}}</span>
+                    </div>
                   </ng-template>
                   <ng-template #actionEllipsis>
-                    <i nz-icon nzType="book">123</i>
+                    <div>
+                      <i nz-icon nzType="comment"></i>
+                      <span>{{user.numberComments}}</span>
+                    </div>
                   </ng-template>
             </div>
             <div nz-col nzSpan="4"></div>
         </nz-content>
-    <nz-drawer
-    [nzClosable]="false"
-    [nzVisible]="visible"
-    nzPlacement="right"
-    nzTitle="Basic Drawer"
-    (nzOnClose)="close()"
-  >
-    <ng-container *nzDrawerContent>
-    </ng-container>
-  </nz-drawer>
 </nz-layout>
+
+<nz-modal [(nzVisible)]="isVisible" 
+          nzTitle="Edit User Name And PassWord" 
+          (nzOnCancel)="handleCancel()" 
+          (nzOnOk)="handleOk()">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+      <div *nzModalContent>
+        <div>
+          <label for="username">Enter New Username:</label>
+          <input type="text" nz-input formControlName="username" placeholder="Username" />
+          <div class="red" *ngIf="!username?.valid&&(username?.dirty||username?.touched)">
+            Username must be in between 5-12
+          </div>
+        </div>
+        <div>
+          <label for="password">Enter New Password:</label>
+          <input type="text" nz-input formControlName="password" placeholder="Password">
+          <div class="red" *ngIf="!password?.valid&&(password?.dirty||password?.touched)">
+            Password must include a Uppercase letter, a special symbol, and at least 5 characters long
+          </div>
+        </div>
+        <div>
+          <label for="confirm">Confirm New Password:</label>
+          <input type="text" nz-input formControlName="confirm" placeholder="Confirm">
+          <div class="red" *ngIf="confirm?.errors?.required&&(confirm?.dirty||confirm?.touched)">
+            Password does not match
+          </div>
+        </div>
+      </div>
+      <div *nzModalFooter>
+        <button nz-button nzType="primary" [disabled]="!myForm.valid" (click)="onSubmit()" [nzLoading]="isConfirmLoading">submit</button>
+        <button nz-button nzType="default" (click)="handleCancel()">cancel</button>
+      </div>
+    </form>
+</nz-modal>

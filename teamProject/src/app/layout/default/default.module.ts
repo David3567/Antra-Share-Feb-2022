@@ -5,12 +5,14 @@ import { DefaultLayoutContentModule } from './default-layout-content/default-lay
 import { DefaultComponent } from './default.component';
 import { NavBarComponent } from 'src/app/components/nav-bar/nav-bar.component';
 import { NewsfeedModule } from 'src/app/pages/newsfeed/newsfeed.module';
+import { LikedstorycardComponent } from 'src/app/components/likedstorycard/likedstorycard.component';
 
 
 @NgModule({
   declarations: [
     DefaultComponent,
-    NavBarComponent
+    NavBarComponent,
+    LikedstorycardComponent
   ],
   imports: [
     DefaultRoutingModule,

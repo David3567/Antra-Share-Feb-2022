@@ -15,7 +15,7 @@ export const MENU_TOKEN = new InjectionToken<Menu[]>(
 const menuNav: Menu[] = [
     {
         title: 'newsfeed',
-        icon: 'star',
+        icon: 'notification',
         open: false,
         selected: false,
         path: '/default/newsfeed',
@@ -25,7 +25,7 @@ const menuNav: Menu[] = [
     },
     {
         title: 'Profile',
-        icon: 'star',
+        icon: 'user',
         open: false,
         selected: false,
         path: '/default/profile',
@@ -35,7 +35,7 @@ const menuNav: Menu[] = [
     },
     {
         title: 'Admin',
-        icon: 'star',
+        icon: 'tool',
         open: false,
         selected: false,
         path: '/default/admin',
@@ -45,7 +45,7 @@ const menuNav: Menu[] = [
     },
     {
         title: 'Setting',
-        icon: 'star',
+        icon: 'setting',
         open: false,
         selected: false,
         path: '/default/setting',

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { inject } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MENU_TOKEN } from 'src/app/config/menu';
 import { Menu } from 'src/app/interfaces/menu.model';
 
@@ -12,12 +12,14 @@ import { Menu } from 'src/app/interfaces/menu.model';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private router:Router, @Inject(MENU_TOKEN) public menus:Menu[],) { }
+  isCollapsed = false;
+
+  constructor(@Inject(MENU_TOKEN) public menus:Menu[]) { }
 
   ngOnInit(): void {
+    
   }
 
-  openNewsfeed():void {
-    console.log('1111')
+  logout(): void {
   }
 }

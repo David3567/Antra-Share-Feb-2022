@@ -2,18 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DefaultLayoutContentComponent } from './default-layout-content.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { Router, RouterModule } from '@angular/router';
-
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    DefaultLayoutContentComponent
+    DefaultLayoutContentComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
   ],
   exports:[DefaultLayoutContentComponent]
 })

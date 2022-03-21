@@ -17,6 +17,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 export const SHARED_ZORRO_MODULES = [
     IconsProviderModule,
@@ -38,4 +39,5 @@ export const SHARED_ZORRO_MODULES = [
     NzGridModule,
     NzToolTipModule,
     NzDrawerModule,
+    NzModalModule,
 ]
