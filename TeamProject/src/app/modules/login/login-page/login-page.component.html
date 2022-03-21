@@ -7,11 +7,12 @@
             *ngIf="!usernameVal?.valid && (usernameVal?.dirty || usernameVal?.touched)"
             class="error"
           >
-            <div *ngIf="usernameVal?.errors?.minlen" style="color: red">
-              The username should be at least {{ usernameVal?.errors?.minlength }} characters!
+            <div *ngIf="usernameVal?.errors?.['required']">Username is required!</div>
+            <div *ngIf="usernameVal?.errors?.['minlength']">
+              The username should be at least 5 characters!
             </div>
-            <div *ngIf="usernameVal?.errors?.maxlen" style="color: red">
-               The username should be no more than {{ usernameVal?.errors?.maxlength }} characters!
+            <div *ngIf="usernameVal?.errors?.['maxlength']">
+               The username should be no more than 16 characters!
             </div>
         </div>
 
@@ -21,12 +22,12 @@
             *ngIf="!passwordVal?.valid && (passwordVal?.dirty || passwordVal?.touched)"
             class="error"
           >
-          <div *ngIf="!passwordVal.valid && (passwordVal.touched && passwordVal.dirty)" style="color: red">The password needs to
+          <div *ngIf="!passwordVal.valid && (passwordVal.touched && passwordVal.dirty)" >The password needs to
             be at least 5 characters long, have at least one upper & one lower case, and have at least 1 special
             character!</div>
         </div>
 
-        <button class="button loginBtn" type="submit"  [disabled]="loginForm.valid">Login</button>
+        <button class="button loginBtn" type="submit"  [disabled]="!loginForm.valid">Login</button>
 
         <a href="#">No Accounts? Register Now!</a>
         <div class="formFooter">
