@@ -1,0 +1,16 @@
+<mat-dialog-content>
+    <div class="container" *ngFor="let comment of commentList">
+        <div class="userContainer">
+            <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar">
+            <div class="user">
+                <div>{{ comment.publisherName }} -</div>
+                <div>{{ comment.publishedTime | date: 'MMM d HH:mm a'}}</div>
+            </div>
+        </div>
+        <div class="contentContainer">
+            <img *ngIf="comment.content.image.includes('https')" src={{comment.content.image}} alt="Image"
+                class="contentImg">
+            <div class="content">{{ comment.content.text }}</div>
+        </div>
+    </div>
+</mat-dialog-content>
