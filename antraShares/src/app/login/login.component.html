@@ -2,22 +2,54 @@
     <div class="col-md-6 m-auto">
         <div class="card text-dark bg-light mb-2">
             <h1 class="text-center mt-3">Login</h1>
-            <form>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="mb-3 p-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <label for="username" class="form-label">Username</label>
+                    <input type="username" class="form-control" id="username" formControlName="username"
+                        aria-describedby="usernameHelp" required>
+                    <div *ngIf="form.invalid && (username?.dirty || username?.touched)">
+                        <br *ngIf="username?.errors?.['required']">
+                        <div *ngIf="username?.errors?.['required']" class="alert alert-danger d-flex align-items-center"
+                            role="alert">Username is required</div>
+                        <br *ngIf="username?.errors?.['minlength']">
+                        <div *ngIf="username?.errors?.['minlength']"
+                            class="alert alert-danger d-flex align-items-center" role="alert">Your username is too
+                            short.</div>
+                        <br *ngIf="username?.errors?.['maxlength']">
+                        <div *ngIf="username?.errors?.['maxlength']"
+                            class="alert alert-danger d-flex align-items-center" role="alert">Your username is too long.
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3 p-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password" required>
+                    <div *ngIf="form.invalid && (password?.dirty || password?.touched)">
+                        <br *ngIf="password?.errors?.['required']">
+                        <div *ngIf="password?.errors?.['required']" class="alert alert-danger d-flex align-items-center"
+                            role="alert">Password is required</div>
+                        <br *ngIf="password?.errors?.['minlength']">
+                        <div *ngIf="password?.errors?.['minlength']"
+                            class="alert alert-danger d-flex align-items-center" role="alert">Your password is too
+                            short, which needs to be at least 5 characters.</div>
+                        <br *ngIf="password?.errors?.['specialLeter']">
+                        <div *ngIf="password?.errors?.['specialLeter']"
+                            class="alert alert-danger d-flex align-items-center" role="alert">At lease 1 special letter
+                            is required.</div>
+                        <br *ngIf="password?.errors?.['uppercaseLetter']">
+                        <div *ngIf="password?.errors?.['uppercaseLetter']"
+                            class="alert alert-danger d-flex align-items-center" role="alert">At lease 1 capital letter
+                            is required.</div>
+                    </div>
+
                 </div>
-                <button type="submit" class="btn btn-primary mx-3">Submit</button>
-                <p class=" mt-4 mx-3">If you don't have an account yet ->   <a class="btn btn-primary" href="#">Register</a></p>
+                <button type="submit" class="btn btn-primary mx-3" [disabled]="!form.valid">Submit</button>
+                <p class=" mt-4 mx-3">If you don't have an account yet -> <a class="btn btn-primary"
+                        href="#">Register</a></p>
             </form>
             <br>
             <div></div>
-            
+
         </div>
     </div>
 </div>
