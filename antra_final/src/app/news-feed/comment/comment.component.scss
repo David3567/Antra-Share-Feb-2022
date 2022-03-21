@@ -13,3 +13,14 @@ ul {
   text-align: center;
   align-items: center;
 }
+li {
+
+  border: solid black 1px;
+  margin: 20px;
+  padding: 10px;
+  list-style: none;
+}
+button {
+  border-radius: 10px;
+  background-color: white;
+}

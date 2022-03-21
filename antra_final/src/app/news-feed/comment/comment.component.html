@@ -1,17 +1,27 @@
 <h2>Comment:</h2>
 
-  <ul>
-    <li *ngFor="let data of datas">
+<ul>
+  <li
+    *ngFor="
+      let data of datas.slice(
+        records_per_page * current_page - records_per_page,
+        records_per_page * current_page
+      )
+    "
+  >
+    <p>
+      <b>{{ data.publisherName }}</b
+      >__ <i>{{ data.publishedTime | date }}</i>
+    </p>
 
-      <p> <b>{{data.publisherName}}</b>__ <i>{{data.publishedTime | date}}</i> </p>
+    <div class="content">
+      <div class="media">{{ data.content.text }}</div>
+      <div class="media"><img src="{{ data.content.image }}" /></div>
+    </div>
+  </li>
+</ul>
 
-      <div class="content">
-        <div class="media">{{data.content.text}}</div>
-        <div class="media"><img src="{{data.content.image}}"></div>
-      </div>
-
-    </li>
-  </ul>
-  <div class="commentcontainer">
-  <button>prev</button> <button (click)="next()">next</button>
+<div class="commentcontainer">
+  <button *ngIf="show_prev" (click)="onPrevious()">Prev</button>
+  <button *ngIf="show_next" (click)="onNext()">Next</button>
 </div>

@@ -10,26 +10,48 @@ import { Comment } from '../story.interfaces';
 export class CommentComponent implements OnInit {
   commentslist!: Comment[];
   pageofComments!: Array<any>;
+  current_page:number = 1;
+  records_per_page = 5;
+
+  show_prev: boolean = false;
+  show_next: boolean = true;
+
+
+
   constructor(@Inject(MAT_DIALOG_DATA) public datas: Comment[]) { }
 
   ngOnInit(): void {
-    if (this.datas.length < 10) {
-      this.commentslist = {...this.datas};
-    }
-    else if(this.datas.length > 10){
-      this.commentslist = {...this.datas.slice(0,10)};
-    }
-    console.log(this.commentslist);
+
   }
-  next(){
-    if (this.datas.length < 10) {
-      console.log("no more");
-    }
-    else if (this.datas.length > 10 && this.datas.length <20){
-      this.commentslist = {...this.datas.slice(10,this.datas.length)};
-    }
-    else if (this.datas.length > 20){
-      this.commentslist = {...this.datas.slice(10,20)};
+  onNext(){
+    if (+this.current_page < +this.numPages()) {
+      this.current_page++;
+      this.changeIcon();
     }
   }
+
+  onPrevious() {
+    if (this.current_page > 1) {
+      this.current_page--;
+      this.changeIcon();
+    }
+  }
+  numPages() {
+    return Math.ceil(this.datas.length / this.records_per_page);
+  }
+
+  changeIcon() {
+
+    if (this.current_page === this.numPages()) {
+      this.show_next = false;
+    } else {
+      this.show_next = true;
+    }
+    if (this.current_page !== 1) {
+      this.show_prev = true;
+    } else {
+      this.show_prev = false;
+    }
+  }
+
 }
