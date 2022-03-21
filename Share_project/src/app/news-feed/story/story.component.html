@@ -1,16 +1,16 @@
 <mat-card class="story-card">
-    <mat-card-header>
+    <mat-card-title-group>
         <mat-card-title>{{storyItem.publisherName}}</mat-card-title>
-        <mat-card-subtitle>{{storyItem.publishedTime}}</mat-card-subtitle> 
-    </mat-card-header>
+        <mat-card-subtitle>{{storyItem.publishedTime | date}}</mat-card-subtitle> 
+    </mat-card-title-group>
     <img mat-card-image src={{storyItem.content.image}}>
     <mat-card-content>
       <p>{{storyItem.content.text}}</p>
     </mat-card-content>
-    <mat-divider inset></mat-divider>
     <mat-card-footer>
-        <button mat-button>
-            <mat-icon>favorite_boarder</mat-icon>
+        <button mat-button (click)="likeClick()">
+            <mat-icon class="unlike" *ngIf="likeStatus === 'unlike' ? true : false">favorite_border</mat-icon>
+            <mat-icon class="like" color="warn" *ngIf="likeStatus === 'like' ? true : false">favorite</mat-icon>
         </button>
     </mat-card-footer>
   </mat-card>

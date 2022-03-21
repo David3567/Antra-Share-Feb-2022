@@ -1,20 +1,20 @@
-<mat-toolbar class="top-bar" color="primary">
+<!-- <mat-toolbar class="top-bar" color="primary">
     <span>My Application</span>
     <span class="bar-spacer"></span>
     <button mat-flat-button color="accent" (click)="openDialog()">Like List</button>
-</mat-toolbar>
-<div>
+</mat-toolbar> -->
+<div class="news-feed-container">
     <button mat-fab color="primary" class="add-button">
         <mat-icon>add</mat-icon>
     </button>
-    <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+    <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
         <div *cdkVirtualFor="let story of storyList" class="story">
             <app-story [storyItem]="story"> </app-story>
         </div>
     </cdk-virtual-scroll-viewport>
 </div>
-<mat-toolbar class="bottom-bar">
+<!-- <mat-toolbar class="bottom-bar">
     <button mat-raised-button>My Profile</button>
     <button mat-raised-button>News Feed</button>
     <button mat-raised-button>Settings</button>
-</mat-toolbar>
+</mat-toolbar> -->
