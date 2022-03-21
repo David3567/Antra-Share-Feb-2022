@@ -38,10 +38,7 @@ import { ContentpipePipe } from './pipe/contentpipe.pipe';
     NewsfeedModule,
     ProfileModule,
     SettingModule,
-
-    
     BrowserAnimationsModule,
-
     NoopAnimationsModule,
     MatButtonModule, MatCardModule, MatGridListModule, MatIconModule
   ],

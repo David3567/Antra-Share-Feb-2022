@@ -5,23 +5,90 @@
     <mat-card-subtitle>User Email</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <p>
-      Profile header description
-    </p>
+    <h1>
+      Profile settings
+    </h1>
   </mat-card-content>
+</mat-card>
+
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate [style.fontSize.px]="20">
+
+    <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+      <mat-label>Enter your username</mat-label>
+      <input matInput #input maxlength="12" placeholder="username" formControlName="username" required>
+      <mat-hint align="end">{{input?.value?.length || 0}}/12</mat-hint>
+      <div *ngIf="!form.valid && (form.dirty || form.touched)">
+        <mat-error *ngIf="username?.value.length < 5">User name is too short</mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+      <mat-label>Enter your password</mat-label>
+      <div *ngIf="!form.valid && (form.dirty || form.touched)">
+        <mat-error *ngIf="password?.errors?.['needUpper']">Need 1 upper</mat-error>
+        <mat-error *ngIf="password?.errors?.['needLower']">Need 1 lower</mat-error>
+        <mat-error *ngIf="password?.errors?.['needSpecial']">Need 1 special</mat-error>
+        <mat-error *ngIf="password?.errors?.['needNumber']">Need 1 number</mat-error>
+        <mat-error *ngIf="password?.errors?.['minlen']">Must be longer than {{ password?.errors?.['minlength'] }}
+        </mat-error>
+      </div>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input formControlName="confirmPassword" matInput [type]="hide ? 'password' : 'text'">
+      <mat-label>Confirm your password</mat-label>
+      <div *ngIf="!form.valid && (form.dirty || form.touched)">
+        <mat-error *ngIf="form.errors?.['notMatch']">Password does not match</mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-radio-group formControlName="gender">
+      <div>
+        <mat-label>Gender</mat-label>
+      </div>
+      <mat-radio-button value="male">Male </mat-radio-button>
+      <mat-radio-button value="female">Female </mat-radio-button>
+      <mat-radio-button value="other">Other </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <mat-select formControlName="age">
+        <mat-option *ngFor="let age of [] | range: 1:100" [value]="age">
+          {{ age }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [disabled]="true" formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput  formControlName="phone" />
+    </mat-form-field>
+    <button type="submit" mat-button [disabled]="!form.valid">Submit</button>
+  </form>
+</div>
+
+<mat-card class="example-card">
   <mat-card-actions class="actions">
-    <mat-grid-list cols="3" rowHeight="400px">
-      <mat-grid-tile *ngFor="let tile of tiles" [style.background]="tile.color">
-        {{tile.text}}
-      </mat-grid-tile>
-    </mat-grid-list>
     <mat-grid-list cols="2" rowHeight="100px">
-      <mat-grid-tile class="tile" >
+      <mat-grid-tile class="tile">
         <mat-icon aria-hidden="false" class="icon" aria-label="Example home icon">photo</mat-icon>
         <p>Amount of posts</p>
       </mat-grid-tile>
       <mat-grid-tile class="tile">
-        <mat-icon svgIcon="thumbs-up" class="icon" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+        <mat-icon svgIcon="thumbs-up" class="icon" aria-hidden="false" aria-label="Example thumbs up SVG icon">
+        </mat-icon>
         <p>Amount of likes</p>
       </mat-grid-tile>
     </mat-grid-list>
