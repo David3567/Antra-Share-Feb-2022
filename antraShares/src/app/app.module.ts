@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { AdminModule } from './admin/admin.module';
 import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
 import { NewsfeedModule } from './newsfeed/newsfeed.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingModule } from './setting/setting.module';
@@ -41,8 +42,12 @@ import { VariableValue } from './services/variable.service';
     ProfileModule,
     SettingModule,
     BrowserAnimationsModule,
+
+    RegisterModule,
+
     NoopAnimationsModule,
     MatButtonModule, MatCardModule, MatGridListModule, MatIconModule,MatMenuModule
+
   ],
   providers: [UserinforService, VariableValue],
   bootstrap: [AppComponent],
