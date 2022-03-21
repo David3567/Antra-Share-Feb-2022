@@ -7,6 +7,7 @@
     justify-content: center;
     height: calc(100vh - 50px);
     background-color: #0097e6;
+    overflow-y: auto;
 }
 
 form {
@@ -14,9 +15,13 @@ form {
     flex-direction: column;
     row-gap: 15px;
     border: 2px solid black;
+    border-radius: 5px;
     padding: 20px;
     width: 350px;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
     background-color: white;
+    box-shadow: 6px 6px 6px 0 black;
 }
 
 h2 {
@@ -39,6 +44,10 @@ button {
     background-color: #428BCA;
 }
 
+label {
+    margin-bottom: -10px;
+}
+
 input {
     width: 100%;
     border-radius: 5px;
@@ -47,4 +56,12 @@ input {
     font-size: 15px;
     border-style: inset;
     border-width: 2px;
+}
+
+button[type='submit']:disabled {
+    background-color: lightgray;
+}
+
+.errors {
+    color: red;
 }
