@@ -67,6 +67,7 @@ export class ProfileComponent implements OnInit {
     setTimeout(() => {
       this.isVisible = false;
       this.isConfirmLoading = false;
+      this.user.username=this.myForm.get('username')?.value;
       this.resetForm();
       this.cdr.detectChanges();
     }, 1000);
@@ -79,6 +80,7 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     this.handleOk();
+
   }
 
   matchPassword(control: AbstractControl): ValidationErrors | null {

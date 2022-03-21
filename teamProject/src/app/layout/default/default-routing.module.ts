@@ -17,6 +17,10 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () => import('../../pages/admin/admin.module').then(m => m.AdminModule)
       },
+      {
+        path: 'setting',
+        loadChildren: () => import('../../pages/setting/setting.module').then(m => m.SettingModule)
+      },
     ]
   }
 ];

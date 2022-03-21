@@ -58,7 +58,7 @@
         <div>
           <label for="confirm">Confirm New Password:</label>
           <input type="text" nz-input formControlName="confirm" placeholder="Confirm">
-          <div class="red" *ngIf="confirm?.errors?.required&&(confirm?.dirty||confirm?.touched)">
+          <div class="red" *ngIf="(!password?.valid||myForm.errors?.notMatch)&&(confirm?.dirty||confirm?.touched)">
             Password does not match
           </div>
         </div>
