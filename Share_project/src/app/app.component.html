@@ -1,3 +1,12 @@
 <!-- <app-admin></app-admin> -->
 <!-- <app-login></app-login> -->
-<app-news-feed></app-news-feed>
+<!-- <app-news-feed></app-news-feed> -->
+<mat-toolbar class="top-bar" color="primary">
+    <span>My Application</span>
+    <button mat-flat-button color='primary' [routerLink]="['My Profile']">My Profile</button>
+    <button mat-flat-button color='primary' [routerLink]="['News Feed']">News Feed</button>
+    <button mat-flat-button color='primary' [routerLink]="['Settings']">Settings</button>
+    <span class="bar-spacer"></span>
+    <button mat-flat-button color="accent" [routerLink]="['favorite']">Like List</button>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -1,41 +1,46 @@
 :root {
-    --height-header: 60px;
-    --height-footer: 60px;
+  --height-header: 60px;
+  --height-footer: 60px;
 }
 
 .bar-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 body {
-    height: calc(100% - var(--height-header + --height-footer));
+  height: calc(100% - var(--height-header + --height-footer));
+}
+
+.news-feed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .add-button {
-    position: sticky;
+  position: sticky;
 }
 
 .viewport {
-    height: 100vh;
-    width: 100vw;
-    border: 1px solid black;
-  }
-  
-  .story {
-    height: auto;
-  }
+  height: 100vh;
+  width: 80vw;
+}
+
+.story {
+  height: auto;
+}
 
 .bottom-bar {
-    position: absolute;
-    bottom: 0;
-    padding: 0;
-    flex-grow: 1;
+  position: absolute;
+  bottom: 0;
+  padding: 0;
+  flex-grow: 1;
 }
 
 .bottom-bar button {
-    width: 100%;
-    height: 100%;
-    padding-top: 12px;
-    align-items: center;
-    font-size: 100%;
+  width: 100%;
+  height: 100%;
+  padding-top: 12px;
+  align-items: center;
+  font-size: 100%;
 }

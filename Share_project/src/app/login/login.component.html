@@ -4,17 +4,35 @@
       <img mat-card-avatar />
       <mat-card-title class="title" color="primary"> AntraShare</mat-card-title>
     </mat-card-header>
-    <form class="form">
+    <form class="form" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
       <mat-form-field>
-        <mat-label>User Name</mat-label>
-        <input matInput />
+        <mat-label for="username">User Name</mat-label>
+        <input
+          matInput
+          type="text"
+          name="username"
+          id="username"
+          required
+          #username="ngModel"
+          [(ngModel)]="info.username"
+        />
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput />
+        <mat-label for="password">Password</mat-label>
+        <input
+          matInput
+          type="text"
+          name="password"
+          id="password"
+          required
+          #password="ngModel"
+          [(ngModel)]="info.password"
+        />
       </mat-form-field>
-
-      <button mat-raised-button color="primary" class="login-button">
+      <div *ngIf="!username.valid && username.touched">
+        <p>username is required</p>
+      </div>
+      <button mat-raised-button color="primary" class="login-button" (click)="checkLoginInfo(username.value, password.value)" [disabled]="check"> 
         Login
       </button>
       <mat-card-content>
@@ -23,7 +41,7 @@
     </form>
 
     <mat-card-footer class="footer">
-      <mat-checkbox>Agree</mat-checkbox>
+      <mat-checkbox (change)="checkBox($event.checked)">Agree</mat-checkbox>
       <p>Need Help?</p>
     </mat-card-footer>
   </mat-card>
