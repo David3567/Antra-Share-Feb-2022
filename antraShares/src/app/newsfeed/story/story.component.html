@@ -1,32 +1,43 @@
-
-  <div class="story">
-    <div class="story-user-detail">
-      <div>
-        <!-- avatar( get from user ) -->
-        <img
-          src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
-          alt="Avatar"
-          class="avatar"
-        />
-      </div>
-      <div>publisherName</div>
-      <div>publishedTime </div>
+<div class="story">
+  <div class="story-user-detail">
+    <div>
+      <!-- avatar( get from user ) -->
+      <img
+        src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
     </div>
-    <div class="story-dashboard">
-      <div class="story-dashboard-content">
-        <img class="story-dashboard-content-img"
-          src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
-          alt=""
-        />
-      </div>
-
-      <div class="story-dashboard-viewer">
-        <div>Comment icon</div>
-        <div>Comment Number</div>
-        <div>Like icon</div>
-        <div>Like Number</div>
-      </div>
-    </div>
+    <div>{{ storyDetail.publisherName }}</div>
+    <div>{{ storyDetail.publishedTime | date }}</div>
   </div>
-
-
+  <div class="story-dashboard">
+    <img
+      class="story-dashboard-content-img"
+      src="{{ storyDetail.content.image }}"
+      alt=""
+    />
+  </div>
+  <div class="story-dashboard-viewer">
+    <div>
+      <a (click)="onClickComment(storyDetail)"><mat-icon> comment</mat-icon></a>
+    </div>
+    <div>Comment Number</div>
+    <div>
+      <button (click)="addToLikeList(storyDetail)">
+        <mat-icon
+          [id]="storyDetail._id"
+          class="material-icons-favorite"
+          [ngStyle]="{
+            color:
+              !likedme || variable.remove.indexOf(storyDetail._id) !== -1
+                ? '#884242'
+                : 'red'
+          }"
+          >favorite</mat-icon
+        >
+      </button>
+    </div>
+    <div>Like Number</div>
+  </div>
+</div>

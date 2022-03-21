@@ -1,0 +1,95 @@
+<div class="hero">
+  <div class="form-box">
+    <div class="inside">
+      <div>
+        <img src="../../assets/antra.jpg" alt="antra" id="antra-logo" />
+      </div>
+      <div>
+        <h1>AntraShare</h1>
+      </div>
+      <form
+        class="input-group"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        novalidate
+        autocomplete="off"
+      >
+        <input
+          class="input-field"
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder="Username"
+        />
+        <div
+          *ngIf="!form?.valid && (form?.dirty)"
+          class="error"
+        >
+          <div *ngIf="username?.errors?.['minlen']">
+            At least 5 characters and at most 12 characters:
+            {{ username?.errors?.['minlength'] }}
+          </div>
+        </div>
+        <input
+          class="input-field"
+          type="text"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+
+        <div
+          *ngIf="!form?.valid && (form?.dirty || form?.pending)"
+          class="error"
+        >
+          <div *ngIf="password?.errors?.['needUpper']">
+            pls input at least a upper!
+          </div>
+
+          <div *ngIf="password?.errors?.['needNumber']">
+            pls input at least a number!
+          </div>
+
+          <div *ngIf="password?.errors?.['needSpecial']">
+            pls input at least a needSpecial!
+          </div>
+
+          <div *ngIf="password?.errors?.['needLower']">
+            pls input at least alower!
+          </div>
+
+          <div *ngIf="password?.errors?.['minlen']">
+            the number should longer then {{ password?.errors?.['minlength'] }}!
+          </div>
+        </div>
+
+        <input
+          class="input-field"
+          type="text"
+          id="confirmPW"
+          formControlName="confirmPW"
+          placeholder="Confirm Password"
+        />
+
+        <div *ngIf="!form.valid && (form.dirty || form.touched)" class="error">
+          <div *ngIf="form.errors?.['notMatch']">
+            this password and confirm not match!
+          </div>
+        </div>
+
+        <input
+          class="input-field"
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="Email"
+        />
+
+        <button class="submit-btn" type="submit" [disabled]="!form.valid">
+          Sign up
+        </button>
+        <button (click)="onGoback()" id="register-btn">BACK!!</button>
+      </form>
+    </div>
+  </div>
+</div>

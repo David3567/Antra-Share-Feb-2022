@@ -1,45 +1,46 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Story } from '../interfaces/story.model';
 import { StoryService } from '../services/story.service';
 
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { LikelistComponent } from './likelist/likelist.component';
+
 @Component({
   selector: 'app-newsfeed',
   templateUrl: './newsfeed.component.html',
-  styleUrls: ['./newsfeed.component.css']
+  styleUrls: ['./newsfeed.component.css'],
 })
-
-export class NewsfeedComponent implements OnInit {
-  stories! :Story[];
-  constructor(private storyService : StoryService ,public dialog: MatDialog) { }
+export class NewsfeedComponent implements OnInit, OnDestroy {
+  stories!: Story[];
+  subcribeStoryService!: Subscription;
+  constructor(private storyService: StoryService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.storyService.getStories().subscribe((storyData:Story[])=>{
-      this.stories = storyData;
-    })
+    this.subcribeStoryService = this.storyService
+      .getStories()
+      .subscribe((storyData: any) => {
+        this.stories = storyData;
+      });
   }
 
-
+  ngOnDestroy(): void {
+    this.subcribeStoryService.unsubscribe();
+  }
   onClickLike() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog,{
-      position:{
-        'bottom' : '45px',
-        right: '5%',
+    const dialogRef = this.dialog.open(LikelistComponent, {
+      position: {
+        bottom: '35px',
+        right: '4%',
       },
       height: '70%',
       width: '30%',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-    });  
+    });
   }
 }
 
-@Component({
-  selector: 'app-likelist',
-  templateUrl: 'likelist.component.html',
-  
-  styleUrls: ['likelist.component.css']
-})
-export class DialogContentExampleDialog {}
+
