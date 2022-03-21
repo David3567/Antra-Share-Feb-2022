@@ -1,53 +1,54 @@
 <div class="login-form-wrap">
-  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-    <nz-tabset [nzAnimated]="false">
-      <nz-tab nzTitle="Login with Antra Account">
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Please Enter UserName!">
-            <nz-input-group [nzSize]="'large'" nzPrefixIcon="user">
-              <input [placeholder]="'Account'" type="text" nz-input formControlName="userName" placeholder="UserName" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Please Enter Password!">
-            <nz-input-group [nzSize]="'large'" nzPrefixIcon="lock">
-              <input autocomplete="on" [placeholder]="'Password'" type="password" nz-input formControlName="password"
-                placeholder="Password" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-      </nz-tab>
-      <nz-tab nzTitle="Login with phone">
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Please enter phone number!">
-            <nz-input-group [nzSize]="'large'" nzPrefixIcon="mobile">
-              <!--formControl should change later-->
-              <input autocomplete="on" type="text" nz-input formControlName="userName" placeholder="Phone Number" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-row nzJustify="space-between">
-          <nz-form-control class="flex-1" style="max-width: 65%;" nz-col [nzXs]="15" [nzSm]="16"
-            nzErrorTip="Please enter verification code!">
-            <nz-input-group [nzSize]="'large'" nzPrefixIcon="mail">
-              <!--formControl should change later-->
-              <input type="password" nz-input formControlName="password" placeholder="Password" />
-            </nz-input-group>
-          </nz-form-control>
-          <button class="p-0" nz-button nz-col [nzXs]="7" [nzSm]="7" [nzSize]="'large'" nzType="default">Get
-            verification code</button>
-        </nz-form-item>
-      </nz-tab>
-    </nz-tabset>
-    <div nz-row class="login-form-margin">
-      <div nz-col [nzSpan]="12">
-        <label nz-checkbox formControlName="remember">
-          <span>Login automatically</span>
-        </label>
-      </div>
-      <div nz-col [nzSpan]="12">
-        <a class="login-form-forgot">forgot password</a>
+    <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+      <nz-tabset>
+        <nz-tab nzTitle="Login with Antra Account">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group [nzSize]="'large'" nzPrefixIcon="user">
+                <input type="text" nz-input formControlName="username"/>
+              </nz-input-group>
+              <div *ngIf="!username?.valid && (username?.dirty && username?.touched)">
+                <div [hidden]="!username?.errors?.['required']">
+                    please enter a user name
+                </div>
+                <div [hidden]="!username?.errors?.['minlength']">
+                    Min Length is 5
+                </div>
+                <div [hidden]="!username?.errors?.['maxlength']">
+                    Max Length is 12
+                </div>
+            </div>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group [nzSize]="'large'" nzPrefixIcon="lock">
+                <input autocomplete="on" [placeholder]="'Password'" type="password" nz-input formControlName="password" placeholder="Password"/>
+              </nz-input-group>
+              <div *ngIf="!password?.valid && (password?.dirty && password?.touched)">
+                <div [hidden]="!password?.errors?.['required']">
+                    please enter password
+                </div>
+                <div [hidden]="!password?.errors?.['minlength']">
+                    password needs to be at least 5 character
+                </div>
+                <div [hidden]="!password?.errors?.['pattern']">
+                    Must includes at least 1 Uppercase, 1 special character
+                </div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-tab>
+      </nz-tabset>
+      <button nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>
+      <div class="other-way">
+        <div class="other-login">
+          <span>Login with: </span>
+          <i nz-icon nzType="google-circle" nzTheme="fill"></i>
+          <i nz-icon nzType="apple" nzTheme="fill"></i>
+          <i nz-icon nzType="facebook" nzTheme="fill"></i>
+        </div>
+        <a class="login_form-register" routerLink="/login/register-form">Register</a>
       </div>
     </div>
     <button nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>

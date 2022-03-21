@@ -16,7 +16,13 @@ import { TimeoutwindowComponent } from './components/timeoutwindow/timeoutwindow
 import { NewsfeedModule } from './pages/newsfeed/newsfeed.module';
 import { NewsfeedService } from './services/newsfeed.service';
 import { ProfileModule } from './pages/profile/profile.module';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+
+registerLocaleData(en);
 
 
 @NgModule({
@@ -39,7 +45,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     NewsfeedModule,
     ProfileModule,
   ],
-  providers: [UserlistService,NewsfeedService],
+  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
