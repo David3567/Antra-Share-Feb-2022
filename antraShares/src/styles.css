@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --input-box-width: 80%;
+  --form-box-width: 380px;
+  --form-box-height: 500px;
+  --font-btn-size: 1.1rem;
+  --pading-to-top: 10px;
+  --image-width-size: 70%;
+  --bar-size: 4%;
+  --bar-height: 35px;
+  --outline-color: aliceblue;
+  --button-hover-color:green;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow: visible;
+}

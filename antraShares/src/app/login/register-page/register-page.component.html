@@ -1,51 +1,86 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-  <p>
-    <label for="username">UserName: </label>
-    <input type="text" id="username" formControlName="username" />
-  </p>
-  <p>
-    <label for="password">PassWord: </label>
-    <input type="text" id="password" formControlName="password" />
-  </p>
+<div class="hero">
+  <div class="form-box">
+    <div class="inside">
+      <div>
+        <img src="../../assets/antra.jpg" alt="antra" id="antra-logo" />
+      </div>
+      <div>
+        <h1>AntraShare</h1>
+      </div>
+      <form
+        class="input-group"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        novalidate
+      >
+        <input
+          class="input-field"
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder="Username"
+        />
 
-  <div *ngIf="!form?.valid && (form?.dirty || form?.touched)" class="error">
-    <div *ngIf="password?.errors?.['needUpper']">
-      pls input at least a upper!
-    </div>
+        <input
+          class="input-field"
+          type="text"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+        />
 
-    <div *ngIf="password?.errors?.['needNumber']">
-      pls input at least a number!
-    </div>
+        <div
+          *ngIf="!form?.valid && (form?.dirty || form?.touched)"
+          class="error"
+        >
+          <div *ngIf="password?.errors?.['needUpper']">
+            pls input at least a upper!
+          </div>
 
-    <div *ngIf="password?.errors?.['needSpecial']">
-      pls input at least a needSpecial!
-    </div>
+          <div *ngIf="password?.errors?.['needNumber']">
+            pls input at least a number!
+          </div>
 
-    <div *ngIf="password?.errors?.['needLower']">
-      pls input at least alower!
-    </div>
+          <div *ngIf="password?.errors?.['needSpecial']">
+            pls input at least a needSpecial!
+          </div>
 
-    <div *ngIf="password?.errors?.['minlen']">
-      the number should longer then {{ password?.errors?.['minlength'] }}!
+          <div *ngIf="password?.errors?.['needLower']">
+            pls input at least alower!
+          </div>
+
+          <div *ngIf="password?.errors?.['minlen']">
+            the number should longer then {{ password?.errors?.['minlength'] }}!
+          </div>
+        </div>
+
+        <input
+          class="input-field"
+          type="text"
+          id="confirmPW"
+          formControlName="confirmPW"
+          placeholder="Confirm Password"
+        />
+
+        <div *ngIf="!form.valid && (form.dirty || form.touched)">
+          <div *ngIf="form.errors?.['notMatch']">
+            this password and confirm not match!
+          </div>
+        </div>
+
+        <input
+          class="input-field"
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="Email"
+        />
+
+        <button class="submit-btn" type="submit" [disabled]="!form.valid">
+          Sign up
+        </button>
+        <a href="">BACK</a>
+      </form>
     </div>
   </div>
-
-  <p>
-    <label for="confirmPW">Confirm Password: </label>
-    <input type="text" id="confirmPW" formControlName="confirmPW" />
-  </p>
-
-  <div *ngIf="!form.valid && (form.dirty || form.touched)">
-    <div *ngIf="form.errors?.['notMatch']">
-      this password and confirm not match!
-    </div>
-  </div>
-
-  <p>
-    <label for="email">Email: </label>
-    <input type="text" id="email" formControlName="email" />
-  </p>
-
-  <button type="submit" [disabled]="!form.valid">Submit</button>
-</form>
-
+</div>

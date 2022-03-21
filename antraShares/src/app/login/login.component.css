@@ -1,0 +1,75 @@
+html,
+body {
+  background: #c52121;
+  /* background-image: url("https://media-exp1.licdn.com/dms/image/C4D1BAQEFIgw_PbZ_9A/company-background_10000/0/1597696386784?e=1647907200&v=beta&t=OZClxGZsGcCKrk5pShDkNNkQlZHuDkgTB9xEawduPMs"); */
+}
+.hero {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+}
+.form-box {
+  width: var(--form-box-width);
+  height: 500px;
+  position: relative;
+  margin: 3% auto;
+  padding: 5px;
+  overflow: hidden;
+  background: #fff;
+}
+.inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: 20px;
+}
+#antra-logo {
+  width: 200px;
+  height: 180px;
+}
+.input-group {
+  top: 220px;
+  position: absolute;
+  width: var(--input-box-width);
+  transition: 0.5s;
+  text-align: center;
+}
+.input-field {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: #999;
+}
+#register-btn {
+  border: none;
+  background-color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px;
+  color: blue;
+  font-size: var(--font-btn-size);
+
+}
+.submit-btn {
+  width: 100%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #d0d3da, #117bb9e7);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  font-size: var(--font-btn-size);
+  font-weight: bold;
+}

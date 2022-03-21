@@ -1,23 +1,31 @@
+body{
+  overflow: hidden;
+}
 .container{
   padding-bottom: 40px;
+
 }
 
 .div-like {
-  width: 90%;
-  margin: 0 5%;
+  width:95%;
+  margin: 0 var(--bar-size);
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: aliceblue;
+  background-color: var(--outline-color);
   display: flex;
   justify-content: flex-end;
   position: fixed;
 }
 .btn-liked-list {
-  font-size: 20px;
-  color: black;
+  font-size: var(--font-btn-size);
+  font-weight: bold;
+  cursor: pointer;
   border: none;
   margin-right: 20px;
   background-color: inherit;
+}
+.btn-liked-list:hover{
+  color: var(--button-hover-color);
 }
 .form {
   padding-top: 90px;

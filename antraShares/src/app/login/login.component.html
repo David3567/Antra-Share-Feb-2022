@@ -1,5 +1,42 @@
-<!-- <app-register-page></app-register-page>    -->
-<h1>This is login page</h1>
-<button (click)="onLoginBtn()">login in</button>
-<button (click)="onRegisterBtn()">register</button>
+<div class="hero">
+  <div class="form-box">
+    <div class="inside">
+      <div>
+        <img src="../../assets/antra.jpg" alt="antra" id="antra-logo" />
+      </div>
+      <div>
+        <h1>AntraShare</h1>
+      </div>
+      <form  action="index.php" class="input-group" method="post">
+        <input
+          type="text"
+          class="input-field"
+          name="username"
+          placeholder="Username"
+          required=""
+        />
+
+        <input
+          type="password"
+          class="input-field"
+          name="password"
+          placeholder="Password"
+          required=""
+        />
+
+        <button
+          (click)="onLoginBtn()"
+          class="submit-btn"
+          type="submit"
+          name="user_login"
+        >
+          Sign In
+        </button>
+        <button (click)="onRegisterBtn()" id="register-btn">No account, need register!</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 

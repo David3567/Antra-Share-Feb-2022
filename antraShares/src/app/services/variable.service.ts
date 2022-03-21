@@ -1,5 +1,5 @@
 export class VariableValue {
-
+  login:boolean = true;
   remove: string[]=[];
 
   start = 0;

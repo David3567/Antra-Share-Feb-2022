@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css'],
+  styleUrls: ['../login.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
   form!: FormGroup;

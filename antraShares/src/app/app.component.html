@@ -17,11 +17,20 @@
 <!-- <app-login></app-login> -->
 
 <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
-<div class="footer">
-  <button [routerLink]="['profile']">MyProflie</button>
-  <button [routerLink]="['home']">NewsFeed</button>
-  <button [routerLink]="['setting']">Settings</button>
+<div class="container">
+  <div class="bar right-side">
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['profile']">MyProflie</button>
+      <button mat-menu-item [routerLink]="['home']">NewsFeed</button>
+      <button mat-menu-item [routerLink]="['setting']">Settings</button>
+    </mat-menu>
+  </div>
+  <div class="footer" [ngStyle]="{ display: login ? 'flex' : 'none' }">
+    <!-- <button class="btn-dashboard" [routerLink]="['profile']">MyProflie</button>
+    <button class="btn-dashboard" [routerLink]="['home']">NewsFeed</button>
+    <button class="btn-dashboard" [routerLink]="['setting']">Settings</button> -->
+  </div>
+  <div class="bar left-side"></div>
 </div>
 <router-outlet></router-outlet>
-
-
