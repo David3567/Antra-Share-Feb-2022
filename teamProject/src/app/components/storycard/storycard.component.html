@@ -20,20 +20,32 @@
     </ng-template>
   
     <ng-template #actionEdit>
-      <i nz-icon (click)="showModal()" nzType="edit">{{news.comment.length}} </i>
+      <i nz-icon (click)="showModal(pagenatorIndex)" nzType="edit">{{news.comment.length}} </i>
     </ng-template>
   
     <!-- Comment Popup Start -->
   
-    <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
+    <nz-modal [(nzVisible)]="isVisible" nzCentered nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
       <ng-container *nzModalContent>
-  
-        <div ngClass="commentContainer" *ngFor="let item of news.comment">
+        <div ngClass="commentContainer" *ngFor="let item of pageArray">
           {{item.publishedTime | date: 'short'}}
           <nz-card-meta
           nzTitle = {{item.publisherName}}
           nzDescription = {{item.content.text}}
           [nzAvatar] = "avatarTemplate"></nz-card-meta>
+        </div>
+      </ng-container>
+      <ng-container *nzModalFooter>
+        <div class="comment_footer">
+          <button *ngIf="showBack" class="comment_directionbtn" nz-button nzType="primary" (click)="backward()">
+            <i nz-icon nzType="left"></i>
+            Go back
+          </button>
+          <div class="comment_placetaker"></div>
+          <button *ngIf="showForward" class="comment_directionbtn" nz-button nzType="primary" (click)="forward()">
+            Go forward
+            <i nz-icon nzType="right"></i>
+          </button>
         </div>
       </ng-container>
     </nz-modal>
