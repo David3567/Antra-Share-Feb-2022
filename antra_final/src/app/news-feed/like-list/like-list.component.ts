@@ -12,7 +12,7 @@ export class LikeListComponent implements OnInit {
   constructor(private newsfeedservice:NewsfeedService) { }
 
   ngOnInit(): void {
-    console.log(this.likedetails);
+    // console.log(this.likedetails);
   }
   removeliked(data:Story){
     this.newsfeedservice.removeFromLikedList(data);

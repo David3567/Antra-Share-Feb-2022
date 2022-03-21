@@ -19,7 +19,7 @@ export class NewsfeedPageComponent implements OnInit {
     })
     this.newsfeedservice.getLikedList().subscribe((data: Story[])=>{
       this.LikedLists = data;
-      console.log(this.LikedLists);
+      // console.log(this.LikedLists);
     })
   }
   openDialog(){}

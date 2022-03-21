@@ -1,0 +1,17 @@
+<mat-card class="comment-container">
+    <div>
+        <mat-card-title-group>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title> {{commentlist.publisherName}}</mat-card-title>
+            <mat-card-subtitle>{{commentlist.publishedTime | date}}</mat-card-subtitle>
+            <mat-card-subtitle>{{commentlist.content.text}}</mat-card-subtitle>
+        </mat-card-title-group>
+    </div>
+
+
+    <div class="comment-media">
+        <img mat-card-image src="{{commentlist.content.image}}" alt="image">
+
+    </div>
+</mat-card>
+

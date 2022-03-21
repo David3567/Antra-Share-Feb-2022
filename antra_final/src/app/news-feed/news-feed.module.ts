@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { ShortenPipe } from '../core/shorten.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { CommentListComponent } from './comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     PostCardComponent,
     LikeListComponent,
     ShortenPipe,
+    CommentListComponent,
   ],
   imports: [
     CommonModule,

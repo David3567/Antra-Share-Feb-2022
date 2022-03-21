@@ -1,7 +1,7 @@
 .story-card-container {
     height:230px;
     width: auto;
-    background-color: #D7DBD6;
+    background-color: var( --color-yellowgreen-main);
     border-radius: 50px;
     padding: 3%;
     margin: 5%;
@@ -41,4 +41,30 @@ mat-card-content {
     text-align: left;
     padding: 2%;
     border-radius: 25px;
+}
+
+::ng-deep .mat-menu-panel {
+    width: 300px; 
+    height: 650px;
+}
+.btns {
+    display: flex;
+    
+}
+
+.btn_prev {
+    margin-right: 10%;
+}
+
+.btn_next {
+    margin-left: 10%;
+}
+
+.btn_prev:hover {
+    cursor: pointer;
+}
+
+.btn_next:hover {
+    
+    cursor: pointer;
 }

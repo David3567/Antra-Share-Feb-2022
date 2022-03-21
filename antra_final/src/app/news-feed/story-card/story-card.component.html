@@ -7,29 +7,41 @@
         </mat-card-title-group>
         <mat-card-actions>
             <div>
-                <button mat-icon-button color="warn" 
-                aria-label="Example icon-button with a heart icon"
-                (click)="liked(storiesdetail)">
-                    <mat-icon>favorite</mat-icon></button>
+                <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon"
+                    (click)="liked(storiesdetail)">
+                    <mat-icon>favorite</mat-icon>
+                </button>
                 <!-- <p>{{likeNum}}</p> -->
             </div>
             <div>
-                <button mat-button (click)="showComment()">Comment</button>
+                <button mat-button [matMenuTriggerFor]="commentMenu">Comment</button>
             </div>
+            <mat-menu class="dialog-container" #commentMenu="matMenu">
+                <app-comment-list *ngFor="let comment of storiesdetail.comment.slice(3*current_page-3, 3*current_page)" [commentlist]="comment">
+                    
+                </app-comment-list>
+                <div class="btns">
+                    <a *ngIf="show_prev" class="btn_prev" #btn_prev (click)="prevPage()" (click)="$event.stopPropagation()"> < Prev </a>
+                    <a *ngIf="show_next" class="btn_next" #btn_next (click)="nextPage()" (click)="$event.stopPropagation()"> Next > </a>
+                </div>
+                
+            </mat-menu>
+
         </mat-card-actions>
     </div>
+
     <mat-card-content>
         <p>{{storiesdetail.content.text}}</p>
     </mat-card-content>
 
 
-
     <div class="story-media">
         <img mat-card-image src="{{storiesdetail.content.image}}" alt="image">
+
         <video>
             <source src="{{storiesdetail.content.video}}" type="text/html">
         </video>
+
     </div>
 
-    <p *ngIf="commentStatus">{{storiesdetail.comment | json}}</p>
 </mat-card>
