@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { News } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
@@ -16,12 +15,14 @@ export class ModalContentComponent implements OnInit {
   newsList!: any;
   subscribeNewsService = new Subscription();
   commentArray = [];
+  //page: [][] = [];
+  numberOfPages = 0;
+  commentsPerPage = 5;
 
-  constructor(private newsfeedservice: NewsfeedService) { }
+  constructor(private newsfeedservice: NewsfeedService) {}
 
   ngOnInit(): void {
-    this.newsfeedservice.getNewsFromDataBase()
-      .subscribe((data) => { this.newsList = data })
+    this.newsfeedservice.getNewsFromDataBase().subscribe((data) => { this.newsList = data });
   }
 
   getCommentArray() {
@@ -30,6 +31,14 @@ export class ModalContentComponent implements OnInit {
         this.commentArray = this.newsList[i].comment;
         console.log(this.commentArray);
       }
+    }
+  }
+
+  showPaginator(){
+    this.getCommentArray();
+    this.numberOfPages = Math.ceil(this.commentArray.length / this.commentsPerPage);
+    for(let i = 1; i <= this.numberOfPages; i++) {
+
     }
   }
 }
