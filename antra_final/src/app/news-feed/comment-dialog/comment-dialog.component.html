@@ -1,0 +1,23 @@
+<ul>
+    <li *ngFor="let data of data.slice(
+        comments_per_page * current_page - comments_per_page,
+        comments_per_page * current_page
+    )">
+
+    <p>
+        <b>{{data.publisherName}}</b>
+        <i>{{data.publishedTime | date}}</i>
+    </p>
+
+    <div class="comment-content">
+        <div class="media">{{data.content.text}}</div>
+        <div class="media"><img src="{{data.content.image}}" alt="comment image"></div>
+    </div>
+
+    </li>
+</ul>
+
+<div class="buttons-container">
+    <button (click) = "onPrev">Previous</button>
+    <button (click) = "onNext">Next</button>
+</div>

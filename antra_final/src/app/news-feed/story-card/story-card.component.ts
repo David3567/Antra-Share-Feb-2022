@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Story} from '../story.interfaces';
+import {MatDialog} from '@angular/material/dialog';
+import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
 
 
 @Component({
@@ -11,21 +13,19 @@ import { Story} from '../story.interfaces';
 export class StoryCardComponent implements OnInit {
   @Input() storiesdetail!: Story;
   commentStatus!:boolean;
-  //comments:Comment[] = this.storiesdetail.comment;
 
-  //commentNum:number = this.comments.length;
-  likeNum:number = 0;
-  constructor(private newsfeedservice:NewsfeedService) { }
-  ngOnInit(): void {
-    console.log(this.storiesdetail);
+  constructor(private newsfeedservice:NewsfeedService, public dialog: MatDialog) { }
+  ngOnInit(): void {  }
+
+
+  showComment() {
+    this.dialog.open(CommentDialogComponent, {
+      data: this.storiesdetail.comment
+    })
   }
 
-  showComment(){
-    this.commentStatus = true;
-  }
-  liked(data:Story){
+  liked(data:Story) {
     this.newsfeedservice.pushToLikedList(data);
   }
- 
 }
 
