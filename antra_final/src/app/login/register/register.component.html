@@ -1,16 +1,65 @@
 <h1>Register Account</h1>
-<div class="main-container">                
-    <form>
-        <input type="text" id="firstname" name="firstname" placeholder="First Name">
-        <input type="text" id="lastname" name="lastname" placeholder="Last Name"><br>
+<div class="main-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p>
+            <input type="text" id="username" formControlName="username" placeholder="User Name">
+        </p>
+        <div *ngIf="!username?.valid && (username?.dirty ||username?.touched)">
+            <div [hidden]="!username?.errors?.['required']">
+                User Name is required
+            </div>
+            <div [hidden]="!username?.errors?.['minlength']">
+                Min Length is 5
+            </div>
+            <div [hidden]="!username?.errors?.['maxlength']">
+                Max Length is 12
+            </div>
+        </div>
 
-        <input type="tel" class="phone" placeholder="Phone"><br>
-        <input type="email" class="fullwidth" id="emailaddress" name="emailaddress" placeholder="Email Address"><br>
+        <p>
+            <input type="email" class="fullwidth" id="email" formControlName="email"
+                placeholder="Email Address">
+        </p>
+        <div *ngIf="!email?.valid && (email?.dirty ||email?.touched)">
+            <div [hidden]="!email?.errors?.['required']">
+              Email is required
+            </div>
+            <div [hidden]="!email?.errors?.['email']">
+              invalid email id
+            </div>
+        </div>
 
-        <input type="password" id="passwd" name="passwd" placeholder="Password">
-        <input type="password" id="confirmpasswd" name="confirmpasswd" placeholder="Confirm Password"><br>
+        <p>
+            <input type="text" id="passwd" formControlName="passwd" placeholder="Password">
+        </p>
+        <div *ngIf="!passwd?.valid && (passwd?.dirty ||passwd?.touched)">
+            <div [hidden]="!passwd?.errors?.['required']">
+              Password is required
+            </div>
+            <div [hidden]="!passwd?.errors?.['pattern']">
+              Password has to be at least 1 Uppercase <br> 1 special character and 5 min length
+            </div>
+        </div>
 
-        <button class="register-button">Register</button>
-        <p>Have an account?? <a href="">Log In</a> instead</p>
+        <p>
+            <input type="text" id="confirm" formControlName="confirm" placeholder="Confirm Password">
+        </p>
+        <div *ngIf="!form?.valid && (form?.dirty || form?.touched)">
+            <div [hidden]="!confirm?.errors?.['required']">
+                Confirm password is required
+              </div>
+            <div *ngIf="form.errors?.['notMatch']">
+              The password and confirm one does not match!
+            </div>
+        </div>
+
+        <p>
+            <button class="register-button" type="submit" >Register</button>
+        </p>
+
+        <p>
+            Have an account?? <a href="">Log In</a>
+            instead
+        </p>
     </form>
 </div>
