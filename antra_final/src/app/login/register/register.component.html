@@ -4,7 +4,7 @@
         <p>
             <input type="text" id="username" formControlName="username" placeholder="User Name">
         </p>
-        <div *ngIf="!username?.valid && (username?.dirty ||username?.touched)">
+        <div *ngIf="!username?.valid && (username?.dirty ||username?.touched)" class="error">
             <div [hidden]="!username?.errors?.['required']">
                 User Name is required
             </div>
@@ -20,7 +20,7 @@
             <input type="email" class="fullwidth" id="email" formControlName="email"
                 placeholder="Email Address">
         </p>
-        <div *ngIf="!email?.valid && (email?.dirty ||email?.touched)">
+        <div *ngIf="!email?.valid && (email?.dirty ||email?.touched)" class="error">
             <div [hidden]="!email?.errors?.['required']">
               Email is required
             </div>
@@ -32,7 +32,7 @@
         <p>
             <input type="text" id="passwd" formControlName="passwd" placeholder="Password">
         </p>
-        <div *ngIf="!passwd?.valid && (passwd?.dirty ||passwd?.touched)">
+        <div *ngIf="!passwd?.valid && (passwd?.dirty ||passwd?.touched)" class="error">
             <div [hidden]="!passwd?.errors?.['required']">
               Password is required
             </div>
@@ -44,7 +44,7 @@
         <p>
             <input type="text" id="confirm" formControlName="confirm" placeholder="Confirm Password">
         </p>
-        <div *ngIf="!form?.valid && (form?.dirty || form?.touched)">
+        <div *ngIf="!form?.valid && (form?.dirty || form?.touched)" class="error">
             <div [hidden]="!confirm?.errors?.['required']">
                 Confirm password is required
               </div>
@@ -54,7 +54,7 @@
         </div>
 
         <p>
-            <button class="register-button" type="submit" >Register</button>
+            <button class="register-button" type="submit" [routerLink]="['/login']">Register</button>
         </p>
 
         <p>
