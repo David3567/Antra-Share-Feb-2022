@@ -1,0 +1,16 @@
+<h2>Like list</h2>
+<div class="likelist" >
+  <div class="container">
+      <div class="title">
+        <div>{{ story.publisherName }} -</div>
+        <div>{{ story.publishedTime | date: "MMM d h:mm a" }}</div>
+      </div>
+      <div class="content">
+        {{ story.content.text | slice: 0:10
+        }}{{ story.content.text.length > 15 ? "..." : "" }}
+      </div>
+    <div class="buttonContainer">
+      <button mat-button (click)="removeStory()">Remove</button>
+    </div>
+  </div>
+</div>

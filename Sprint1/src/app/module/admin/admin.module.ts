@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { AdminComponent } from './admin.component';
-import { UserinfoComponent } from '../../component/userinfo/userinfo.component';
-import { UserlistComponent } from '../../component/userlist/userlist.component';
-import { UserlistService } from '../../services/userlist.service';
+
+import { UserinfoComponent } from './components/userinfo/userinfo.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserlistService } from 'src/app/services/userlist.service';
+import { UserlistComponent } from './components/userlist/userlist.component';
 
 @NgModule({
   declarations: [AdminComponent, UserinfoComponent, UserlistComponent],

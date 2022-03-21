@@ -13,15 +13,7 @@ export class LoginComponent implements OnInit {
 
   hide: boolean = true;
 
-  constructor(private router: Router, private fb:FormBuilder) {}
-
-  ngOnInit() {
-    this.form = this.fb.group({
-      username: new FormControl('', [Validators.minLength(5), Validators.maxLength(16), Validators.required, this.extraCheckUsername()]),
-      password: new FormControl('', [Validators.minLength(5), Validators.maxLength(16), Validators.required, this.extraCheckPassword()]),
-    },{});
-  }
-
+  
   get username() {
     return this.form.get('username');
   }
@@ -29,6 +21,16 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.form.get('password');
   }
+  
+  constructor(private router: Router, private fb:FormBuilder) {}
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      username: new FormControl('', [Validators.minLength(5), Validators.maxLength(16), Validators.required]),
+      password: new FormControl('', [Validators.minLength(5), Validators.maxLength(16), Validators.required, this.extraCheckPassword()]),
+    },{});
+  }
+
 
   onSubmit() {
     console.log(this.form.value);
@@ -37,12 +39,6 @@ export class LoginComponent implements OnInit {
 
   onRegister(){
     this.router.navigate(['register']);
-  }
-
-  extraCheckUsername(): ValidatorFn{
-    return (control: AbstractControl): ValidationErrors | null => {
-    return null;
-    }
   }
   
   extraCheckPassword(): ValidatorFn{

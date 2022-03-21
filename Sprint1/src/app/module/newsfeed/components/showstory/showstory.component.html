@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-title>
+    <!-- <a href=""><mat-icon>user</mat-icon></a> -->
+    <!-- <img src="" alt=""> -->
+    <div><mat-icon>user</mat-icon></div>
+    <div>{{ story.publisherName }}</div>
+    <div>{{ story.publishedTime | date: "MMM d HH:mm a" }}</div>
+  </mat-card-title>
+  <mat-card-content>
+    <!-- content -->
+    <div *ngIf="story.content.image.includes('https://')" class="image">
+      <img [src]="story.content.image" alt="Image" />
+    </div>
+    <div *ngIf="story.content.video.includes('https://')" class="video">
+      <video [src]="story.content.video"></video>
+    </div>
+    <div class="text">{{ story.content.text }}</div>
+    <!-- button -->
+    <div class="newsfeed_action">
+      <div class="commentbtn">
+        <button type="button" id="commentbtn" mat-button>
+          <mat-icon>comment</mat-icon>
+        </button>
+        <label for="commentbtn">{{ story.comment.length }}</label>
+      </div>
+      <!-- <div class="spaceholder"></div> -->
+      <div class="likebtn">
+        <button
+          type="button"
+          id="likebtn"
+          mat-button
+          [ngClass]="{liked: ifLiked()}"
+          (click)="onClick()"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <label for="commentbtn">{{ story.likedIdList.length }}</label>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

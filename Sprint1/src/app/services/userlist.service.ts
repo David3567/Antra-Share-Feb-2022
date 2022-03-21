@@ -19,7 +19,7 @@ export class UserlistService {
     return this.http.post([this.baseUrl, this.path].join('/'), user);
   }
 
-  deleteUser(id: number){
+  deleteUser(id: number) {
     return this.http.delete([this.baseUrl, this.path, id].join('/'));
   }
 }

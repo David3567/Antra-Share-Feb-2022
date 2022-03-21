@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './module/admin/admin.component';
-import { NewsfeedComponent } from './module/newsfeed/newsfeed.component';
 import { ProfileComponent } from './module/profile/profile.component';
 import { SettingComponent } from './module/setting/setting.component';
-import { LoginComponent } from './component/login/login.component';
+import { LoginComponent } from './module/home/components/login/login.component';
+import { AdminComponent } from './module/admin/components/admin/admin.component';
+import { NewsfeedComponent } from './module/newsfeed/components/newsfeed/newsfeed.component';
 
 const routes: Routes = [
   {

@@ -1,0 +1,59 @@
+
+// .newsfeed div {
+//   text-align: center;
+// }
+
+// .newsfeed_action {
+//   margin-top: 20px;
+//   height: 1.8rem;
+//   display: flex;
+//   justify-content: space-around;
+// }
+
+// .newsfeed_action button {
+//   padding-top: 4px;
+//   width: 2rem;
+//   height: 1.8rem;
+//   border: none;
+//   background-color: transparent;
+// }
+
+:host {
+    display: flex;
+    justify-content: center;
+  }
+
+mat-card {
+    width: 60%;
+    min-width: 450px;
+    margin: 10px;
+  }
+  
+  mat-card-title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;  
+  }
+  mat-card-content {
+    width: 100%;
+    min-width: 450px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+  
+  mat-card-content img{
+      height: 15em;
+  }
+
+  mat-card-title {
+    margin-bottom: 30px;
+  }
+
+  mat-card-content .newsfeed_action{
+    display: flex;
+  }
+
+.likebtn, .commentbtn {
+    flex: 50%;
+}

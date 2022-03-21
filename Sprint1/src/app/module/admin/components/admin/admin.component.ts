@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/services/interface/user.model';
-import { UserlistService } from '../../services/userlist.service';
 import { NgForm } from '@angular/forms';
+import { UserlistService } from 'src/app/services/userlist.service';
 
 @Component({
   selector: 'app-admin',
