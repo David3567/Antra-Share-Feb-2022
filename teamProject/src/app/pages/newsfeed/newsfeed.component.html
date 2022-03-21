@@ -1,28 +1,5 @@
 <nz-layout>
-    <nz-sider nzCollapsible>
-        <div class="sider_logo"></div>
-        <div>
-            <ul nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
-                <li nz-submenu nzTitle="News Feed" nzIcon="book">
-                    <ul>
-                        <li nz-menu-item (click)="openLikedList()">
-                            View Liked
-                        </li>
-                    </ul>
-                </li>
-                <li nz-menu-item [routerLink]="['/login']">
-                    <i nz-icon nzType="pie-chart"></i>
-                    <span>Profile</span>
-                </li>
-                <li nz-menu-item [routerLink]="['/login']">
-                    <i nz-icon nzType="setting"></i>
-                    <span>Setting</span>
-                </li>
-            </ul>
-        </div>
-    </nz-sider>
     <nz-layout>
-        <nz-header>Header</nz-header>
         <nz-content nz-row>
             <div nz-col nzSpan="4"></div>
             <div nz-col nzSpan="16">

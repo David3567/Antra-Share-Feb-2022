@@ -25,8 +25,6 @@ export class StorycardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.newsfeedservice.getNewsFromDataBase()
-      .subscribe((data) => { this.newsList = data })
   }
 
   addLike() {
@@ -40,12 +38,10 @@ export class StorycardComponent implements OnInit {
   addToLike() {
     if (this.like) {
       this.like = false;
-      //this.newsfeedservice.addToLikeList(this.news);
       this.addLike();
     }
     else {
       this.like = true;
-      //this.newsfeedservice.deleteFromLikeList(this.news);
       this.removeLike();
     }
   }
@@ -62,5 +58,3 @@ export class StorycardComponent implements OnInit {
   }
 
 }
-
-

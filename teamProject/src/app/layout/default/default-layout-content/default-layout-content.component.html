@@ -1,0 +1,15 @@
+<nz-layout>
+    <nz-sider>
+        <ng-content select="ng-container[sider]"></ng-content>
+    </nz-sider>
+    <nz-layout>
+        <nz-header style="background-color: green">
+            <ng-content select="ng-container[header]"></ng-content>
+        </nz-header>
+        <nz-layout>
+                <ng-content select="ng-container[content]">
+                </ng-content>
+        </nz-layout>
+        <nz-footer style="background-color: aqua">Footer</nz-footer>
+    </nz-layout>
+</nz-layout>

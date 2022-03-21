@@ -18,7 +18,7 @@ export class NewsfeedService {
   }
 
   getNewsFromDataBase(){
-    let data = this.httpclient.get("http://localhost:4231/api/news")
+    let data = this.httpclient.get<News[]>("http://localhost:4231/api/news")
     //data.subscribe(data=>{console.log(data);
     data.subscribe(data=>{})
     return data;

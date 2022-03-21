@@ -5,7 +5,6 @@ import { NewsfeedComponent } from './newsfeed.component';
 const routes: Routes = [
   {
     path: '', component: NewsfeedComponent
-
   }
 ];
 

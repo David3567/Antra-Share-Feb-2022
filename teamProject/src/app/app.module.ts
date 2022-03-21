@@ -16,6 +16,7 @@ import { TimeoutwindowComponent } from './components/timeoutwindow/timeoutwindow
 import { NewsfeedModule } from './pages/newsfeed/newsfeed.module';
 import { NewsfeedService } from './services/newsfeed.service';
 import { ProfileModule } from './pages/profile/profile.module';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 
 @NgModule({

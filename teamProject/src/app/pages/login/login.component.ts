@@ -8,11 +8,11 @@ import { NewsfeedService } from 'src/app/services/newsfeed.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit(): void {
-   
+
   }
 
 }

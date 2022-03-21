@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { News } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
-import { first } from 'rxjs/operators'
-import { Observable, Subscription } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-newsfeed',
@@ -13,19 +12,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NewsfeedComponent implements OnInit, OnDestroy {
 
-  newsList!: any;
+  newsList!: News[];
   likedList: News[] = [];
   subscribeNewsService = new Subscription();
   completed: boolean = false;
   isCollapsed = false;
   visible = false;
 
-  constructor(private httpclient: HttpClient, public newsfeedservice: NewsfeedService) { }
+  constructor(private cdr:ChangeDetectorRef, public newsfeedservice: NewsfeedService) { }
 
   ngOnInit(): void {
     this.newsfeedservice.getNewsFromDataBase()
       .subscribe(
-        (data) => { this.newsList = data }
+        (data) => { 
+          this.newsList = data;
+          this.newsList=this.newsList.filter(item=>{
+            if(item.content.image.slice(0,4)==='http')
+              return item;
+            else {
+              item.content.image='http://via.placeholder.com/640x360';
+              return item;
+            };
+          })
+          this.cdr.detectChanges();
+         }
       )
     this.subscribeNewsService = this.newsfeedservice
     .getLikedList()

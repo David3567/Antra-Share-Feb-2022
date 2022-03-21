@@ -1,0 +1,24 @@
+<div class="left-nav-wrap">
+    <div class="sidebar-logo">
+        <a href="#" target="_blank">
+            <i nz-icon nzType="smile" nzTheme="outline"></i>
+            <h1>Antra</h1>
+        </a>
+    </div>
+    <div>
+        <ul nz-menu nzMode="inline">
+            <ng-container *ngTemplateOutlet="menuTemplate; context:{$implicit:menus}"></ng-container>
+            <ng-template #menuTemplate let-menus>
+                <ng-container *ngFor="let menu of menus">
+                    <!--Menu without sub-option-->
+                    <li nz-menu-item *ngIf="!menu.children||menu.children.length===0" [nzSelected]="menu.selected">
+                        <a [routerLink]="menu.path">
+                            <i nz-icon [nzType]="menu.icon"></i>
+                            <span>{{menu.title}}</span>
+                        </a>
+                    </li>
+                </ng-container>
+            </ng-template>
+        </ul>
+    </div>
+</div>
