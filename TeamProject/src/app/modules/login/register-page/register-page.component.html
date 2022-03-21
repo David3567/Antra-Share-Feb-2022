@@ -1,5 +1,6 @@
 <div class="container">
-    <form (ngSubmit)="onSubmit(regForm)" [formGroup]="regForm">
+
+    <form action="/login" (ngSubmit)="onSubmit(regForm)" [formGroup]="regForm">
         <h2>Create an Account</h2>
         <label for="username">Username</label>
         <input 

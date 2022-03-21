@@ -17,6 +17,7 @@
         </div>
 
         <label for="password"></label>
+
         <input type="text" name="password" placeholder="Password" id="passwordVal" name="passwordVal" formControlName="passwordVal">
         <div
             *ngIf="!passwordVal?.valid && (passwordVal?.dirty || passwordVal?.touched)"
@@ -29,7 +30,7 @@
 
         <button class="button loginBtn" type="submit"  [disabled]="!loginForm.valid">Login</button>
 
-        <a href="#">No Accounts? Register Now!</a>
+        <a href="/register">No Accounts? Register Now!</a>
         <div class="formFooter">
             <div class="agreement">
                 <input type="checkbox" name="agreement" id=""><label for="agreement">Agreement</label>
