@@ -1,11 +1,34 @@
 <div class="container">
-    <form action="#">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate >
         <img src="./assets/images/ANTRA_Tech.jpg" alt="logo">
         <label for="userName"></label>
-        <input type="text" name="userName" placeholder="UserName">
+        <input type="text" name="userName" placeholder="UserName" id="usernameVal" name="usernameVal" formControlName="usernameVal">
+        <div
+            *ngIf="!usernameVal?.valid && (usernameVal?.dirty || usernameVal?.touched)"
+            class="error"
+          >
+            <div *ngIf="usernameVal?.errors?.['required']">Username is required!</div>
+            <div *ngIf="usernameVal?.errors?.['minlength']">
+              The username should be at least 5 characters!
+            </div>
+            <div *ngIf="usernameVal?.errors?.['maxlength']">
+               The username should be no more than 16 characters!
+            </div>
+        </div>
+
         <label for="password"></label>
-        <input type="text" name="password" placeholder="Password">
-        <button type="submit">Login</button>
+        <input type="text" name="password" placeholder="Password" id="passwordVal" name="passwordVal" formControlName="passwordVal">
+        <div
+            *ngIf="!passwordVal?.valid && (passwordVal?.dirty || passwordVal?.touched)"
+            class="error"
+          >
+          <div *ngIf="!passwordVal.valid && (passwordVal.touched && passwordVal.dirty)" >The password needs to
+            be at least 5 characters long, have at least one upper & one lower case, and have at least 1 special
+            character!</div>
+        </div>
+
+        <button class="button loginBtn" type="submit"  [disabled]="!loginForm.valid">Login</button>
+
         <a href="#">No Accounts? Register Now!</a>
         <div class="formFooter">
             <div class="agreement">
@@ -14,4 +37,5 @@
             <a href="#">Need Help?</a>
         </div>
     </form>
+
 </div>
