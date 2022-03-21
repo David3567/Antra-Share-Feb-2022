@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <div class="container" *ngFor="let comment of currentComments">
+        <div class="userContainer">
+            <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar">
+            <div class="user">
+                <div>{{ comment.publisherName }} -</div>
+                <div>{{ comment.publishedTime | date: 'MMM d HH:mm a'}}</div>
+            </div>
+        </div>
+        <div class="contentContainer">
+            <img *ngIf="comment.content.image.includes('https')" src={{comment.content.image}} alt="Image"
+                class="contentImg">
+            <div class="content">{{ comment.content.text }}</div>
+        </div>
+
+    </div>
+    <ul>
+        <li 
+        (click)="updateComments(page-1)"
+         *ngFor="let page of pageNumbers"
+         [ngStyle]="{'background-color': page-1 === currentPage ? 'lightskyblue' : 'transparent'}"
+        >{{page}}</li>
+    </ul>
+</div>

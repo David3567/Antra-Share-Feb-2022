@@ -15,10 +15,11 @@
             <div class="comments">
                 <button 
                     mat-icon-button 
-                    aria-label="post icon">
+                    aria-label="post icon"
+                    (click)="showComments(story.comment)">
                     <mat-icon>rate_review</mat-icon>
                 </button>
-                <div>Comments: #</div>
+                <div>Comments: {{ story.comment.length}}</div>
             </div>
             <div class="comments" >
                 <button 

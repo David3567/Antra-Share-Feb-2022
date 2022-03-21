@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { newsTemplate } from 'src/app/interfaces/news.model';
+import { CommentsPopUpComponent } from './comments-pop-up/comments-pop-up.component';
 
 @Component({
   selector: 'app-story-card',
@@ -12,7 +14,7 @@ export class StoryCardComponent implements OnInit {
   @Output() likedStoryEmitter = new EventEmitter<string>();
   
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +25,12 @@ export class StoryCardComponent implements OnInit {
 
   toggleLike(id: string): boolean {
     return this.likedStories.find((story)=> story._id === id) ? true : false;
+  }
+
+  showComments(comments) {
+    this.dialog.open(CommentsPopUpComponent, {
+      data: {comments: comments}
+    });
   }
 
 }
