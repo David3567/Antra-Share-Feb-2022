@@ -1,5 +1,5 @@
 <mat-dialog-content>
-    <div class="container" *ngFor="let comment of commentList">
+    <div class="container" *ngFor="let comment of pageList">
         <div class="userContainer">
             <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar">
             <div class="user">
@@ -11,6 +11,36 @@
             <img *ngIf="comment.content.image.includes('https')" src={{comment.content.image}} alt="Image"
                 class="contentImg">
             <div class="content">{{ comment.content.text }}</div>
-        </div>
+        </div>    
     </div>
+
+    <div class="paginator-container">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="prevBtnDisabled"
+          (click)="onPrev()"
+        >
+          < Prev
+        </button>
+        <div>
+          <strong>{{ currentPage }}</strong> of <strong>{{ pageSize }}</strong>
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="nextBtnDisabled"
+          (click)="onNext()"
+        >
+          Next >
+        </button>
+
+        <!-- <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+        </mat-paginator> -->
+
+    </div>
+
 </mat-dialog-content>
