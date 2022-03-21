@@ -25,7 +25,7 @@
 
   <!-- Comment Popup Start -->
 
-  <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
+  <!-- <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
     <ng-container *nzModalContent>
 
       <div ngClass="commentContainer" *ngFor="let item of news.comment">
@@ -35,6 +35,12 @@
         nzDescription = {{item.content.text}}
         [nzAvatar] = "avatarTemplate"></nz-card-meta>
       </div>
+    </ng-container>
+  </nz-modal> -->
+
+  <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+      <app-modalContent></app-modalContent>
     </ng-container>
   </nz-modal>
 

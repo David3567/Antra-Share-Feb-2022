@@ -6,13 +6,15 @@ import { NewsfeedRoutingModule } from './newsfeed-routing.module';
 import { StorycardComponent } from 'src/app/components/storycard/storycard.component';
 import { LikedstorycardComponent } from 'src/app/components/likedstorycard/likedstorycard.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { ModalContentComponent } from 'src/app/components/modalContent/modalContent.component';
 
 
 @NgModule({
   declarations: [
     NewsfeedComponent,
     StorycardComponent,
-    LikedstorycardComponent
+    LikedstorycardComponent,
+    ModalContentComponent
   ],
   imports: [
     CommonModule,

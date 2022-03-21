@@ -51,6 +51,7 @@ export class StorycardComponent implements OnInit {
   }
 
   showModal(): void {
+    console.log(this);
     this.isVisible = true;
     for(let i = 0; i < this.news.comment.length; i++) {
     }
