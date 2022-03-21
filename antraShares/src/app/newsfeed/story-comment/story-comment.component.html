@@ -14,10 +14,27 @@
 <br />
 
 <div class="pagination">
-  <button (click)="onPrevious()" [disabled]="start <= 0">Privious</button>
+  <button
+    class="btn btn-previous"
+    (click)="onPrevious()"
+    [disabled]="start <= 0"
+  >
+    Previous
+  </button>
 
-    <button *ngFor="let item of pages; let i = index" (click)="onGetPage(i+1)">{{i+1}}</button>
+  <button
+    class="btn btn-number"
+    *ngFor="let item of pages; let i = index"
+    (click)="onGetPage(i)"
+    [id]="i"
+    [ngStyle]="{
+      'background-color': i === page ? 'rgb(33,145,205)' : 'rgb(238,238,238)'
+    }"
+  >
+    {{ i + 1 }}
+  </button>
 
-  <button (click)="onNext()" [disabled]="end > max">Next</button>
+  <button class="btn btn-next" (click)="onNext()" [disabled]="end >= max">
+    Next
+  </button>
 </div>
-

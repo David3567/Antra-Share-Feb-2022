@@ -1,8 +1,4 @@
-html,
-body {
-  background: #c52121;
-  /* background-image: url("https://media-exp1.licdn.com/dms/image/C4D1BAQEFIgw_PbZ_9A/company-background_10000/0/1597696386784?e=1647907200&v=beta&t=OZClxGZsGcCKrk5pShDkNNkQlZHuDkgTB9xEawduPMs"); */
-}
+
 .hero {
   height: 100%;
   width: 100%;
@@ -14,9 +10,9 @@ body {
 }
 .form-box {
   width: var(--form-box-width);
-  height: 500px;
+  height: 600px;
   position: relative;
-  margin: 3% auto;
+  margin: 4% auto;
   padding: 5px;
   overflow: hidden;
   background: #fff;
@@ -72,4 +68,10 @@ body {
   border-radius: 30px;
   font-size: var(--font-btn-size);
   font-weight: bold;
+}
+.submit-btn:disabled{
+  cursor: not-allowed;
+}
+.error {
+  color: red;
 }

@@ -14,7 +14,7 @@ export class StoryCommentComponent implements OnInit {
   size!: number;
   max!: number;
   totalP!: number;
-
+  page: number = 0;
   comments!: Comment[];
   commentsPerpage!: Comment[];
   pages: number[] = [];
@@ -22,33 +22,36 @@ export class StoryCommentComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     private data: { story: Story },
     private variableValue: VariableValue
-  ) {
-    
-  }
+  ) {}
   ngOnInit(): void {
     this.start = this.variableValue.start;
     this.end = this.variableValue.end;
     this.size = this.variableValue.size;
     this.comments = this.data.story.comment;
     this.max = this.comments.length;
-    this.totalP = Math.ceil(this.max / this.size) - 1;
+    this.totalP =
+      this.max % this.size === 0
+        ? Math.trunc(this.max / this.size)
+        : Math.trunc(this.max / this.size) + 1;
     this.pages = new Array(this.totalP);
     this.commentsPerpage = [...this.comments.slice(this.start, this.size)];
   }
   onNext() {
+    this.page++;
     this.start = this.start + this.size;
     this.end = this.end + this.size;
     this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
   }
   onPrevious() {
+    this.page--;
     this.start = this.start - this.size;
     this.end = this.end - this.size;
     this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
   }
   onGetPage(page: number) {
+    this.page = page;
     this.start = this.variableValue.start + this.size * page;
     this.end = this.variableValue.end + this.size * page;
-
     this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
   }
 }

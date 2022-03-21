@@ -26,9 +26,7 @@ export class StoryComponent implements OnInit {
       this.variable.remove = this.variable.remove.filter(
         (re) => re !== story._id
       );
-      console.log(this.variable.remove);
     }
-    console.log(this.variable.remove);
     this.storyService.pushIntoLikeList(story);
   }
   onClickComment(story: Story) {

@@ -10,6 +10,7 @@
   --bar-height: 35px;
   --outline-color: aliceblue;
   --button-hover-color:green;
+  --button-focus-color:rgb(33,145,205);
 }
 html,
 body {

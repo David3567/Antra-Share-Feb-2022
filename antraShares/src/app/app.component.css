@@ -35,14 +35,14 @@ body {
 .right-side {
   display: flex;
   flex-direction: column;
-  
+
   left: 0;
 }
 .left-side {
-    width: 3%;
+  width: 3%;
   right: 0;
 }
-.btn-dashboard {
+/* .btn-dashboard {
   width: 25%;
   cursor: pointer;
   font-size: var(--font-btn-size);
@@ -50,15 +50,21 @@ body {
 }
 .btn-dashboard:hover {
   color: var(--button-hover-color);
-}
-button{
-    margin-top: 5px;
-    padding-left: 5px;
-    font-size: var(--font-btn-size);
-}
-button:hover{
-    background-color: var(--outline-color)
-}
-.btn-dashboard:visited {
+} */
+
+/* .btn-dashboard:visited {
   color: red;
+} */
+
+button {
+    border: none;
+    background-color:var(--outline-color);
+  margin-top: 5px;
+  padding-left: 5px;
+  font-size: var(--font-btn-size);
 }
+button:hover {
+  background-color: var(--outline-color);
+  color: var(--button-hover-color);
+}
+
