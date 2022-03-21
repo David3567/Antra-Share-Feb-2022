@@ -40,10 +40,7 @@ import { VariableValue } from './services/variable.service';
     NewsfeedModule,
     ProfileModule,
     SettingModule,
-
-    
     BrowserAnimationsModule,
-
     NoopAnimationsModule,
     MatButtonModule, MatCardModule, MatGridListModule, MatIconModule,MatMenuModule
   ],
