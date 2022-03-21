@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewsfeedComponent } from './newsfeed.component';
+import { SettingComponent } from './setting.component';
 
 const routes: Routes = [
   {
-    path: '', component: NewsfeedComponent
+    path: '', component: SettingComponent
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class NewsfeedRoutingModule { }
+export class SettingRoutingModule { }

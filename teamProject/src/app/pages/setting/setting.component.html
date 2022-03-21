@@ -1,0 +1,32 @@
+<nz-layout>
+    <nz-content class="ProfileArea" nz-row>
+        <div nz-col nzSpan="4"></div>
+        <div nz-col nzSpan="16">
+            <nz-card  [nzActions]="[actionEdit, actionLike,  actionEllipsis]">
+                <nz-card-meta
+                  nzTitle="setting"
+                  nzDescription="Sample@gmail.com"
+                  [nzAvatar]="avatarTemplate"
+                ></nz-card-meta>
+              </nz-card>
+              <ng-template #actionEdit>
+              </ng-template>
+              <ng-template #avatarTemplate>
+                <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+              </ng-template>
+              <ng-template #actionLike>
+                <div>
+                  <i nz-icon nzType="like"></i>
+                  <span>123</span>
+                </div>
+              </ng-template>
+              <ng-template #actionEllipsis>
+                <div>
+                  <i nz-icon nzType="comment"></i>
+                  <span>123</span>
+                </div>
+              </ng-template>
+        </div>
+        <div nz-col nzSpan="4"></div>
+    </nz-content>
+</nz-layout>

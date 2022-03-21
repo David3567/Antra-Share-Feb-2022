@@ -1,49 +1,61 @@
 <div class = "cardContainer">
-<nz-card class = "cardContainer_cards" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-    <nz-card-meta
-      nzTitle= {{news.publisherName}}
-      nzDescription={{news.content.text}}
-      [nzAvatar]="avatarTemplate"
-    ></nz-card-meta>
-  </nz-card>
-
-  <ng-template #avatarTemplate>
-    <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
-  </ng-template>
-
-  <ng-template #coverTemplate>
-    <img alt="example" src={{news.content.image}} />
-  </ng-template>
-
-  <ng-template #actionSetting>
-    <i nz-icon nzType="setting"></i>
-  </ng-template>
-
-  <ng-template #actionEdit>
-    <i nz-icon (click)="showModal()" nzType="edit">{{news.comment.length}} </i>
-  </ng-template>
-
-  <!-- Comment Popup Start -->
-
-  <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
-    <ng-container *nzModalContent>
-
-      <div ngClass="commentContainer" *ngFor="let item of news.comment">
-        {{item.publishedTime | date: 'short'}}
-        <nz-card-meta
-        nzTitle = {{item.publisherName}}
-        nzDescription = {{item.content.text}}
-        [nzAvatar] = "avatarTemplate"></nz-card-meta>
-      </div>
-    </ng-container>
-  </nz-modal>
-
-  <!-- Comment Popup Start -->
-
-  <ng-template #actionEllipsis>
-      <i *ngIf="like; else filled" nz-icon nzType="like" nzTheme="outline" (click)="addToLike()" ></i>
-          <ng-template #filled>
-              <i nz-icon nzType="like" nzTheme="fill" (click)="addToLike()"></i>
-          </ng-template>
-  </ng-template>
-</div>
+  <nz-card class = "cardContainer_cards" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+      <nz-card-meta
+        nzTitle= {{news.publisherName}}
+        nzDescription={{news.content.text}}
+        [nzAvatar]="avatarTemplate"
+      ></nz-card-meta>
+    </nz-card>
+  
+    <ng-template #avatarTemplate>
+      <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+    </ng-template>
+  
+    <ng-template #coverTemplate>
+      <img alt="example" src={{news.content.image}} alt='picture not found'/>
+    </ng-template>
+  
+    <ng-template #actionSetting>
+      <i nz-icon nzType="setting"></i>
+    </ng-template>
+  
+    <ng-template #actionEdit>
+      <i nz-icon (click)="showModal(pagenatorIndex)" nzType="edit">{{news.comment.length}} </i>
+    </ng-template>
+  
+    <!-- Comment Popup Start -->
+  
+    <nz-modal [(nzVisible)]="isVisible" nzCentered nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
+      <ng-container *nzModalContent>
+        <div ngClass="commentContainer" *ngFor="let item of pageArray">
+          {{item.publishedTime | date: 'short'}}
+          <nz-card-meta
+          nzTitle = {{item.publisherName}}
+          nzDescription = {{item.content.text}}
+          [nzAvatar] = "avatarTemplate"></nz-card-meta>
+        </div>
+      </ng-container>
+      <ng-container *nzModalFooter>
+        <div class="comment_footer">
+          <button *ngIf="showBack" class="comment_directionbtn" nz-button nzType="primary" (click)="backward()">
+            <i nz-icon nzType="left"></i>
+            Go back
+          </button>
+          <div class="comment_placetaker"></div>
+          <button *ngIf="showForward" class="comment_directionbtn" nz-button nzType="primary" (click)="forward()">
+            Go forward
+            <i nz-icon nzType="right"></i>
+          </button>
+        </div>
+      </ng-container>
+    </nz-modal>
+  
+    <!-- Comment Popup Start -->
+  
+    <ng-template #actionEllipsis>
+        <i *ngIf="like; else filled" nz-icon nzType="like" nzTheme="outline" (click)="addToLike()" ></i>
+            <ng-template #filled>
+                <i nz-icon nzType="like" nzTheme="fill" (click)="addToLike()"></i>
+            </ng-template>
+    </ng-template>
+  </div>

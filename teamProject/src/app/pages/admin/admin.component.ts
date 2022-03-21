@@ -11,35 +11,35 @@ import { UserlistService } from '../../services/userlist.service';
 })
 export class AdminComponent implements OnInit, OnDestroy {
 
-  userlist!:User[];
-  emptyUser:User = {
-    id:-1,
-    name:"",
-    username:"",
-    email:"",
-    address:{
-      street:"",
-      city:"",
-      suite:"",
-      zipcode:"",
-      geo:{
-        lat:1,
-        lng:1
+  userlist!: User[];
+  emptyUser: User = {
+    id: -1,
+    name: "",
+    username: "",
+    email: "",
+    address: {
+      street: "",
+      city: "",
+      suite: "",
+      zipcode: "",
+      geo: {
+        lat: 1,
+        lng: 1
       }
     },
-    phone:"",
-    website:"",
-    company:{
-      name:"",
-      catchPhrase:"",
-      bs:""
+    phone: "",
+    website: "",
+    company: {
+      name: "",
+      catchPhrase: "",
+      bs: ""
     }
   }
-  selectedUser:User = this.emptyUser;
-  selectedList!:boolean[];
-  selected:boolean = false;
+  selectedUser: User = this.emptyUser;
+  selectedList!: boolean[];
+  selected: boolean = false;
 
-  constructor(public userListService:UserlistService) { 
+  constructor(public userListService: UserlistService) {
   }
 
   ngOnDestroy(): void {
@@ -47,34 +47,34 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userListService.getUsersFromDB()
-    .subscribe((data:any)=>{
-      this.userlist = data;
-      console.log("Userlist: ", this.userlist);
-      this.selectedList = new Array(this.userlist.length).fill(false);
-      console.log("selectedlist: ",this.selectedList)
-      console.log("data: ", data)
-    })
+      .subscribe((data: any) => {
+        this.userlist = data;
+        console.log("Userlist: ", this.userlist);
+        this.selectedList = new Array(this.userlist.length).fill(false);
+        console.log("selectedlist: ", this.selectedList)
+        console.log("data: ", data)
+      })
   }
 
-  ngOndestroy(){
+  ngOndestroy() {
   }
 
-  deleteUser(id:number){
-    this.userlist = this.userlist.filter((user)=>{return user.id!==id});
+  deleteUser(id: number) {
+    this.userlist = this.userlist.filter((user) => { return user.id !== id });
     this.selectedUser = this.emptyUser;
   }
 
-  selectUser(user:User){
+  selectUser(user: User) {
     this.selectedUser = user;
-    let arr:boolean[] = new Array(this.userlist.length).fill(false);
+    let arr: boolean[] = new Array(this.userlist.length).fill(false);
     this.selectedList = arr;
-    this.selectedList[user.id-1] = true;
+    this.selectedList[user.id - 1] = true;
     this.selected = true;
   }
 
-  unSelectSingleUser(){
+  unSelectSingleUser() {
     this.selected = false;
-    let arr:boolean[] = new Array(this.userlist.length).fill(false);
+    let arr: boolean[] = new Array(this.userlist.length).fill(false);
     this.selectedList = arr;
     this.selectedUser = this.emptyUser;
   }

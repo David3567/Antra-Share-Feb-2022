@@ -1,0 +1,26 @@
+<app-default-layout-content>
+    <ng-container sider>
+        <app-nav-bar>
+        </app-nav-bar>
+    </ng-container>
+    <ng-container header>
+        <div class="header_placeHolder"></div>
+        <button class="header_likebtn" nz-button nzType="primary" (click)="openLikedList()">View Like</button>
+    </ng-container>
+
+    <ng-container content>
+        <router-outlet></router-outlet>
+    </ng-container>
+</app-default-layout-content>
+<nz-drawer
+    [nzClosable]="false"
+    [nzVisible]="visible"
+    nzPlacement="right"
+    nzTitle="Liked List"
+    (nzOnClose)="closeLikedList()">
+    <ng-container *nzDrawerContent>
+      <app-likedstorycard *ngFor="let item of likedList"
+       [news]="item"
+       (newsIDEmitter)="deleteLiked($event)"></app-likedstorycard>
+    </ng-container>
+  </nz-drawer>

@@ -16,6 +16,7 @@ import { TimeoutwindowComponent } from './components/timeoutwindow/timeoutwindow
 import { NewsfeedModule } from './pages/newsfeed/newsfeed.module';
 import { NewsfeedService } from './services/newsfeed.service';
 import { ProfileModule } from './pages/profile/profile.module';
+
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';

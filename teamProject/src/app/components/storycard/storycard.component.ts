@@ -1,14 +1,18 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Comment } from 'src/app/interfaces/comment.model';
 import { News } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
+
+
+const pageLength = 5;
 
 @Component({
   selector: 'app-storycard',
   templateUrl: './storycard.component.html',
   styleUrls: ['./storycard.component.less']
 })
+
 export class StorycardComponent implements OnInit {
 
   @Input() news!: News;
@@ -17,20 +21,29 @@ export class StorycardComponent implements OnInit {
   
   like: boolean = true;
   isVisible = false;
-  newsList!: any;
   subscribeNewsService = new Subscription();
+  pagenatorIndex:number=0;
+  pageArray:Comment[] = [];
+  showForward:boolean = true;
+  showBack:boolean = false;
 
 
-  constructor(private newsfeedservice: NewsfeedService) { }
-
+  constructor() { }
 
   ngOnInit(): void {
-    this.newsfeedservice.getNewsFromDataBase()
-      .subscribe((data) => { this.newsList = data })
+    if(this.news?.comment.length<=5)
+     this.showForward = false;
   }
 
   addLike() {
     this.addLikeEmitter.emit(this.news);
+  }
+
+  buildPageArray(startIndex:number){
+    this.pageArray = [];
+    for (let index = startIndex; (index < startIndex+5)&&(index<this.news.comment.length); index++) {
+      this.pageArray.push(this.news.comment[index])
+    }
   }
 
   removeLike() {
@@ -40,27 +53,36 @@ export class StorycardComponent implements OnInit {
   addToLike() {
     if (this.like) {
       this.like = false;
-      //this.newsfeedservice.addToLikeList(this.news);
       this.addLike();
     }
     else {
       this.like = true;
-      //this.newsfeedservice.deleteFromLikeList(this.news);
       this.removeLike();
     }
   }
 
-  showModal(): void {
+  showModal(index:number): void {
     this.isVisible = true;
-    for(let i = 0; i < this.news.comment.length; i++) {
-    }
+    this.buildPageArray(index);
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 
+  forward(){
+    this.pagenatorIndex+=5;
+    this.showBack = true;
+    this.buildPageArray(this.pagenatorIndex);
+    if(this.pagenatorIndex+5>=this.news.comment.length)
+      this.showForward = false;
+  }
+
+  backward(){
+    this.pagenatorIndex-=5;
+    this.showForward = true;
+    this.buildPageArray(this.pagenatorIndex);
+    if(this.pagenatorIndex-5<0)
+      this.showBack = false;
+  }
 }
-
-

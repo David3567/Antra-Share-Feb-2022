@@ -1,0 +1,19 @@
+<nz-layout>
+    <nz-sider class="sider_container">
+        <ng-content select="ng-container[sider]"></ng-content>
+    </nz-sider>
+    <nz-layout>
+        <nz-header class="header_container">
+            <ng-content select="ng-container[header]"></ng-content>
+        </nz-header>
+        <nz-layout>
+                <ng-content select="ng-container[content]">
+                </ng-content>
+        </nz-layout>
+        <nz-footer>
+            <span>
+                Antra Team TripleThreat 2022 Feb
+            </span>
+        </nz-footer>
+    </nz-layout>
+</nz-layout>

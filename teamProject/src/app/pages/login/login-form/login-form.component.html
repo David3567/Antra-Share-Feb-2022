@@ -50,5 +50,16 @@
         </div>
         <a class="login_form-register" routerLink="/login/register-form">Register</a>
       </div>
-    </form>
-  </div>
+    </div>
+    <button nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>
+    <div class="other-way">
+      <div class="other-login">
+        <span>Login with: </span>
+        <i nz-icon nzType="google-circle" nzTheme="fill"></i>
+        <i nz-icon nzType="apple" nzTheme="fill"></i>
+        <i nz-icon nzType="facebook" nzTheme="fill"></i>
+      </div>
+      <a class="login_form-register" routerLink="/login/register-form">Register</a>
+    </div>
+  </form>
+</div>
