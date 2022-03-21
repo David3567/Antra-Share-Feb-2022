@@ -40,7 +40,7 @@
 
   <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
     <ng-container *nzModalContent>
-      <app-modalContent></app-modalContent>
+      <app-modalContent [clickedStoryId] = "clickedStoryId"></app-modalContent>
     </ng-container>
   </nz-modal>
 

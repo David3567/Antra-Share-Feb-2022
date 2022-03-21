@@ -19,7 +19,7 @@ export class StorycardComponent implements OnInit {
   isVisible = false;
   newsList!: any;
   subscribeNewsService = new Subscription();
-
+  clickedStoryId!: string;
 
   constructor(private newsfeedservice: NewsfeedService) { }
 
@@ -51,7 +51,7 @@ export class StorycardComponent implements OnInit {
   }
 
   showModal(): void {
-    console.log(this);
+    this.clickedStoryId = this.news._id;
     this.isVisible = true;
     for(let i = 0; i < this.news.comment.length; i++) {
     }

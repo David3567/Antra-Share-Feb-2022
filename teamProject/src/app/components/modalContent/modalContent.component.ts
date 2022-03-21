@@ -11,10 +11,11 @@ import { NewsfeedService } from 'src/app/services/newsfeed.service';
 })
 export class ModalContentComponent implements OnInit {
   @Input() news!: News;
+  @Input() clickedStoryId!: string;
   
-  isVisible = false;
   newsList!: any;
   subscribeNewsService = new Subscription();
+  commentArray = [];
 
   constructor(private newsfeedservice: NewsfeedService) { }
 
@@ -23,8 +24,12 @@ export class ModalContentComponent implements OnInit {
       .subscribe((data) => { this.newsList = data })
   }
 
-  test() {
-    console.log(this);
+  getCommentArray() {
+    for (let i = 0; i < this.newsList.length; i++) {
+      if(this.newsList[i]._id == this.clickedStoryId) {
+        this.commentArray = this.newsList[i].comment;
+        console.log(this.commentArray);
+      }
+    }
   }
-
 }
