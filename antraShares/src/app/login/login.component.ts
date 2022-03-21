@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+
+import { Router } from '@angular/router';
+import { VariableValue } from '../services/variable.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,6 +14,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 export class LoginComponent implements OnInit {
   form!: FormGroup;
   constructor(private fb: FormBuilder) { }
+
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -45,7 +51,16 @@ export class LoginComponent implements OnInit {
       }
       else return null;
 
+
     };
   }
-
+  onLoginBtn(){
+    this.variable.login = true;
+    console.log(this.variable.login);
+    this.router.navigate(['home']);
+    
+  }
+  onRegisterBtn(){
+    this.router.navigate(['register']);
+  }
 }

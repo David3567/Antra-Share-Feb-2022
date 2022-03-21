@@ -1,28 +1,70 @@
 html,
 body {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
 }
 
+.footer {
+  display: flex;
+  justify-content: center;
+  height: var(--bar-height);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0px auto 0px;
+  padding: 0px 0px;
+  background-color: var(--outline-color);
+}
+.bar {
+  position: fixed;
+  width: var(--bar-size);
+  height: 100%;
+  background-color: var(--outline-color);
+  margin: 0px 0px;
+  padding: 0px 0px;
+}
+.right-side {
+  display: flex;
+  flex-direction: column;
 
-.footer{
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    height: 45px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    /* background-color: #0b4d14;  */
-    color: white;
-    margin: 0px auto 0px;
-    padding: 0px 0px;
+  left: 0;
 }
-button{
-    width: 30%;
+.left-side {
+  width: 3%;
+  right: 0;
 }
+/* .btn-dashboard {
+  width: 25%;
+  cursor: pointer;
+  font-size: var(--font-btn-size);
+  font-weight: bold;
+}
+.btn-dashboard:hover {
+  color: var(--button-hover-color);
+} */
+
+/* .btn-dashboard:visited {
+  color: red;
+} */
+
+button {
+    border: none;
+    background-color:var(--outline-color);
+  margin-top: 5px;
+  padding-left: 5px;
+  font-size: var(--font-btn-size);
+}
+button:hover {
+  background-color: var(--outline-color);
+  color: var(--button-hover-color);
+}
+

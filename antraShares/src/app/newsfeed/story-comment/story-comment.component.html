@@ -1,0 +1,40 @@
+<div class="story" *ngFor="let comment of commentsPerpage">
+  <div class="story-user-detail">
+    <div>
+      <img
+        src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
+    </div>
+    <div>{{ comment.publisherName }}</div>
+    <div>{{ comment.content.text }}</div>
+  </div>
+</div>
+<br />
+
+<div class="pagination">
+  <button
+    class="btn btn-previous"
+    (click)="onPrevious()"
+    [disabled]="start <= 0"
+  >
+    Previous
+  </button>
+
+  <button
+    class="btn btn-number"
+    *ngFor="let item of pages; let i = index"
+    (click)="onGetPage(i)"
+    [id]="i"
+    [ngStyle]="{
+      'background-color': i === page ? 'rgb(33,145,205)' : 'rgb(238,238,238)'
+    }"
+  >
+    {{ i + 1 }}
+  </button>
+
+  <button class="btn btn-next" (click)="onNext()" [disabled]="end >= max">
+    Next
+  </button>
+</div>
