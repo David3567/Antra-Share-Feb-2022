@@ -7,10 +7,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css'],
+  styleUrls: ['../login.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
   form!: FormGroup;
@@ -33,7 +34,7 @@ export class RegisterPageComponent implements OnInit {
     return this.myForm.get('numVal');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router : Router) {}
 
   ngOnInit(): void {
     this.form = this.fb.group(this.buildform(), {
@@ -58,11 +59,16 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit() {
+    this.router.navigate(['']);
     console.log(this.form.value);
     console.log(this.username?.value);
     console.log(this.password?.value);
     console.log(this.confirmPW?.value);
     console.log(this.email?.value);
+
+  }
+  onGoback(){
+    this.router.navigate(['']);
   }
 }
 interface ValidatorFn {
@@ -93,7 +99,7 @@ function characterCheck(minlen: number): ValidatorFn {
 function userLenth(minlen: number, maxlen: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value.length < minlen || control.value.length >= maxlen) {
-      return { minlen: true, minlength: minlen };
+      return { minlen: true, minlength: control.value.length };
     }
     return null;
   };

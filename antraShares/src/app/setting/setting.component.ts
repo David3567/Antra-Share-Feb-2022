@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { VariableValue } from '../services/variable.service';
 
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.css']
+  styleUrls: ['./setting.component.css'],
 })
 export class SettingComponent implements OnInit {
+  constructor(private router: Router, private variable: VariableValue) {}
 
-  constructor(private router :Router) { }
-
-  ngOnInit(): void {
-  }
-  onLogout(){
-    this.router.navigate([''])
+  ngOnInit(): void {}
+  onLogout() {
+    this.variable.login = false;
+    this.router.navigate(['']);
   }
 }

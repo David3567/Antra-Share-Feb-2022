@@ -1,24 +1,18 @@
-<!-- <mat-slider min="1" max="100" step="1" value="50"></mat-slider> -->
-<!-- <div class="container"> -->
-<!-- <app-admin></app-admin> -->
 
-<!-- <app-newsfeed></app-newsfeed> -->
-
-<!-- <div class="footer">
-    <button>MyProflie</button>
-    <button>NewsFeed</button>
-    <button>Settings</button>
+<div class="container">
+  <div class="bar right-side" [ngStyle]="{ display: login ? 'flex' : 'none' }">
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['profile']">MyProflie</button>
+      <button mat-menu-item [routerLink]="['home']">NewsFeed</button>
+      <button mat-menu-item [routerLink]="['setting']">Settings</button>
+    </mat-menu>
+  </div>
+  <!-- <div class="footer" [ngStyle]="{ display: login ? 'flex' : 'none' }">
+    <button class="btn-dashboard" [routerLink]="['profile']">MyProflie</button>
+    <button class="btn-dashboard" [routerLink]="['home']">NewsFeed</button>
+    <button class="btn-dashboard" [routerLink]="['setting']">Settings</button>
   </div> -->
-
-<!-- </div> -->
-
-<!-- <app-setting></app-setting> -->
-
-<!-- <app-login></app-login> -->
-
-<div class="footer">
-  <button [routerLink]="['profile']">MyProflie</button>
-  <button [routerLink]="['home']">NewsFeed</button>
-  <button [routerLink]="['setting']">Settings</button>
+  <div class="bar left-side"></div>
 </div>
 <router-outlet></router-outlet>

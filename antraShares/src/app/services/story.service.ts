@@ -23,6 +23,10 @@ export class StoryService {
     );
     if (!findFeedsInLikeList) {
       this.likeListByUser = [likeStory, ...this.likeListByUser];
+    } else {
+      this.likeListByUser = this.likeListByUser.filter(
+        (story) => story._id !== likeStory._id
+      );
     }
 
     this.subjectLikeList$.next(this.likeListByUser);

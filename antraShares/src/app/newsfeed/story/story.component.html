@@ -9,22 +9,35 @@
       />
     </div>
     <div>{{ storyDetail.publisherName }}</div>
-    <div>{{ storyDetail.publishedTime | date}}</div>
+    <div>{{ storyDetail.publishedTime | date }}</div>
   </div>
   <div class="story-dashboard">
-    <div class="story-dashboard-content">
-      <img
-        class="story-dashboard-content-img"
-        src="{{ storyDetail.content.image }}"
-        alt=""
-      />
+    <img
+      class="story-dashboard-content-img"
+      src="{{ storyDetail.content.image }}"
+      alt=""
+    />
+  </div>
+  <div class="story-dashboard-viewer">
+    <div>
+      <a (click)="onClickComment(storyDetail)"><mat-icon> comment</mat-icon></a>
     </div>
-
-    <div class="story-dashboard-viewer">
-      <div>Comment icon</div>
-      <div>Comment Number</div>
-      <div><button (click)="addToLikeList(storyDetail)">Like</button></div>
-      <div>Like Number</div>
+    <div>Comment Number</div>
+    <div>
+      <button (click)="addToLikeList(storyDetail)">
+        <mat-icon
+          [id]="storyDetail._id"
+          class="material-icons-favorite"
+          [ngStyle]="{
+            color:
+              !likedme || variable.remove.indexOf(storyDetail._id) !== -1
+                ? '#884242'
+                : 'red'
+          }"
+          >favorite</mat-icon
+        >
+      </button>
     </div>
+    <div>Like Number</div>
   </div>
 </div>
