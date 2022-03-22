@@ -15,6 +15,7 @@ import { LoginModule } from './login/login.module';
 import { StoryComponent } from './news-feed/story/story.component';
 import { FavoriteListComponent } from './news-feed/favorite-list/favorite-list.component';
 import { NewsFeedModule } from './news-feed/news-feed.module';
+import { RegisterComponent } from './login/register/register.component';
 
 
 @NgModule({
@@ -26,8 +27,8 @@ import { NewsFeedModule } from './news-feed/news-feed.module';
     NewsFeedComponent,
     LoginComponent,
     StoryComponent,
-    FavoriteListComponent
-    
+    FavoriteListComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,7 @@ import { NewsFeedModule } from './news-feed/news-feed.module';
     AdminModule,
     HttpClientModule,
     LoginModule,
-    NewsFeedModule
+    NewsFeedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

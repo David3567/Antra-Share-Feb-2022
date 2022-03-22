@@ -12,6 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #cccdff;
 }
 
 .login-box {
@@ -51,6 +52,15 @@ body {
 
 .login-button {
     width: 100%;
+}
+
+.hyperlink {
+    color: blue;
+}
+
+.hyperlink:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .footer {
