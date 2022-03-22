@@ -1,3 +1,4 @@
+
 <div class="header">
   <div></div>
   <button (click)="onClick()"><mat-icon>favorite</mat-icon></button>
@@ -8,10 +9,12 @@
   class="likelist_container"
   [ngStyle]="{ display: liststatus ? 'block' : 'none' }"
 >
+  <H1>Like List</H1>
   <app-likelist
     class="likelist"
-    *ngFor="let story of likedList()"
+    *ngFor="let story of likedStories"
     [story]="story"
+    (likelistEmiter)="onListRemove($event)"
   ></app-likelist>
 </div>
 
@@ -23,7 +26,12 @@
 
   <!-- container -->
   <div class="story_container">
-    <app-showstory class="story" *ngFor="let story of newslist" [story]="story">
+    <app-showstory
+      class="story"
+      *ngFor="let story of newslist"
+      [story]="story"
+      (showstoryEmitter)="onShowUpdate($event)"
+    >
     </app-showstory>
   </div>
 </div>
