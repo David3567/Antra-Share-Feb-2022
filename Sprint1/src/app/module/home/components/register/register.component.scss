@@ -1,0 +1,50 @@
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 200px 0px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    min-width: 450px;
+  }
+  
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+
+
+  .button {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+.register-button {
+    
+    height: 2rem;
+    width: 20%;
+    border: none;
+    justify-content: space-between;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 1rem;
+    cursor: pointer;
+    background-color: aquamarine;
+}
+
+.register-button:hover {
+    background-color: aquamarine;
+}
+
+.error {
+    margin-top: 0;
+    font-size: 12px;
+    color: red;
+}

@@ -45,6 +45,11 @@
   height: calc(100% - 10em);
   z-index: 11;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+.likelist_container::-webkit-scrollbar {
+  width: 0;
 }
 
 // .post {
@@ -71,7 +76,12 @@
 .story_container {
   flex-grow: 1;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
   margin-top: 50px;
+}
+.story_container::-webkit-scrollbar {
+  width: 0;
 }
 
 

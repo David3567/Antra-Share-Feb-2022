@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { News } from 'src/app/services/interface/news.model';
+import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
 @Component({
   selector: 'app-likelist',
@@ -7,18 +8,20 @@ import { News } from 'src/app/services/interface/news.model';
   styleUrls: ['./likelist.component.scss'],
 })
 export class LikelistComponent implements OnInit {
+  // @Input() story!: News;
   @Input() story!: News;
   userID = '6205f461d5cf1c22aad415a6';
+  @Output() likelistEmiter = new EventEmitter<string>();
   // likedStories!: News[];
-  @Output() removeStoryEmitter = new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  removeStory() {
-    this.story.likedIdList = this.story.likedIdList.filter((list) => list._id !== this.userID)
-    console.log("list:", this.story);
-    // this.removeStoryEmitter.emit(this.story);
+  removeStory(id: string) {
+    // this.story.likedIdList = this.story.likedIdList.filter((list) => list._id !== this.userID)
+
+    // console.log("list:", this.story);
+    this.likelistEmiter.emit(id);
   }
 }

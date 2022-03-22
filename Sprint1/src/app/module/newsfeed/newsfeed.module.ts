@@ -10,6 +10,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
+import { CommentComponent } from './components/comment/comment.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { NewsfeedService } from 'src/app/services/newsfeed.service';
     LikelistComponent,
     PoststoryComponent,
     ShowstoryComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +29,7 @@ import { NewsfeedService } from 'src/app/services/newsfeed.service';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatDialogModule,
     ReactiveFormsModule,
   ],
   providers: [NewsfeedService],

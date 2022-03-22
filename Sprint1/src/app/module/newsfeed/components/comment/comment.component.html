@@ -1,0 +1,37 @@
+<div class="comment_container">
+    <h2 mat-dialog-title>Comments</h2>
+    <div class="comment">
+      <mat-dialog-content
+        *ngFor="let comment of comment"
+      >
+        <div class="comment_title">
+          <div><mat-icon>face</mat-icon></div>
+          <div>{{ comment.publisherName }}</div>
+          <div>{{ comment.publishedTime | date: "HH:mm - MM/dd/yyyy" }}</div>
+        </div>
+        <div class="comment_text">{{ comment.content.text }}</div>
+      </mat-dialog-content>
+    </div>
+    <div class="button">
+      <mat-dialog-actions align="center">
+        <button
+          mat-button
+          class="prevbtn"
+          (click)="onPrev()"
+          [disabled]="start <= 0"
+        >
+          Prev
+        </button>
+  
+        <button
+          mat-button
+          class="nextbtn"
+          (click)="onNext()"
+          [disabled]="end > totalsize"
+        >
+          Next
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+  

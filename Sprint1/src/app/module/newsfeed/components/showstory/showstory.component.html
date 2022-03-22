@@ -1,24 +1,29 @@
 <mat-card>
   <mat-card-title>
-    <!-- <a href=""><mat-icon>user</mat-icon></a> -->
-    <!-- <img src="" alt=""> -->
-    <div><mat-icon>user</mat-icon></div>
-    <div>{{ story.publisherName }}</div>
-    <div>{{ story.publishedTime | date: "MMM d HH:mm a" }}</div>
+    <div><mat-icon>face</mat-icon></div>
+    <div class="title_name">{{ story.publisherName }}</div>
+    <div class="title_time">{{ story.publishedTime | date: "HH:mm - MM/dd/yyyy" }}</div>
   </mat-card-title>
   <mat-card-content>
     <!-- content -->
-    <div *ngIf="story.content.image.includes('https://')" class="image">
-      <img [src]="story.content.image" alt="Image" />
+    <div class="middle">
+      <div *ngIf="story.content.image.includes('https://')" class="image">
+        <img [src]="story.content.image" alt="Image" />
+      </div>
+      <div *ngIf="story.content.video.includes('https://')" class="video">
+        <video [src]="story.content.video"></video>
+      </div>
+      <div class="text">{{ story.content.text }}</div>
     </div>
-    <div *ngIf="story.content.video.includes('https://')" class="video">
-      <video [src]="story.content.video"></video>
-    </div>
-    <div class="text">{{ story.content.text }}</div>
     <!-- button -->
     <div class="newsfeed_action">
       <div class="commentbtn">
-        <button type="button" id="commentbtn" mat-button>
+        <button
+          type="button"
+          id="commentbtn"
+          mat-button
+          (click)="onShowComments()"
+        >
           <mat-icon>comment</mat-icon>
         </button>
         <label for="commentbtn">{{ story.comment.length }}</label>
@@ -29,7 +34,7 @@
           type="button"
           id="likebtn"
           mat-button
-          [ngClass]="{liked: ifLiked()}"
+          [ngClass]="{ like: ifLiked() }"
           (click)="onClick()"
         >
           <mat-icon>favorite</mat-icon>
