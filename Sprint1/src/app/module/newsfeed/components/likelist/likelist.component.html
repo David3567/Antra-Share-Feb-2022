@@ -1,5 +1,4 @@
-<h2>Like list</h2>
-<div class="likelist" >
+<li class="likelist" >
   <div class="container">
       <div class="title">
         <div>{{ story.publisherName }} -</div>
@@ -10,7 +9,7 @@
         }}{{ story.content.text.length > 15 ? "..." : "" }}
       </div>
     <div class="buttonContainer">
-      <button mat-button (click)="removeStory()">Remove</button>
+      <button mat-button (click)="removeStory(story._id)">Remove</button>
     </div>
   </div>
-</div>
+</li>

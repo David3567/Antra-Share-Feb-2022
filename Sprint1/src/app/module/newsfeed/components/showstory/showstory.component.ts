@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { News } from 'src/app/services/interface/news.model';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-showstory',
@@ -9,10 +11,9 @@ import { News } from 'src/app/services/interface/news.model';
 export class ShowstoryComponent implements OnInit {
   userID="6205f461d5cf1c22aad415a6";
   @Input() story!: News;
-  // @Output() likedStoryEmitter = new EventEmitter();
+  @Output() showstoryEmitter = new EventEmitter();
 
-
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -27,7 +28,18 @@ export class ShowstoryComponent implements OnInit {
     }else{
       this.story.likedIdList.push({_id:this.userID});
     }
-    console.log("liked:", this.story);
-    // this.likedStoryEmitter.emit(this.story);
+    // console.log("liked:", this.story);
+    this.showstoryEmitter.emit(this.story._id);
+  }
+
+  onShowComments() {
+    const dialogRef = this.dialog.open(CommentComponent, {
+      width: '950px',
+      data: {commentlist: this.story.comment},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+    });
   }
 }
