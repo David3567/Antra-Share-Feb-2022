@@ -37,13 +37,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log('afterviewinit');
-  }
-
   nextPage() {
-    this.router.navigate(['product'], {
-      queryParams: { pageNum: +this.pageNo + 1 },
-    });
+    this.router.navigate(['product']);
   }
 }
