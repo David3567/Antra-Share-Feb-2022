@@ -1,0 +1,96 @@
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!--  username -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Username"
+            id="username"
+            formControlName="username"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- username validate -->
+
+      <ul
+        *ngIf="form.invalid && (username?.dirty || username?.touched)"
+        class="invalid"
+      >
+        <li *ngIf="username?.errors?.['required']">Username is required!</li>
+        <li *ngIf="username?.errors?.['minlength']">
+          Username should be at least 5 characters long.
+        </li>
+        <li *ngIf="username?.errors?.['maxlength']">
+          Username should be no longer than 16 characters long.
+        </li>
+      </ul>
+
+      <!--  password -->
+      <div>
+        <mat-form-field>
+          <input
+            [type]="hide ? 'password' : 'text'"
+            matInput
+            placeholder="Password"
+            id="password"
+            formControlName="password"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <!-- password validate -->
+      <ul
+        *ngIf="form.invalid && (password?.dirty || password?.touched)"
+        class="invalid"
+      >
+        <li *ngIf="password?.errors?.['required']">Password is required!</li>
+        <li *ngIf="password?.invalid && !password?.errors?.['required']">
+          Password format invalid!
+          <ul>
+            <li *ngIf="password?.errors?.['minlength']">
+              Password must be at least 5 characters long.
+            </li>
+            <li *ngIf="password?.errors?.['maxlength']">
+              Password should be no longer than 16 characters long.
+            </li>
+            <li *ngIf="password?.errors?.['specialLeter']">
+              Password should contains at least 1 special character.
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- button -->
+      <div class="button">
+        <div>
+          <label for="registerbtn">Don't have account?</label>
+          <button
+            id="registerbtn"
+            type="button"
+            mat-button
+            (click)="onRegister()"
+          >
+            Sign Up
+          </button>
+        </div>
+
+        <button id="loginbtn" type="submit" mat-button [disabled]="!form.valid">
+          Login
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
