@@ -17,6 +17,7 @@ import { FavoriteListComponent } from './news-feed/favorite-list/favorite-list.c
 import { NewsFeedModule } from './news-feed/news-feed.module';
 import { SidenevService } from './services/sidenev.service';
 import { MaxlengthPipe } from './news-feed/pipe/maxlength.pipe';
+import { RegisterComponent } from './login/register/register.component';
 
 
 @NgModule({
@@ -29,8 +30,8 @@ import { MaxlengthPipe } from './news-feed/pipe/maxlength.pipe';
     LoginComponent,
     StoryComponent,
     MaxlengthPipe,
-    FavoriteListComponent
-    
+    FavoriteListComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +40,7 @@ import { MaxlengthPipe } from './news-feed/pipe/maxlength.pipe';
     AdminModule,
     HttpClientModule,
     LoginModule,
-    NewsFeedModule
+    NewsFeedModule,
   ],
   providers: [SidenevService],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginInfo, admin, user } from './models/loginInfo';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,17 @@ export class LoginComponent implements OnInit {
   info = new LoginInfo();
   check = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(loginForm: any) {
 
+  }
+
+  toRegister() {
+    this.router.navigate(['/register'])
   }
 
   checkLoginInfo(name: string, pass: string) {
