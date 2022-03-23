@@ -1,22 +1,16 @@
 <mat-card class="profile-card">
   <mat-card-header>
     <div mat-card-avatar class="profile-pix" title="Profile Picture"></div>
-    <div class="profile-header">
-      <mat-card-title>publisherName</mat-card-title>
-      <mat-card-subtitle>publishedTime</mat-card-subtitle>
-    </div>
+    <mat-form-field appearance="standard">
+      <textarea matInput id="post-textarea" maxlength="280" placeholder="What's happening?"></textarea>
+    </mat-form-field>
   </mat-card-header>
-  <mat-card-content>
-    <ul>
-      <li>image</li>
-      <li>video</li>
-      <li>text</li>
-      <li>_id</li>
-    </ul>
-  </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button color="primary" aria-label="post icon">
+    <button id="image-btn" mat-icon-button color="primary" aria-label="image icon">
+      <mat-icon>image</mat-icon>
+    </button>
+    <button id="post-btn" mat-icon-button color="primary" aria-label="post icon">
       <mat-icon>send</mat-icon>
     </button>
-  </mat-card-actions></mat-card
->
+  </mat-card-actions>
+</mat-card>

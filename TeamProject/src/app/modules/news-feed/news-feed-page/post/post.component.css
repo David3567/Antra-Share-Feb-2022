@@ -5,38 +5,38 @@
 }
 
 mat-card {
-  height: 300px;
-  width: 800px;
+  width: 600px;
   margin-top: 10px;
-  overflow-y: auto;
 }
 
 .profile-pix {
+  background-image: url("src/assets/images/avatar_placeholder.jpg");
   background-position: center;
   background-size: cover;
   height: 60px;
   width: 60px;
 }
 
-.profile-header {
-  margin-top: 10px;
+mat-form-field {
+  width: 100%;
+  margin: 0 0 -15px -15px;
 }
 
-ul {
-  list-style: none;
-  line-height: 30px;
-  color: white;
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
 }
 
-li {
-  height: 30px;
-  margin-bottom: 10px;
-  background-color: grey;
+#post-textarea {
+  height: 75px;
+  resize: none;
 }
 
 mat-card-actions {
   display: flex;
-  justify-content: right;
-  margin: 0;
-  padding: 0;
+  flex-direction: row;
+  padding: 0 0 0 80px;
+}
+
+#post-btn {
+  margin-left: auto;
 }

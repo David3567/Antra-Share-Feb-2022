@@ -12,7 +12,7 @@ header {
   top: 0px;
   z-index: 1;
   height: 75px;
-  min-width: 280px;
+  min-width: 800px;
   background-color: #192a56;
 }
 
@@ -47,7 +47,7 @@ app-likelist {
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 150px);
-  min-width: 280px;
+  min-width: 800px;
   background-color: #0097e6;
 }
 
@@ -56,13 +56,13 @@ app-post {
 }
 
 mat-card {
-  height: 300px;
   width: 600px;
   margin-bottom: 10px;
   overflow-y: auto;
 }
 
 .profile-pix {
+  background-image: url("src/assets/images/avatar_placeholder.jpg");
   background-position: center;
   background-size: cover;
   height: 60px;
@@ -73,23 +73,33 @@ mat-card {
   margin-top: 10px;
 }
 
-ul {
-  list-style: none;
-  line-height: 30px;
-  color: white;
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-li {
-  height: 30px;
-  margin-bottom: 10px;
-  background-color: grey;
+mat-card-content > p {
+  align-self: flex-start;
+}
+
+mat-card-content > img {
+  width: 500px;
 }
 
 mat-card-actions {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
+}
+
+#comment-button {
+  padding-left: 9px;
+}
+
+#comment-label {
+  padding-left: 10px;
 }
 
 footer {
