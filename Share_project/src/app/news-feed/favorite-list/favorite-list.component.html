@@ -1,1 +1,12 @@
-<p>favorite-list works!</p>
+<mat-card class="likedstorys-card">
+    <mat-card-title-group>
+      <mat-card-title>{{likedStory.publisherName}}</mat-card-title>
+      <mat-card-subtitle>{{likedStory.publishedTime | date:"medium"}}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      {{likedStory.content.text | maxlength}}
+      <button mat-icon-button color="warn" class="delete-button">
+          <mat-icon>remove_circle</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>

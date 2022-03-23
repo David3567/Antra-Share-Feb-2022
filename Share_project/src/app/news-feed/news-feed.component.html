@@ -1,20 +1,43 @@
-<!-- <mat-toolbar class="top-bar" color="primary">
-    <span>My Application</span>
-    <span class="bar-spacer"></span>
-    <button mat-flat-button color="accent" (click)="openDialog()">Like List</button>
-</mat-toolbar> -->
-<div class="news-feed-container">
-    <button mat-fab color="primary" class="add-button">
+<mat-drawer-container class="news-feed-container">
+  <mat-drawer #drawer class="sidenav" mode="side" position="end" autosize>
+    <mat-card *ngIf="getLikedStory().length < 1 ? true : false">
+      <mat-card-content>no one liked</mat-card-content>
+    </mat-card>
+    <div *ngFor="let story of getLikedStory()">
+      <app-favorite-list [likedStory]="story"></app-favorite-list>
+    </div>
+  </mat-drawer>
+
+  <div class="main-content">
+    <div class="buttons">
+      <button mat-fab color="primary" class="add-button">
         <mat-icon>add</mat-icon>
-    </button>
-    <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
-        <div *cdkVirtualFor="let story of storyList" class="story">
-            <app-story [storyItem]="story"> </app-story>
-        </div>
-    </cdk-virtual-scroll-viewport>
-</div>
-<!-- <mat-toolbar class="bottom-bar">
-    <button mat-raised-button>My Profile</button>
-    <button mat-raised-button>News Feed</button>
-    <button mat-raised-button>Settings</button>
-</mat-toolbar> -->
+      </button>
+      <button
+        mat-fab
+        color="accent"
+        class="favorite-button"
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>list</mat-icon>
+      </button>
+    </div>
+
+    <!-- <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
+      <div *cdkVirtualFor="let story of storyList" class="story">
+        <app-story [storyItem]="story"> </app-story>
+      </div>
+    </cdk-virtual-scroll-viewport> -->
+
+    <div
+      class="story-container"
+      infinite-scroll
+      (scrolled)="onScrollDown($event)"
+    >
+      <div *ngFor="let story of listArray" class="story">
+        <app-story [storyItem]="story"> </app-story>
+      </div>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="!finished"></mat-progress-bar>
+  </div>
+</mat-drawer-container>

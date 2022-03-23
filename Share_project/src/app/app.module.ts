@@ -15,6 +15,8 @@ import { LoginModule } from './login/login.module';
 import { StoryComponent } from './news-feed/story/story.component';
 import { FavoriteListComponent } from './news-feed/favorite-list/favorite-list.component';
 import { NewsFeedModule } from './news-feed/news-feed.module';
+import { SidenevService } from './services/sidenev.service';
+import { MaxlengthPipe } from './news-feed/pipe/maxlength.pipe';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { NewsFeedModule } from './news-feed/news-feed.module';
     NewsFeedComponent,
     LoginComponent,
     StoryComponent,
+    MaxlengthPipe,
     FavoriteListComponent
     
   ],
@@ -38,7 +41,7 @@ import { NewsFeedModule } from './news-feed/news-feed.module';
     LoginModule,
     NewsFeedModule
   ],
-  providers: [],
+  providers: [SidenevService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

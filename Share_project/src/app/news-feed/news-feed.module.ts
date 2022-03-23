@@ -8,6 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { CdkScrollableModule } from '@angular/cdk/scrolling';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+
+
 
 const newsFeedModule = [
     CommonModule,
@@ -16,7 +22,10 @@ const newsFeedModule = [
     MatIconModule,
     MatCardModule,
     MatDividerModule,
-    CdkScrollableModule
+    CdkScrollableModule,
+    MatSidenavModule,
+    InfiniteScrollModule,
+    MatProgressBarModule
 ];
 
 

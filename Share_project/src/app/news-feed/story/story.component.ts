@@ -15,16 +15,18 @@ export class StoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.storyItem);
   }
 
   likeClick() {
     if(this.likeStatus === "unlike") {
       this.likeStatus = "like";
+      this.storyItem.likedIdList.push("1");
     }
     else if (this.likeStatus === "like") {
       this.likeStatus = "unlike";
+      this.storyItem.likedIdList.shift();
     }
+    console.log(this.storyItem.likedIdList);
   }
 
 }
