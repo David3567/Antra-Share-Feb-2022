@@ -2,7 +2,7 @@
     height:230px;
     width: auto;
     background-color: #D7DBD6;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     padding: 3%;
     margin: 5%;
     text-align: center;
@@ -15,7 +15,7 @@ video {
     max-width: 14vw;
     /* background-color: white; */
     border: solid black 1px;
-    border-radius: 25px;
+    /* border-radius: 10px; */
     margin-left: 2vw;
 }
 
@@ -40,5 +40,5 @@ mat-card-content {
     height: auto;
     text-align: left;
     padding: 2%;
-    border-radius: 25px;
+    /* border-radius: 25px; */
 }

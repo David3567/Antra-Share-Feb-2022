@@ -12,6 +12,8 @@ import { LoginModule } from './login/login.module';
 import { NewsFeedModule } from './news-feed/news-feed.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingModule } from './setting/setting.module';
+import { NewsfeedService } from './core/newsfeed.service';
+import { Variables } from './core/globalVariable';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { SettingModule } from './setting/setting.module';
     SettingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [NewsfeedService, Variables],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

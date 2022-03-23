@@ -11,7 +11,6 @@ import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { ShortenPipe } from '../core/shorten.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { CommentComponent } from './comment/comment.component';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     HttpClientModule,
     SharedModule,
-    MatDialogModule
 
   ],
   exports: [
@@ -37,8 +35,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     PostCardComponent,
     LikeListComponent
   ],
-  providers: [
-    NewsfeedService
-  ]
+  // providers: [
+  //   NewsfeedService
+  // ]
 })
 export class NewsFeedModule { }

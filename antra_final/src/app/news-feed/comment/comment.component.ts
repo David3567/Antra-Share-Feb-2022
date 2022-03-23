@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Comment } from '../story.interfaces';
 
 @Component({
@@ -8,15 +8,12 @@ import { Comment } from '../story.interfaces';
 })
 
 export class CommentComponent implements OnInit {
-  commentslist!: Comment[];
   pageofComments!: Array<any>;
   current_page:number = 1;
   records_per_page = 5;
 
   show_prev: boolean = false;
   show_next: boolean = true;
-
-
 
   constructor(@Inject(MAT_DIALOG_DATA) public datas: Comment[]) { }
 

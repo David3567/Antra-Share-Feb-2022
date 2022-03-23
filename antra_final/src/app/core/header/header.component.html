@@ -2,12 +2,14 @@
     <div class="left">
         <button mat-flat-button [routerLink]="['/profile']">Profile</button>
         <button mat-flat-button [routerLink]="['/news']" >News Feed</button>
-    </div>
-
-    <button mat-flat-button [routerLink]="['/admin']" >Admin</button>
-
-    <div class="right">
+        <button mat-flat-button [routerLink]="['/admin']" >Admin</button>
         <button mat-flat-button [routerLink]="['/setting']">Settings</button>
+    </div>
+    <div class="right">
+        <button mat-mini-fab color="warn" 
+        (click)="showLikedList()">
+            <mat-icon>favorite</mat-icon>
+        </button>
     </div>
 
 </header>

@@ -10,25 +10,18 @@ import { Subscription } from 'rxjs';
 })
 export class NewsfeedPageComponent implements OnInit, OnDestroy {
   Storieslist!: Story[];
-  LikedLists!: Story[];
   subsciptionStories$ = new Subscription();
-  subsciptionLiked$ = new Subscription();
 
-  constructor(private newsfeedservice:NewsfeedService) { }
+  constructor(private newsfeedservice: NewsfeedService) { }
 
   ngOnInit (): void {
     this.subsciptionStories$ = this.newsfeedservice.getStoris().subscribe((data: Story[])=>{
       this.Storieslist = data;
     })
-    this.subsciptionLiked$ = this.newsfeedservice.getLikedList().subscribe((data: Story[])=>{
-      this.LikedLists = data;
-      console.log(this.LikedLists);
-    })
   }
   openDialog(){}
 
   ngOnDestroy(): void {
-    this.subsciptionLiked$.unsubscribe();
     this.subsciptionStories$.unsubscribe();
   }
 }
