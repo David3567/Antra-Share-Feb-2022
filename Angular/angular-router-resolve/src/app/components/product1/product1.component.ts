@@ -19,7 +19,7 @@ export class Product1Component {
   ) {}
 
   ngOnInit() {
-    this.spinnerService.setspinner(false);
+    // this.spinnerService.setspinner(false);
     this.productService.getProducts().subscribe((data) => {
       if (data) {
         this.products = data;

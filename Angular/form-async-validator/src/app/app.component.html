@@ -3,7 +3,7 @@
     <input formControlName="email" />
 
     <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
-      <div *ngIf="email?.errors?.invalidAsync">Pls use another username</div>
+      <div *ngIf="email?.errors?.hasuser">Pls use another username</div>
       <!-- <div *ngIf="!email?.errors?.invalidAsync">you can use this email</div> -->
     </div>
 

@@ -56,13 +56,13 @@ export class AppComponent implements OnInit {
 
   private myAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return timer(10).pipe(
+      return timer(5000).pipe(
         switchMap((val: any) => {
           console.log(1111111);
           return this.asyncValidatorService.getUser(control.value);
         }),
         // tap(console.log),
-        mapTo({ invalidAsync: true }),
+        mapTo({ hasuser: true }),
         catchError((err) => of(null))
       );
     };
@@ -90,12 +90,16 @@ export class AppComponent implements OnInit {
   //     return this.asyncValidatorService.getUser(control.value).pipe(
   //       map((result: any) => {
   //         console.log(result);
-  //         return result ? { invalidAsync: true } : null;
+  //         return result ? { hasuser: true } : null;
   //       })
   //     );
   //   };
   // }
 }
+
+// interface AsyncValidatorFn {
+//   (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null>
+// }
 
 export function myAsyncValidator(
   asyncValidatorService: AsyncValidatorService
