@@ -11,6 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { LikedStoryComponent } from './newsfeed-page/like-list/liked-story/liked-story.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommentsPopUpComponent } from './newsfeed-page/story-card/comments-pop-up/comments-pop-up.component';
+
 
 @NgModule({
   declarations: [
@@ -18,14 +22,17 @@ import { LikedStoryComponent } from './newsfeed-page/like-list/liked-story/liked
     PostNewStoryComponent,
     StoryCardComponent,
     LikeListComponent,
-    LikedStoryComponent
+    LikedStoryComponent,
+    CommentsPopUpComponent
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     HttpClientModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   exports: [
     NewsfeedPageComponent

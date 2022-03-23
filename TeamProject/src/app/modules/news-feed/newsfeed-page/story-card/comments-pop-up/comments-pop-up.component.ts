@@ -1,6 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { newsTemplate } from 'src/app/interfaces/news.model';
 
 @Component({
   selector: 'app-comments-pop-up',
