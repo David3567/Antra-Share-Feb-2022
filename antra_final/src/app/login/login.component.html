@@ -2,17 +2,21 @@
 <div class="main-container">
     <form [formGroup]="form" (ngSubmit)="onLogIn()">
 
-        <input type="username" placeholder="Username" formControlName="username"><br>
-        <div *ngIf="!username?.valid && (username?.dirty || username?.touched)" class="error">
-            <p>Invalid username</p>
+        <div class="username-container">
+            <input type="username" placeholder="Username" formControlName="username"><br>
+            <div *ngIf="!username?.valid && (username?.dirty || username?.touched)" class="error">
+                Invalid username
+            </div>
         </div>
 
-        <input type="password" placeholder="Password" formControlName="password"><br>
-        <div *ngIf="!password?.valid && (password?.dirty || password?.touched)" class="error">
-            <p>Invalid password</p>
+        <div class="password-container">
+            <input type="password" placeholder="Password" formControlName="password"><br>
+            <div *ngIf="!password?.valid && (password?.dirty || password?.touched)" class="error">
+                Invalid password
+            </div>
         </div>
 
-        <p>New User? <a routerLink= "/register" >Register</a></p>
+        <p>New User? <a routerLink="/register">Register</a></p>
         <button type="login" class="login-button">Log In</button>
     </form>
 </div>
