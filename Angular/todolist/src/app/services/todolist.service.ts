@@ -11,16 +11,11 @@ export class TodolistService {
   constructor(private http: HttpClient) {}
 
   getTodos(): Observable<Todo[]> {
-    return this.http.get([this.baseUrl, this.path].join('/')) as Observable<
-      Todo[]
-    >;
+    return this.http.get<Todo[]>([this.baseUrl, this.path].join('/'));
   }
 
   addTodo(newTodo: Todo): Observable<Todo> {
-    return this.http.post(
-      [this.baseUrl, this.path].join('/'),
-      newTodo
-    ) as Observable<Todo>;
+    return this.http.post<Todo>([this.baseUrl, this.path].join('/'), newTodo);
   }
 
   deleteTodo(id: number) {

@@ -1,0 +1,41 @@
+li {
+  height: var(--height-todolist-header);
+  line-height: var(--height-todolist-header);
+  width: 100%;
+  border: none;
+  outline: none;
+  list-style: none;
+
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  padding: 0 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li:hover {
+  background-color: var(--color-red-li-hover);
+}
+li button {
+  color: red;
+  height: var(--height-todolist-header);
+  line-height: var(--height-todolist-header);
+  width: auto;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 1.5rem;
+}
+li button:hover {
+  font-size: 1.6rem;
+}
+li button:active {
+  font-size: 1.3rem;
+}
+li span {
+  height: 100%;
+  overflow: hidden;
+  line-height: var(--height-todolist-header);
+}

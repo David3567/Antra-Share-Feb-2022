@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { tap } from 'rxjs/operators';
 import { Todo } from '../interfaces/todo.model';
 import { TodolistService } from '../services/todolist.service';
 
@@ -9,8 +10,8 @@ import { TodolistService } from '../services/todolist.service';
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodolistComponent implements OnInit {
-  counter = 3;
-  isdisabled = true;
+  @ViewChild('inputbox', { static: true }) inputbox!: ElementRef;
+  newtodo = new Todo();
 
   todolist!: Todo[];
 
@@ -23,8 +24,14 @@ export class TodolistComponent implements OnInit {
   }
 
   add() {
-    this.counter++;
-    this.isdisabled = !this.isdisabled;
+    this.todolistService
+      .addTodo(this.newtodo)
+      .pipe(
+        tap((val) => {
+          this.todolist = [val, ...this.todolist];
+        })
+      )
+      .subscribe();
   }
 
   deletetodo(id: number) {

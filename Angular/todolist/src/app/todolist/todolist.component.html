@@ -1,14 +1,16 @@
-<ul>
+<header class="todolist__header">todo list</header>
+<input
+  class="todolist__input"
+  placeholder="input your todo here..."
+  #inputbox
+  (keyup.enter)="add()"
+  [(ngModel)]="newtodo.title"
+/>
+
+<ul id="todolist__container">
   <app-todoitem
-    *ngFor="let todo of todolist"
-    [todoitem]="todo"
+    *ngFor="let item of todolist"
+    [todoitem]="item"
     (todoIdEmiter)="deletetodo($event)"
   ></app-todoitem>
 </ul>
-
-<!-- <h1>{{ counter }}</h1>
-
-<button (click)="add()">+</button>
-<button [disabled]="isdisabled">-</button>
-
-<input type="text" [(ngModel)]="counter" /> -->

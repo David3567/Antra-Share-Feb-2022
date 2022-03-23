@@ -1,3 +1,22 @@
-h1 {
-  color: red;
+.header {
+  height: var(--height-header);
+  line-height: var(--height-header);
+
+  color: white;
+  background: linear-gradient(to right, black, var(--color-green));
+  font-size: 2rem;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  padding-left: 10px;
+}
+
+.content {
+  background-color: blanchedalmond;
+  width: 100%;
+  height: calc(100% - var(--height-header));
+  padding-top: var(--height-header);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

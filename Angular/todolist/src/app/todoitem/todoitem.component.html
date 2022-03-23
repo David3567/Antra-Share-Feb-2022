@@ -1,6 +1,6 @@
 <li>
-  <span>
-    {{ todoitem.title }}
-  </span>
-  <button (click)="clickdelete()">X</button>
+  <span>{{ todoitem.title }}</span>
+  <button class="delete_btn" id="${todoitem.id}" (click)="clickdelete()">
+    X
+  </button>
 </li>
