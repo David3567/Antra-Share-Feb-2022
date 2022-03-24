@@ -27,10 +27,20 @@ export class LoginComponent implements OnInit {
   checkLoginInfo(name: string, pass: string) {
     if(admin.getName() === name && admin.getPass() === pass) {
       console.log("admin");
+      this.toAdmin();
     }
     else if (user.getName() === name && user.getPass() === pass) {
       console.log("user");
+      this.toNewsfeed();
     }
+  }
+
+  private toAdmin() {
+    this.router.navigate(['/admin']);
+  }
+
+  private toNewsfeed() {
+    this.router.navigate(['/newsfeed']);
   }
 
   checkBox(check:boolean) {

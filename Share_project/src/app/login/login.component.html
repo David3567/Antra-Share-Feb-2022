@@ -30,7 +30,10 @@
         />
       </mat-form-field>
       <div *ngIf="!username.valid && username.touched">
-        <p>username is required</p>
+        <p class="warningtext">Username is required</p>
+      </div>
+      <div *ngIf="!password.valid && password.touched">
+        <p class="warningtext">Password is required</p>
       </div>
       <button mat-raised-button color="primary" class="login-button" (click)="checkLoginInfo(username.value, password.value)" [disabled]="check"> 
         Login

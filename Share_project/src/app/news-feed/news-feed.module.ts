@@ -7,13 +7,19 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
-import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NewsFeedComponent } from './news-feed.component';
+import { MaxlengthPipe } from './pipe/maxlength.pipe';
+import { RouterModule, Routes } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
+const route: Routes = [
+  { path:'', component: NewsFeedComponent}
+]
 
 const newsFeedModule = [
     CommonModule,
@@ -22,18 +28,21 @@ const newsFeedModule = [
     MatIconModule,
     MatCardModule,
     MatDividerModule,
-    CdkScrollableModule,
     MatSidenavModule,
     InfiniteScrollModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatButtonModule
 ];
 
 
 
 @NgModule({
   declarations: [
+    NewsFeedComponent,
+    StoryComponent,
+    MaxlengthPipe,
+    FavoriteListComponent
   ],
-  imports: [newsFeedModule],
-  exports: [newsFeedModule]
+  imports: [newsFeedModule, RouterModule.forChild(route)]
 })
 export class NewsFeedModule { }

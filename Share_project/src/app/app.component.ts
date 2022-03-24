@@ -10,9 +10,6 @@ import {
   NavigationStart,
   Event as NavigationEvent,
 } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSidenav } from '@angular/material/sidenav';
-import { SidenevService } from './services/sidenev.service';
 
 @Component({
   selector: 'app-root',
@@ -20,29 +17,18 @@ import { SidenevService } from './services/sidenev.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
-
   title = 'Share_project';
-  currentPage = '';
   event$;
-  toggleActive: boolean = false;
+  currentPage!:string;
+  disableToolBarPages: String[] = ['/register', '/login', '/'];
 
-  constructor(
-    private dialog: MatDialog,
-    private route: Router,
-    private sidenavservice: SidenevService
-  ) {
+  constructor(private route: Router) {
     this.event$ = this.route.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.currentPage = event.url;
         console.log(this.currentPage)
       }
     });
-  }
-  toggleRightSidenav() {
-    this.toggleActive = !this.toggleActive;
-    this.sidenavservice.toggle();
-
-    console.log('Clicked');
   }
 
   ngOnDestroy(): void {

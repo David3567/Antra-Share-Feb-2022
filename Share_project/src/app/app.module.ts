@@ -1,37 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
-import { UserComponent } from './admin/user/user.component';
-import { UserinfoComponent } from './admin/userinfo/userinfo.component';
-import { NewsFeedComponent } from './news-feed/news-feed.component';
-import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
-import { StoryComponent } from './news-feed/story/story.component';
-import { FavoriteListComponent } from './news-feed/favorite-list/favorite-list.component';
 import { NewsFeedModule } from './news-feed/news-feed.module';
-import { SidenevService } from './services/sidenev.service';
-import { MaxlengthPipe } from './news-feed/pipe/maxlength.pipe';
-import { RegisterComponent } from './login/register/register.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdminComponent,
-    UserComponent,
-    UserinfoComponent,
-    NewsFeedComponent,
-    LoginComponent,
-    StoryComponent,
-    MaxlengthPipe,
-    FavoriteListComponent,
-    RegisterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -41,8 +23,10 @@ import { RegisterComponent } from './login/register/register.component';
     HttpClientModule,
     LoginModule,
     NewsFeedModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
-  providers: [SidenevService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

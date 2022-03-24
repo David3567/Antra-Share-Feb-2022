@@ -1,25 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './login/register/register.component';
-import { FavoriteListComponent } from './news-feed/favorite-list/favorite-list.component';
-import { NewsFeedComponent } from './news-feed/news-feed.component';
-import { ProfileComponent } from './profile/profile.component';
-import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
-  {path: 'My Profile', component: ProfileComponent},
-  {path: 'News Feed', component: NewsFeedComponent},
-  {path: 'Settings', component: SettingsComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'favorite', component: FavoriteListComponent},
+  {
+    path: 'My Profile',
+    loadChildren: () =>
+      import('./profile/profile.module').then((m) => m.ProfileModule),
+  },
+  {
+    path: 'Settings',
+    loadChildren: () =>
+      import('./settings/settings.module').then((m) => m.SettingsModule),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+  },
 
-  {path: '', redirectTo: 'login', pathMatch:'full'}
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

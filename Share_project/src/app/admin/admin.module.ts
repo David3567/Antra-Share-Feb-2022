@@ -7,10 +7,16 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AdminComponent } from './admin.component';
+import { UserComponent } from './user/user.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { RouterModule, Routes } from '@angular/router';
 
 
 
-
+const routes: Routes = [
+  { path:'', component: AdminComponent}
+]
 
 const AdminMaterialModules = [
     MatToolbarModule,
@@ -19,14 +25,17 @@ const AdminMaterialModules = [
     MatListModule,
     MatDividerModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CommonModule
   ];
 
 
 @NgModule({
   declarations: [
+    AdminComponent,
+    UserComponent,
+    UserinfoComponent
   ],
-  imports: [AdminMaterialModules],
-  exports: [AdminMaterialModules]
+  imports: [AdminMaterialModules, RouterModule.forChild(routes)]
 })
 export class AdminModule { }
