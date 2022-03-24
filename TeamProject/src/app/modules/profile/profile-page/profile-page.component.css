@@ -61,7 +61,13 @@ mat-radio-button {
 }
 
 .password-container {
-  padding-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2.5em;
+}
+
+.password-container > mat-form-field {
+  width: 49%;
 }
 
 mat-card-actions {
