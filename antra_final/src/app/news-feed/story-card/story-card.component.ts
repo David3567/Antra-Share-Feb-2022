@@ -14,8 +14,8 @@ import { Variables } from 'src/app/core/globalVariable';
 export class StoryCardComponent implements OnInit {
   @Input() storiesdetail!: Story;
   liked: boolean = false;
-  
-  constructor(private newsfeedservice:NewsfeedService, 
+
+  constructor(private newsfeedservice:NewsfeedService,
     public dialog: MatDialog,
     public variable: Variables ) { }
 
@@ -24,6 +24,8 @@ export class StoryCardComponent implements OnInit {
 
   showComment(){
     this.dialog.open(CommentComponent,{
+      width: '600px',
+      height:'700px',
       data: this.storiesdetail.comment
     })
   }
@@ -41,7 +43,6 @@ export class StoryCardComponent implements OnInit {
     } else {
       this.newsfeedservice.removeFromLikedList(data);
     }
-    
   }
 
 }
