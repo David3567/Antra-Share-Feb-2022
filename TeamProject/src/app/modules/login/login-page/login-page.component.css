@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     height: calc(100vh - 50px);
+    max-height: calc(100vh - 50px);
     background-color: #0097e6;
 }
 
@@ -53,4 +54,15 @@ form>a {
 }
 .error{
     color: red;
+}
+
+.registrationLink {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #6B1AA5;
+}
+
+.registerationLink:hover {
+    color: dodgerblue;
+    
 }
