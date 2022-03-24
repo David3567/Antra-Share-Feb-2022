@@ -12,8 +12,8 @@ export class CommentComponent implements OnInit {
   current_page: number = 1;
   records_per_page = 5;
   pagelength!: number;
-  show_prev: boolean = false;
-  show_next: boolean = true;
+  // show_prev: boolean = false;
+  // show_next: boolean = true;
   pageArray: any[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public datas: Comment[]) { }
@@ -30,29 +30,29 @@ export class CommentComponent implements OnInit {
   onNext() {
     if (+this.current_page < +this.pagelength) {
       this.current_page++;
-      this.changeIcon();
+      // this.changeIcon();
     }
   }
 
   onPrevious() {
     if (this.current_page > 1) {
       this.current_page--;
-      this.changeIcon();
+      // this.changeIcon();
     }
   }
 
-  changeIcon() {
-    if (this.current_page === this.pagelength) {
-      this.show_next = false;
-    } else {
-      this.show_next = true;
-    }
-    if (this.current_page !== 1) {
-      this.show_prev = true;
-    } else {
-      this.show_prev = false;
-    }
-  }
+  // changeIcon() {
+  //   if (this.current_page === this.pagelength) {
+  //     this.show_next = false;
+  //   } else {
+  //     this.show_next = true;
+  //   }
+  //   if (this.current_page !== 1) {
+  //     this.show_prev = true;
+  //   } else {
+  //     this.show_prev = false;
+  //   }
+  // }
 
   setPage(page: any) {
     if (page == "Prev" && (this.current_page > 1)) { this.current_page -= 1; }
