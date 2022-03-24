@@ -15,6 +15,7 @@
 
 mat-card {
   width: 600px;
+  padding: 16px;
 }
 
 .profile-pix {
