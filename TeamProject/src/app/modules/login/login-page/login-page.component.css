@@ -23,7 +23,7 @@ img {
 }
 
 input[type="text"] {
-  padding: 15px;
+  padding: 5px;
 }
 
 button {
@@ -41,10 +41,6 @@ button:hover {
 
 button[type="submit"]:disabled {
   background-color: lightgray;
-}
-
-.loginBtn{
-    margin-top: 30px;
 }
 
 .agreement {
@@ -70,4 +66,3 @@ form > a {
     cursor: pointer;
     color: #6B1AA5;
 }
-

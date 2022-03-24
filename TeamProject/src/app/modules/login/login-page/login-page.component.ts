@@ -3,7 +3,6 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  FormControl,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
@@ -18,8 +17,6 @@ import { max } from 'rxjs';
 export class LoginPageComponent implements OnInit {
   loginForm!:FormGroup;
 
-
-
   get usernameVal() {
     return this.loginForm.get('usernameVal');
   }
@@ -33,11 +30,10 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       usernameVal: ['',[Validators.minLength(5), Validators.maxLength(16),Validators.required],[]],
-      passwordVal: ['',[Validators.minLength(5),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required],[]],
+      passwordVal: ['',[Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required],[]],
     });
 
   }
-
 
   onSubmit() {
     console.log(this.loginForm.value);
