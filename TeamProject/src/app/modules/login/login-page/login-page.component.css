@@ -8,50 +8,55 @@
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    border: 2px solid black;
-    padding: 20px;
-    width: 300px;
-    background-color: white;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  border: 2px solid black;
+  padding: 20px;
+  width: 300px;
+  background-color: white;
 }
 
 img {
-    width: 200px;
-    align-self: center;
+  width: 200px;
+  align-self: center;
 }
 
-input[type='text'] {
-    padding: 5px;
+input[type="text"] {
+  padding: 5px;
 }
 
 button {
-    padding: 5px;
-    border: 1px solid transparent;
-    border-radius: 7px;
-    color: white;
-    font-size: 16px;
-    background-color: #428BCA;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: white;
+  font-size: 16px;
+  background-color: #428bca;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  background-color: lightgray;
 }
 
 .agreement {
-    display: flex;
+  display: flex;
 }
 
-form>a {
-    margin: 10px 0;
-    text-align: center;
+form > a {
+  margin: 10px 0;
+  text-align: center;
 }
 
 .formFooter {
-    display: flex;
-    justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-.loginBtn:hover {
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.24), 0 7px 10px 0 rgba(0,0,0,0.19);
-}
 .error{
     color: red;
 }
@@ -60,9 +65,4 @@ form>a {
     text-decoration: underline;
     cursor: pointer;
     color: #6B1AA5;
-}
-
-.registerationLink:hover {
-    color: dodgerblue;
-    
 }
