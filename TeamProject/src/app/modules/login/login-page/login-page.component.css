@@ -22,7 +22,7 @@ img {
 }
 
 input[type="text"] {
-  padding: 5px;
+  padding: 15px;
 }
 
 button {
@@ -42,6 +42,10 @@ button[type="submit"]:disabled {
   background-color: lightgray;
 }
 
+.loginBtn{
+    margin-top: 30px;
+}
+
 .agreement {
   display: flex;
 }
@@ -59,3 +63,4 @@ form > a {
 .error {
   color: red;
 }
+
