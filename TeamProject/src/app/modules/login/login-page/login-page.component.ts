@@ -3,6 +3,7 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
+  FormControl,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
@@ -15,7 +16,9 @@ import { max } from 'rxjs';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  loginForm!:FormGroup;
+  loginForm!: FormGroup;
+
+
 
   get usernameVal() {
     return this.loginForm.get('usernameVal');
@@ -29,11 +32,12 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      usernameVal: ['',[Validators.minLength(5), Validators.maxLength(16),Validators.required],[]],
-      passwordVal: ['',[Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required],[]],
+      usernameVal: ['', [Validators.minLength(5), Validators.maxLength(16), Validators.required], []],
+      passwordVal: ['', [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required], []],
     });
 
   }
+
 
   onSubmit() {
     console.log(this.loginForm.value);
@@ -49,7 +53,7 @@ interface ValidatorFn {
   (control: AbstractControl): ValidationErrors | null;
 }
 
-function customValidator(minlen:number, maxlen:number): ValidatorFn {
+function customValidator(minlen: number, maxlen: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
 
     if (control.value.length < minlen) {

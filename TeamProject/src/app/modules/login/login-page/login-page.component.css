@@ -1,10 +1,10 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(100vh - 50px);
-    max-height: calc(100vh - 50px);
-    background-color: #0097e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 50px);
+  max-height: calc(100vh - 50px);
+  background-color: #0097e6;
 }
 
 form {
@@ -23,7 +23,7 @@ img {
 }
 
 input[type="text"] {
-  padding: 5px;
+  padding: 15px;
 }
 
 button {
@@ -43,6 +43,10 @@ button[type="submit"]:disabled {
   background-color: lightgray;
 }
 
+.loginBtn {
+  margin-top: 30px;
+}
+
 .agreement {
   display: flex;
 }
@@ -57,12 +61,12 @@ form > a {
   justify-content: space-between;
 }
 
-.error{
-    color: red;
+.error {
+  color: red;
 }
 
 .registrationLink {
-    text-decoration: underline;
-    cursor: pointer;
-    color: #6B1AA5;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #6b1aa5;
 }
