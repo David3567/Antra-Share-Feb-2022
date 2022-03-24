@@ -36,8 +36,9 @@
 
         <button class="button loginBtn" type="submit" [disabled]="!loginForm.valid">Login</button>
 
-        <a href="/register">No Accounts? Register Now!</a>
-        <div class="formFooter">
+        <a (click)="onRegister()" class="registrationLink">No Accounts? Register
+          Now!</a>
+        <div class=" formFooter">
           <div class="agreement">
             <input type="checkbox" name="agreement" id=""><label for="agreement">Agreement</label>
           </div>

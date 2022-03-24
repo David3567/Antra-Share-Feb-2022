@@ -43,7 +43,7 @@ export class LoginPageComponent implements OnInit {
     console.log(this.loginForm.value);
   }
 
-  toRegistration() {
+  onRegister() {
     this.router.navigate(['register']);
   }
 
