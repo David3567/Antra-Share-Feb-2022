@@ -42,8 +42,9 @@
           <a class="password-login" routerLink="/login/login-form">Go To Login</a>
         </div>
       </div>
-<!-- Registration Success Message -->
+<!-- onSubmit Message -->
 <br>
-<div *ngIf="showMessage" [ngStyle]="{color: 'green'}">Registration Successful!</div>
+<div *ngIf="showSuccessMessage" [ngStyle]="{color: 'green'}">Registration Successful!</div>
+<div *ngIf="showErrorMessage" [ngStyle]="{color: 'red'}">There was an error :(</div>
     </form>
   </div>
