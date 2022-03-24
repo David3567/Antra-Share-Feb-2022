@@ -1,12 +1,14 @@
 <!-- <app-admin></app-admin> -->
 <!-- <app-login></app-login> -->
 <!-- <app-news-feed></app-news-feed> -->
-<mat-toolbar class="top-bar" color="primary">
+<mat-toolbar class="top-bar" color="primary" *ngIf="currentPage === '/login' ? false : true">
     <span>My Application</span>
     <button mat-flat-button color='primary' [routerLink]="['My Profile']">My Profile</button>
     <button mat-flat-button color='primary' [routerLink]="['News Feed']">News Feed</button>
     <button mat-flat-button color='primary' [routerLink]="['Settings']">Settings</button>
     <span class="bar-spacer"></span>
-    <button mat-flat-button color="accent" [routerLink]="['favorite']">Like List</button>
+    <!-- <button mat-flat-button color="accent" *ngIf="currentPage === '/News%20Feed' ? true : false" (click)="toggleRightSidenav()" class="rightSidenav_toggle">
+        like list
+    </button> -->
 </mat-toolbar>
 <router-outlet></router-outlet>

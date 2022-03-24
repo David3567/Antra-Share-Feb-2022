@@ -7,6 +7,6 @@ export interface News {
     "publishedTime": string,
     "content": content,
     "comment": commentUser[],
-    "likedIdList": [],
+    "likedIdList": string[],
     "__v": number
 }

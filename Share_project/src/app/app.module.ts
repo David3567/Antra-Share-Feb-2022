@@ -15,6 +15,8 @@ import { LoginModule } from './login/login.module';
 import { StoryComponent } from './news-feed/story/story.component';
 import { FavoriteListComponent } from './news-feed/favorite-list/favorite-list.component';
 import { NewsFeedModule } from './news-feed/news-feed.module';
+import { SidenevService } from './services/sidenev.service';
+import { MaxlengthPipe } from './news-feed/pipe/maxlength.pipe';
 import { RegisterComponent } from './login/register/register.component';
 
 
@@ -27,6 +29,7 @@ import { RegisterComponent } from './login/register/register.component';
     NewsFeedComponent,
     LoginComponent,
     StoryComponent,
+    MaxlengthPipe,
     FavoriteListComponent,
     RegisterComponent
   ],
@@ -39,7 +42,7 @@ import { RegisterComponent } from './login/register/register.component';
     LoginModule,
     NewsFeedModule,
   ],
-  providers: [],
+  providers: [SidenevService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
