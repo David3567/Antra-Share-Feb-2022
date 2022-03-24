@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ProfilePageComponent implements OnInit {
   displayName: string = 'Apawcalypse♡';
+  hide: boolean = true;
 
   profile = new FormGroup({
     bio: new FormControl(''),
@@ -26,6 +27,7 @@ export class ProfilePageComponent implements OnInit {
         '^(?=.*[A-Z])(?=.*[#?!@$%^&*])[A-Za-z0-9#?!@$%^&*]{0,}$'
       ),
     ]),
+    confirm: new FormControl('', Validators.required),
   });
 
   constructor() {}
@@ -35,6 +37,9 @@ export class ProfilePageComponent implements OnInit {
   }
   get passwordFC() {
     return this.profile.get('password');
+  }
+  get confirmFC() {
+    return this.profile.get('confirm');
   }
 
   ngOnInit(): void {}

@@ -1,9 +1,10 @@
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 50px);
-  background-color: #0097e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 50px);
+    max-height: calc(100vh - 50px);
+    background-color: #0097e6;
 }
 
 form {
@@ -60,7 +61,13 @@ form > a {
   justify-content: space-between;
 }
 
-.error {
-  color: red;
+.error{
+    color: red;
+}
+
+.registrationLink {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #6B1AA5;
 }
 

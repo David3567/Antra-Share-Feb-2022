@@ -13,10 +13,10 @@
                         <div *ngIf="usernameVal?.errors?.['required']">
                         Username is required!</div>
                         <div *ngIf="usernameVal?.errors?.['minlength']">
-                        The username should be at least 5 characters!
+                          The username should be at least <strong>5</strong> characters!
                         </div>
                         <div *ngIf="usernameVal?.errors?.['maxlength']">
-                        The username should be no more than 16 characters!
+                          The username should be no more than <strong>16</strong> characters!
                         </div>
                     </mat-error>
                 </mat-form-field>
@@ -32,10 +32,10 @@
                         <div *ngIf="passwordVal?.errors?.['required']">
                             Password is required!</div>
                         <div *ngIf="passwordVal?.errors?.['minlength']">
-                            Min length (5) required
+                            Min length <strong>5</strong> required
                         </div>
                         <div *ngIf="passwordVal?.errors?.['pattern']">
-                            (1) uppercase and (1) special character (#?!@$%^&*) required
+                          <strong>1</strong> uppercase and <strong>1</strong> special character (#?!@$%^&*) required
                         </div>
                     </mat-error>
                 </mat-form-field>

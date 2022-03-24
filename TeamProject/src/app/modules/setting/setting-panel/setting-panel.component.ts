@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-setting-panel',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingPanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  toLogin() {
+    this.router.navigate(['login']);
   }
 
 }

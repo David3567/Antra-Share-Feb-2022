@@ -7,6 +7,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { max } from 'rxjs';
 
 @Component({
@@ -27,7 +28,7 @@ export class LoginPageComponent implements OnInit {
     return this.loginForm.get('passwordVal');
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -40,6 +41,10 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit() {
     console.log(this.loginForm.value);
+  }
+
+  toRegistration() {
+    this.router.navigate(['register']);
   }
 
 }
