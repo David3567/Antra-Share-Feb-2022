@@ -3,47 +3,66 @@
     align-items: center;
     justify-content: center;
     height: calc(100vh - 50px);
+    max-height: calc(100vh - 50px);
     background-color: #0097e6;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    border: 2px solid black;
-    padding: 20px;
-    width: 300px;
-    background-color: white;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  border: 2px solid black;
+  padding: 20px;
+  width: 300px;
+  background-color: white;
 }
 
 img {
-    width: 200px;
-    align-self: center;
+  width: 200px;
+  align-self: center;
 }
 
-input[type='text'] {
-    padding: 5px;
+input[type="text"] {
+  padding: 5px;
 }
 
 button {
-    padding: 5px;
-    border: 1px solid transparent;
-    border-radius: 7px;
-    color: white;
-    font-size: 16px;
-    background-color: #428BCA;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: white;
+  font-size: 16px;
+  background-color: #428bca;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  background-color: lightgray;
 }
 
 .agreement {
-    display: flex;
+  display: flex;
 }
 
-form>a {
-    margin: 10px 0;
-    text-align: center;
+form > a {
+  margin: 10px 0;
+  text-align: center;
 }
 
 .formFooter {
-    display: flex;
-    justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+.error{
+    color: red;
+}
+
+.registrationLink {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #6B1AA5;
 }

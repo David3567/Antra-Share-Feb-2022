@@ -1,45 +1,143 @@
-<!-- <header></header> -->
 <div class="container">
   <mat-card class="profile-card">
     <mat-card-header>
       <div mat-card-avatar class="profile-pix" title="Profile Picture"></div>
       <div class="profile-header">
-        <mat-card-title>Siamese Cat</mat-card-title>
-        <mat-card-subtitle>@Username</mat-card-subtitle>
+        <mat-card-title>{{ displayName }}</mat-card-title>
+        <mat-card-subtitle>@SiameseCat101</mat-card-subtitle>
       </div>
     </mat-card-header>
+
     <mat-card-content>
-      <p class="bio">
-        The Siamese cat is one of the first distinctly recognized breeds of
-        Asian cat. Derived from the Wichianmat landrace, one of several
-        varieties of cat native to Thailand, the original Siamese became one of
-        the most popular breeds in Europe and North America in the 19th century.
-      </p>
-      <ul>
-        <li>Email:</li>
-        <li>Age:</li>
-        <li>Gender:</li>
-        <li>Password:</li>
-      </ul>
+      <form [formGroup]="profile" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>Bio</mat-label>
+          <textarea
+            matInput
+            maxlength="160"
+            id="bio-textarea"
+            placeholder="The Siamese cat is one of the first distinctly recognized breeds of Asian cat."
+            formControlName="bio"
+          >
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput maxlength="50" formControlName="name" />
+          <mat-error *ngIf="!nameFC.valid && (nameFC.dirty || nameFC.touched)">
+            <div [hidden]="!nameFC.errors.required">Name can't be blank</div>
+            <div [hidden]="!nameFC.errors.minlength">
+              Min length <strong>5</strong> required
+            </div>
+            <div [hidden]="!nameFC.errors.maxlength">
+              Max length <strong>12</strong> exceeded
+            </div>
+          </mat-error>
+          <mat-hint>Length <strong>5-12</strong></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+
+        <div class="userinfo-container">
+          <mat-form-field id="age-field" appearance="outline">
+            <mat-label>Age</mat-label>
+            <mat-select formControlName="age">
+              <mat-option *ngFor="let age of [] | range: 1:100" [value]="age">
+                {{ age }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="radio-container">
+            <mat-radio-group formControlName="gender">
+              <div id="gender-label">
+                <mat-label>Gender</mat-label>
+              </div>
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+              <mat-radio-button value="other">Other</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="password-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+            <mat-error
+              *ngIf="
+                !passwordFC.valid && (passwordFC.dirty || passwordFC.touched)
+              "
+            >
+              <div [hidden]="!passwordFC.errors.required">
+                Password can't be blank
+              </div>
+              <div [hidden]="!passwordFC.errors.minlength">
+                Min length <strong>5</strong> required
+              </div>
+              <div [hidden]="!passwordFC.errors.pattern">
+                <strong>1</strong> uppercase and <strong>1</strong> special
+                character (#?!@$%^&*) required
+              </div>
+            </mat-error>
+            <mat-hint
+              >Min length <strong>5</strong>; Use <strong>1</strong> uppercase
+              and <strong>1</strong> special character</mat-hint
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="confirm"
+            />
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+            <mat-error *ngIf="!confirmFC.valid && confirmFC.touched">
+              Must confirm password
+            </mat-error>
+            <mat-hint>Please re-enter password</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="!profile.valid || passwordFC.value !== confirmFC.value"
+        >
+          Save
+        </button>
+      </form>
     </mat-card-content>
+
     <mat-card-actions>
       <div class="button-container">
         <button mat-fab color="primary" aria-label="post icon">
           <mat-icon>rate_review</mat-icon>
         </button>
-        <p class="post total">#</p>
+        <div class="post total">#</div>
       </div>
       <div class="button-container">
         <button mat-fab color="accent" aria-label="favorite icon">
           <mat-icon>favorite</mat-icon>
         </button>
-        <p class="like total">#</p>
+        <div class="like total">#</div>
       </div>
     </mat-card-actions>
   </mat-card>
 </div>
-<!-- <footer>
-  <button>My Profile</button>
-  <button>News Feed</button>
-  <button>Settings</button>
-</footer> -->

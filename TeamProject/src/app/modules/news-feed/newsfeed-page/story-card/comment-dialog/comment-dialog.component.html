@@ -1,0 +1,45 @@
+<mat-dialog-content>
+  <div class="container" *ngFor="let comment of pageList">
+    <div class="userContainer">
+      <img
+        src="./assets/images/avatar_placeholder.jpg"
+        alt=""
+        class="userAvatar"
+      />
+      <div class="user">
+        <div>{{ comment.publisherName }} -</div>
+        <div>{{ comment.publishedTime | date: "MMM d HH:mm a" }}</div>
+      </div>
+    </div>
+    <div class="contentContainer">
+      <img
+        *ngIf="comment.content.image.includes('https')"
+        src="{{ comment.content.image }}"
+        alt="Image"
+        class="contentImg"
+      />
+      <div class="content">{{ comment.content.text }}</div>
+    </div>
+  </div>
+  <div class="action-container">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="previousBtn"
+      (click)="onPrevious()"
+    >
+      Previous
+    </button>
+    <div>
+      <strong>{{ pageIndex }}</strong> of <strong>{{ pageSize }}</strong>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="nextBtn"
+      (click)="onNext()"
+    >
+      Next
+    </button>
+  </div>
+</mat-dialog-content>
