@@ -18,7 +18,7 @@ body {
 .login-box {
     max-width: 800px;
     min-width: 100px;
-    width: 50vw;
+    width: clamp(400px, 40vw, 1000px);
     display: flex;
     flex-direction: column;
 }
@@ -67,4 +67,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.warningtext {
+    color: red;
 }
