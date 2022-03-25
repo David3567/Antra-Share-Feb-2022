@@ -70,9 +70,11 @@ export class RegisterPageComponent implements OnInit {
       password: this.password?.value,
       userRole: 'user',
     };
-    this.accountService.postNewAccount(newAccount).subscribe((newAccount:User)=>{
-      console.log(newAccount);
-    })
+    this.accountService
+      .postNewAccount(newAccount)
+      .subscribe((newAccount: User) => {
+        console.log(newAccount);
+      });
     this.router.navigate(['']);
     // console.log(this.form.value);
     // console.log(this.username?.value);

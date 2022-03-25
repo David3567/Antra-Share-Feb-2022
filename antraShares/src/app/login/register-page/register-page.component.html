@@ -84,18 +84,16 @@
           formControlName="email"
           placeholder="Email"
         />
-        <div *ngIf="!form.valid && (form.dirty || form.touched)" class="error" >
+        <div *ngIf="!form.valid && (form.dirty || form.touched)" class="error">
           <div *ngIf="email?.errors?.['hasemail']">
             Email already exists, try loggin!!!
           </div>
         </div>
-    
 
         <button class="submit-btn" type="submit" [disabled]="!form.valid">
           Sign up
         </button>
         <button (click)="onGoback()" id="register-btn">BACK!!</button>
-
       </form>
     </div>
   </div>

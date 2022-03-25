@@ -5,7 +5,6 @@ import { VariableValue } from './variable.service';
   providedIn: 'root',
 })
 export class AsyncValidatorService {
-
   private register = 'register';
   private checkUsername = 'checkExistByUsername';
   private checkEmail = 'checkExistByEmail';
@@ -13,12 +12,19 @@ export class AsyncValidatorService {
 
   getCheckUser(username: string) {
     return this.http.get(
-      [this.variableValue.baseUrl, this.register, this.checkUsername, username].join('/')
+      [
+        this.variableValue.baseUrl,
+        this.register,
+        this.checkUsername,
+        username,
+      ].join('/')
     );
   }
   getCheckEmail(email: string) {
     return this.http.get(
-      [this.variableValue.baseUrl, this.register, this.checkEmail, email].join('/')
+      [this.variableValue.baseUrl, this.register, this.checkEmail, email].join(
+        '/'
+      )
     );
   }
 }

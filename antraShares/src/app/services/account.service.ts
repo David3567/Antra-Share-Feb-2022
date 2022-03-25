@@ -11,7 +11,7 @@ export class AccountService {
   private register = 'register';
   private createNewAccount = 'createNewAccount';
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
-  postNewAccount(newAcount: any) {
+  postNewAccount(newAcount: User) {
     return this.http.post(
       [this.variableValue.baseUrl, this.register, this.createNewAccount].join(
         '/'
