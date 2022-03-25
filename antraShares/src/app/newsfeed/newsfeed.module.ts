@@ -9,6 +9,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LikelistComponent } from './likelist/likelist.component';
 import { StoryCommentComponent } from './story-comment/story-comment.component';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule, Routes } from '@angular/router';
+
+
+const routes:Routes=[
+  {path:'',component:NewsfeedComponent},
+]
 
 @NgModule({
   declarations: [
@@ -26,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
+    RouterModule.forChild(routes)
   ],
 })
 export class NewsfeedModule {}

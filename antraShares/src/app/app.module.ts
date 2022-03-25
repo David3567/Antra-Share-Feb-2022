@@ -38,7 +38,7 @@ import { VariableValue } from './services/variable.service';
     HttpClientModule,
     AdminModule,
     LoginModule,
-    NewsfeedModule,
+    // NewsfeedModule,
     ProfileModule,
     SettingModule,
     BrowserAnimationsModule,
