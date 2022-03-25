@@ -49,7 +49,7 @@ export class RegisterFormComponent implements OnInit {
       phone: 111222333
     };
 
-    this.userService.registerUser(this.registerForm.value).subscribe((result) => {
+    this.userService.registerUser(this.user).subscribe((result) => {
       console.log(result);
     })
     
