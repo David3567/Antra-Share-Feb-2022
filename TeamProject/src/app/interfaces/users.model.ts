@@ -28,3 +28,8 @@ export interface usersTemplate {
     catchPhrase: string;
     bs: string;
   }
+
+export class AppUser {
+    userName = '';
+    password = '';
+}
