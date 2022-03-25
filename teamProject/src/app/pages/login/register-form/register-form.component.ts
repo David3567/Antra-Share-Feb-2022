@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './mustMatch.validator';
 import { AuthenService } from 'src/app/services/authen.service';
@@ -12,33 +12,35 @@ import { AuthenService } from 'src/app/services/authen.service';
 export class RegisterFormComponent implements OnInit {
 
   registerForm!: FormGroup;
-  showSuccessMessage = true;
-  showErrorMessage = true;
+  successMessage = '';
   errorMessage = '';
 
   passwordPattern = '(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}';
 
-  constructor(private formbuilder: FormBuilder, private authenService: AuthenService) {
+  constructor(private formbuilder: FormBuilder, private authenService: AuthenService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
       this.registerForm = this.formbuilder.group({
-      username:['kru24629', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
-      email:['kru24629@gmail.com', [Validators.required, Validators.email]],
-      password:['Kru24629', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
-      confirmPassword:['Kru24629', [Validators.required]]
-    }, {validator: MustMatch('password', 'confirmPassword')})
+      username:['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
+      email:['', [Validators.required, Validators.email]],
+      password:['', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
+      confirmPassword:['', [Validators.required]]
+    }, {validator: MustMatch('password', 'confirmPassword')});
+    this.cd.detectChanges();
   }
 
   onSubmit() {
-
-    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe(
-    data => {
+    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
+    data) => {
     console.log(data);
-    this.showSuccessMessage = true;
+    this.successMessage = 'Registered Successfully!';
+    this.cd.markForCheck();
     },
-    err => {
-      this.errorMessage = err.error.message;
+    (err) => {
+      this.errorMessage = err.error;
+      console.log(err.error);
+      this.cd.markForCheck();
     });
   }
 }

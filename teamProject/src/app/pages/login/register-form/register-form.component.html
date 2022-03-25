@@ -43,8 +43,8 @@
         </div>
       </div>
 <!-- onSubmit Message -->
-<br>
-<div *ngIf="showSuccessMessage" [ngStyle]="{color: 'green'}">Registration Successful!</div>
-<div *ngIf="showErrorMessage" [ngStyle]="{color: 'red'}">There was an error :(</div>
-    </form>
-  </div>
+  <br>
+  <div *ngIf="successMessage != ''" [ngStyle]="{color: 'green'}">{{successMessage}}</div>
+  <div *ngIf="errorMessage != ''" [ngStyle]="{color: 'red'}">{{errorMessage}}</div>
+  </form>
+</div>
