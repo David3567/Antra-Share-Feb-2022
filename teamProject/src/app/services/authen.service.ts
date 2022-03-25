@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { NewUser } from "src/app/interfaces/backEndUser.model";
 
 const AUTH_API = 'http://localhost:4231/api/';
 const httpOptions = {
@@ -12,19 +14,22 @@ const httpOptions = {
 export class AuthenService {
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'signin', {
-      username,
-      password
-    }, httpOptions);
+  getAllUserNames() {
+    return this.http.get<NewUser[]>(AUTH_API + 'users/getAllUsers').pipe(map(val => {
+      return val.map(item => {
+        return item.userName;
+      })
+    }))
   }
 
-  checkUniqueUserName(userName: string) {
-    return this.http.get(AUTH_API + 'users/getAllUsers').subscribe(
-      (data) => {
-        console.log(data);
-      });
+  getAllUserEmails() {
+    return this.http.get<NewUser[]>(AUTH_API + 'users/getAllUsers').pipe(map(val => {
+      return val.map(item => {
+        return item.userEmail;
+      })
+    }))
   }
+
 
   register(userName: string, userEmail: string, password: string, userRole: string): Observable<any> {
     return this.http.post(AUTH_API + 'register/createNewAccount', {
@@ -32,6 +37,13 @@ export class AuthenService {
       userEmail,
       password,
       userRole
+    }, httpOptions);
+  }
+
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(AUTH_API + 'signin', {
+      username,
+      password
     }, httpOptions);
   }
 }

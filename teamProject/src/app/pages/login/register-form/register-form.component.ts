@@ -18,11 +18,24 @@ export class RegisterFormComponent implements OnInit {
   passwordPattern = '(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}';
 
   constructor(private formbuilder: FormBuilder, private authenService: AuthenService, private cd: ChangeDetectorRef) {
+
+    this.authenService.getAllUserNames().subscribe(
+      (data) => {
+        console.warn(data[0]);
+      }
+    );
+
+    this.authenService.getAllUserEmails().subscribe(
+      (data) => {
+        console.warn(data[0]);
+      }
+    );
+
   }
 
   ngOnInit() {
       this.registerForm = this.formbuilder.group({
-      username:['kru251145', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
+      username:['yushengjr', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
       email:['kru251145@gmail.com', [Validators.required, Validators.email]],
       password:['Kru251145', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
       confirmPassword:['Kru251145', [Validators.required]]
@@ -31,16 +44,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
-
-    // this.authenService.checkUniqueUserName(this.registerForm.value.username).subscribe(
-    //   (data) => {
-    //     console.log(data)
-    //   });
-
-    this.authenService.checkUniqueUserName(this.registerForm.value.username);
-
-    //*********************************************
-
+  
     // this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
     // data) => {
     // console.log(data);
