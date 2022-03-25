@@ -19,6 +19,13 @@ export class AuthenService {
     }, httpOptions);
   }
 
+  checkUniqueUserName(userName: string) {
+    return this.http.get(AUTH_API + 'users/getAllUsers').subscribe(
+      (data) => {
+        console.log(data);
+      });
+  }
+
   register(userName: string, userEmail: string, password: string, userRole: string): Observable<any> {
     return this.http.post(AUTH_API + 'register/createNewAccount', {
       userName,

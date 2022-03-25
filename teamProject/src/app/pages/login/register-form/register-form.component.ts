@@ -22,25 +22,35 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit() {
       this.registerForm = this.formbuilder.group({
-      username:['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
-      email:['', [Validators.required, Validators.email]],
-      password:['', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
-      confirmPassword:['', [Validators.required]]
+      username:['kru251145', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
+      email:['kru251145@gmail.com', [Validators.required, Validators.email]],
+      password:['Kru251145', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
+      confirmPassword:['Kru251145', [Validators.required]]
     }, {validator: MustMatch('password', 'confirmPassword')});
     this.cd.detectChanges();
   }
 
   onSubmit() {
-    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
-    data) => {
-    console.log(data);
-    this.successMessage = 'Registered Successfully!';
-    this.cd.markForCheck();
-    },
-    (err) => {
-      this.errorMessage = err.error;
-      console.log(err.error);
-      this.cd.markForCheck();
-    });
+
+    // this.authenService.checkUniqueUserName(this.registerForm.value.username).subscribe(
+    //   (data) => {
+    //     console.log(data)
+    //   });
+
+    this.authenService.checkUniqueUserName(this.registerForm.value.username);
+
+    //*********************************************
+
+    // this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
+    // data) => {
+    // console.log(data);
+    // this.successMessage = 'Registered Successfully!';
+    // this.cd.markForCheck();
+    // },
+    // (err) => {
+    //   this.errorMessage = err.error;
+    //   console.log(err.error);
+    //   this.cd.markForCheck();
+    // });
   }
 }
