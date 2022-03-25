@@ -1,11 +1,9 @@
-    <div class="NavBar">
-        <li><a routerLink="/newsfeed">Newsfeed</a></li>
-        <li style="flex-grow: 1"></li>
-        <li><a routerLink="/login">Login</a></li>
-        <!-- <li><a routerLink="/register">Register</a></li> -->
-        <li><a routerLink="/profile">Profile</a></li>
-        <li><a routerLink="/setting">Setting</a></li>
-        <!-- <li><a routerLink="/admin">Admin</a></li> -->
-    </div>
+<div class="NavBar" *ngIf="getUrl() !== ('/login' || '/')">
+    <li><a routerLink="/newsfeed">Newsfeed</a></li>
+    <li style="flex-grow: 1"></li>
+    <li><a routerLink="/profile">Profile</a></li>
+    <li><a routerLink="/setting">Setting</a></li>
+    <!-- <li *ngIf="token.role === 'admin'"><a routerLink="/admin">Admin</a></li> -->
+</div>
 
     <router-outlet></router-outlet>

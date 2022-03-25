@@ -30,6 +30,6 @@ export interface usersTemplate {
   }
 
 export class AppUser {
-    userName = '';
+    userEmail = '';
     password = '';
 }

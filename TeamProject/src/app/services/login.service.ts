@@ -68,18 +68,18 @@ export class LoginService {
   }
 
   resetSecurityObject(): void {
-    // this.securityObject = new AppUserAuth();
-    this.securityObject.userName = "";
-    this.securityObject.bearerToken = "";
-    this.securityObject.isAuthenticated = false;
+    this.securityObject = new AppUserAuth();
+    // this.securityObject.name = "";
+    // this.securityObject.bearerToken = "";
+    // this.securityObject.isAuthenticated = false;
 
-    this.securityObject.claim = {
-      canAccessProducts: false,
-      canAddProducts: false,
-      canSaveProduct: false,
-      canAccessCategories: false,
-      canAddCategory: false,
-    };
+    // this.securityObject.claim = {
+    //   canAccessProducts: false,
+    //   canAddProducts: false,
+    //   canSaveProduct: false,
+    //   canAccessCategories: false,
+    //   canAddCategory: false,
+    // };
 
     localStorage.removeItem("bearerToken");
   }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -20,10 +21,11 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
+  errorMessage: string = "";
 
   user: AppUser = new AppUser();
   securityObj: AppUserAuth = null;
-  returnUrl: string;
+  returnUrl: string = 'newsfeed';
 
 
   get usernameVal() {
@@ -36,36 +38,33 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
               private router: Router,
-              private securityService: LoginService) { }
+              private securityService: LoginService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      usernameVal: ['', [Validators.minLength(5), Validators.maxLength(16), Validators.required], []],
-      passwordVal: ['', [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required], []],
-    },
-    {
-      asyncValidator: this.validateUserIsAuthenticated(),
+      usernameVal: ["", [Validators.required, Validators.email]],
+      passwordVal: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required], []],
     });
 
   }
 
 
   onSubmit() {
+    
+    
     this.user = {
-      userName: this.loginForm.value.usernameVal,
-      password: this.loginForm.value.passwordVal,
+      "userEmail": this.loginForm.value.usernameVal,
+      "password": this.loginForm.value.passwordVal,
     }
 
     this.securityService.login(this.user).subscribe(
       (info) => {
+        
         this.securityObj = info.body;
-        if (this.returnUrl) {
-          this.router.navigateByUrl(this.returnUrl);
-        }
+        this.router.navigateByUrl(this.returnUrl);
       },
-      () => {
-        this.securityObj = new AppUserAuth();
-      }
+      (err) =>  {this.errorMessage = err.error},
     );
 
   }
@@ -77,7 +76,7 @@ export class LoginPageComponent implements OnInit {
   validateUserIsAuthenticated(): AsyncValidatorFn {
     return (group: AbstractControl): Observable<ValidationErrors | null> => {
       const obj = {
-        userName: group.value.username,
+        userEmail: group.value.username,
         password: group.value.password,
       };
 
@@ -95,23 +94,4 @@ export class LoginPageComponent implements OnInit {
     };
   }
 
-}
-
-interface ValidatorFn {
-  (control: AbstractControl): ValidationErrors | null;
-}
-
-function customValidator(minlen: number, maxlen: number): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-
-    if (control.value.length < minlen) {
-      return { minlen: true, minlength: minlen };
-    }
-
-    if (control.value.length > maxlen) {
-      return { maxlen: true, maxlength: maxlen };
-    }
-
-    return null;
-  };
 }

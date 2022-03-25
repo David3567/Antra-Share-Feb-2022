@@ -2,8 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 50px);
-  max-height: calc(100vh - 50px);
+  height: 100vh;
   background-color: #0097e6;
 }
 
@@ -44,7 +43,7 @@ button[type="submit"]:disabled {
 }
 
 .loginBtn {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .agreement {
@@ -63,10 +62,23 @@ form > a {
 
 .error {
   color: red;
+  font-size: 10.5px;
 }
 
 .registrationLink {
   text-decoration: underline;
   cursor: pointer;
   color: #6b1aa5;
+}
+
+.login-Container {
+  display: flex; 
+  flex-direction: column; 
+  row-gap: 10px;
+  height: 40px; 
+  padding-bottom: 20px;
+}
+
+.login-Container>:nth-child(2) {
+  margin-left: 10px;
 }

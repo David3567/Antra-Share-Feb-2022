@@ -5,12 +5,12 @@
         <img src="./assets/images/ANTRA_Tech.jpg" alt="logo">
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
-          <input matInput maxlength="50" formControlName="usernameVal" />
+          <input matInput formControlName="usernameVal"/>
           <mat-error *ngIf="!usernameVal?.valid && (usernameVal?.dirty || usernameVal?.touched)" class="error">
             <div *ngIf="usernameVal?.errors?.['required']">
               Username is required!</div>
-            <div *ngIf="usernameVal?.errors?.['minlength']">
-              The username should be at least <strong>5</strong> characters!
+            <div *ngIf="usernameVal?.errors?.['email']">
+              The entry should follow the email format!
             </div>
             <div *ngIf="usernameVal?.errors?.['maxlength']">
               The username should be no more than <strong>16</strong> characters!
@@ -20,7 +20,7 @@
 
 
         <mat-form-field appearance="fill">
-          <mat-label>Paassword</mat-label>
+          <mat-label>Password</mat-label>
           <input matInput maxlength="50" formControlName="passwordVal" />
           <mat-error *ngIf="!passwordVal?.valid && (passwordVal?.dirty || passwordVal?.touched)" class="error">
             <div *ngIf="passwordVal?.errors?.['required']">
@@ -34,8 +34,11 @@
           </mat-error>
         </mat-form-field>
 
-        <button class="button loginBtn" type="submit" >Login</button>
-
+      <div class="login-Container" >
+        <button class="button loginBtn" type="submit" [disabled]="!loginForm.valid">Login</button>
+        <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+      </div>  
+      
         <a (click)="onRegister()" class="registrationLink">No Accounts? Register
           Now!</a>
         <div class=" formFooter">
