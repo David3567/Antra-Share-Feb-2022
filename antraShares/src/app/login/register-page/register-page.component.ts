@@ -70,6 +70,7 @@ export class RegisterPageComponent implements OnInit {
       password: this.password?.value,
       userRole: 'user',
     };
+    
     this.accountService
       .postNewAccount(newAccount)
       .subscribe((newAccount: User) => {
