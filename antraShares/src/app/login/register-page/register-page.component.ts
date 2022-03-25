@@ -6,8 +6,16 @@ import {
   FormControl,
   FormGroup,
   Validators,
+  ValidatorFn,
+  AsyncValidatorFn,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, map, Observable, of } from 'rxjs';
+import { User } from 'src/app/interfaces/user.model';
+import { Users } from 'src/app/interfaces/userlist.model';
+import { AccountService } from 'src/app/services/account.service';
+import { AsyncValidatorService } from 'src/app/services/async-validator.service';
+
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -15,7 +23,6 @@ import { Router } from '@angular/router';
 })
 export class RegisterPageComponent implements OnInit {
   form!: FormGroup;
-  myForm!: FormGroup;
 
   get username() {
     return this.form.get('username');
@@ -30,51 +37,74 @@ export class RegisterPageComponent implements OnInit {
     return this.form.get('email');
   }
 
-  get numVal() {
-    return this.myForm.get('numVal');
-  }
-
-  constructor(private fb: FormBuilder, private router : Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private asyncValidatorService: AsyncValidatorService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group(this.buildform(), {
       validators: matchPassword,
     });
-    this.myForm = this.fb.group({
-      numVal: ['', [characterCheck(6)], []],
-    });
-
-    // this.username?.valueChanges.subscribe((val) => {
-    //   this.password?.setValue(val);
-    // });
   }
 
   buildform() {
     return {
-      username: ['', [userLenth(5, 12), Validators.required]],
+      username: [
+        '',
+        [userLenth(5, 12), Validators.required],
+        [this.myUsernameAsyncValidator()],
+      ],
       password: ['', [characterCheck(5)]],
       confirmPW: ['', Validators.required],
-      email: ['', [Validators.email]],
+      email: ['', [Validators.email], [this.myEmailAsyncValidator()]],
     };
   }
 
   onSubmit() {
+    const newAccount: User = {
+      userName: this.username?.value,
+      userEmail: this.email?.value,
+      password: this.password?.value,
+      userRole: 'user',
+    };
+    this.accountService.postNewAccount(newAccount).subscribe((newAccount:User)=>{
+      console.log(newAccount);
+    })
     this.router.navigate(['']);
-    console.log(this.form.value);
-    console.log(this.username?.value);
-    console.log(this.password?.value);
-    console.log(this.confirmPW?.value);
-    console.log(this.email?.value);
-
+    // console.log(this.form.value);
+    // console.log(this.username?.value);
+    // console.log(this.password?.value);
+    // console.log(this.confirmPW?.value);
+    // console.log(this.email?.value);
   }
-  onGoback(){
+  onGoback() {
     this.router.navigate(['']);
+  }
+  private myUsernameAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.asyncValidatorService.getCheckUser(control.value).pipe(
+        map((result: any) => {
+          return result ? { hasuser: true } : null;
+        }),
+        catchError((err) => of(null))
+      );
+    };
+  }
+  private myEmailAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.asyncValidatorService.getCheckEmail(control.value).pipe(
+        map((result: any) => {
+          return result ? { hasemail: true } : null;
+        }),
+        catchError((err) => of(null))
+      );
+    };
   }
 }
-interface ValidatorFn {
-  (control: AbstractControl): ValidationErrors | null;
-}
-
+//validator
 function characterCheck(minlen: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const lowerCase = new RegExp('^(?=.*?[a-z])');
@@ -110,3 +140,4 @@ function matchPassword(group: FormGroup): ValidationErrors | null {
 
   return password !== confirm ? { notMatch: true } : null;
 }
+//async validator
