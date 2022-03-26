@@ -8,13 +8,13 @@ import {
 import { AppUserAuth } from './interfaces/app-user.model';
 import { SecurityService } from './services/security.service';
 import { VariableValue } from './services/variable.service';
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements DoCheck {
+export class AppComponent implements OnInit, DoCheck {
   title = 'antraShares';
   login!: boolean;
   securityObj: AppUserAuth = new AppUserAuth();
@@ -24,7 +24,24 @@ export class AppComponent implements DoCheck {
   ) {
     this.securityObj = this.securityService.securityObj;
   }
+  ngOnInit(): void {
+    const token = localStorage.getItem('bearerToken');
+
+    if (token) {
+      const decoded: any = jwt_decode(token);
+
+      const newSecurityObj = {
+        userName: decoded.userName,
+        userEmail: decoded.userEmail,
+        isAuthenticated: true,
+        userRole: decoded.userRole,
+      };
+      this.securityService.securityObj = newSecurityObj;
+      this.securityObj = newSecurityObj;
+    }
+  }
   ngDoCheck(): void {
-    this.login = this.variable.login;
+    this.login = this.securityService.securityObj.isAuthenticated;
+    
   }
 }

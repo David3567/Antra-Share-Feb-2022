@@ -52,7 +52,6 @@ export class SecurityService {
   }
 
   resetSecurityObject(): void {
-    // this.securityObject = new AppUserAuth();
     this.securityObject.userName = '';
     this.securityObject.bearerToken = '';
     this.securityObject.isAuthenticated = false;

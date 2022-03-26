@@ -50,9 +50,9 @@ export class LoginComponent implements OnInit {
           this.checkSpecialLetter(),
         ]),
       },
-      {
-        asyncValidator: this.validateUserIsAuthenticated(),
-      }
+      // {
+      //   asyncValidator: this.validateUserIsAuthenticated(),
+      // }
     );
   }
 
@@ -109,24 +109,24 @@ export class LoginComponent implements OnInit {
   onRegisterBtn() {
     this.router.navigate(['register']);
   }
-  validateUserIsAuthenticated(): AsyncValidatorFn {
-    return (group: AbstractControl): Observable<ValidationErrors | null> => {
-      const obj = {
-        userEmail: group.value.username,
-        password: group.value.password,
-      };
+  // validateUserIsAuthenticated(): AsyncValidatorFn {
+  //   return (group: AbstractControl): Observable<ValidationErrors | null> => {
+  //     const obj = {
+  //       userEmail: group.value.username,
+  //       password: group.value.password,
+  //     };
 
-      return timer(500).pipe(
-        switchMap(() => {
-          return this.securityService.login(obj).pipe(
-            tap((data) => console.log('data in validater: ', data)),
-            map((data) => null),
-            catchError((err: any) => {
-              return of({ errormessage: err.error });
-            })
-          );
-        })
-      );
-    };
-  }
+  //     return timer(500).pipe(
+  //       switchMap(() => {
+  //         return this.securityService.login(obj).pipe(
+  //           tap((data) => console.log('data in validater: ', data)),
+  //           map((data) => null),
+  //           catchError((err: any) => {
+  //             return of({ errormessage: err.error });
+  //           })
+  //         );
+  //       })
+  //     );
+  //   };
+  // }
 }
