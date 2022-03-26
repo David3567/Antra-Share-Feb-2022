@@ -8,12 +8,17 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { SecurityService } from './security.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminGuardGuard implements CanActivate {
-  constructor(private router: Router, private activateRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private securityService: SecurityService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,11 +27,16 @@ export class AdminGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const userRole: string = 'admin';
-    if(userRole === 'user'){
-      console.log(123)
+    const isAuthenticated = this.securityService.securityObj.isAuthenticated;
+    const userRole = this.securityService.securityObj.userRole;
+    if(isAuthenticated){
+      return true;
+    }else{
+      this.router.navigate(['register'],{
+        
+      })
       return false;
     }
-    return true;
+    
   }
 }

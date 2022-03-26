@@ -5,6 +5,8 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { AppUserAuth } from './interfaces/app-user.model';
+import { SecurityService } from './services/security.service';
 import { VariableValue } from './services/variable.service';
 
 @Component({
@@ -15,7 +17,13 @@ import { VariableValue } from './services/variable.service';
 export class AppComponent implements DoCheck {
   title = 'antraShares';
   login!: boolean;
-  constructor(private variable: VariableValue) {}
+  securityObj: AppUserAuth = new AppUserAuth();
+  constructor(
+    private variable: VariableValue,
+    private securityService: SecurityService
+  ) {
+    this.securityObj = this.securityService.securityObj;
+  }
   ngDoCheck(): void {
     this.login = this.variable.login;
   }

@@ -7,20 +7,43 @@ import { RegisterPageComponent } from './login/register-page/register-page.compo
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { NewsfeedModule } from './newsfeed/newsfeed.module';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminGuardGuard } from './services/admin-guard.guard';
 import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'admin/userinfo/:id', component: UserinfoComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'setting', component: SettingComponent },
-  { path: 'home', component: NewsfeedComponent },
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AdminGuardGuard],
+  },
+  {
+    path: 'setting',
+    component: SettingComponent,
+    canActivate: [AdminGuardGuard],
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AdminGuardGuard],
+  },
+  {
+    path: 'admin/userinfo/:id',
+    component: UserinfoComponent,
+    canActivate: [AdminGuardGuard],
+  },
+
+  {
+    path: 'home',
+    component: NewsfeedComponent,
+    canActivate: [AdminGuardGuard],
+  },
 
   // { path: '', redirectTo:'home',pathMatch:'full' },
 
-  // { path: '**', component: NewsfeedComponent },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({

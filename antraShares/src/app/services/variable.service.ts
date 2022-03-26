@@ -1,5 +1,6 @@
 export class VariableValue {
-  login:boolean = true;
+  baseUrl = 'http://localhost:4231/api';
+  login:boolean = false;
   remove: string[]=[];
 
   start = 0;
