@@ -1,7 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MustMatch } from './mustMatch.validator';
 import { AuthenService } from 'src/app/services/authen.service';
+import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-form',
@@ -11,9 +13,30 @@ import { AuthenService } from 'src/app/services/authen.service';
 
 export class RegisterFormComponent implements OnInit {
 
+  checkIfUsernameExists(username: string): Observable<boolean> {
+    return of(this.DBuserNames.includes(username)).pipe(delay(1000));
+  }
+
+  usernameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.checkIfUsernameExists(control.value).pipe(
+        map(res => {
+          // if res is true, username exists, return true
+          return res ? { usernameExists: true } : null;
+          // NB: Return null if there is no error
+        })
+      );
+    };
+  }
+
+
+
   registerForm!: FormGroup;
   successMessage = '';
   errorMessage = '';
+
+  DBuserNames: string[] = [];
+  DBuserEmails: string[] = [];
 
   passwordPattern = '(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}';
 
@@ -22,6 +45,7 @@ export class RegisterFormComponent implements OnInit {
     this.authenService.getAllUserNames().subscribe(
       (data) => {
         console.warn(data[0]);
+        this.DBuserNames = data;
       }
     );
 
@@ -30,12 +54,24 @@ export class RegisterFormComponent implements OnInit {
         console.warn(data[0]);
       }
     );
+  }
 
+  ngDoCheck() {
+    //this.checkUniqueUsername();
+  }
+
+  checkUniqueUsername() {
+    //console.log(this.DBuserNames);
+    for(let i = 0; i < this.DBuserNames.length; i++) {
+      if(this.DBuserNames[i] === this.registerForm.value.username) {
+        console.log('user exists');
+      }
+    }
   }
 
   ngOnInit() {
       this.registerForm = this.formbuilder.group({
-      username:['yushengjr', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
+      username:['yushengjr', [Validators.required, Validators.minLength(5), Validators.maxLength(12)], this.usernameValidator()],
       email:['kru251145@gmail.com', [Validators.required, Validators.email]],
       password:['Kru251145', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
       confirmPassword:['Kru251145', [Validators.required]]
@@ -44,7 +80,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
-  
+    //console.log(this.DBuserNames);
+
     // this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
     // data) => {
     // console.log(data);
