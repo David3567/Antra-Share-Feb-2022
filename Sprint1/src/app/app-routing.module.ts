@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { ProfileComponent } from './module/profile/profile.component';
-import { SettingComponent } from './module/setting/setting.component';
-import { LoginComponent } from './module/home/components/login/login.component';
-import { AdminComponent } from './module/admin/components/admin/admin.component';
-import { NewsfeedComponent } from './module/newsfeed/components/newsfeed/newsfeed.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingComponent } from './setting/setting.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'admin',
@@ -29,9 +33,6 @@ const routes: Routes = [
     path: 'setting',
     component: SettingComponent,
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' },
-
 ];
 
 @NgModule({

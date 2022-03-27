@@ -2,14 +2,24 @@
   <ul class="main_header">
     <li><a routerLink="newsfeed">News Feed</a></li>
     <li style="flex-grow: 1"></li>
-    <!-- <li><a routerLink="/admin">Admin</a></li> -->
-    <li><a routerLink="login">Login</a></li>
-    <!-- <li><a routerLink="register">Register</a></li> -->
-    <li><a routerLink="profile">Profile</a></li>
-    <li><a routerLink="setting">Setting</a></li>
-  </ul>
-  <div class="main_body">
-    <router-outlet></router-outlet>
 
+    <li><a routerLink="/admin">Admin</a></li>
+
+    <li><a routerLink="login">Login</a></li>
+    <li><a routerLink="register">Register</a></li>
+    <li>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/640px-Windows_Settings_app_icon.png"
+        alt=""
+      />
+      <ul class="second_header">
+        <li><a routerLink="profile">Profile</a></li>
+        <li><a routerLink="setting">Setting</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="main_body">
+    <router-outlet ></router-outlet>
   </div>
 </div>

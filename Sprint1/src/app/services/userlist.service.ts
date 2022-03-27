@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/services/interface/user.model';
-
+import { User } from '../admin/interface/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +19,7 @@ export class UserlistService {
     return this.http.post([this.baseUrl, this.path].join('/'), user);
   }
 
-  deleteUser(id: number) {
-
+  deleteUser(id: number){
     return this.http.delete([this.baseUrl, this.path, id].join('/'));
   }
 }
