@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,8 +17,11 @@ export class RegisterPageComponent implements OnInit {
     this.regForm = this.build.group({
       username: ["", [, Validators.minLength(5), Validators.maxLength(12), Validators.required]],
       email: ["", [Validators.email, Validators.required]],
-      password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
-      confirm: ["", Validators.required]
+      password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
+      confirm: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]]
+    },
+    {
+      validators: this.matchPassword
     });
   }
 
@@ -41,6 +44,10 @@ export class RegisterPageComponent implements OnInit {
   onSubmit(signUpForm: FormGroup) {
     console.log(signUpForm.value);
     this.router.navigate(['/login']);
+  }
+
+  matchPassword(group: FormGroup): ValidationErrors | null {
+    return group.get('password').value !== group.get('confirm').value ? {'notMatch': true} : null;
   }
 
 }

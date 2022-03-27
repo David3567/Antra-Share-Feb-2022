@@ -13,7 +13,7 @@
 form {
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
+  row-gap: 25px;
   border: 2px solid black;
   border-radius: 5px;
   padding: 20px;
@@ -52,7 +52,7 @@ label {
   margin-bottom: -10px;
 }
 
-input {
+/* input {
   width: 100%;
   border-radius: 5px;
   border-color: #ebebeb;
@@ -60,7 +60,7 @@ input {
   font-size: 15px;
   border-style: inset;
   border-width: 2px;
-}
+} */
 
 button[type="submit"]:disabled {
   background-color: lightgray;

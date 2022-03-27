@@ -2,57 +2,55 @@
 
     <form action="/login" (ngSubmit)="onSubmit(regForm)" [formGroup]="regForm">
         <h2>Create an Account</h2>
-        <label for="username">Username</label>
-        <input 
-            type="text" 
-            id="username"  
-            name="username"
-            placeholder="Enter a username"
-            formControlName="username"
-        />
-        <div
-        class="errors" 
-        *ngIf="!username.valid && (username.touched && username.dirty)"
-        >The Username needs to be between 5 and 12 characters {{regForm.valid | json}}</div>
 
-        <label for="useremail">Email</label>
-        <input 
-        type="email" 
-        id="email" 
-        name="email"
-        placeholder="Enter email"
-        formControlName="email"
-        >
-        <div class="errors"
-        *ngIf="!email.valid  && (email.touched && email.dirty)">Your entry needs to follow the email format</div>
 
-        <label for="password">Password</label>
-        <input 
-            type="text" 
-            id="password" 
-            name="password" 
-            placeholder="Enter password" 
-            formControlName="password"
-            >
-        <div class="errors"
-        *ngIf="!password.valid && (password.touched && password.dirty)">Your password needs to be at least 5 characters long, have at least one upper & one lower case, and have at least 1 special character (@!#$% etc.)</div>
-            
-        <label for="confirm">Confirm Password</label>
-        <input 
-            type="text" 
-            id="confirm" 
-            name="confirm"            
-            placeholder="Confirm password"
-            formControlName="confirm" 
-            >
-        <div class="errors"
-        *ngIf="(confirm.value !== password.value) && (confirm.touched && confirm.dirty)">Your password and confirmation need to match<br>
-    </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Username</mat-label>
+            <input matInput formControlName="username" />
+            <mat-error *ngIf="!username.valid && (username.touched || username.dirty)" class="error">
+                <div *ngIf="username?.errors?.['required']">
+                    A Username is required!</div>
+                <div *ngIf="username?.errors?.['minlength'] || username?.errors?.['maxlength']">
+                    The Username needs to be between 5 and 12 characters</div>
+            </mat-error>
+        </mat-form-field>
 
-        <button 
-            [disabled]="!regForm.valid || confirm.value !== password.value"
-            type="submit"
-        >Register</button>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Email</mat-label>
+            <input matInput formControlName="email" />
+            <mat-error *ngIf="!email.valid && (email.touched || email.dirty)" class="error">
+                <div *ngIf="email?.errors?.['required']">
+                    An Email is required!</div>
+                <div *ngIf="email?.errors?.['email']">
+                    Your entry needs to follow the email format</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Password</mat-label>
+            <input matInput formControlName="password" />
+            <mat-error *ngIf="!password.valid && (password.touched || password.dirty)" class="error">
+                <div *ngIf="password?.errors?.['required']">
+                    A Password is required!</div>
+                <div
+                    *ngIf="password?.errors?.['minlength'] || password?.errors?.['maxlength'] || password?.errors?.['pattern']">
+                    Your password needs to be at least 5 characters long, have at least one upper & one lower case, and
+                    have at least 1 special character (@!#$% etc.)</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm your Password</mat-label>
+            <input matInput formControlName="confirm" />
+            <mat-error *ngIf="!regForm.valid && (confirm.touched || confirm.dirty)" class="error">
+                <div *ngIf="confirm?.errors?.['required']">
+                    A Confirmation is required!</div>
+                <div *ngIf="regForm?.errors?.['notMatch']">
+                    Your password and confirmation need to match</div>
+            </mat-error>
+        </mat-form-field>
+
+        <button [disabled]="!regForm.valid" type="submit">Register</button>
     </form>
 
 </div>
