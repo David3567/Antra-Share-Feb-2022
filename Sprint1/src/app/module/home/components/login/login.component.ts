@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatCard } from '@angular/material/card';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, map, Observable, of, switchMap, tap, timer } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { AppUser } from 'src/app/services/interface/app-user';
+import { AppUserAuth } from 'src/app/services/interface/app-user-auth';
 
 @Component({
   selector: 'app-login',
@@ -10,31 +14,51 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
-
   hide: boolean = true;
 
+  user: AppUser = new AppUser();
+  securityObj: AppUserAuth = new AppUserAuth();
+  returnUrl: string | null = "";
   
-  get username() {
-    return this.form.get('username');
+  get useremail() {
+    return this.form.get('useremail');
   }
 
   get password() {
     return this.form.get('password');
   }
   
-  constructor(private router: Router, private fb:FormBuilder) {}
+  constructor(private router: Router, private fb:FormBuilder, private authService: AuthService, private route: ActivatedRoute) {
+    this.form = this.fb.group({
+      useremail: new FormControl('', [Validators.minLength(5), Validators.maxLength(30), Validators.required]),
+      password: new FormControl('', [Validators.minLength(5), Validators.maxLength(30), Validators.required, this.extraCheckPassword()]),
+    },{asyncValidator: this.validateUserIsAuthenticated()});
+  }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      username: new FormControl('', [Validators.minLength(5), Validators.maxLength(16), Validators.required]),
-      password: new FormControl('', [Validators.minLength(5), Validators.maxLength(16), Validators.required, this.extraCheckPassword()]),
-    },{});
+    this.returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
   }
 
 
   onSubmit() {
     console.log(this.form.value);
-    this.router.navigate(['newsfeed']);
+    this.user = {
+      userEmail: this.form.value.useremail,
+      password: this.form.value.password,
+    };
+    this.authService.login(this.user).subscribe(
+      (info) => {
+        this.securityObj = info.body;
+        if (this.returnUrl) {
+          this.router.navigateByUrl(this.returnUrl);
+        }else{
+          this.router.navigate(['newsfeed']);
+        }
+      },
+      () => {
+        this.securityObj = new AppUserAuth();
+      }
+    );
   }
 
   onRegister(){
@@ -48,6 +72,28 @@ export class LoginComponent implements OnInit {
         return { specialLeter : true}
       }
       else return null;
+    };
+  }
+
+  
+  validateUserIsAuthenticated(): AsyncValidatorFn {
+    return (group: AbstractControl): Observable<ValidationErrors | null> => {
+      const obj = {
+        userEmail: group.value.useremail,
+        password: group.value.password,
+      };
+
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.authService.login(obj).pipe(
+            tap((data) => console.log("data in validater: ", data)),
+            map((data) => null),
+            catchError((err: any) => {
+              return of({ errormessage: err.error });
+            })
+          );
+        })
+      );
     };
   }
 
