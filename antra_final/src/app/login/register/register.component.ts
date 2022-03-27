@@ -15,6 +15,7 @@ import {
 import { Observable, of, timer } from 'rxjs';
 import { AccountService } from 'src/app/core/account.service';
 import { NewUser } from 'src/app/interface/newuser.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -59,6 +60,7 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
+    private router: Router,
     private registerService: RegisterService,
     private accountService: AccountService) { }
 
@@ -74,7 +76,8 @@ export class RegisterComponent implements OnInit {
     };
     this.accountService.addNewAccount(account).subscribe((data: NewUser)=>{
       console.log(data);
-    })
+    });
+    this.router.navigate(['']);
   }
 
   matchPassword(group: FormGroup): ValidationErrors | null {
