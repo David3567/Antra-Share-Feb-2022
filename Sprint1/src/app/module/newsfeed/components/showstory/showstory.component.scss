@@ -1,0 +1,79 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card {
+  width: 40%;
+  min-width: 450px;
+  min-height: 400px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+mat-card-content {
+  width: 100%;
+  min-width: 450px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 85%;
+}
+.middle {
+  flex-grow: 1;
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+}
+mat-card-content img {
+  height:16em;
+}
+
+mat-card-title {
+  margin-bottom: 30px;
+}
+
+mat-card-content .newsfeed_action {
+  padding-top: 10px;
+  flex-grow: 0;
+  display: flex;
+  border-top: 1px solid gainsboro;
+}
+
+.likebtn,
+.commentbtn {
+  flex: 50%;
+  width: 100%;
+}
+
+.newsfeed_action label {
+  margin-left: 15px;
+}
+
+.title_time {
+  font-size: medium;
+}
+
+.title_name {
+  font-size: medium;
+}
+
+.like {
+  color: red;
+}
+.image, .video {
+  border: 1px solid blud;
+  flex-grow: 0;
+}
+.text {
+  text-align: left;
+  flex-grow: 1;
+  padding: 40px;
+}
