@@ -7,6 +7,7 @@
       <button mat-menu-item [routerLink]="['profile']">MyProflie</button>
       <button mat-menu-item [routerLink]="['home']">NewsFeed</button>
       <button mat-menu-item [routerLink]="['setting']">Settings</button>
+      <button mat-menu-item [routerLink]="['admin']" *ngIf="securityObj.userRole === 'admin'">Admin</button>
     </mat-menu>
   </div>
   <!-- <div class="footer" [ngStyle]="{ display: login ? 'flex' : 'none' }">
@@ -14,7 +15,7 @@
     <button class="btn-dashboard" [routerLink]="['home']">NewsFeed</button>
     <button class="btn-dashboard" [routerLink]="['setting']">Settings</button>
   </div> -->
-  <div class="bar left-side"></div>
+  <!-- <div class="bar left-side"></div> -->
 </div>
 <router-outlet></router-outlet>
 

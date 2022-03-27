@@ -21,7 +21,7 @@ body{
   font-weight: bold;
   cursor: pointer;
   border: none;
-  margin-right: 20px;
+  margin-right: 6%;
   background-color: inherit;
 }
 .btn-liked-list:hover{

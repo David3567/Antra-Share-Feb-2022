@@ -1,5 +1,6 @@
-<h1>Admin page</h1>
-<div class="container">
+<br>
+<br>
+<div class="container"   *ngIf="securityObj.userRole === 'admin'">
   <div class="container-user">
       
     <div class="container-user-tag" *ngFor="let user of users">
