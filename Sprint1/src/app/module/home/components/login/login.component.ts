@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
   
   extraCheckUserEmail(): ValidatorFn{
     return (control: AbstractControl): ValidationErrors | null => {
-      const email = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+      const email = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if( !email.test(control.value)){
         return { email: true }
       }
