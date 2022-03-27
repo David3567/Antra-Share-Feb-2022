@@ -1,3 +1,197 @@
-<p>
-  register works!
-</p>
+<mat-card>
+  <mat-card-title>Register</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- username -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="UserName"
+            id="username"
+            formControlName="username"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- name -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Name"
+            id="name"
+            formControlName="name"
+          />
+        </mat-form-field>
+      </div>
+
+      <!--  useremail -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="UserEmail"
+            id="useremail"
+            formControlName="useremail"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- useremail validate -->
+
+      <ul
+        *ngIf="form.invalid && (useremail?.dirty || useremail?.touched)"
+        class="invalid"
+      >
+        <li *ngIf="useremail?.errors?.['required']">useremail is required!</li>
+        <li *ngIf="useremail?.errors?.['minlength']">
+          useremail should be at least 5 characters long.
+        </li>
+        <li *ngIf="useremail?.errors?.['maxlength']">
+          useremail should be no longer than 16 characters long.
+        </li>
+      </ul>
+
+      <!--  password -->
+      <div>
+        <mat-form-field>
+          <input
+            [type]="hide ? 'password' : 'text'"
+            matInput
+            placeholder="Password"
+            id="password"
+            formControlName="password"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <!-- password validate -->
+      <ul
+        *ngIf="form.invalid && (password?.dirty || password?.touched)"
+        class="invalid"
+      >
+        <li *ngIf="password?.errors?.['required']">Password is required!</li>
+        <li *ngIf="password?.invalid && !password?.errors?.['required']">
+          Password format invalid!
+          <ul>
+            <li *ngIf="password?.errors?.['minlength']">
+              Password must be at least 5 characters long.
+            </li>
+            <li *ngIf="password?.errors?.['maxlength']">
+              Password should be no longer than 16 characters long.
+            </li>
+            <li *ngIf="password?.errors?.['specialLeter']">
+              Password should contains at least 1 special character.
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- confirm password -->
+      <div>
+        <mat-form-field>
+          <input
+            [type]="hideconfirm ? 'password' : 'text'"
+            matInput
+            placeholder="Confirm Password"
+            id="passwordconfirm"
+            formControlName="passwordconfirm"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hideconfirm = !hideconfirm"
+          >
+            <mat-icon>{{ hideconfirm ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      
+      <!-- userrole -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="UserRole"
+            id="userrole"
+            formControlName="userrole"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- age -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Age"
+            id="age"
+            formControlName="age"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- gender -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Gender"
+            id="gender"
+            formControlName="gender"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- phone -->
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Phone"
+            id="phone"
+            formControlName="phone"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- button -->
+      <div class="button">
+        <div>
+          <label for="registerbtn">Have an account?</label>
+          <button
+            id="registerbtn"
+            type="button"
+            mat-button
+            (click)="onLogin()"
+          >
+            Login
+          </button>
+        </div>
+
+        <button id="loginbtn" type="submit" mat-button>
+          Sign Up
+        </button>
+        <!-- [disabled]="!form.valid" -->
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

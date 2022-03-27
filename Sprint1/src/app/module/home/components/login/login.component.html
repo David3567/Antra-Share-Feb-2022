@@ -2,31 +2,34 @@
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <!--  username -->
+      <!--  useremail -->
       <div>
         <mat-form-field>
           <input
             type="text"
             matInput
-            placeholder="Username"
-            id="username"
-            formControlName="username"
+            placeholder="UserEmail"
+            id="useremail"
+            formControlName="useremail"
           />
         </mat-form-field>
       </div>
 
-      <!-- username validate -->
+      <!-- useremail validate -->
 
       <ul
-        *ngIf="form.invalid && (username?.dirty || username?.touched)"
+        *ngIf="form.invalid && (useremail?.dirty || useremail?.touched)"
         class="invalid"
       >
-        <li *ngIf="username?.errors?.['required']">Username is required!</li>
-        <li *ngIf="username?.errors?.['minlength']">
-          Username should be at least 5 characters long.
+        <li *ngIf="useremail?.errors?.['required']">useremail is required!</li>
+        <!-- <li *ngIf="useremail?.errors?.['minlength']">
+          useremail should be at least 5 characters long.
         </li>
-        <li *ngIf="username?.errors?.['maxlength']">
-          Username should be no longer than 16 characters long.
+        <li *ngIf="useremail?.errors?.['maxlength']">
+          useremail should be no longer than 30 characters long.
+        </li> -->
+        <li *ngIf="!useremail?.errors?.['required'] && useremail?.errors?.['email']">
+          not a valid email.
         </li>
       </ul>
 
@@ -57,20 +60,20 @@
         class="invalid"
       >
         <li *ngIf="password?.errors?.['required']">Password is required!</li>
-        <li *ngIf="password?.invalid && !password?.errors?.['required']">
+        <!-- <li *ngIf="password?.invalid && !password?.errors?.['required']">
           Password format invalid!
-          <ul>
-            <li *ngIf="password?.errors?.['minlength']">
+          <ul> -->
+            <!-- <li *ngIf="password?.errors?.['minlength']">
               Password must be at least 5 characters long.
             </li>
             <li *ngIf="password?.errors?.['maxlength']">
               Password should be no longer than 16 characters long.
-            </li>
-            <li *ngIf="password?.errors?.['specialLeter']">
+            </li> -->
+            <li *ngIf="!password?.errors?.['required'] && password?.errors?.['specialLeter']">
               Password should contains at least 1 special character.
             </li>
-          </ul>
-        </li>
+          <!-- </ul>
+        </li> -->
       </ul>
 
       <!-- button -->
@@ -87,9 +90,10 @@
           </button>
         </div>
 
-        <button id="loginbtn" type="submit" mat-button [disabled]="!form.valid">
+        <button id="loginbtn" type="submit" mat-button>
           Login
         </button>
+        <!-- [disabled]="!form.valid" -->
       </div>
     </form>
   </mat-card-content>

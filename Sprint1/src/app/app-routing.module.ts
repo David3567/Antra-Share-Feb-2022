@@ -5,11 +5,16 @@ import { SettingComponent } from './module/setting/setting.component';
 import { LoginComponent } from './module/home/components/login/login.component';
 import { AdminComponent } from './module/admin/components/admin/admin.component';
 import { NewsfeedComponent } from './module/newsfeed/components/newsfeed/newsfeed.component';
+import { RegisterComponent } from './module/home/components/register/register.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'admin',

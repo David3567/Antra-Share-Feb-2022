@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { AppUserAuth } from 'src/app/services/interface/app-user-auth';
 
 @Component({
   selector: 'app-setting',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./setting.component.scss']
 })
 export class SettingComponent implements OnInit {
+  securityObj: AppUserAuth = new AppUserAuth();
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
+  logout(){
+    this.authService.logout();
+  }
 }
