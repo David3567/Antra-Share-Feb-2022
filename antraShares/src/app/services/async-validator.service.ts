@@ -8,7 +8,7 @@ export class AsyncValidatorService {
   private register = 'register';
   private checkUsername = 'checkExistByUsername';
   private checkEmail = 'checkExistByEmail';
-  private baseUrl = 'https://localhost:4231/api';
+  private baseUrl = 'http://localhost:4231/api';
   constructor(private http:HttpClient) { }
 
   checkUserExist(username: string){
