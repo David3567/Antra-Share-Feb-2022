@@ -22,11 +22,14 @@
         class="invalid"
       >
         <li *ngIf="useremail?.errors?.['required']">useremail is required!</li>
-        <li *ngIf="useremail?.errors?.['minlength']">
+        <!-- <li *ngIf="useremail?.errors?.['minlength']">
           useremail should be at least 5 characters long.
         </li>
         <li *ngIf="useremail?.errors?.['maxlength']">
           useremail should be no longer than 30 characters long.
+        </li> -->
+        <li *ngIf="!useremail?.errors?.['required'] && useremail?.errors?.['email']">
+          not a valid email.
         </li>
       </ul>
 
@@ -57,20 +60,20 @@
         class="invalid"
       >
         <li *ngIf="password?.errors?.['required']">Password is required!</li>
-        <li *ngIf="password?.invalid && !password?.errors?.['required']">
+        <!-- <li *ngIf="password?.invalid && !password?.errors?.['required']">
           Password format invalid!
-          <ul>
-            <li *ngIf="password?.errors?.['minlength']">
+          <ul> -->
+            <!-- <li *ngIf="password?.errors?.['minlength']">
               Password must be at least 5 characters long.
             </li>
             <li *ngIf="password?.errors?.['maxlength']">
               Password should be no longer than 16 characters long.
-            </li>
-            <li *ngIf="password?.errors?.['specialLeter']">
+            </li> -->
+            <li *ngIf="!password?.errors?.['required'] && password?.errors?.['specialLeter']">
               Password should contains at least 1 special character.
             </li>
-          </ul>
-        </li>
+          <!-- </ul>
+        </li> -->
       </ul>
 
       <!-- button -->

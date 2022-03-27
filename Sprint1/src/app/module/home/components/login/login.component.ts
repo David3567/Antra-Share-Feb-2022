@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
   
   constructor(private router: Router, private fb:FormBuilder, private authService: AuthService, private route: ActivatedRoute) {
     this.form = this.fb.group({
-      useremail: new FormControl('', [Validators.minLength(5), Validators.maxLength(30), Validators.required]),
-      password: new FormControl('', [Validators.minLength(5), Validators.maxLength(30), Validators.required, this.extraCheckPassword()]),
+      useremail: new FormControl('', [Validators.required, this.extraCheckUserEmail()]),
+      password: new FormControl('', [Validators.required, this.extraCheckPassword()]),
     },{asyncValidator: this.validateUserIsAuthenticated()});
   }
 
@@ -65,6 +65,16 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['register']);
   }
   
+  extraCheckUserEmail(): ValidatorFn{
+    return (control: AbstractControl): ValidationErrors | null => {
+      const email = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+      if( !email.test(control.value)){
+        return { email: true }
+      }
+      else return null;
+    };
+  }
+
   extraCheckPassword(): ValidatorFn{
     return (control: AbstractControl): ValidationErrors | null => {
       const specialLeter = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
