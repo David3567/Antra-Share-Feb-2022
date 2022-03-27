@@ -27,18 +27,21 @@ body {
 .bar {
   position: fixed;
   width: var(--bar-size);
+  
   height: 100%;
   background-color: var(--outline-color);
   margin: 0px 0px;
   padding: 0px 0px;
 }
 .right-side {
+  padding-left:1%;
   display: flex;
   flex-direction: column;
 
   left: 0;
 }
 .left-side {
+  
   width: 3%;
   right: 0;
 }
