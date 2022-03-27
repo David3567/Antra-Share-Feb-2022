@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Observable, of, timer } from 'rxjs';
+import { catchError, map, mapTo, switchMap } from 'rxjs/operators';
 import { NewUser } from 'src/app/interfaces/newUser.model';
+import { AsyncValidatorService } from 'src/app/services/asyncValidator.service';
 import { UserService } from 'src/app/services/user.service';
 import { MustMatch } from './mustMatch.validator';
 
@@ -12,27 +15,45 @@ import { MustMatch } from './mustMatch.validator';
 
 export class RegisterFormComponent implements OnInit {
 
-  registerForm!: FormGroup;
+  registerForm: FormGroup = this.formbuilder.group(
+    {
+      username: ['', [Validators.minLength(5), Validators.maxLength(12), Validators.required]],
+      email: ['',
+        [Validators.required, Validators.email],
+        [this.myAsyncValidator()],
+      ],
+      password: ['', [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
+      confirmPassword: ['', [Validators.required]]
+    },
+    { validator: MustMatch('password', 'confirmPassword') }
+  );
+
+  get username(){
+    return this.registerForm.get('username');
+  }
+
+  get email(){
+    return this.registerForm.get('email');
+  }
+
+  get password(){
+    return this.registerForm.get('password');
+  }
+
+  get confirmPassword(){
+    return this.registerForm.get('confirmPassword');
+  }
+
+
   showMessage = false;
   user!: NewUser;
 
-  passwordPattern = '(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}';
 
-
-  constructor(private formbuilder: FormBuilder, private userService: UserService) {
+  constructor(private formbuilder: FormBuilder, private userService: UserService,
+    private asyncValidator: AsyncValidatorService) {
   }
 
-  ngOnInit() {
-    this.registerForm = this.formbuilder.group({
-      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
-      email: ['', {
-        validators: [Validators.required, Validators.email],
-        asyncValidators: [this.userService.uniqueEmailValidator()]
-      }],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
-      confirmPassword: ['', [Validators.required]]
-    }, { validator: MustMatch('password', 'confirmPassword') })
-  }
+  ngOnInit() { }
 
   onSubmit() {
     this.showMessage = true;
@@ -51,9 +72,35 @@ export class RegisterFormComponent implements OnInit {
 
     this.userService.registerUser(this.user).subscribe((result) => {
       console.log(result);
-    })
-    
+    });
   }
 
+  private myAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(5000).pipe(
+        switchMap((val: any) => {
+          console.log(1111111);
+          return this.asyncValidator.getUser(control.value);
+        }),
+        // tap(console.log),
+        mapTo({ hasuser: true }),
+        catchError((err) => of(null))
+      );
+    };
+  }
 
+}
+
+export function myAsyncValidator(
+  asyncValidatorService: AsyncValidatorService
+): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    console.log(control);
+    return asyncValidatorService.getUser(control.value).pipe(
+      map((result: any) => {
+        console.log(result);
+        return result ? null : { invalidAsync: true };
+      })
+    );
+  };
 }

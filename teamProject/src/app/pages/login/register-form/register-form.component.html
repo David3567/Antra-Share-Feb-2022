@@ -11,13 +11,16 @@
     </nz-form-item>
     <!-- Email -->
     <nz-form-item>
-      <nz-form-control nzHasFeedback nzErrorTip="Please enter a valid email address!">
+      <nz-form-control>
         <nz-input-group [nzSize]="'large'">
           <input type="email" nz-input formControlName="email" placeholder="Email" />
-          <!-- <div *ngIf="email.errors?.emailExists">
-            This email address is already registered. Please use another one.
-          </div> -->
         </nz-input-group>
+        <div *ngIf="!email?.valid && (email?.dirty && email?.touched)">
+          <div *ngIf="email?.errors?.hasuser">Pls use another username</div>
+          <div [hidden]="email?.errors?.['pattern']">
+            Must includes at least 1 Uppercase, 1 special character
+          </div>
+        </div>
       </nz-form-control>
     </nz-form-item>
     <!-- Password -->
