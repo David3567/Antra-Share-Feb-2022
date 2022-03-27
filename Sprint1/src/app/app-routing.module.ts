@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ProfileComponent } from './module/profile/profile.component';
 import { SettingComponent } from './module/setting/setting.component';
 import { LoginComponent } from './module/home/components/login/login.component';
@@ -8,7 +7,6 @@ import { AdminComponent } from './module/admin/components/admin/admin.component'
 import { NewsfeedComponent } from './module/newsfeed/components/newsfeed/newsfeed.component';
 
 const routes: Routes = [
-
   {
     path: 'login',
     component: LoginComponent,
@@ -31,7 +29,6 @@ const routes: Routes = [
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
-
 ];
 
 @NgModule({
