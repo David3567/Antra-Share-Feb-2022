@@ -25,12 +25,28 @@ export class StoryCommentComponent implements OnInit {
     private variableValue: VariableValue,
     public dialog: MatDialog
   ) {}
+  //
+  // console.log("dfadsf")
+  //   this.variableValue.newComment.forEach(ele=>{
+  //     console.log(ele.id)
+  //   })
   ngOnInit(): void {
     console.log('oninnit');
     this.start = this.variableValue.start;
     this.end = this.variableValue.end;
     this.size = this.variableValue.size;
     this.comments = this.data.story.comment;
+    if (this.variableValue.newComment.length > 1) {
+      this.variableValue.newComment.forEach((ele) => {
+        if (ele.id === this.data.story._id) {
+          console.log(ele.cmt);
+          this.comments=[ele.cmt!,...this.comments]
+          console.log(123);
+        }
+      });
+      
+    }
+    
     this.max = this.comments.length;
     this.totalP =
       this.max % this.size === 0
@@ -69,7 +85,7 @@ export class StoryCommentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((newcomment) => {
       if (newcomment !== undefined) {
-        this.comments = [newcomment,...this.comments ];
+        this.comments = [newcomment, ...this.comments];
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
       }
     });

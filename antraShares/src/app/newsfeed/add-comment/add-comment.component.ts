@@ -1,8 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA ,MatDialog, MatDialogRef,} from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Comments } from 'src/app/interfaces/story.model';
 import { AddCommentService } from 'src/app/services/add-comment.service';
+import { VariableValue } from 'src/app/services/variable.service';
 @Component({
   selector: 'app-add-comment',
   templateUrl: './add-comment.component.html',
@@ -25,7 +30,8 @@ export class AddCommentComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: { _id: string },
     private fb: FormBuilder,
-    private addCommentService: AddCommentService
+    private addCommentService: AddCommentService,
+    private variableValue: VariableValue
   ) {}
 
   ngOnInit(): void {
@@ -51,16 +57,22 @@ export class AddCommentComponent implements OnInit {
         // text: this.text?.value,
         image: 'this.image?.value',
         video: 'this.video?.value',
-        text:' this is the new text',
+        text: ' this is the new text',
       },
     };
-    this.addCommentService.addComment(this.data._id, this.comment)
-    .subscribe((data)=>{
-      
-      // this.dialogRef.close(data); 
-    });
-    this.dialogRef.close(this.comment); 
-    console.log("in daf")
-      console.log(this.comment)
+    this.addCommentService
+      .addComment(this.data._id, this.comment)
+      .subscribe((data) => {
+        // this.dialogRef.close(data);
+      });
+    this.dialogRef.close(this.comment);
+    // console.log('in daf');
+    // console.log(this.comment);
+    // console.log(typeof this.comment);
+    this.variableValue.newComment.push({
+      id : this.data._id,
+      cmt: this.comment
+    }); 
+    console.log(this.variableValue.newComment)
   }
 }
