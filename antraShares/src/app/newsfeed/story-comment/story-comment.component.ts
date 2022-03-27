@@ -40,13 +40,11 @@ export class StoryCommentComponent implements OnInit {
       this.variableValue.newComment.forEach((ele) => {
         if (ele.id === this.data.story._id) {
           console.log(ele.cmt);
-          this.comments=[ele.cmt!,...this.comments]
-          console.log(123);
+          this.comments = [ele.cmt!, ...this.comments];
         }
       });
-      
     }
-    
+
     this.max = this.comments.length;
     this.totalP =
       this.max % this.size === 0

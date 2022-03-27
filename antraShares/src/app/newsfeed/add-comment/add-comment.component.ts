@@ -49,7 +49,7 @@ export class AddCommentComponent implements OnInit {
     let date = new Date();
     console.log(date);
     this.comment = {
-      publisherName: 'news name',
+      publisherName: 'news name newsd',
       publishedTime: date,
       content: {
         // image: this.image?.value,
