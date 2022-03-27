@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Comment, Story } from 'src/app/interfaces/story.model';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Comments, Story } from 'src/app/interfaces/story.model';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VariableValue } from 'src/app/services/variable.service';
 import { StoryService } from 'src/app/services/story.service';
+import { AddCommentComponent } from '../add-comment/add-comment.component';
 @Component({
   selector: 'app-story-comment',
   templateUrl: './story-comment.component.html',
@@ -15,15 +16,17 @@ export class StoryCommentComponent implements OnInit {
   max!: number;
   totalP!: number;
   page: number = 0;
-  comments!: Comment[];
-  commentsPerpage!: Comment[];
+  comments!: Comments[];
+  commentsPerpage!: Comments[];
   pages: number[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA)
     private data: { story: Story },
-    private variableValue: VariableValue
+    private variableValue: VariableValue,
+    public dialog: MatDialog
   ) {}
   ngOnInit(): void {
+    console.log('oninnit');
     this.start = this.variableValue.start;
     this.end = this.variableValue.end;
     this.size = this.variableValue.size;
@@ -53,5 +56,22 @@ export class StoryCommentComponent implements OnInit {
     this.start = this.variableValue.start + this.size * page;
     this.end = this.variableValue.end + this.size * page;
     this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
+  }
+
+  onClickAddComment() {
+    const dialogRef = this.dialog.open(AddCommentComponent, {
+      height: '35%',
+      width: '25%',
+      data: {
+        _id: this.data.story._id,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((newcomment) => {
+      if (newcomment !== undefined) {
+        this.comments = [newcomment,...this.comments ];
+        this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
+      }
+    });
   }
 }

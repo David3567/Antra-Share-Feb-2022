@@ -1,0 +1,10 @@
+<p>add-comment works!</p>
+<p></p>
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="file" id="image" formControlName="image" />
+    <input type="file" id="video" formControlName="video" />
+    <input type="text" id="comment" formControlName="text" />
+    <button type="submit">submit</button>
+  </form>
+</div>
