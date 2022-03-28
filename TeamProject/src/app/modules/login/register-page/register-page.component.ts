@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, Form, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, of, throwError, timer } from 'rxjs';
+import { RegisterService } from 'src/app/services/register.service';
+import { mapTo, catchError, map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-page',
@@ -10,16 +13,26 @@ import { Router } from '@angular/router';
 export class RegisterPageComponent implements OnInit {
 
   regForm: FormGroup;
+  usernameStatus: string;
+  emailStatus: string;
 
-  constructor(private build: FormBuilder, private router: Router) { }
+
+  constructor(private build: FormBuilder,
+    private router: Router,
+    private regService: RegisterService) { }
 
   ngOnInit(): void {
     this.regForm = this.build.group({
-      username: ["", [, Validators.minLength(5), Validators.maxLength(12), Validators.required]],
-      email: ["", [Validators.email, Validators.required]],
-      password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
-      confirm: ["", Validators.required]
-    });
+      username: ["", [Validators.minLength(5), Validators.maxLength(12), Validators.required], this.checkUsernameExists()],
+      email: ["", [Validators.email, Validators.required], this.checkEmailExists()],
+      password: ["", [Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
+      confirm: ["", [Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]]
+    },
+      {
+        validator: this.matchPassword
+      }
+
+    );
   }
 
   get username() {
@@ -30,17 +43,71 @@ export class RegisterPageComponent implements OnInit {
     return this.regForm.get('email');
   }
 
-  get password() {
-    return this.regForm.get('password');
-  }
+  // get passwordGroup() {
+  //   return this.regForm.get('passwordGroup');
+  // }
 
   get confirm() {
     return this.regForm.get('confirm');
   }
+  get password() {
+    return this.regForm.get('password');
+  }
 
   onSubmit(signUpForm: FormGroup) {
     console.log(signUpForm.value);
+
     this.router.navigate(['/login']);
+  }
+
+  test() {
+    return console.log(this.username.errors);
+  }
+
+  // matchPassword(password: string, confirm: string) {
+  //   // return (group: FormGroup) => {
+  //   //   return group.controls[password].value !== group.controls[confirm].value ? group.controls[confirm].setErrors({ notMatch: true }) : null;
+
+  //   // }
+  // }
+
+  matchPassword: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+    return group.get('password').value !== group.get('confirm').value ? { 'notMatch': true } : null;
+  }
+
+  checkUsernameExists(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.regService.getUserByUsername(control.value)
+        }),
+        map(val => {
+          return val ? { userNameExists: true } : null;
+        })
+      );
+    }
+  }
+
+  checkEmailExists(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.regService.getUserByEmail(control.value).pipe()
+        }),
+        map((val) => {
+
+          return val ? { emailExists: true } : null;
+        })
+      );
+    }
+  }
+
+  checkEmailExistsNow(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.regService.getUserByEmail(control.value).pipe(
+        map((val) => { return val ? { emailExists: true } : null })
+      )
+    }
   }
 
 }

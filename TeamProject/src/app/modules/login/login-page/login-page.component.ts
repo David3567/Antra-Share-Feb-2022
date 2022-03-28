@@ -62,4 +62,28 @@ export class LoginPageComponent implements OnInit {
   onRegister() {
     this.router.navigate(['register']);
   }
+
+  validateUserIsAuthenticated(): boolean {
+    // return (group: AbstractControl): Observable<ValidationErrors | null> => {
+    //   const obj = {
+    //     userEmail: group.value.username,
+    //     password: group.value.password,
+    //   };
+
+      return this.securityObj !== null;
+
+      // return timer(500).pipe(
+      //   switchMap(() => {
+      //     return this.securityService.login(obj).pipe(
+      //       tap((data) => console.log("data in validater: ", data)),
+      //       map((data) => null),
+      //       catchError((err: any) => {
+      //         return of({ errormessage: err.error });
+      //       })
+      //     );
+      //   })
+      // );
+    // };
+  }
+
 }
