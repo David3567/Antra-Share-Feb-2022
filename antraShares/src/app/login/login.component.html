@@ -20,18 +20,12 @@
           type="text"
           class="input-field"
           name="username"
-          placeholder="Username"
+          placeholder="Email"
           required=""
           formControlName="username"
         />
         <div *ngIf="form.invalid && (username?.dirty || username?.touched)">
-          <div *ngIf="username?.errors?.['required']">Username is required</div>
-          <div *ngIf="username?.errors?.['minlength']">
-            Your username is too short.
-          </div>
-          <div *ngIf="username?.errors?.['maxlength']">
-            Your username is too long.
-          </div>
+          <div *ngIf="username?.errors?.['required']">Email is required</div>
         </div>
         <input
           type="password"

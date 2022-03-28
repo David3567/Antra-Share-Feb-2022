@@ -21,6 +21,7 @@ export class LikelistComponent implements OnInit, OnDestroy {
     // like list
     this.subscribeStoryService = this.storyService.subjectLikeList$.subscribe(
       (story: any) => {
+        console.log(story)
         this.likeListStories = story;
       }
     );
