@@ -29,16 +29,12 @@ export class RegisterFormComponent implements OnInit {
     this.authenService.getAllUserNames().subscribe(
       (data) => {
         this.DBuserNames = data;
-        // console.warn(data[0]);
-        // console.log(this.DBuserNames);
       }
     );
 
     this.authenService.getAllUserEmails().subscribe(
       (data) => {
         this.DBuserEmails = data;
-        // console.warn(data[0]);
-        // console.log(this.DBuserEmails);
       }
     );
   }

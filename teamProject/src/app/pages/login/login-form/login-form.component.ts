@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenService } from 'src/app/services/authen.service';
 
 
 @Component({
@@ -12,16 +13,16 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup = this.fb.group(
     {
-      username: ['', [Validators.minLength(5),Validators.maxLength(12),Validators.required]],
-      password: ['',[Validators.minLength(5),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
     },
     {
       Validators: this.matchPassword,
     }
   );
 
-  get username(){
-    return this.loginForm.get('username');
+  get email(){
+    return this.loginForm.get('email');
   }
 
   get password(){
@@ -29,7 +30,7 @@ export class LoginFormComponent implements OnInit {
   }
 
 
-  constructor(private fb:FormBuilder, private router: Router) { }
+  constructor(private fb:FormBuilder, private router: Router, private authenService: AuthenService) { }
 
   ngOnInit(): void { }
 
@@ -39,9 +40,9 @@ export class LoginFormComponent implements OnInit {
 
   matchPassword(group: FormGroup): ValidationErrors | null {
     const password = group.get('password')?.value;
-    const username = group.get('username')?.value;
+    const email = group.get('email')?.value;
 
-    return password !== username ? { notMatch: true }: null;
+    return password !== email ? { notMatch: true }: null;
   }
 
   btnclick(){

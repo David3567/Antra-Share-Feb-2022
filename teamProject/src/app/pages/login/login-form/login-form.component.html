@@ -5,16 +5,16 @@
           <nz-form-item>
             <nz-form-control>
               <nz-input-group [nzSize]="'large'" nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="username"/>
+                <input type="text" nz-input formControlName="email"/>
               </nz-input-group>
-              <div *ngIf="!username?.valid && (username?.dirty && username?.touched)">
-                <div *ngIf="username?.errors?.['required']">
+              <div *ngIf="!email?.valid && (email?.dirty && email?.touched)">
+                <div *ngIf="email?.errors?.['required']">
                     please enter a user name
                 </div>
-                <div *ngIf="username?.errors?.['minlength']">
+                <div *ngIf="email?.errors?.['minlength']">
                     Min Length is 5
                 </div>
-                <div *ngIf="username?.errors?.['maxlength']">
+                <div *ngIf="email?.errors?.['maxlength']">
                     Max Length is 12
                 </div>
             </div>
