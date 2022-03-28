@@ -79,21 +79,20 @@ export class RegisterFormComponent implements OnInit {
 
   onSubmit() {
 
-    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
-    data) => {
-
-    setTimeout(() =>
-    {
-      this.successMessage = 'Registered Successfully!';
-      this.cd.markForCheck();
-      this.router.navigateByUrl('/');
-    },
-    2000);
-    },
-    (err) => {
-      this.errorMessage = err.error;
-      this.cd.markForCheck();
-    });
+    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe(
+      (data) => {
+        setTimeout(() =>
+        {
+          this.successMessage = 'Registered Successfully!';
+          this.cd.markForCheck();
+          this.router.navigateByUrl('/');
+        },
+        2000);
+        },
+      (err) => {
+        this.errorMessage = err.error;
+        this.cd.markForCheck();
+      });
   }
 
   loadOne(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenService } from 'src/app/services/authen.service';
@@ -11,13 +11,14 @@ import { AuthenService } from 'src/app/services/authen.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  successMessage = '';
+  errorMessage = '';
+  isLoadingOne = false;
+
   loginForm: FormGroup = this.fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
       password: ['',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
-    },
-    {
-      Validators: this.matchPassword,
     }
   );
 
@@ -30,23 +31,32 @@ export class LoginFormComponent implements OnInit {
   }
 
 
-  constructor(private fb:FormBuilder, private router: Router, private authenService: AuthenService) { }
+  constructor(private fb:FormBuilder, private router: Router, private authenService: AuthenService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void { }
 
   onSubmit(){
     console.log(this.loginForm.value);
+
+    this.authenService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+      (data) => {
+        setTimeout(() => {
+          this.router.navigateByUrl('default/newsfeed');
+        }, 2000);
+        },
+      (err) => {
+        setTimeout(() => {
+          this.errorMessage = err.error;
+          this.cd.markForCheck();
+          setTimeout(() => location.reload(), 1000);
+        }, 2000);
+      });
   }
 
-  matchPassword(group: FormGroup): ValidationErrors | null {
-    const password = group.get('password')?.value;
-    const email = group.get('email')?.value;
-
-    return password !== email ? { notMatch: true }: null;
+  loadOne(): void {
+    this.isLoadingOne = true;
+    setTimeout(() => {
+      this.isLoadingOne = false;
+    }, 2000);
   }
-
-  btnclick(){
-    this.router.navigate(['default']);
-  }
-
 }
