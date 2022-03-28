@@ -84,16 +84,13 @@ export class RegisterPageComponent implements OnInit {
     }
   }
 
-  // useremailValidator(): AsyncValidatorFn {
-  //   // return (control: AbstractControl): Observable<ValidationErrors | null> => {
-  //   //   return this.existService.checkyByUseremail(control.value).pipe(
-  //   //     map(res => {return res ? { error: true, isDuplicated: true } : null;}),
-  //   //     catchError(err => {
-  //   //       throw ({ message: err.error });
-  //   //     })
-  //   //   );
-  //   // };
-  // }
+  //  useremailValidator(): AsyncValidatorFn {
+  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+  //     return this.existService.checkyByUseremail(control.value).pipe(
+  //       map((data) => {return data ? {  isDuplicated: true } : null;}),
+  //     );
+  //   };
+  //  }
 
 
   get username() {
