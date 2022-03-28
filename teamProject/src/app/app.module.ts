@@ -23,6 +23,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { UserService } from './services/user.service';
 import { AsyncValidatorService } from './services/asyncValidator.service';
+import { AuthService } from './services/auth.service';
 
 registerLocaleData(en);
 
@@ -47,7 +48,12 @@ registerLocaleData(en);
     NewsfeedModule,
     ProfileModule,
   ],
-  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }, UserService, AsyncValidatorService],
+  providers: [
+    UserlistService,NewsfeedService, 
+    { provide: NZ_I18N, useValue: en_US }, 
+    UserService, 
+    AsyncValidatorService, 
+    AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

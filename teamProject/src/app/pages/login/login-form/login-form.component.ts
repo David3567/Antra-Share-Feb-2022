@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -28,14 +29,30 @@ export class LoginFormComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
+  form: any = {
+    username: null,
+    password: null
+  }
 
-  constructor(private fb:FormBuilder, private router: Router) { }
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  ngOnInit(): void { }
+
+  constructor(
+    private fb:FormBuilder, 
+    private router: Router,
+    private authService: AuthService,
+    ) { }
+
+  ngOnInit(): void {}
 
   onSubmit(){
     console.log(this.loginForm.value);
+    
   }
+
 
   matchPassword(group: FormGroup): ValidationErrors | null {
     const password = group.get('password')?.value;
@@ -44,8 +61,8 @@ export class LoginFormComponent implements OnInit {
     return password !== username ? { notMatch: true }: null;
   }
 
-  btnclick(){
-    this.router.navigate(['default']);
-  }
+  // btnclick(){
+  //   this.router.navigate(['default']);
+  // }
 
 }
