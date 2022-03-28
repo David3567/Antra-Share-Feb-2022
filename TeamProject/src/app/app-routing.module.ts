@@ -29,6 +29,7 @@ const routes: Routes = [
   {
     path: 'setting',
     component: SettingPanelComponent,
+    
   },
   {
     path: 'admin',

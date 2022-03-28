@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, map, Observable, switchMap, tap, timer } from 'rxjs';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register-page',
@@ -10,19 +12,24 @@ import { Router } from '@angular/router';
 export class RegisterPageComponent implements OnInit {
 
   regForm: FormGroup;
+  usernameStatus: string = 'Test';
+  emailStatus: string;
 
-  constructor(private build: FormBuilder, private router: Router) { }
+  constructor(private build: FormBuilder, 
+              private router: Router, 
+              private regService: RegisterService) { }
 
   ngOnInit(): void {
     this.regForm = this.build.group({
-      username: ["", [, Validators.minLength(5), Validators.maxLength(12), Validators.required]],
-      email: ["", [Validators.email, Validators.required]],
+      username: ["", [Validators.minLength(5), Validators.maxLength(12), Validators.required], this.checkUsernameExists()],
+      email: ["", [Validators.email, Validators.required], this.checkEmailExists()],
       password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
       confirm: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]]
     },
     {
-      validators: this.matchPassword
-    });
+      validators: [this.matchPassword]
+    }
+    );
   }
 
   get username() {
@@ -43,11 +50,44 @@ export class RegisterPageComponent implements OnInit {
 
   onSubmit(signUpForm: FormGroup) {
     console.log(signUpForm.value);
+
     this.router.navigate(['/login']);
   }
 
-  matchPassword(group: FormGroup): ValidationErrors | null {
+  matchPassword: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
     return group.get('password').value !== group.get('confirm').value ? {'notMatch': true} : null;
+  }
+
+  checkUsernameExists(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.regService.getUserByUsername(control.value).pipe(
+            tap((response: string) => { this.usernameStatus = response }),
+            map((response: string) => { return response ? { userNameExists: true } : null }),
+            catchError(err => {
+              throw ({ errorMessage: err.error });
+            })
+          )
+        })
+      );
+    }
+  }
+
+  checkEmailExists(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.regService.getUserByEmail(control.value).pipe(
+            tap((response: string) => { this.emailStatus = response }),
+            map((response: string) => { return response ? { emailExists: true } : null }),
+            catchError(error => {
+              throw ({ errorMessage: error.error });
+            })
+          )
+        })
+      );
+    }
   }
 
 }

@@ -12,8 +12,12 @@
                     A Username is required!</div>
                 <div *ngIf="username?.errors?.['minlength'] || username?.errors?.['maxlength']">
                     The Username needs to be between 5 and 12 characters</div>
+                <div *ngIf="username?.errors?.['userNameExists']">
+                    {{ usernameStatus }} - Choose a different username.</div>
             </mat-error>
         </mat-form-field>
+        
+            
 
         <mat-form-field appearance="fill">
             <mat-label>Enter Email</mat-label>
@@ -23,6 +27,8 @@
                     An Email is required!</div>
                 <div *ngIf="email?.errors?.['email']">
                     Your entry needs to follow the email format</div>
+                <div *ngIf="email?.errors?.['emailExists']">
+                        {{ emailStatus }} - Choose a different email.</div>
             </mat-error>
         </mat-form-field>
 
@@ -49,8 +55,10 @@
                     Your password and confirmation need to match</div>
             </mat-error>
         </mat-form-field>
+        
 
         <button [disabled]="!regForm.valid" type="submit">Register</button>
+        
     </form>
 
 </div>
