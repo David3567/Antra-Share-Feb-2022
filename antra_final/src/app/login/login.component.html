@@ -2,10 +2,10 @@
 <div class="main-container">
     <form [formGroup]="form" (ngSubmit)="onLogIn()">
 
-        <div class="username-container">
-            <input type="username" placeholder="Username" formControlName="username"><br>
-            <div *ngIf="!username?.valid && (username?.dirty || username?.touched)" class="error">
-                Invalid username
+        <div class="email-container">
+            <input type="email" placeholder="Email" formControlName="email"><br>
+            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
+                Invalid email
             </div>
             <div class="error">{{errorText}}</div>
         </div>

@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   proceedUrl: string = 'news';
   errorText: string = '';
 
-  get username() {
-    return this.form.get('username');
+  get email() {
+    return this.form.get('email');
   }
 
   get password() {
@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit {
 
   buildform(): {} {
     return {
-      username: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5), passwordValidator(/^(?=.*\d)(?=.*[A-Z])(?=.*[^a-zA-Z])(?=.*?[!@#\$&*~])./)]]
     };
   }
 
   onLogIn() {
     this.userLoginInfo = {
-      'userEmail': this.form.value.username,
+      'userEmail': this.form.value.email,
       'password': this.form.value.password
     }
 

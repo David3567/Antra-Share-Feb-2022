@@ -14,7 +14,7 @@ h1 {
     display: flex;
 }
 
-.username-container {
+.email-container {
     height: 40px;
     padding: 10px;
     padding-left: 0;
@@ -30,7 +30,7 @@ h1 {
 
 }
 
-input[type=username],input[type=password] {
+input[type=email],input[type=password] {
     padding: 12px 12px;
     display: inline-block;
     font-size: 14px;
