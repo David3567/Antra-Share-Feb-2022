@@ -12,8 +12,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, Observable, of, switchMap, tap, timer } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { AppUserAuth } from 'src/app/services/interface/app-user-auth';
-import { Users } from 'src/app/services/interface/register.model';
+import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
+import { Users } from 'src/app/core/services/interface/register.model';
 import { UserlistService } from 'src/app/services/userlist.service';
 
 @Component({
@@ -47,13 +47,13 @@ export class RegisterComponent implements OnInit {
   ) {
     this.form = this.fb.group(
       {
-        name: new FormControl(''),
-        username: new FormControl(''),
+        name: new FormControl('', Validators.required),
+        username: new FormControl('', Validators.required),
         useremail: new FormControl('', [
           Validators.minLength(5),
           Validators.maxLength(30),
           Validators.required,
-          this.extraCheckUserEmail()
+          this.extraCheckUserEmail(),
         ]),
         password: new FormControl('', [
           Validators.minLength(5),
@@ -71,8 +71,8 @@ export class RegisterComponent implements OnInit {
         gender: new FormControl(''),
         phone: new FormControl(''),
       },
-      { 
-        // asyncValidator: this.validateUserIsAuthenticated() 
+      {
+        asyncValidator: this.validateUserIsAuthenticated(),
       }
     );
   }
@@ -95,18 +95,17 @@ export class RegisterComponent implements OnInit {
       phone: this.form.value.phone,
       // __v: this.form.value.__v,
     };
-    this.authService.register(this.user).subscribe(
-      (info) => {
-        this.securityObj = info.body;
-        if (this.returnUrl) {
-          this.router.navigateByUrl(this.returnUrl);
-        }else{
-          this.router.navigate(['login']);
+    this.authService.register(this.user).subscribe((info) => {
+      // this.securityObj = info.body;
+      if (this.returnUrl) {
+        this.router.navigateByUrl(this.returnUrl);
+      }else{
+      this.router.navigate(['login']);
         }
       },
-      () => {
-        this.securityObj = new AppUserAuth();
-      }
+    //   () => {
+    //     this.securityObj = new AppUserAuth();
+    // }
     );
   }
 
@@ -120,16 +119,15 @@ export class RegisterComponent implements OnInit {
       if (!specialLeter.test(control.value)) {
         return { specialLeter: true };
       } else return null;
-      
     };
   }
-  extraCheckUserEmail(): ValidatorFn{
+  extraCheckUserEmail(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const email = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-      if( !email.test(control.value)){
-        return { email: true }
-      }
-      else return null;
+      const email =
+        /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      if (!email.test(control.value)) {
+        return { email: true };
+      } else return null;
     };
   }
 
@@ -148,7 +146,7 @@ export class RegisterComponent implements OnInit {
 
       return timer(1500).pipe(
         switchMap(() => {
-          return this.authService.register(obj).pipe(
+          return this.authService.registercheckuseremail(obj.userEmail).pipe(
             tap((data) => console.log('data in validater: ', data)),
             map((data) => null),
             catchError((err: any) => {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { AppUserAuth } from 'src/app/services/interface/app-user-auth';
+import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
 
 @Component({
   selector: 'app-setting',

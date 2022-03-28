@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { News } from 'src/app/services/interface/news.model';
 import { ShowstoryComponent } from '../showstory/showstory.component';
+import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newsfeed',
@@ -14,13 +17,19 @@ export class NewsfeedComponent implements OnInit {
   newslist!: News[];
   likedStories: News[] = [];
 
-  constructor(private newsFeedService: NewsfeedService) {}
+  securityObj: AppUserAuth = new AppUserAuth();
+
+
+  constructor(private newsFeedService: NewsfeedService, private authService: AuthService, private router: Router) {
+    this.securityObj = this.authService.securityObj;
+  }
 
   ngOnInit(): void {
     this.newsFeedService
       .getNews()
       .subscribe((news: News[]) => (this.newslist = news));
     // console.log(this.newslist);
+    console.log(this.authService.securityObj);
   }
 
   onClick() {

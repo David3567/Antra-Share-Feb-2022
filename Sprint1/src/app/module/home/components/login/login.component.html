@@ -28,7 +28,9 @@
         <li *ngIf="useremail?.errors?.['maxlength']">
           useremail should be no longer than 30 characters long.
         </li> -->
-        <li *ngIf="!useremail?.errors?.['required'] && useremail?.errors?.['email']">
+        <li
+          *ngIf="!useremail?.errors?.['required'] && useremail?.errors?.['email']"
+        >
           not a valid email.
         </li>
       </ul>
@@ -48,6 +50,8 @@
             mat-icon-button
             matSuffix
             (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
           >
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
@@ -63,19 +67,22 @@
         <!-- <li *ngIf="password?.invalid && !password?.errors?.['required']">
           Password format invalid!
           <ul> -->
-            <!-- <li *ngIf="password?.errors?.['minlength']">
+        <!-- <li *ngIf="password?.errors?.['minlength']">
               Password must be at least 5 characters long.
             </li>
             <li *ngIf="password?.errors?.['maxlength']">
               Password should be no longer than 16 characters long.
             </li> -->
-            <li *ngIf="!password?.errors?.['required'] && password?.errors?.['specialLeter']">
-              Password should contains at least 1 special character.
-            </li>
-          <!-- </ul>
+        <li
+          *ngIf="!password?.errors?.['required'] && password?.errors?.['specialLeter']"
+        >
+          Password should contains at least 1 special character.
+        </li>
+        <!-- </ul>
         </li> -->
       </ul>
-
+      <p>{{error}}</p>
+      
       <!-- button -->
       <div class="button">
         <div>
@@ -90,9 +97,7 @@
           </button>
         </div>
 
-        <button id="loginbtn" type="submit" mat-button>
-          Login
-        </button>
+        <button id="loginbtn" type="submit" mat-button>Login</button>
         <!-- [disabled]="!form.valid" -->
       </div>
     </form>
