@@ -10,8 +10,6 @@ import { UserValidatorService } from 'src/app/services/user-validator.service';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
-  emailError: string;
-  nameError: string;
   regForm: FormGroup;
 
   constructor(private build: FormBuilder,
@@ -52,14 +50,10 @@ export class RegisterPageComponent implements OnInit {
     return (group: AbstractControl): Observable<ValidationErrors | null> => {
       return timer(500).pipe(
         switchMap(() => {
-          return this.checkService.checkUserEmail(group.value).pipe(
-            tap((data: string) => { this.emailError = data }),
-            map((data: string) => { return data ? { isDuplicate: true } : null }),
-            catchError(err => {
-              throw ({ message: err.error });
-            })
-          )
-        })
+          return this.checkService.checkUserEmail(group.value)
+        }),
+        map((data: string) => { return data ? { isDuplicate: true } : null }),
+        catchError(err => { throw { message: err.error } })
       )
     }
   }
@@ -68,16 +62,11 @@ export class RegisterPageComponent implements OnInit {
     return (group: AbstractControl): Observable<ValidationErrors | null> => {
       return timer(500).pipe(
         switchMap(() => {
-          return this.checkService.checkUserName(group.value).pipe(
-            tap((data: string) => { this.nameError = data }),
-            map((data: string) => { return data ? { isDuplicate: true } : null }),
-            catchError(err => {
-              throw ({ message: err.error });
-            })
-          )
-        })
+          return this.checkService.checkUserName(group.value)
+        }),
+        map((data: string) => { return data ? { isDuplicate: true } : null }),
+        catchError(err => { throw { message: err.error } })
       )
     }
   }
-
 }

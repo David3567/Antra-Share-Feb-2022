@@ -17,7 +17,7 @@
         The Username needs to be between 5 and 12 characters
       </div>
       <div *ngIf="username.errors?.['isDuplicate']">
-        {{ nameError }} Please use another name.
+        That username is taken. Try another.
       </div>
     </div>
 
@@ -34,7 +34,7 @@
         Your entry needs to follow the email format
       </div>
       <div *ngIf="email.errors?.['isDuplicate']">
-        {{ emailError }} Please use another email.
+        That email is taken. Try another.
       </div>
     </div>
 
