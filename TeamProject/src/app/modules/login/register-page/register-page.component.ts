@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators, ValidationErrors  } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError,Observable, of, timer } from 'rxjs';
+import { catchError,Observable, of, timer, switchMap } from 'rxjs';
 import { delay, map, tap } from 'rxjs/operators';
 import { AppUserAuth } from 'src/app/interfaces/user-auth.model';
 import { AppNewUser } from 'src/app/interfaces/users.model';
@@ -53,7 +53,7 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.regForm = this.build.group({
-      username: ["", [Validators.minLength(5), Validators.maxLength(12), Validators.required], ],
+      username: ["", [Validators.minLength(5), Validators.maxLength(12), Validators.required], this.usernameValidator()],
       email: ["", [Validators.email, Validators.required]],
       password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
       confirm: ["", Validators.required]
@@ -69,28 +69,31 @@ export class RegisterPageComponent implements OnInit {
   // }
 
   usernameValidator(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.existService.checkyByUsername(control.value).pipe(
-        tap((input: string) => { this.userNameCheck = input}),
-        map(res => {
-          return res ? { isDuplicated: true } : null;}),
-          catchError(err => {
-            throw ({ message: err.error });
-          })
-      );
-    };
+    return (group: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.existService.checkyByUsername(group.value).pipe(
+            tap((data: string) => { this.userNameCheck = data }),
+            map((data: string) => { return data ? { isDuplicated: true } : null }),
+            // catchError(err => {
+            //   throw ({ message: err.error });
+            // })
+          )
+        })
+      )
+    }
   }
 
-  useremailValidator(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.existService.checkyByUseremail(control.value).pipe(
-        map(res => {return res ? { error: true, isDuplicated: true } : null;}),
-        catchError(err => {
-          throw ({ message: err.error });
-        })
-      );
-    };
-  }
+  // useremailValidator(): AsyncValidatorFn {
+  //   // return (control: AbstractControl): Observable<ValidationErrors | null> => {
+  //   //   return this.existService.checkyByUseremail(control.value).pipe(
+  //   //     map(res => {return res ? { error: true, isDuplicated: true } : null;}),
+  //   //     catchError(err => {
+  //   //       throw ({ message: err.error });
+  //   //     })
+  //   //   );
+  //   // };
+  // }
 
 
   get username() {

@@ -1,24 +1,17 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
 import { AppUserAuth } from '../interfaces/user-auth.model';
 import { DBUser } from '../interfaces/user-auth.model';
 import { AppNewUser } from '../interfaces/users.model';
 
-const API_URL = "http://localhost:4231/api";
-const httpOptions = {
-  observe: "response" as "body", // check the whole response
-  headers: new HttpHeaders({
-    "Content-Type": "application/json",
-  }),
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  private securityObject: AppUserAuth = new AppUserAuth();
+  API_URL = 'http://localhost:4231/api';
+  API_Path = 'register';
 
   constructor(private http: HttpClient) { }
 
@@ -44,35 +37,39 @@ export class RegisterService {
 
 
 
-  set securityObj(newObj: AppUserAuth) {
-    this.securityObject = newObj;
-  }
+  // set securityObj(newObj: AppUserAuth) {
+  //   this.securityObject = newObj;
+  // }
 
-  get securityObj() {
-    return this.securityObject;
-  }
+  // get securityObj() {
+  //   return this.securityObject;
+  // }
 
   register(entity: AppNewUser) {
 
-    return this.http
-      .post<AppUserAuth>([API_URL, "register"].join("/"), entity, httpOptions)
-      .pipe(
-        tap((data: any) => {
+    // return this.http
+    //   .post<AppUserAuth>([API_URL, "register"].join("/"), entity, httpOptions)
+    //   .pipe(
+    //     tap((data: any) => {
           
-          Object.assign(this.securityObject, data.body);
+    //       Object.assign(this.securityObject, data.body);
 
-        })
-      );
+    //     })
+    //   );
 
   }
 
 
   checkyByUsername(username:string) {
-    return this.http.get(API_URL+ "/register" + "/checkExistByUsername/" + username);
+    // return this.http.get(API_URL+ "/register" + "/checkExistByUsername/" + username);
+
+    return this.http
+    .get<string>(this.API_URL + '/' + this.API_Path + '/' + 'checkExistByUsername' + '/' + username);
+
   }
 
   checkyByUseremail(useremail:string) {
-    return this.http.get(API_URL+ "/register" + "/checkExistByEmail/" + useremail);
+    // return this.http.get(API_URL+ "/register" + "/checkExistByEmail/" + useremail);
   }
 
 }
