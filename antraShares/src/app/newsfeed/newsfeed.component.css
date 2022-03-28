@@ -30,13 +30,29 @@ body{
 }
 .form {
   padding-top: 90px;
-  width: 50%;
+  width: 35%;
   padding-left: 2%;
-  margin-left: 27%;
+  margin-left: 35%;
   margin-bottom: 2%;
   border-radius: 40px;
 }
 h1 {
   text-align: center;
   cursor: pointer;
+}
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.container-input{
+  font-size: var(--font-btn-size);
+  display: flex;
+  justify-content: flex-start;
+
+}
+.container-input-label{
+  width: 70px;
+  margin-right: 20px;
 }

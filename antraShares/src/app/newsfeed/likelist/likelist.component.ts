@@ -29,7 +29,7 @@ export class LikelistComponent implements OnInit, OnDestroy {
     this.subscribeStoryService.unsubscribe();
   }
   onRemoveLike(story: Story) {
-    this.variable.remove.push(story._id);
+    this.variable.remove.push(story._id!);
 
     this.storyService.removeNewsFromLikeList(story);
   }

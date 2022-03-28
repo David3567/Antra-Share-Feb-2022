@@ -3,13 +3,46 @@
 </div>
 
 <div class="form">
- 
   <mat-accordion>
-    <mat-expansion-panel >
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>  <h1>Post News Feed Form</h1> </mat-panel-title>
+        <mat-panel-title> <h1>Post News Feed Form</h1> </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-post-story></app-post-story>
+      <!-- <app-post-story></app-post-story> -->
+
+      <div class="container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="container-input">
+            <label class="container-input-label" for="image">Image: </label>
+            <!-- <input type="file" id="image" formControlName="image" /> -->
+            <input
+              type="text"
+              id="image"
+              formControlName="image"
+              placeholder="url to image"
+            />
+          </div>
+
+          <div class="container-input">
+            <label class="container-input-label" for="video">Video: </label>
+            <!-- <input type="file" id="video" formControlName="video" /> -->
+            <input
+              type="text"
+              id="video"
+              formControlName="video"
+              placeholder="url link"
+            />
+          </div>
+          <div class="container-input">
+            <label class="container-input-label" for="comment">Comment: </label>
+            <input type="text" id="comment" formControlName="text" />
+          </div>
+          <div class="container-input">
+            <button class="" type="submit">submit</button>
+          </div>
+        </form>
+      </div>
+      
     </mat-expansion-panel>
   </mat-accordion>
 </div>

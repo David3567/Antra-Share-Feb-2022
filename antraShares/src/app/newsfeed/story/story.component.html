@@ -20,7 +20,7 @@
   </div>
   <div class="story-dashboard-viewer">
     <button (click)="onClickComment(storyDetail)">
-      <mat-icon> comment</mat-icon> {{ storyDetail.comment.length }}
+      <mat-icon> comment</mat-icon> {{ storyDetail.comment?.length }}
     </button>
     <button (click)="addToLikeList(storyDetail)">
       <mat-icon
@@ -28,12 +28,12 @@
         class="material-icons-favorite"
         [ngStyle]="{
           color:
-            !likedme || variableValue.remove.indexOf(storyDetail._id) !== -1
+            !likedme || variableValue.remove.indexOf(storyDetail._id!) !== -1
               ? '#884242'
               : 'red'
         }"
         >favorite</mat-icon
-      >{{ storyDetail.likedIdList.length }}
+      >{{ storyDetail.likedIdList!.length }}
     </button>
   </div>
 </div>

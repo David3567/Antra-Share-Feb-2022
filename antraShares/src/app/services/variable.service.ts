@@ -9,5 +9,13 @@ export class VariableValue {
   size = 4;
 
   newComment: [{ id?: string; cmt?: Comments }]=[{}];
+  
 
+  buildformPost() {
+    return {
+      image: [''],
+      video: [''],
+      text: [''],
+    };
+  }
 }

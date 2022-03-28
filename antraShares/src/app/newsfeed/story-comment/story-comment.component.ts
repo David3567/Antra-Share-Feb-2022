@@ -36,7 +36,7 @@ export class StoryCommentComponent implements OnInit {
     this.start = this.variableValue.start;
     this.end = this.variableValue.end;
     this.size = this.variableValue.size;
-    this.comments = this.data.story.comment;
+    this.comments = this.data.story.comment!;
     if (this.variableValue.newComment.length > 1) {
       this.variableValue.newComment.forEach((ele) => {
         if (ele.id === this.data.story._id) {
