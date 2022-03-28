@@ -22,7 +22,7 @@ export class RegisterFormComponent implements OnInit {
       return this.checkIfUsernameExists(control.value).pipe(
         map(res => {
           // if res is true, username exists, return true
-          return res ? { usernameExists: true } : null;
+          return res ? { error: true, duplicated: true } : null;
           // NB: Return null if there is no error
         })
       );
@@ -54,19 +54,6 @@ export class RegisterFormComponent implements OnInit {
         console.warn(data[0]);
       }
     );
-  }
-
-  ngDoCheck() {
-    //this.checkUniqueUsername();
-  }
-
-  checkUniqueUsername() {
-    //console.log(this.DBuserNames);
-    for(let i = 0; i < this.DBuserNames.length; i++) {
-      if(this.DBuserNames[i] === this.registerForm.value.username) {
-        console.log('user exists');
-      }
-    }
   }
 
   ngOnInit() {
