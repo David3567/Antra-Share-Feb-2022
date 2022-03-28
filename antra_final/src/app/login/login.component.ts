@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../core/login.service';
+import { Loginobject } from '../interface/loginobject.model';
+import { UserProfile } from '../interface/user-profile.model';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +13,11 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 export class LoginComponent implements OnInit {
   form!: FormGroup;
 
+  userLoginInfo: Loginobject = new Loginobject();
+  userProfile: UserProfile = new UserProfile();
+  proceedUrl: string = 'news';
+  errorText: string = '';
+
   get username() {
     return this.form.get('username');
   }
@@ -17,7 +26,10 @@ export class LoginComponent implements OnInit {
     return this.form.get('password');
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group(this.buildform());
@@ -25,18 +37,27 @@ export class LoginComponent implements OnInit {
 
   buildform(): {} {
     return {
-      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5), passwordValidator(/^(?=.*\d)(?=.*[A-Z])(?=.*[^a-zA-Z])(?=.*?[!@#\$&*~])./)]]
     };
   }
 
   onLogIn() {
-    if (this.form.valid) {
-      console.log(this.form.getRawValue());
+    this.userLoginInfo = {
+      'userEmail': this.form.value.username,
+      'password': this.form.value.password
     }
-    else {
-      console.log('Invalid form');
-    }
+
+    this.loginService.getLoginValidation(this.userLoginInfo).subscribe(
+      (data) => {
+        this.userProfile = data.body;
+        this.loginService.setIsAuth(true);
+        this.router.navigateByUrl(this.proceedUrl);
+      },
+      (err) => {
+        this.errorText = err.error;
+      }
+    )
   }
 }
 

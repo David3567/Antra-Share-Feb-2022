@@ -7,6 +7,7 @@
             <div *ngIf="!username?.valid && (username?.dirty || username?.touched)" class="error">
                 Invalid username
             </div>
+            <div class="error">{{errorText}}</div>
         </div>
 
         <div class="password-container">
@@ -17,6 +18,7 @@
         </div>
 
         <p>New User? <a routerLink="/register">Register</a></p>
-        <button type="login" class="login-button">Log In</button>
+        <button type="login" class="login-button" (click)="onLogIn()">Log In</button>
     </form>
+
 </div>
