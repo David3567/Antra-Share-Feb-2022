@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenService } from 'src/app/services/authen.service';
 
 
 @Component({
@@ -10,18 +11,19 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
+  successMessage = '';
+  errorMessage = '';
+  isLoadingOne = false;
+
   loginForm: FormGroup = this.fb.group(
     {
-      username: ['', [Validators.minLength(5),Validators.maxLength(12),Validators.required]],
-      password: ['',[Validators.minLength(5),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]]
-    },
-    {
-      Validators: this.matchPassword,
+      email: ['', [Validators.required, Validators.email]],
+      password: ['',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
     }
   );
 
-  get username(){
-    return this.loginForm.get('username');
+  get email(){
+    return this.loginForm.get('email');
   }
 
   get password(){
@@ -29,23 +31,37 @@ export class LoginFormComponent implements OnInit {
   }
 
 
-  constructor(private fb:FormBuilder, private router: Router) { }
+  constructor(private fb:FormBuilder, private router: Router, private authenService: AuthenService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void { }
 
   onSubmit(){
     console.log(this.loginForm.value);
+
+    this.authenService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+      (data) => {
+        console.log(data.userName);
+        localStorage.setItem('username', data.userName);
+        localStorage.setItem('email', data.userEmail);
+        localStorage.setItem('token', data.bearerToken);
+
+        setTimeout(() => {
+          this.router.navigateByUrl('default/newsfeed');
+        }, 2000);
+        },
+      (err) => {
+        setTimeout(() => {
+          this.errorMessage = err.error;
+          this.cd.markForCheck();
+          setTimeout(() => location.reload(), 1000);
+        }, 2000);
+      });
   }
 
-  matchPassword(group: FormGroup): ValidationErrors | null {
-    const password = group.get('password')?.value;
-    const username = group.get('username')?.value;
-
-    return password !== username ? { notMatch: true }: null;
+  loadOne(): void {
+    this.isLoadingOne = true;
+    setTimeout(() => {
+      this.isLoadingOne = false;
+    }, 2000);
   }
-
-  btnclick(){
-    this.router.navigate(['default']);
-  }
-
 }

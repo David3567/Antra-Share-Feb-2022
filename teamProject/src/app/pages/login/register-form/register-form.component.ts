@@ -4,6 +4,7 @@ import { MustMatch } from './mustMatch.validator';
 import { AuthenService } from 'src/app/services/authen.service';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -16,27 +17,24 @@ export class RegisterFormComponent implements OnInit {
   registerForm!: FormGroup;
   successMessage = '';
   errorMessage = '';
+  isLoadingOne = false;
 
   DBuserNames: string[] = [];
   DBuserEmails: string[] = [];
 
   passwordPattern = '(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}';
 
-  constructor(private formbuilder: FormBuilder, private authenService: AuthenService, private cd: ChangeDetectorRef) {
+  constructor(private formbuilder: FormBuilder, private authenService: AuthenService, private cd: ChangeDetectorRef, private router: Router) {
 
     this.authenService.getAllUserNames().subscribe(
       (data) => {
         this.DBuserNames = data;
-        // console.warn(data[0]);
-        // console.log(this.DBuserNames);
       }
     );
 
     this.authenService.getAllUserEmails().subscribe(
       (data) => {
         this.DBuserEmails = data;
-        // console.warn(data[0]);
-        // console.log(this.DBuserEmails);
       }
     );
   }
@@ -81,14 +79,26 @@ export class RegisterFormComponent implements OnInit {
 
   onSubmit() {
 
-    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
-    data) => {
-    this.successMessage = 'Registered Successfully!';
-    this.cd.markForCheck();
-    },
-    (err) => {
-      this.errorMessage = err.error;
-      this.cd.markForCheck();
-    });
+    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe(
+      (data) => {
+        setTimeout(() =>
+        {
+          this.successMessage = 'Registered Successfully!';
+          this.cd.markForCheck();
+          this.router.navigateByUrl('/');
+        },
+        2000);
+        },
+      (err) => {
+        this.errorMessage = err.error;
+        this.cd.markForCheck();
+      });
+  }
+
+  loadOne(): void {
+    this.isLoadingOne = true;
+    setTimeout(() => {
+      this.isLoadingOne = false;
+    }, 3000);
   }
 }

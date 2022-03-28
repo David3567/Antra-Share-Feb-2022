@@ -5,16 +5,16 @@
           <nz-form-item>
             <nz-form-control>
               <nz-input-group [nzSize]="'large'" nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="username"/>
+                <input type="text" nz-input formControlName="email" placeholder="Email"/>
               </nz-input-group>
-              <div *ngIf="!username?.valid && (username?.dirty && username?.touched)">
-                <div *ngIf="username?.errors?.['required']">
+              <div *ngIf="!email?.valid && (email?.dirty && email?.touched)">
+                <div *ngIf="email?.errors?.['required']">
                     please enter a user name
                 </div>
-                <div *ngIf="username?.errors?.['minlength']">
+                <div *ngIf="email?.errors?.['minlength']">
                     Min Length is 5
                 </div>
-                <div *ngIf="username?.errors?.['maxlength']">
+                <div *ngIf="email?.errors?.['maxlength']">
                     Max Length is 12
                 </div>
             </div>
@@ -40,7 +40,7 @@
           </nz-form-item>
         </nz-tab>
       </nz-tabset>
-      <button nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'" (click)="btnclick()">Login</button>
+      <button nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'" (click)="loadOne()" [nzLoading]="isLoadingOne">Login</button>
       <div class="other-way">
         <div class="other-login">
           <span>Login with: </span>
@@ -50,5 +50,7 @@
         </div>
         <a class="login_form-register" routerLink="/login/register-form">Register</a>
       </div>
+      <br>
+      <div *ngIf="errorMessage != ''" [ngStyle]="{color: 'red'}">{{errorMessage}}</div>
   </form>
 </div>
