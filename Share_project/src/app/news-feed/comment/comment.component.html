@@ -1,0 +1,14 @@
+<div class="commentContainer" *ngFor="let comment of comments">
+    <div class="comment">
+      <div>
+        <img
+          src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
+          alt="Avatar"
+          class="avatar"
+        />
+      </div>
+      <div>{{ comment.publisherName }}</div>
+      <div>{{ comment.content.text }}</div>
+      <br />
+    </div>
+  </div>

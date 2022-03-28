@@ -7,10 +7,13 @@
     <mat-card-content>
       <p>{{storyItem.content.text}}</p>
     </mat-card-content>
-    <mat-card-footer>
+    <mat-card-footer class="buttonContainer">
         <button mat-button (click)="likeClick()">
             <mat-icon class="unlike" *ngIf="likeStatus === 'unlike' ? true : false">favorite_border</mat-icon>
             <mat-icon class="like" color="warn" *ngIf="likeStatus === 'like' ? true : false">favorite</mat-icon>
+        </button>
+        <button mat-button>
+            <mat-icon (click)="onClickComment(storyItem)" > comment</mat-icon>
         </button>
     </mat-card-footer>
   </mat-card>
