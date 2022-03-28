@@ -19,6 +19,21 @@
   </li>
 </ul>
 
+<div class="addcomment-container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="CommentForm">
+    <div class="media-container">
+        <input class="comment_media" type="text" placeholder="Image Link" formControlName ="image" id="image">
+        <input class="comment_media" type="text" placeholder="Video Link" formControlName ="video" id="video">
+    </div>
+    <div>
+        <input class="comment_content" type="text" placeholder="Content" formControlName ="text" id="text">
+    </div>
+    <button type="submit">
+        Post
+    </button>
+</form>
+</div>
+
 <div class="pagecontainer">
 
   <div class="pagination">

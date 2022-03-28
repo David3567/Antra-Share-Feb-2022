@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Story } from '../news-feed/story.interfaces';
+import { Comment, Story } from '../news-feed/story.interfaces';
 import { BehaviorSubject, Observable, Subject, throwError } from "rxjs";
 import { map, tap, catchError } from "rxjs/operators";
 
@@ -11,7 +11,7 @@ export class NewsfeedService {
 
   likedList: Story[] = [];
   storyList = [];
-
+  private addComment = "addComment";
   subjectLikedList$ = new BehaviorSubject(this.likedList);
 
   constructor(private http: HttpClient) { }
@@ -41,6 +41,12 @@ export class NewsfeedService {
     );
     this.likedList = deletedStoryList;
     this.subjectLikedList$.next(this.likedList);
+  }
+
+  addNewComment(data:any){
+    return this.http.post(
+      [this.baseUrl, this.addComment, data._id].join('/'), data
+    );
   }
 }
 
