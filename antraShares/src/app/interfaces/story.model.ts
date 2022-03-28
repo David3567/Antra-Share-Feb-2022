@@ -16,9 +16,9 @@ export interface Story {
         image: string;
         video: string;
         text: string;
-        _id: string;
+        _id?: string;
       };
-      _id: string;
+      _id?: string;
     }
   ];
   likedIdList: [];
