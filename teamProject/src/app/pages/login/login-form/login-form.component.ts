@@ -40,6 +40,11 @@ export class LoginFormComponent implements OnInit {
 
     this.authenService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       (data) => {
+        console.log(data.userName);
+        localStorage.setItem('username', data.userName);
+        localStorage.setItem('email', data.userEmail);
+        localStorage.setItem('token', data.bearerToken);
+
         setTimeout(() => {
           this.router.navigateByUrl('default/newsfeed');
         }, 2000);
