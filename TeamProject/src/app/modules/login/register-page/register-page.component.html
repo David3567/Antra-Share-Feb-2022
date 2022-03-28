@@ -1,58 +1,81 @@
 <div class="container">
-
-    <form action="/login" (ngSubmit)="onSubmit(regForm)" [formGroup]="regForm">
-        <h2>Create an Account</h2>
-        <label for="username">Username</label>
-        <input 
-            type="text" 
-            id="username"  
-            name="username"
-            placeholder="Enter a username"
-            formControlName="username"
-        />
-        <div
-        class="errors" 
-        *ngIf="!username.valid && (username.touched && username.dirty)"
-        >The Username needs to be between 5 and 12 characters {{regForm.valid | json}}</div>
-
-        <label for="useremail">Email</label>
-        <input 
-        type="email" 
-        id="email" 
-        name="email"
-        placeholder="Enter email"
-        formControlName="email"
-        >
-        <div class="errors"
-        *ngIf="!email.valid  && (email.touched && email.dirty)">Your entry needs to follow the email format</div>
-
-        <label for="password">Password</label>
-        <input 
-            type="text" 
-            id="password" 
-            name="password" 
-            placeholder="Enter password" 
-            formControlName="password"
-            >
-        <div class="errors"
-        *ngIf="!password.valid && (password.touched && password.dirty)">Your password needs to be at least 5 characters long, have at least one upper & one lower case, and have at least 1 special character (@!#$% etc.)</div>
-            
-        <label for="confirm">Confirm Password</label>
-        <input 
-            type="text" 
-            id="confirm" 
-            name="confirm"            
-            placeholder="Confirm password"
-            formControlName="confirm" 
-            >
-        <div class="errors"
-        *ngIf="(confirm.value !== password.value) && (confirm.touched && confirm.dirty)">Your password and confirmation need to match<br>
+  <form action="/login" (ngSubmit)="onSubmit(regForm)" [formGroup]="regForm">
+    <h2>Create an Account</h2>
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Enter a username"
+      formControlName="username"
+    />
+    <div
+      class="errors"
+      *ngIf="!username.valid && username.touched && username.dirty"
+    >
+      <div *ngIf="username.errors?.minlength || username.errors?.maxlength">
+        The Username needs to be between 5 and 12 characters
+      </div>
+      <div *ngIf="username.errors?.['isDuplicate']">
+        {{ nameError }} Please use another name.
+      </div>
     </div>
 
-        <button 
-            [disabled]="!regForm.valid || confirm.value !== password.value"
-            type="submit"
-        >Register</button>
-    </form>
+    <label for="useremail">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Enter email"
+      formControlName="email"
+    />
+    <div class="errors" *ngIf="!email.valid && email.touched && email.dirty">
+      <div *ngIf="email.errors?.email">
+        Your entry needs to follow the email format
+      </div>
+      <div *ngIf="email.errors?.['isDuplicate']">
+        {{ emailError }} Please use another email.
+      </div>
+    </div>
 
+    <label for="password">Password</label>
+    <input
+      type="text"
+      id="password"
+      name="password"
+      placeholder="Enter password"
+      formControlName="password"
+    />
+    <div
+      class="errors"
+      *ngIf="!password.valid && password.touched && password.dirty"
+    >
+      Your password needs to be at least 5 characters long, have at least one
+      upper & one lower case, and have at least 1 special character (@!#$% etc.)
+    </div>
+
+    <label for="confirm">Confirm Password</label>
+    <input
+      type="text"
+      id="confirm"
+      name="confirm"
+      placeholder="Confirm password"
+      formControlName="confirm"
+    />
+    <div
+      class="errors"
+      *ngIf="
+        confirm.value !== password.value && confirm.touched && confirm.dirty
+      "
+    >
+      Your password and confirmation need to match<br />
+    </div>
+
+    <button
+      [disabled]="!regForm.valid || confirm.value !== password.value"
+      type="submit"
+    >
+      Register
+    </button>
+  </form>
 </div>
