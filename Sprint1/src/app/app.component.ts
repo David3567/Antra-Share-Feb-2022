@@ -34,7 +34,7 @@ export class AppComponent {
 
       const newSecurityObj = {
         userName: decoded.userName,
-        isAuthenticated: decoded.isAdmin==="admin",
+        isAuthenticated: decoded.userRole==="admin",
         claim: decoded.claim,
         userEmail: decoded.userEmail,
       };

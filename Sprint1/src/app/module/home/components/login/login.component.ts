@@ -54,7 +54,9 @@ export class LoginComponent implements OnInit {
           this.extraCheckPassword(),
         ]),
       },
-      { asyncValidator: this.validateUserIsAuthenticated() }
+      { 
+        // asyncValidator: this.validateUserIsAuthenticated()
+       }
     );
   }
 
@@ -107,26 +109,26 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  validateUserIsAuthenticated(): AsyncValidatorFn {
-    return (group: AbstractControl): Observable<ValidationErrors | null> => {
-      const obj = {
-        userEmail: group.value.useremail,
-        password: group.value.password,
-      };
+  // validateUserIsAuthenticated(): AsyncValidatorFn {
+  //   return (group: AbstractControl): Observable<ValidationErrors | null> => {
+  //     const obj = {
+  //       userEmail: group.value.useremail,
+  //       password: group.value.password,
+  //     };
 
-      return timer(500).pipe(
-        switchMap(() => {
-          return this.authService.login(obj).pipe(
-            tap((data) => console.log('data in validater: ', data)),
-            map((data) => null),
-            catchError((err: any) => {
-              // console.log(err.error);
-              this.error = err.error;
-              return of({ errormessage: err.error });
-            })
-          );
-        })
-      );
-    };
-  }
+  //     return timer(500).pipe(
+  //       switchMap(() => {
+  //         return this.authService.login(obj).pipe(
+  //           tap((data) => console.log('data in validater: ', data)),
+  //           map((data) => null),
+  //           catchError((err: any) => {
+  //             // console.log(err.error);
+  //             this.error = err.error;
+  //             return of({ errormessage: err.error });
+  //           })
+  //         );
+  //       })
+  //     );
+  //   };
+  // }
 }

@@ -25,12 +25,20 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup;
   hide: boolean = true;
   hideconfirm: boolean = true;
-  error: string = "";
+  error: string = '';
 
   // user: AppUser = new AppUser();
   securityObj: AppUserAuth = new AppUserAuth();
   returnUrl: string | null = '';
   user!: Users;
+
+  get username() {
+    return this.form.get('username');
+  }
+
+  get name() {
+    return this.form.get('name');
+  }
 
   get useremail() {
     return this.form.get('useremail');
@@ -38,6 +46,14 @@ export class RegisterComponent implements OnInit {
 
   get password() {
     return this.form.get('password');
+  }
+
+  get pconfirm() {
+    return this.form.get('pconfirm');
+  }
+
+  get userrole() {
+    return this.form.get('userrole');
   }
 
   constructor(
@@ -50,30 +66,34 @@ export class RegisterComponent implements OnInit {
       {
         name: new FormControl('', Validators.required),
         username: new FormControl('', Validators.required),
-        useremail: new FormControl('', [
-          Validators.minLength(5),
-          Validators.maxLength(30),
-          Validators.required,
-          this.extraCheckUserEmail(),
-        ]),
+        useremail: new FormControl(
+          '',
+          [
+            Validators.minLength(5),
+            Validators.maxLength(30),
+            Validators.required,
+            this.extraCheckUserEmail(),
+          ],
+          [this.validateUserEmail()]
+        ),
         password: new FormControl('', [
           Validators.minLength(5),
           Validators.maxLength(30),
           Validators.required,
           this.extraCheckPassword(),
         ]),
-        passwordconfirm: new FormControl('', [
-          Validators.minLength(5),
-          Validators.maxLength(30),
-          Validators.required,
-        ]),
-        userrole: new FormControl('', Validators.required),
+        pconfirm: new FormControl(
+          '',
+          [Validators.required],
+          [this.validatePasswordConfirm()]
+        ),
+        userrole: new FormControl('', Validators.required, []),
         age: new FormControl(''),
         gender: new FormControl(''),
         phone: new FormControl(''),
       },
       {
-        asyncValidator: this.validateUserIsAuthenticated(),
+        // asyncValidator: this.validateUserIsAuthenticated(),
       }
     );
   }
@@ -96,17 +116,18 @@ export class RegisterComponent implements OnInit {
       phone: this.form.value.phone,
       // __v: this.form.value.__v,
     };
-    this.authService.register(this.user).subscribe((info) => {
-      // this.securityObj = info.body;
-      if (this.returnUrl) {
-        this.router.navigateByUrl(this.returnUrl);
-      }else{
-      this.router.navigate(['login']);
+    this.authService.register(this.user).subscribe(
+      (info) => {
+        // this.securityObj = info.body;
+        if (this.returnUrl) {
+          this.router.navigateByUrl(this.returnUrl);
+        } else {
+          this.router.navigate(['login']);
         }
-      },
-    //   () => {
-    //     this.securityObj = new AppUserAuth();
-    // }
+      }
+      //   () => {
+      //     this.securityObj = new AppUserAuth();
+      // }
     );
   }
 
@@ -122,6 +143,7 @@ export class RegisterComponent implements OnInit {
       } else return null;
     };
   }
+
   extraCheckUserEmail(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const email =
@@ -132,33 +154,54 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-  validateUserIsAuthenticated(): AsyncValidatorFn {
-    return (group: AbstractControl): Observable<ValidationErrors | null> => {
-      const obj = {
-        userEmail: group.value.useremail,
-        password: group.value.password,
-        userName: group.value.username,
-        name: group.value.name,
-        userRole: group.value.userrole,
-        age: group.value.age,
-        gender: group.value.gender,
-        phone: group.value.phone,
-      };
-
-      return timer(500).pipe(
-        switchMap(() => {
-          return this.authService.registercheckuseremail(obj.userEmail).pipe(
-            tap((data) => {
-              console.log('data in validater: ', data);
-              this.error = data.body;
-          }),
-            map((data) => null),
-            catchError((err: any) => {
-              return of({ errormessage: err.error });
-            })
-          );
+  validateUserEmail(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.authService.registercheckuseremail(control.value).pipe(
+        map((res) => {
+          return res ? { userEmailExist: true } : null;
         })
       );
     };
   }
+
+  validatePasswordConfirm(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      const password = this.form.value.password;
+      return of(control.value !== password).pipe(
+        map((res) => {
+          return res ? { passwordconfirm: true } : null;
+        })
+      );
+    };
+  }
+
+  // validateUserIsAuthenticated(): AsyncValidatorFn {
+  //   return (group: AbstractControl): Observable<ValidationErrors | null> => {
+  //     const obj = {
+  //       userEmail: group.value.useremail,
+  //       password: group.value.password,
+  //       userName: group.value.username,
+  //       name: group.value.name,
+  //       userRole: group.value.userrole,
+  //       age: group.value.age,
+  //       gender: group.value.gender,
+  //       phone: group.value.phone,
+  //     };
+
+  //     return timer(500).pipe(
+  //       switchMap(() => {
+  //         return this.authService.registercheckuseremail(obj.userEmail).pipe(
+  //           tap((data) => {
+  //             console.log('data in validater: ', data);
+  //             this.error = data.body;
+  //         }),
+  //           map((data) => null),
+  //           catchError((err: any) => {
+  //             return of({ errormessage: err.error });
+  //           })
+  //         );
+  //       })
+  //     );
+  //   };
+  // }
 }
