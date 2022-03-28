@@ -1,5 +1,11 @@
 <nz-layout >
     <nz-layout>
+        <nz-content>
+            <div class="content">
+                <textarea nz-input placeholder="Please enter your story" [nzAutosize]="{ minRows: 5 }"></textarea>
+                <button nz-button nzType="primary" nzBlock>Post</button>
+            </div>
+        </nz-content>
         <nz-content nz-row>
             <div nz-col nzSpan="8"></div>
             <div nz-col nzSpan="8">
