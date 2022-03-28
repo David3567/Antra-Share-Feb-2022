@@ -1,9 +1,14 @@
+<div class="div-like">
 
+  <button class="btn-liked-list">
+    Like List
+  </button>
+</div>
 
 <div class="container">
   <div class="bar right-side" [ngStyle]="{ display: login ? 'flex' : 'none' }">
     <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" class="matmenu">
       <button mat-menu-item [routerLink]="['profile']">MyProflie</button>
       <button mat-menu-item [routerLink]="['home']">NewsFeed</button>
       <button mat-menu-item [routerLink]="['setting']">Settings</button>
@@ -17,5 +22,6 @@
   </div> -->
   <!-- <div class="bar left-side"></div> -->
 </div>
+
 <router-outlet></router-outlet>
 

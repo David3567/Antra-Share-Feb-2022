@@ -1,11 +1,13 @@
-<br>
-<br>
-<div class="container"   *ngIf="securityObj.userRole === 'admin'">
+<div class="top-bar"></div>
+<div class="container" *ngIf="securityObj.userRole === 'admin'">
   <div class="container-user">
-      
-    <div class="container-user-tag" *ngFor="let user of users">
-      <span class="usertag" (click)="onUserDetail(user)">User tag {{user.id}} </span>
-      <button class="deleteBtn" (click)="onDeleteBtn(user)">Delete</button>
+    <div class="container-users">
+      <div class="container-user-tag" *ngFor="let user of users">
+        <span class="usertag" (click)="onUserDetail(user)"
+          >User tag {{ user.id }}
+        </span>
+        <button class="deleteBtn" (click)="onDeleteBtn(user)">Delete</button>
+      </div>
     </div>
 
     <h2>Users List</h2>

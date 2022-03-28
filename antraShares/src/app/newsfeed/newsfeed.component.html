@@ -1,12 +1,14 @@
 <div class="div-like">
-  <!-- <a href="" class="liked-list"> Like List</a> -->
+
   <button class="btn-liked-list" (click)="onClickLike()">
     Like List
   </button>
 </div>
+
 <div class="form">
   <h1>Post News Feed Form</h1>
 </div>
+
 <div class="container">
   <app-story *ngFor="let story of stories" [inStory]="story"></app-story>
 </div>
