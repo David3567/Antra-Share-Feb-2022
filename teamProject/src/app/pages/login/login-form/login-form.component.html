@@ -1,13 +1,13 @@
 <div class="login-form-wrap">
-    <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
-      <nz-tabset>
-        <nz-tab nzTitle="Login with Antra Account">
-          <nz-form-item>
-            <nz-form-control>
-              <nz-input-group [nzSize]="'large'" nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="username"/>
-              </nz-input-group>
-              <div *ngIf="!username?.valid && (username?.dirty && username?.touched)">
+  <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+    <nz-tabset>
+      <nz-tab nzTitle="Login with Antra Account">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzSize]="'large'" nzPrefixIcon="user">
+              <input type="text" nz-input formControlName="email" />
+            </nz-input-group>
+            <!-- <div *ngIf="!username?.valid && (username?.dirty && username?.touched)">
                 <div *ngIf="username?.errors?.['required']">
                     please enter a user name
                 </div>
@@ -16,39 +16,45 @@
                 </div>
                 <div *ngIf="username?.errors?.['maxlength']">
                     Max Length is 12
-                </div>
-            </div>
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-control>
-              <nz-input-group [nzSize]="'large'" nzPrefixIcon="lock">
-                <input autocomplete="on" [placeholder]="'Password'" type="password" nz-input formControlName="password" placeholder="Password"/>
-              </nz-input-group>
-              <div *ngIf="!password?.valid && (password?.dirty && password?.touched)">
-                <div *ngIf="password?.errors?.['required']">
-                    please enter password
-                </div>
-                <div *ngIf="password?.errors?.['minlength']">
-                    password needs to be at least 5 character
-                </div>
-                <div *ngIf="password?.errors?.['pattern']">
-                    Must includes at least 1 Uppercase, 1 special character
-                </div>
+                </div> -->
+            <div *ngIf="!email?.valid && (email?.dirty && email?.touched)">
+              <div *ngIf="email?.errors?.['required']">
+                please enter a user name
               </div>
-            </nz-form-control>
-          </nz-form-item>
-        </nz-tab>
-      </nz-tabset>
-      <button nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'" (click)="btnclick()">Login</button>
-      <div class="other-way">
-        <div class="other-login">
-          <span>Login with: </span>
-          <i nz-icon nzType="google-circle" nzTheme="fill"></i>
-          <i nz-icon nzType="apple" nzTheme="fill"></i>
-          <i nz-icon nzType="facebook" nzTheme="fill"></i>
-        </div>
-        <a class="login_form-register" routerLink="/login/register-form">Register</a>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzSize]="'large'" nzPrefixIcon="lock">
+              <input autocomplete="on" [placeholder]="'Password'" type="password" nz-input formControlName="password"
+                placeholder="Password" />
+            </nz-input-group>
+            <div *ngIf="!password?.valid && (password?.dirty && password?.touched)">
+              <div *ngIf="password?.errors?.['required']">
+                please enter password
+              </div>
+              <div *ngIf="password?.errors?.['minlength']">
+                password needs to be at least 5 character
+              </div>
+              <div *ngIf="password?.errors?.['pattern']">
+                Must includes at least 1 Uppercase, 1 special character
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-tab>
+    </nz-tabset>
+    <button nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'"
+      (click)="loadOne()" [nzLoading]="isLoadingOne">Login</button>
+    <div class="other-way">
+      <div class="other-login">
+        <span>Login with: </span>
+        <i nz-icon nzType="google-circle" nzTheme="fill"></i>
+        <i nz-icon nzType="apple" nzTheme="fill"></i>
+        <i nz-icon nzType="facebook" nzTheme="fill"></i>
       </div>
+      <a class="login_form-register" routerLink="/login/register-form">Register</a>
+    </div>
   </form>
 </div>

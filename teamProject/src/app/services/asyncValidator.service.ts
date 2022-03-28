@@ -15,8 +15,6 @@ export class AsyncValidatorService {
   private checkExistByUsername = 'checkExistByUsername';
   private checkExistByEmail = 'checkExistByEmail';
 
-  DBuserNames!: NewUser;
-
   constructor(private http: HttpClient) { }
 
   getAllUserName(name: string) {
