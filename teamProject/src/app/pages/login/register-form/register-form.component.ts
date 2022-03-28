@@ -43,10 +43,10 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit() {
       this.registerForm = this.formbuilder.group({
-      username:['yushengjr', [Validators.required, Validators.minLength(5), Validators.maxLength(12)], this.usernameValidator()],
-      email:['kru25113@gmail.com', [Validators.required, Validators.email], this.emailValidator()],
-      password:['Kru251145', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
-      confirmPassword:['Kru251145', [Validators.required]]
+      username:['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)], this.usernameValidator()],
+      email:['', [Validators.required, Validators.email], this.emailValidator()],
+      password:['', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
+      confirmPassword:['', [Validators.required]]
     }, {validator: MustMatch('password', 'confirmPassword')});
     this.cd.detectChanges();
   }
@@ -80,17 +80,14 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.DBuserNames);
 
     this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
     data) => {
-    console.log(data);
     this.successMessage = 'Registered Successfully!';
     this.cd.markForCheck();
     },
     (err) => {
       this.errorMessage = err.error;
-      console.log(err.error);
       this.cd.markForCheck();
     });
   }
