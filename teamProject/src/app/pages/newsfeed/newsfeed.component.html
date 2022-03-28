@@ -3,7 +3,7 @@
         <nz-content>
             <div class="content">
                 <textarea nz-input placeholder="Please enter your story" [nzAutosize]="{ minRows: 5 }"></textarea>
-                <button nz-button nzType="primary" nzBlock>Post</button>
+                <button nz-button nzType="primary" (click) = "onSubmit()" nzBlock>Post</button>
             </div>
         </nz-content>
         <nz-content nz-row>
