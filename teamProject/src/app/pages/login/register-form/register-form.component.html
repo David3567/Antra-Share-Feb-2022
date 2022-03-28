@@ -46,7 +46,7 @@
 <!-- Register Button -->
       <div nz-row class="login-form-margin" nzAlign="middle" nzJustify="space-between">
         <div nz-col [nzSpan]="12">
-          <button [disabled]="!registerForm.valid" nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'">Register</button>
+          <button [disabled]="!registerForm.valid" nz-button nzSize="large" class="login-form-button login-form-margin" [nzType]="'primary'" (click)="loadOne()" [nzLoading]="isLoadingOne">Register</button>
         </div>
         <div class="text-right" nz-col [nzSpan]="9">
           <a class="password-login" routerLink="/login/login-form">Go To Login</a>
