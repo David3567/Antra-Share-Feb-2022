@@ -21,6 +21,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { AuthenService } from './services/authen.service';
 
 registerLocaleData(en);
 
@@ -45,7 +46,7 @@ registerLocaleData(en);
     NewsfeedModule,
     ProfileModule,
   ],
-  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }],
+  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }, AuthenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

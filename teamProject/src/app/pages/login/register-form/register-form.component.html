@@ -3,25 +3,35 @@
     <form nz-form [formGroup]="registerForm" class="login-form" (ngSubmit)="onSubmit()">
 <!-- Username -->
       <nz-form-item>
-        <nz-form-control nzHasFeedback nzErrorTip="Username must have 5 - 12 characters">
+        <nz-form-control nzHasFeedback [nzErrorTip]="usernameErrorTpl" nzValidatingTip="Validating..." nzSuccessTip="Username is available!">
           <nz-input-group [nzSize]="'large'">
             <input type="text" nz-input formControlName="username" placeholder="Username"/>
           </nz-input-group>
+          <ng-template #usernameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Username is required</ng-container>
+            <ng-container *ngIf="control.errors.minlength || control.errors.maxlength">Username must have 5 - 12 characters</ng-container>
+            <ng-container *ngIf="control.hasError('duplicated')">This username is already registered</ng-container>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
 <!-- Email -->
 <nz-form-item>
-  <nz-form-control nzHasFeedback nzErrorTip="Please enter a valid email address!">
+  <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl" nzValidatingTip="Validating..." nzSuccessTip="Email accepted!">
     <nz-input-group [nzSize]="'large'">
       <input type="email" nz-input formControlName="email" placeholder="Email"/>
     </nz-input-group>
+    <ng-template #emailErrorTpl let-control>
+      <ng-container *ngIf="control.hasError('required')">Email is required</ng-container>
+      <ng-container *ngIf="control.errors.email">Not a valid format</ng-container>
+      <ng-container *ngIf="control.hasError('duplicated')">This email is already registered</ng-container>
+    </ng-template>
   </nz-form-control>
 </nz-form-item>
 <!-- Password -->
       <nz-form-item>
-        <nz-form-control nzHasFeedback nzErrorTip="Password must have a minimum 5 characters including at least one uppercase letter and one special character.">
+        <nz-form-control nzHasFeedback nzErrorTip="Password must have a minimum 5 characters including at least one uppercase letter and one special character or number.">
           <nz-input-group [nzSize]="'large'">
-            <input type="text" nz-input formControlName="password" placeholder="Password"/>
+            <input type="password" nz-input formControlName="password" placeholder="Password"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -29,7 +39,7 @@
       <nz-form-item>
         <nz-form-control nzHasFeedback nzErrorTip="Passwords must match!">
           <nz-input-group [nzSize]="'large'">
-            <input type="text" nz-input formControlName="confirmPassword" placeholder="Confirm Password"/>
+            <input type="password" nz-input formControlName="confirmPassword" placeholder="Confirm Password"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -42,8 +52,9 @@
           <a class="password-login" routerLink="/login/login-form">Go To Login</a>
         </div>
       </div>
-<!-- Registration Success Message -->
-<br>
-<div *ngIf="showMessage" [ngStyle]="{color: 'green'}">Registration Successful!</div>
-    </form>
-  </div>
+<!-- onSubmit Message -->
+  <br>
+  <div *ngIf="successMessage != ''" [ngStyle]="{color: 'green'}">{{successMessage}}</div>
+  <div *ngIf="errorMessage != ''" [ngStyle]="{color: 'red'}">{{errorMessage}}</div>
+  </form>
+</div>
