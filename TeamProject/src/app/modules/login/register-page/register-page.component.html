@@ -12,8 +12,8 @@
                     A Username is required!</div>
                 <div *ngIf="username?.errors?.['minlength'] || username?.errors?.['maxlength']">
                     The Username needs to be between 5 and 12 characters</div>
-                <div *ngIf="username?.errors?.['userNameExists']">
-                    {{ usernameStatus }} - Choose a different username.</div>
+                <div *ngIf="username?.errors?.userNameExists">
+                    This username is taken. Please choose a different one.</div>
             </mat-error>
         </mat-form-field>
         
@@ -28,7 +28,7 @@
                 <div *ngIf="email?.errors?.['email']">
                     Your entry needs to follow the email format</div>
                 <div *ngIf="email?.errors?.['emailExists']">
-                        {{ emailStatus }} - Choose a different email.</div>
+                    This email is used. Please choose a different one.</div>
             </mat-error>
         </mat-form-field>
 
@@ -49,16 +49,15 @@
             <mat-label>Confirm your Password</mat-label>
             <input matInput formControlName="confirm" />
             <mat-error *ngIf="!regForm.valid && (confirm.touched || confirm.dirty)" class="error">
-                <div *ngIf="confirm?.errors?.['required']">
+                <div *ngIf="confirm?.errors?.required">
                     A Confirmation is required!</div>
-                <div *ngIf="regForm?.errors?.['notMatch']">
+                <div *ngIf="regForm?.errors?.notMatch">
                     Your password and confirmation need to match</div>
             </mat-error>
         </mat-form-field>
         
 
         <button [disabled]="!regForm.valid" type="submit">Register</button>
-        
     </form>
 
 </div>
