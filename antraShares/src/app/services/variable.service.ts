@@ -1,5 +1,6 @@
 import { Comments, Story } from 'src/app/interfaces/story.model';
 export class VariableValue {
+  baseUrl ='http://localhost:4231/api'
   login: boolean = true;
   remove: string[] = [];
 

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Comments, Story } from 'src/app/interfaces/story.model';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VariableValue } from 'src/app/services/variable.service';
@@ -10,6 +10,8 @@ import { AddCommentComponent } from '../add-comment/add-comment.component';
   styleUrls: ['./story-comment.component.css'],
 })
 export class StoryCommentComponent implements OnInit {
+  @Input() myFirstInputParameter!: string;
+
   start!: number;
   end!: number;
   size!: number;
@@ -31,7 +33,6 @@ export class StoryCommentComponent implements OnInit {
   //     console.log(ele.id)
   //   })
   ngOnInit(): void {
-    console.log('oninnit');
     this.start = this.variableValue.start;
     this.end = this.variableValue.end;
     this.size = this.variableValue.size;
@@ -39,18 +40,11 @@ export class StoryCommentComponent implements OnInit {
     if (this.variableValue.newComment.length > 1) {
       this.variableValue.newComment.forEach((ele) => {
         if (ele.id === this.data.story._id) {
-          console.log(ele.cmt);
-          this.comments = [ele.cmt!, ...this.comments];
+          this.comments = [...this.comments, ele.cmt!];
         }
       });
     }
-
-    this.max = this.comments.length;
-    this.totalP =
-      this.max % this.size === 0
-        ? Math.trunc(this.max / this.size)
-        : Math.trunc(this.max / this.size) + 1;
-    this.pages = new Array(this.totalP);
+    this.countpage();
     this.commentsPerpage = [...this.comments.slice(this.start, this.size)];
   }
   onNext() {
@@ -72,7 +66,7 @@ export class StoryCommentComponent implements OnInit {
     this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
   }
 
-  onClickAddComment() {
+  onClickAddComment(input?: string) {
     const dialogRef = this.dialog.open(AddCommentComponent, {
       height: '35%',
       width: '25%',
@@ -83,9 +77,18 @@ export class StoryCommentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((newcomment) => {
       if (newcomment !== undefined) {
-        this.comments = [newcomment, ...this.comments];
+        this.comments = [...this.comments, newcomment];
+        this.countpage();
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
       }
     });
+  }
+  private countpage() {
+    this.max = this.comments.length;
+    this.totalP =
+      this.max % this.size === 0
+        ? Math.trunc(this.max / this.size)
+        : Math.trunc(this.max / this.size) + 1;
+    this.pages = new Array(this.totalP);
   }
 }

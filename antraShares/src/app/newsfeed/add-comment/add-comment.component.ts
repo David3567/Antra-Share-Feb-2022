@@ -8,6 +8,8 @@ import {
 import { Comments } from 'src/app/interfaces/story.model';
 import { AddCommentService } from 'src/app/services/add-comment.service';
 import { VariableValue } from 'src/app/services/variable.service';
+import jwt_decode from 'jwt-decode';
+
 @Component({
   selector: 'app-add-comment',
   templateUrl: './add-comment.component.html',
@@ -36,7 +38,6 @@ export class AddCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group(this.buildform());
-    console.log(this.data._id);
   }
   buildform() {
     return {
@@ -47,32 +48,30 @@ export class AddCommentComponent implements OnInit {
   }
   onSubmit() {
     let date = new Date();
-    console.log(date);
+    const token = localStorage.getItem('bearerToken');
+    let pbName: string = '';
+    if (token) {
+      const decoded: any = jwt_decode(token);
+      pbName = decoded.name;
+    }
+
     this.comment = {
-      publisherName: 'news name newsd',
+      publisherName: pbName,
       publishedTime: date,
       content: {
-        // image: this.image?.value,
-        // video: this.video?.value,
-        // text: this.text?.value,
-        image: 'this.image?.value',
-        video: 'this.video?.value',
-        text: ' this is the new text',
+        image: this.image?.value,
+        video: this.video?.value,
+        text: this.text?.value,
       },
     };
     this.addCommentService
       .addComment(this.data._id, this.comment)
       .subscribe((data) => {
-        // this.dialogRef.close(data);
       });
     this.dialogRef.close(this.comment);
-    // console.log('in daf');
-    // console.log(this.comment);
-    // console.log(typeof this.comment);
     this.variableValue.newComment.push({
-      id : this.data._id,
-      cmt: this.comment
-    }); 
-    console.log(this.variableValue.newComment)
+      id: this.data._id,
+      cmt: this.comment,
+    });
   }
 }
