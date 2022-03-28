@@ -4,6 +4,15 @@
   height: 50px;
   border-radius: 50%;
 }
+.story-user-detail{
+  background-color: antiquewhite;
+  height: 100px;
+  padding-left: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 5px 2px #695c5c;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

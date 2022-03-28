@@ -1,10 +1,14 @@
 .story {
-  width: 80%;
+  width: 90%;
   height: var(--form-box-height);
   padding-left: 2%;
   margin-left: 10%;
   margin-bottom: 2%;
   background-color: azure;
+  /* border: 1px solid red; */
+  border-radius: 40px;
+  box-shadow: 15px 10px #695c5c;
+
 }
 .story-user-detail {
   padding-top: 10px;
@@ -44,12 +48,13 @@ div.story-dashboard-viewer {
   color: #884242;
 }
 .material-icons-favorite:hover {
-  cursor: pointer;
-  color: rgb(194, 104, 104);
+  /* cursor: pointer;
+  color: rgb(24, 3, 3); */
 }
 button {
+  width: 200px;
   background-color: inherit;
-  border: none;
+  /* border: none; */
 }
 
 .liked {

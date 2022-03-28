@@ -17,7 +17,7 @@ export class UserinforService {
     ) as Observable<Users[]>;
   }
   deleteUser(user: Users) {
-    const url = `${this.variableValue.baseUrl}/${this.path}/${user.id}`;
+    const url = `${this.variableValue.baseUrl}/${this.path}/${user._id}`;
     return this.http.delete<Users>(url);
     // return this.http.delete([this.baseUrl, this.path, user.id]) as Observable<Users>
     // return this.http.delete([this.baseUrl,this.path].join('/'), user) as Observable<Users[]>;

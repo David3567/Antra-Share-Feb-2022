@@ -11,12 +11,13 @@ body{
   margin: 0 var(--bar-size);
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: var(--outline-color);
+
   display: flex;
   justify-content: flex-end;
   position: fixed;
 }
 .btn-liked-list {
+  color: var(--button-font-color);
   font-size: var(--font-btn-size);
   font-weight: bold;
   cursor: pointer;

@@ -1,6 +1,10 @@
+
+
 .example-card {
-  max-width: 80%;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
+  top: 50px;
+  text-align: center;
+  /* background-color: red; */
+  max-width: 100%;
+  margin-left: var(--bar-size);
+  padding-right: var(--bar-size);
 }

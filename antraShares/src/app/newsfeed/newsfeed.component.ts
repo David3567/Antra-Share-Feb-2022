@@ -30,11 +30,11 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   onClickLike() {
     const dialogRef = this.dialog.open(LikelistComponent, {
       position: {
-        bottom: '35px',
-        right: '4%',
+        bottom: '0',
+        right: '0',
       },
-      height: '70%',
-      width: '30%',
+      height: '75%',
+      width: '35%',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
