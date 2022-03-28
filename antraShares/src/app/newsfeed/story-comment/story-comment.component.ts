@@ -3,12 +3,16 @@ import { Comment, Story } from 'src/app/interfaces/story.model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VariableValue } from 'src/app/services/variable.service';
 import { StoryService } from 'src/app/services/story.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommentService } from 'src/app/services/comment.service';
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-story-comment',
   templateUrl: './story-comment.component.html',
   styleUrls: ['./story-comment.component.css'],
 })
 export class StoryCommentComponent implements OnInit {
+  form!: FormGroup;
   start!: number;
   end!: number;
   size!: number;
@@ -21,8 +25,23 @@ export class StoryCommentComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     private data: { story: Story },
-    private variableValue: VariableValue
-  ) {}
+    private variableValue: VariableValue,
+    private fb: FormBuilder,
+    private commentService: CommentService
+  ) {
+    this.form = this.fb.group(this.buildForm());
+  }
+
+  buildForm(){
+    return {
+      comment: ['', [Validators.required]]
+    };
+  }
+
+  get comment() {
+    return this.form.get('comment');
+  }
+
   ngOnInit(): void {
     this.start = this.variableValue.start;
     this.end = this.variableValue.end;
@@ -53,5 +72,27 @@ export class StoryCommentComponent implements OnInit {
     this.start = this.variableValue.start + this.size * page;
     this.end = this.variableValue.end + this.size * page;
     this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
+  }
+
+  onSubmit() {
+    const token = localStorage.getItem('bearerToken');
+    let decoded: any = null;
+    if (token) decoded = jwt_decode(token);
+    console.log(decoded)
+    const newComment: Comment = {
+      publisherName: decoded.userEmail,
+      publishedTime: new Date(Date.now()),
+      content: {
+        image: "",
+        video: "",
+        text: this.comment?.value,
+        _id: this.data.story._id,
+      },
+      _id: this.data.story._id,
+    }
+
+    this.commentService.addNewComment(newComment).subscribe((newComment: Comment) => {
+      console.log(newComment)
+    });
   }
 }
