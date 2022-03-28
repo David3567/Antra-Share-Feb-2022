@@ -6,19 +6,28 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent} from './login/register/register.component';
 import { SettingPageComponent } from './setting/setting-page/setting-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
-  {path: 'news', component: NewsfeedPageComponent},
-  {path: 'admin', component: AdminPageComponent},
+ 
+ {path: 'news', component: NewsfeedPageComponent, canActivate: [AuthGuard] },
+  {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'setting', component: SettingPageComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'setting', component: SettingPageComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
+
 export class AppRoutingModule { }
+function canActivate(): import("@angular/router").Route {
+  throw new Error('Function not implemented.');
+}
+

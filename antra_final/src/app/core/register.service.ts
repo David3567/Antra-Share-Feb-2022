@@ -14,6 +14,7 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   getUsername(username: string) {
+
     return this.http.get([this.url, this.checkUsername, username].join('/'));
   }
 
@@ -21,3 +22,4 @@ export class RegisterService {
     return this.http.get([this.url, this.checkEmail, email].join('/'));
   }
 }
+

@@ -13,9 +13,11 @@ import {
   catchError,
 } from 'rxjs/operators';
 import { Observable, of, timer } from 'rxjs';
+
 import { AccountService } from 'src/app/core/account.service';
 import { NewUser } from 'src/app/interface/newuser.model';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -28,12 +30,14 @@ export class RegisterComponent implements OnInit {
     Validators.minLength(5),
     Validators.maxLength(12),
     ],
+
     [this.myUsernameAsyncValidator()],
     ],
     email: ['', [Validators.required,
     Validators.email],
     [this.myEmailAsyncValidator()],
   ],
+
     passwd: ['', [Validators.required,
     Validators.pattern("^(?=.*[A-Z])(?=.*[$@$!%*?&~]).{5,}")]],
     confirm: ['', [Validators.required,]],
@@ -60,11 +64,13 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
+
     private router: Router,
     private registerService: RegisterService,
     private accountService: AccountService) { }
 
   ngOnInit(): void { }
+
 
 
   onSubmit() {
@@ -87,9 +93,11 @@ export class RegisterComponent implements OnInit {
     return passwd !== confirm ? { notMatch: true } : null;
   }
 
+
   private myUsernameAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return timer(2000).pipe(
+
         switchMap((val: any) => {
           console.log(1111111);
           return this.registerService.getUsername(control.value);
@@ -100,6 +108,7 @@ export class RegisterComponent implements OnInit {
       );
     };
   }
+
 
   private myEmailAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
@@ -129,3 +138,4 @@ export class RegisterComponent implements OnInit {
 //     );
 //   };
 // }
+
