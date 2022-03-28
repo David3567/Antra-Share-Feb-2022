@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { LoginUser } from '../interfaces/login.model';
@@ -24,6 +24,7 @@ export class AuthService {
 
   baseUrl = 'http://localhost:4231/api';
   private login = "login"
+  user: any;
 
   constructor(private http: HttpClient) { }
 
