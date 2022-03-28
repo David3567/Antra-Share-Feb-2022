@@ -21,7 +21,7 @@ export class StoryComponent implements OnInit {
   ngOnInit(): void {}
   addToLikeList(story: Story) {
     this.likedme = !this.likedme;
-    if (this.variable.remove.indexOf(story._id) !== -1) {
+    if (this.variable.remove.indexOf(story._id!) !== -1) {
       this.likedme = !this.likedme;
       this.variable.remove = this.variable.remove.filter(
         (re) => re !== story._id
