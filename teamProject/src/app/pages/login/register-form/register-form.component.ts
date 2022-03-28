@@ -17,10 +17,12 @@ export class RegisterFormComponent implements OnInit {
 
   registerForm: FormGroup = this.formbuilder.group(
     {
-      username: ['', [Validators.minLength(5), Validators.maxLength(12), Validators.required]],
+      username: ['', 
+        [Validators.minLength(5), Validators.maxLength(12), Validators.required],
+        [this.nameAsyncValidator()]],
       email: ['',
         [Validators.required, Validators.email],
-        [this.myAsyncValidator()],
+        [this.emailAsyncValidator()],
       ],
       password: ['', [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
       confirmPassword: ['', [Validators.required]]
@@ -75,12 +77,26 @@ export class RegisterFormComponent implements OnInit {
     });
   }
 
-  private myAsyncValidator(): AsyncValidatorFn {
+  private nameAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return timer(5000).pipe(
+      return timer(500).pipe(
         switchMap((val: any) => {
           console.log(1111111);
-          return this.asyncValidator.getUser(control.value);
+          return this.asyncValidator.getAllUserName(control.value);
+        }),
+        // tap(console.log),
+        mapTo({ hasuser: true }),
+        catchError((err) => of(null))
+      );
+    };
+  }
+
+  private emailAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(500).pipe(
+        switchMap((val: any) => {
+          console.log(1111111);
+          return this.asyncValidator.getAllUserEmail(control.value);
         }),
         // tap(console.log),
         mapTo({ hasuser: true }),
@@ -91,12 +107,26 @@ export class RegisterFormComponent implements OnInit {
 
 }
 
-export function myAsyncValidator(
+export function nameAsyncValidator(
   asyncValidatorService: AsyncValidatorService
 ): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
     console.log(control);
-    return asyncValidatorService.getUser(control.value).pipe(
+    return asyncValidatorService.getAllUserName(control.value).pipe(
+      map((result: any) => {
+        console.log(result);
+        return result ? null : { invalidAsync: true };
+      })
+    );
+  };
+}
+
+export function emailAsyncValidator(
+  asyncValidatorService: AsyncValidatorService
+): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    console.log(control);
+    return asyncValidatorService.getAllUserEmail(control.value).pipe(
       map((result: any) => {
         console.log(result);
         return result ? null : { invalidAsync: true };

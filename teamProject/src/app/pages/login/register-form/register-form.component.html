@@ -7,6 +7,11 @@
         <nz-input-group [nzSize]="'large'">
           <input type="text" nz-input formControlName="username" placeholder="Username" />
         </nz-input-group>
+        <div *ngIf="!username?.valid && (username?.dirty || username?.touched)">
+          <div *ngIf="username?.errors?.['required']">please enter a user name</div>
+          <div *ngIf="username?.errors?.hasuser">Username has been used, pls use another username</div>
+          <!-- <div *ngIf="!email?.errors?.invalidAsync">you can use this email</div> -->
+        </div>
       </nz-form-control>
     </nz-form-item>
     <!-- Email -->
@@ -15,12 +20,11 @@
         <nz-input-group [nzSize]="'large'">
           <input type="email" nz-input formControlName="email" placeholder="Email" />
         </nz-input-group>
-        <div *ngIf="!email?.valid && (email?.dirty && email?.touched)">
-          <div *ngIf="email?.errors?.hasuser">Pls use another username</div>
-          <div [hidden]="email?.errors?.['pattern']">
-            Must includes at least 1 Uppercase, 1 special character
+          <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+            <div *ngIf="email?.errors?.['required']">please enter email</div>
+            <div *ngIf="email?.errors?.['email']">please enter a valid email</div>
+            <div *ngIf="email?.errors?.hasuser">Email has been used, pls use another email</div>
           </div>
-        </div>
       </nz-form-control>
     </nz-form-item>
     <!-- Password -->

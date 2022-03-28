@@ -11,13 +11,20 @@ import { NewUser } from '../interfaces/newUser.model';
 export class AsyncValidatorService {
 
   baseUrl = 'http://localhost:4231/api';
-  private users = 'users';
-  private getAllUsers = 'getAllUsers';
+  private register = 'register';
+  private checkExistByUsername = 'checkExistByUsername';
+  private checkExistByEmail = 'checkExistByEmail';
+
+  DBuserNames!: NewUser;
 
   constructor(private http: HttpClient) { }
 
-  getUser(email: string) {
-    return this.http.get([this.baseUrl, this.users, this.getAllUsers, email].join('/')) 
+  getAllUserName(name: string) {
+    return this.http.get([this.baseUrl, this.register, this.checkExistByUsername, name].join('/'))
+  }
+
+  getAllUserEmail(email: string) {
+    return this.http.get([this.baseUrl, this.register, this.checkExistByEmail, email].join('/'))
   }
 
 }
