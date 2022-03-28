@@ -14,6 +14,7 @@ import { NewsFeedComponent } from './news-feed.component';
 import { MaxlengthPipe } from './pipe/maxlength.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { CommentComponent } from './comment/comment.component';
 
 
 
@@ -41,7 +42,8 @@ const newsFeedModule = [
     NewsFeedComponent,
     StoryComponent,
     MaxlengthPipe,
-    FavoriteListComponent
+    FavoriteListComponent,
+    CommentComponent
   ],
   imports: [newsFeedModule, RouterModule.forChild(route)]
 })
