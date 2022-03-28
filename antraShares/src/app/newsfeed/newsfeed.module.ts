@@ -9,6 +9,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LikelistComponent } from './likelist/likelist.component';
 import { StoryCommentComponent } from './story-comment/story-comment.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatIconModule,
+    MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule
   ],
 })
-export class NewsfeedModule {}
+export class NewsfeedModule { }

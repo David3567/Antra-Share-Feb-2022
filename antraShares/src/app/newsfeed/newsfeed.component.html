@@ -6,6 +6,20 @@
 </div>
 <div class="form">
   <h1>Post News Feed Form</h1>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>What is on your mind?</mat-label>
+    <form
+    class="input-group"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    
+    autocomplete="off">
+    <textarea matInput formControlName="postContent" placeholder="Ex. It makes me feel..."></textarea>
+    <button mat-raised-button color="primary" type="submit">Post</button>
+  </form>
+  </mat-form-field>
+ 
 </div>
 <div class="container">
   <app-story *ngFor="let story of stories" [inStory]="story"></app-story>
