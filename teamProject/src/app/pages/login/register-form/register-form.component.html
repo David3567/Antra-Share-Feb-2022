@@ -3,7 +3,7 @@
     <form nz-form [formGroup]="registerForm" class="login-form" (ngSubmit)="onSubmit()">
 <!-- Username -->
       <nz-form-item>
-        <nz-form-control nzHasFeedback [nzErrorTip]="usernameErrorTpl" nzValidatingTip="Validating...">
+        <nz-form-control nzHasFeedback [nzErrorTip]="usernameErrorTpl" nzValidatingTip="Validating..." nzSuccessTip="Username is available!">
           <nz-input-group [nzSize]="'large'">
             <input type="text" nz-input formControlName="username" placeholder="Username"/>
           </nz-input-group>
@@ -16,15 +16,20 @@
       </nz-form-item>
 <!-- Email -->
 <nz-form-item>
-  <nz-form-control nzHasFeedback nzErrorTip="Please enter a valid email address!">
+  <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl" nzValidatingTip="Validating..." nzSuccessTip="Email accepted!">
     <nz-input-group [nzSize]="'large'">
       <input type="email" nz-input formControlName="email" placeholder="Email"/>
     </nz-input-group>
+    <ng-template #emailErrorTpl let-control>
+      <ng-container *ngIf="control.hasError('required')">Email is required</ng-container>
+      <ng-container *ngIf="control.errors.email">Not a valid format</ng-container>
+      <ng-container *ngIf="control.hasError('duplicated')">This email is already registered</ng-container>
+    </ng-template>
   </nz-form-control>
 </nz-form-item>
 <!-- Password -->
       <nz-form-item>
-        <nz-form-control nzHasFeedback nzErrorTip="Password must have a minimum 5 characters including at least one uppercase letter and one special character.">
+        <nz-form-control nzHasFeedback nzErrorTip="Password must have a minimum 5 characters including at least one uppercase letter and one special character or number.">
           <nz-input-group [nzSize]="'large'">
             <input type="text" nz-input formControlName="password" placeholder="Password"/>
           </nz-input-group>

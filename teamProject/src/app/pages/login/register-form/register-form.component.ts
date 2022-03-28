@@ -13,24 +13,6 @@ import { delay, map } from 'rxjs/operators';
 
 export class RegisterFormComponent implements OnInit {
 
-  checkIfUsernameExists(username: string): Observable<boolean> {
-    return of(this.DBuserNames.includes(username)).pipe(delay(1000));
-  }
-
-  usernameValidator(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.checkIfUsernameExists(control.value).pipe(
-        map(res => {
-          // if res is true, username exists, return true
-          return res ? { error: true, duplicated: true } : null;
-          // NB: Return null if there is no error
-        })
-      );
-    };
-  }
-
-
-
   registerForm!: FormGroup;
   successMessage = '';
   errorMessage = '';
@@ -44,14 +26,17 @@ export class RegisterFormComponent implements OnInit {
 
     this.authenService.getAllUserNames().subscribe(
       (data) => {
-        console.warn(data[0]);
         this.DBuserNames = data;
+        // console.warn(data[0]);
+        // console.log(this.DBuserNames);
       }
     );
 
     this.authenService.getAllUserEmails().subscribe(
       (data) => {
-        console.warn(data[0]);
+        this.DBuserEmails = data;
+        // console.warn(data[0]);
+        // console.log(this.DBuserEmails);
       }
     );
   }
@@ -59,26 +44,54 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
       this.registerForm = this.formbuilder.group({
       username:['yushengjr', [Validators.required, Validators.minLength(5), Validators.maxLength(12)], this.usernameValidator()],
-      email:['kru251145@gmail.com', [Validators.required, Validators.email]],
+      email:['kru25113@gmail.com', [Validators.required, Validators.email], this.emailValidator()],
       password:['Kru251145', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
       confirmPassword:['Kru251145', [Validators.required]]
     }, {validator: MustMatch('password', 'confirmPassword')});
     this.cd.detectChanges();
   }
 
-  onSubmit() {
-    //console.log(this.DBuserNames);
+  checkIfUsernameExists(username: string): Observable<boolean> {
+    return of(this.DBuserNames.includes(username)).pipe(delay(1000));
+  }
 
-    // this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
-    // data) => {
-    // console.log(data);
-    // this.successMessage = 'Registered Successfully!';
-    // this.cd.markForCheck();
-    // },
-    // (err) => {
-    //   this.errorMessage = err.error;
-    //   console.log(err.error);
-    //   this.cd.markForCheck();
-    // });
+  usernameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.checkIfUsernameExists(control.value).pipe(
+        map(res => {
+          return res ? { error: true, duplicated: true } : null;
+        })
+      );
+    };
+  }
+
+  checkIfEmailExists(email: string): Observable<boolean> {
+    return of(this.DBuserEmails.includes(email)).pipe(delay(1000));
+  }
+
+  emailValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.checkIfEmailExists(control.value).pipe(
+        map(res => {
+          return res ? { error: true, duplicated: true } : null;
+        })
+      );
+    };
+  }
+
+  onSubmit() {
+    console.log(this.DBuserNames);
+
+    this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe((
+    data) => {
+    console.log(data);
+    this.successMessage = 'Registered Successfully!';
+    this.cd.markForCheck();
+    },
+    (err) => {
+      this.errorMessage = err.error;
+      console.log(err.error);
+      this.cd.markForCheck();
+    });
   }
 }
