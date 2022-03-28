@@ -2,9 +2,9 @@
 <div class="container" *ngIf="securityObj.userRole === 'admin'">
   <div class="container-user">
     <div class="container-users">
-      <div class="container-user-tag" *ngFor="let user of users">
+      <div class="container-user-tag" *ngFor="let user of users ; index as i" >
         <span class="usertag" (click)="onUserDetail(user)"
-          >User tag {{ user.id }}
+          >User tag {{ i+1 }}
         </span>
         <button class="deleteBtn" (click)="onDeleteBtn(user)">Delete</button>
       </div>

@@ -27,9 +27,11 @@ export class AdminComponent implements OnInit {
     });
   }
   onDeleteBtn(user: Users) {
-    this.userinforService.deleteUser(user).subscribe(() => {
-      this.users = this.users.filter((t) => t.id !== user.id);
-    });
+    console.log(user._id)
+    this.users = this.users.filter((t) => t._id !== user._id);
+    // this.userinforService.deleteUser(user).subscribe(() => {
+      
+    // });
   }
   onUserDetail(user: Users) {
     this.userDetail = user;
