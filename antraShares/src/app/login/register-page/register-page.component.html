@@ -14,6 +14,9 @@
             At least 5 characters and at most 12 characters:
             {{ username?.errors?.['minlength'] }}
           </div>
+          <div *ngIf="username?.errors?.['userExists']">
+            This username already exists, try another
+          </div>
         </div>
         <input class="input-field" type="text" id="password" formControlName="password" placeholder="Password" />
 
@@ -50,8 +53,8 @@
 
         <input class="input-field" type="text" id="email" formControlName="email" placeholder="Email" />
         <div *ngIf="!form.valid && (form.dirty || form.touched)" class="error">
-          <div *ngIf="email?.errors?.['hasemail']">
-            Email already exists, try loggin!!!
+          <div *ngIf="email?.errors?.['emailExists']">
+            This email already exists, try loggin!!!
           </div>
         </div>
 
