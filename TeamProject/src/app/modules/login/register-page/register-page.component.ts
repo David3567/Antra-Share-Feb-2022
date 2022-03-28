@@ -1,6 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, Validators, ValidationErrors  } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError,Observable, of, timer } from 'rxjs';
+import { delay, map, tap } from 'rxjs/operators';
+import { AppUserAuth } from 'src/app/interfaces/user-auth.model';
+import { AppNewUser } from 'src/app/interfaces/users.model';
+import { RegisterService } from 'src/app/services/register.service';
+
 
 @Component({
   selector: 'app-register-page',
@@ -9,18 +16,82 @@ import { Router } from '@angular/router';
 })
 export class RegisterPageComponent implements OnInit {
 
-  regForm: FormGroup;
+  regForm!: FormGroup;
+  successMessage: string = '';
+  errorMessage: string = "";
 
-  constructor(private build: FormBuilder, private router: Router) { }
+  user: AppNewUser = new AppNewUser();
+  securityObj: AppUserAuth = null;
+  returnUrl: string = 'newsfeed';
+
+  userNameCheck: string;
+  userEmailCheck: string;
+
+  usernameStatus: boolean = false;
+
+  constructor(private build: FormBuilder, 
+              private router: Router,
+              private existService: RegisterService,
+              private http: HttpClient
+              ) { 
+
+                // this.authenService.getAllUserNames().subscribe(
+                //   (data) => {
+                //     console.log(data);
+                //     this.DBuserNames = data;
+                //   }
+                // );
+
+                // this.authenService.getAllUserEmails().subscribe(
+                //   (data) => {
+                //     console.log(data);
+                //     this.DBuserEmails = data;
+                //   }
+                // );
+
+              }
 
   ngOnInit(): void {
     this.regForm = this.build.group({
-      username: ["", [, Validators.minLength(5), Validators.maxLength(12), Validators.required]],
+      username: ["", [Validators.minLength(5), Validators.maxLength(12), Validators.required], ],
       email: ["", [Validators.email, Validators.required]],
       password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
       confirm: ["", Validators.required]
     });
   }
+
+  // checkIfUsernameExists(username: string): Observable<boolean> {
+  //   return of(this.DBuserNames.includes(username)).pipe(delay(1000));
+  // }
+
+  // checkIfUseremailExists(email: string): Observable<boolean> {
+  //   return of(this.DBuserEmails.includes(email)).pipe(delay(1000));
+  // }
+
+  usernameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.existService.checkyByUsername(control.value).pipe(
+        tap((input: string) => { this.userNameCheck = input}),
+        map(res => {
+          return res ? { isDuplicated: true } : null;}),
+          catchError(err => {
+            throw ({ message: err.error });
+          })
+      );
+    };
+  }
+
+  useremailValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.existService.checkyByUseremail(control.value).pipe(
+        map(res => {return res ? { error: true, isDuplicated: true } : null;}),
+        catchError(err => {
+          throw ({ message: err.error });
+        })
+      );
+    };
+  }
+
 
   get username() {
     return this.regForm.get('username');
@@ -38,9 +109,31 @@ export class RegisterPageComponent implements OnInit {
     return this.regForm.get('confirm');
   }
 
-  onSubmit(signUpForm: FormGroup) {
-    console.log(signUpForm.value);
+  onSubmit(regForm: FormGroup) {
+    console.log(regForm.value);
     this.router.navigate(['/login']);
+    // console.log(this.checkIfUsernameExists(regForm.value.username));
+    
+    // this.user = {
+    //   "username": this.regForm.value.username,
+    //   "userEmail": this.regForm.value.email,
+    //   "password": this.regForm.value.password,
+    // }
+    // console.log(this.user);
+
+    // this.authenService.register(this.user).subscribe(
+     
+    //   (info) => {
+    //     this.successMessage = 'Registered Successfully!'
+    //     this.securityObj = info.body;
+    //     this.router.navigateByUrl("/");
+    //   },
+    //   (err) => { this.errorMessage = err.error },
+    // );
+
+    console.log("managed to be here");
+
+
   }
 
 }

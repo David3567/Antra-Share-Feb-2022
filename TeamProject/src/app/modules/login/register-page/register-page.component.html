@@ -2,6 +2,8 @@
 
     <form action="/login" (ngSubmit)="onSubmit(regForm)" [formGroup]="regForm">
         <h2>Create an Account</h2>
+
+        <!-- Username -->
         <label for="username">Username</label>
         <input 
             type="text" 
@@ -11,20 +13,37 @@
             formControlName="username"
         />
         <div
-        class="errors" 
-        *ngIf="!username.valid && (username.touched && username.dirty)"
-        >The Username needs to be between 5 and 12 characters {{regForm.valid | json}}</div>
+            class="errors"
+            *ngIf="!username.valid && username.touched && username.dirty"
+            >
+            <div *ngIf="username.errors?.minlength || username.errors?.maxlength">
+                The Username needs to be between 5 and 12 characters
+            </div>
+            <div *ngIf="username.errors?.['isDuplicated']">
+                {{ userNameCheck }} Please use another username.
+            </div>
+
+
+        </div>
 
         <label for="useremail">Email</label>
         <input 
-        type="email" 
-        id="email" 
-        name="email"
-        placeholder="Enter email"
-        formControlName="email"
+            type="email" 
+            id="email" 
+            name="email"
+            placeholder="Enter email"
+            formControlName="email"
         >
-        <div class="errors"
-        *ngIf="!email.valid  && (email.touched && email.dirty)">Your entry needs to follow the email format</div>
+        <div class="errors" *ngIf="!email.valid && email.touched && email.dirty">
+            <div *ngIf="email.errors?.email">
+              Your entry needs to follow the email format
+            </div>
+            <div *ngIf="email.errors?.['isDuplicated']">
+               Please use another email.
+            </div>
+          </div>
+
+
 
         <label for="password">Password</label>
         <input 

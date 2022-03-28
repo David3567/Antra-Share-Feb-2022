@@ -33,3 +33,9 @@ export class AppUser {
     userEmail = '';
     password = '';
 }
+
+export class AppNewUser {
+  username = '';
+  userEmail = '';
+  password = '';
+}
