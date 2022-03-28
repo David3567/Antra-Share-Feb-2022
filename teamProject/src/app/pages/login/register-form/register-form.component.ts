@@ -3,8 +3,9 @@ import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationEr
 import { MustMatch } from './mustMatch.validator';
 import { AuthenService } from 'src/app/services/authen.service';
 import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { debounceTime, delay, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-register-form',
@@ -40,28 +41,37 @@ export class RegisterFormComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.registerForm = this.formbuilder.group({
-      username:['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)], this.usernameValidator()],
-      email:['', [Validators.required, Validators.email], this.emailValidator()],
-      password:['', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
-      confirmPassword:['', [Validators.required]]
-    }, {validator: MustMatch('password', 'confirmPassword')});
+    this.registerForm = this.formbuilder.group({
+      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)], this.usernameValidator()],
+      email: ['', [Validators.required, Validators.email], this.emailValidator()],
+      password: ['', [Validators.required, Validators.minLength(5), Validators.pattern(this.passwordPattern)]],
+      confirmPassword: ['', [Validators.required]]
+    }, { validator: MustMatch('password', 'confirmPassword') });
     this.cd.detectChanges();
-  }
-
-  checkIfUsernameExists(username: string): Observable<boolean> {
-    return of(this.DBuserNames.includes(username)).pipe(delay(1000));
   }
 
   usernameValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.checkIfUsernameExists(control.value).pipe(
-        map(res => {
-          return res ? { error: true, duplicated: true } : null;
-        })
-      );
-    };
+      return this.authenService.getSpecificUser(control.value).pipe(
+        delay(1000),
+        map(
+          (item: any) => {
+            console.log(item);
+            return item ? { error: true, duplicated: true } : null
+          }
+        ))
+    }
   }
+
+  // usernameValidator(): AsyncValidatorFn {
+  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+  //     return this.checkIfUsernameExists(control.value).pipe(
+  //       map(res => {
+  //         return res ? { error: true, duplicated: true } : null;
+  //       })
+  //     );
+  //   };
+  // }
 
   checkIfEmailExists(email: string): Observable<boolean> {
     return of(this.DBuserEmails.includes(email)).pipe(delay(1000));
@@ -81,14 +91,13 @@ export class RegisterFormComponent implements OnInit {
 
     this.authenService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password, 'user').subscribe(
       (data) => {
-        setTimeout(() =>
-        {
+        setTimeout(() => {
           this.successMessage = 'Registered Successfully!';
           this.cd.markForCheck();
           this.router.navigateByUrl('/');
         },
-        2000);
-        },
+          2000);
+      },
       (err) => {
         this.errorMessage = err.error;
         this.cd.markForCheck();

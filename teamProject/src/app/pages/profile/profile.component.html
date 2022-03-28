@@ -4,8 +4,8 @@
             <div nz-col nzSpan="16">
                 <nz-card  [nzActions]="[actionEdit, actionLike,  actionEllipsis]">
                     <nz-card-meta
-                      nzTitle={{user.username}}
-                      nzDescription={{user.email}}
+                      nzTitle={{userProfile.userName}}
+                      nzDescription={{userProfile.userEmail}}
                       [nzAvatar]="avatarTemplate"
                     ></nz-card-meta>
                   </nz-card>
@@ -21,13 +21,13 @@
                   <ng-template #actionLike>
                     <div>
                       <i nz-icon nzType="like"></i>
-                      <span>{{user.numberLikes}}</span>
+                      <span>{{999}}</span>
                     </div>
                   </ng-template>
                   <ng-template #actionEllipsis>
                     <div>
                       <i nz-icon nzType="comment"></i>
-                      <span>{{user.numberComments}}</span>
+                      <span>{{999}}</span>
                     </div>
                   </ng-template>
             </div>

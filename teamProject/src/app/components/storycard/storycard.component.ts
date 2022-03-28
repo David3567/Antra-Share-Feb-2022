@@ -26,9 +26,10 @@ export class StorycardComponent implements OnInit {
   pageArray:Comment[] = [];
   showForward:boolean = true;
   showBack:boolean = false;
+  inputValue?:string;
 
 
-  constructor() { }
+  constructor(private newsfeedservice:NewsfeedService) { }
 
   ngOnInit(): void {
     if(this.news?.comment.length<=5)
@@ -84,5 +85,14 @@ export class StorycardComponent implements OnInit {
     this.buildPageArray(this.pagenatorIndex);
     if(this.pagenatorIndex-5<0)
       this.showBack = false;
+  }
+
+  onComment(){
+    this.newsfeedservice.patchComment(this.news._id,this.inputValue).subscribe(
+      data=>{
+        console.log(data);
+        location.reload();
+      }
+    )
   }
 }
