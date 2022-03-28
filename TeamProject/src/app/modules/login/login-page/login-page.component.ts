@@ -1,15 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-  AsyncValidatorFn,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, of, switchMap, tap, timer } from 'rxjs';
 import { AppUserAuth } from 'src/app/interfaces/user-auth.model';
 import { AppUser } from 'src/app/interfaces/users.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -21,6 +13,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
+  hide: boolean = true;
   errorMessage: string = "";
 
   user: AppUser = new AppUser();
@@ -36,9 +29,11 @@ export class LoginPageComponent implements OnInit {
     return this.loginForm.get('passwordVal');
   }
 
-  constructor(private fb: FormBuilder, 
-              private router: Router,
-              private securityService: LoginService) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private securityService: LoginService,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -48,10 +43,7 @@ export class LoginPageComponent implements OnInit {
 
   }
 
-
   onSubmit() {
-    
-    
     this.user = {
       "userEmail": this.loginForm.value.usernameVal,
       "password": this.loginForm.value.passwordVal,
@@ -59,13 +51,12 @@ export class LoginPageComponent implements OnInit {
 
     this.securityService.login(this.user).subscribe(
       (info) => {
-        
+
         this.securityObj = info.body;
         this.router.navigateByUrl(this.returnUrl);
       },
-      (err) =>  {this.errorMessage = err.error},
+      (err) => { this.errorMessage = err.error },
     );
-
   }
 
   onRegister() {

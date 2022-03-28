@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  min-width: 376px;
   background-color: #0097e6;
 }
 
@@ -19,10 +20,6 @@ form {
 img {
   width: 200px;
   align-self: center;
-}
-
-input[type="text"] {
-  padding: 15px;
 }
 
 button {
@@ -72,13 +69,13 @@ form > a {
 }
 
 .login-Container {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   row-gap: 10px;
-  height: 40px; 
+  height: 40px;
   padding-bottom: 20px;
 }
 
-.login-Container>:nth-child(2) {
+.login-Container > :nth-child(2) {
   margin-left: 10px;
 }
