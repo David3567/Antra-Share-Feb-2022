@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Comments } from '../interfaces/story.model';
+import { VariableValue } from './variable.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddCommentService {
-  private baseUrl = 'http://localhost:4231/api';
   private path = 'news';
   private add = 'addComment';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private variableValue :VariableValue) {}
   addComment(id: string, comment: Comments) {
     return this.http.patch(
-      [this.baseUrl, this.path,this.add, id].join('/'),
+      [this.variableValue.baseUrl, this.path,this.add, id].join('/'),
       comment
     ) as Observable<Comments>;
   }

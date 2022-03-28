@@ -1,15 +1,19 @@
 <div class="div-like">
-
-  <button class="btn-liked-list" (click)="onClickLike()">
-    Like List
-  </button>
+  <button class="btn-liked-list" (click)="onClickLike()">Like List</button>
 </div>
 
 <div class="form">
-  <h1>Post News Feed Form</h1>
+ 
+  <mat-accordion>
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title>  <h1>Post News Feed Form</h1> </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-post-story></app-post-story>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
 
 <div class="container">
   <app-story *ngFor="let story of stories" [inStory]="story"></app-story>
 </div>
-

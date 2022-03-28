@@ -30,6 +30,11 @@ body{
 }
 .form {
   padding-top: 90px;
+  width: 50%;
+  padding-left: 2%;
+  margin-left: 27%;
+  margin-bottom: 2%;
+  border-radius: 40px;
 }
 h1 {
   text-align: center;
