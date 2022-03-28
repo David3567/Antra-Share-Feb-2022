@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CreateUser } from 'src/app/admin/models/createUser.model';
 import { apiService } from 'src/app/services/api.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class RegisterComponent implements OnInit {
     confirm: ['', [Validators.required,]],
   }, { validators: this.matchPassword }
   );
+
+  register: any = {};
 
   get username() {
     return this.form.get('username');
@@ -38,8 +41,17 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.form.value);
-    this.api.createUser(this.form.value)
+    this.register.name = this.form.value.username;
+    this.register.userName = this.form.value.username;
+    this.register.userEmail = this.form.value.email;
+    this.register.password = this.form.value.password;
+    this.register.userRole = "user";
+    this.register.age = 24;
+    this.register.gender = "Male"; 
+    this.register.phone = 3333333333;
+
+    console.log("form register before request: ", this.register)
+    this.api.createUser(this.register);
   }
 
   matchPassword(group: FormGroup): ValidationErrors | null {

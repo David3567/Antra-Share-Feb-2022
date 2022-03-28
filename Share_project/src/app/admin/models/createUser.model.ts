@@ -1,6 +1,10 @@
 export interface CreateUser {
-    username: string,
-    email: string,
-    password:string,
-    confirm:string
+    name: string,
+    userName: string,
+    userEmail: string,
+    password: string,
+    userRole: string,
+    age: Number,
+    gender: string,
+    phone: Number
 }

@@ -24,7 +24,8 @@ export class apiService {
     return this.http.get<User>(this.userUrl);
   }
 
-  createUser(userInfo: CreateUser): Observable<CreateUser> {
-    return this.http.post<CreateUser>(this.createUserUrl, userInfo)
+  createUser(userInfo: any): Observable<any> {
+    console.log("in api, user info is: ", userInfo )
+    return this.http.post<any>(this.createUserUrl, userInfo)
   }
 }
