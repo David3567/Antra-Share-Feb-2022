@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateUser } from '../admin/models/createUser.model';
 import { User } from '../admin/models/user.model';
 import { News } from '../news-feed/models/news.model';
 
@@ -24,7 +23,7 @@ export class apiService {
     return this.http.get<User>(this.userUrl);
   }
 
-  createUser(userInfo: CreateUser): Observable<CreateUser> {
-    return this.http.post<CreateUser>(this.createUserUrl, userInfo)
-  }
+  // createUser(userInfo: CreateUser): Observable<CreateUser> {
+  //   return this.http.post<CreateUser>(this.createUserUrl, userInfo)
+  // }
 }

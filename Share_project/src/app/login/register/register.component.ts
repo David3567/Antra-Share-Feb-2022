@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-    this.api.createUser(this.form.value)
+    // this.api.createUser(this.form.value)
   }
 
   matchPassword(group: FormGroup): ValidationErrors | null {
