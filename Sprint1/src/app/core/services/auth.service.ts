@@ -68,7 +68,7 @@ export class AuthService {
   }
 
   registercheckuseremail(useremail: string) {
-    return this.http.get<Users>(
+    return this.http.get<any>(
       [API_URL, 'register', 'checkExistByEmail', useremail].join('/'),
       httpOptions
     );

@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup;
   hide: boolean = true;
   hideconfirm: boolean = true;
+  error: string = "";
 
   // user: AppUser = new AppUser();
   securityObj: AppUserAuth = new AppUserAuth();
@@ -144,10 +145,13 @@ export class RegisterComponent implements OnInit {
         phone: group.value.phone,
       };
 
-      return timer(1500).pipe(
+      return timer(500).pipe(
         switchMap(() => {
           return this.authService.registercheckuseremail(obj.userEmail).pipe(
-            tap((data) => console.log('data in validater: ', data)),
+            tap((data) => {
+              console.log('data in validater: ', data);
+              this.error = data.body;
+          }),
             map((data) => null),
             catchError((err: any) => {
               return of({ errormessage: err.error });
