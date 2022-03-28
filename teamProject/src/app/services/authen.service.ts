@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, debounceTime, map } from 'rxjs/operators';
 import { NewUser } from "src/app/interfaces/backEndUser.model";
 
 const AUTH_API = 'http://localhost:4231/api/';
@@ -30,6 +30,9 @@ export class AuthenService {
     }))
   }
 
+  getSpecificUser(username:string){
+    return this.http.get<NewUser>(AUTH_API+'users/getprofile/'+username).pipe(catchError(error=>{ return of(false)}));
+  }
 
   register(userName: string, userEmail: string, password: string, userRole: string): Observable<any> {
     return this.http.post(AUTH_API + 'register/createNewAccount', {

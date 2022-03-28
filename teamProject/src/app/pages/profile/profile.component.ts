@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { NewUser } from 'src/app/interfaces/backEndUser.model';
 import { User } from 'src/app/interfaces/user.model';
+import { AuthenService } from 'src/app/services/authen.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,6 +11,8 @@ import { User } from 'src/app/interfaces/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent implements OnInit {
+
+  userProfile!:NewUser;
 
   myForm: FormGroup = this.formbuilder.group({
     username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
@@ -35,17 +39,33 @@ export class ProfileComponent implements OnInit {
   isVisible = false;
   isConfirmLoading = false;
 
-  user: userProfile = {
-    username: "sampleUserName",
-    password: "Sample123",
-    email: "sampleUserName@123.com",
-    numberLikes: 75,
-    numberComments: 98
-  }
-
-  constructor(private formbuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
+  constructor(private authen:AuthenService, private formbuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+
+      let username = localStorage.getItem('username');
+      if (username==null)
+      {
+        console.log('error retriving user')
+      }
+      else 
+      {
+        this.authen.getSpecificUser(username).subscribe(
+          data=>{
+            if(typeof(data)=="boolean")
+            {
+              console.log('error retriving user, user not exist');
+              return
+            }
+            else {
+              this.userProfile = data;
+              console.log(this.userProfile)
+            }
+          }
+          
+        )
+      }
+    
   }
 
   showModal(): void {
@@ -67,7 +87,7 @@ export class ProfileComponent implements OnInit {
     setTimeout(() => {
       this.isVisible = false;
       this.isConfirmLoading = false;
-      this.user.username=this.myForm.get('username')?.value;
+      this.userProfile.userName=this.myForm.get('username')?.value;
       this.resetForm();
       this.cdr.detectChanges();
     }, 1000);
@@ -80,24 +100,14 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     this.handleOk();
-
   }
 
   matchPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value
     const confirm = control.get('confirm')?.value
-
     if (password !== confirm) {
       return { notMatch: true };
     }
     else return null;
   }
-}
-
-export interface userProfile {
-  username: string;
-  password: string;
-  email: string,
-  numberLikes: number;
-  numberComments: number;
 }

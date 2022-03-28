@@ -34,6 +34,13 @@
           nzDescription = {{item.content.text}}
           [nzAvatar] = "avatarTemplate"></nz-card-meta>
         </div>
+        <div class="comment_inputholder">
+          <textarea rows="4" nz-input [(ngModel)]="inputValue"></textarea>
+        </div>
+        <div class="comment_input-btnholder">
+          <div class="comment_placetaker"></div>
+          <button nz-button nzType="primary" (click)="onComment()">Comment</button>
+        </div>
       </ng-container>
       <ng-container *nzModalFooter>
         <div class="comment_footer">

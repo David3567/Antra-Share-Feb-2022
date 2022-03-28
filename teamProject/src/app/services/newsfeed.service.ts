@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { News } from '../interfaces/news.model';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +17,7 @@ export class NewsfeedService {
   subjectLikedNews$ = new BehaviorSubject(this.likedNews);
 
   baseUrl:string = "http://localhost:4231"
-  url2 = [this.baseUrl,"api","news"].join("/")
+  
   constructor(private httpclient:HttpClient) {
 
   }
@@ -40,5 +45,35 @@ export class NewsfeedService {
     })
     console.log(this.likedNews)
     this.subjectLikedNews$.next(this.likedNews)
+  }
+
+  post(contentText: string = "default"): Observable<any> {
+    const username = localStorage.getItem('username');
+    if(username!=null){
+      return this.httpclient.post('http://localhost:4231/api/news', {
+        publisherName: username,
+        content:{
+          video:" ",
+          image:"http://via.placeholder.com/640x360",
+          text:contentText
+        }
+      }, httpOptions);
+    }
+    else return of('not success, username lost');
+  }
+
+  patchComment(postid:string, contentText: string = "default"): Observable<any> {
+    const username = localStorage.getItem('username');
+    if(username!=null){
+      return this.httpclient.patch('http://localhost:4231/api/news/addComment/' + postid, {
+        publisherName: username,
+        content:{
+          video:" ",
+          image:" ",
+          text:contentText
+        }
+      }, httpOptions);
+    }
+    else return of('not success, username lost');
   }
 }
