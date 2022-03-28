@@ -14,6 +14,11 @@ import {
 } from 'rxjs/operators';
 import { Observable, of, timer } from 'rxjs';
 
+import { AccountService } from 'src/app/core/account.service';
+import { NewUser } from 'src/app/interface/newuser.model';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -25,10 +30,14 @@ export class RegisterComponent implements OnInit {
     Validators.minLength(5),
     Validators.maxLength(12),
     ],
-      [this.myAsyncValidator()],
+
+    [this.myUsernameAsyncValidator()],
     ],
     email: ['', [Validators.required,
-    Validators.email],],
+    Validators.email],
+    [this.myEmailAsyncValidator()],
+  ],
+
     passwd: ['', [Validators.required,
     Validators.pattern("^(?=.*[A-Z])(?=.*[$@$!%*?&~]).{5,}")]],
     confirm: ['', [Validators.required,]],
@@ -55,12 +64,26 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-    private registerService: RegisterService) { }
+
+    private router: Router,
+    private registerService: RegisterService,
+    private accountService: AccountService) { }
 
   ngOnInit(): void { }
 
+
+
   onSubmit() {
-    console.log(this.form.value);
+    const account: NewUser = {
+      userName: this.username?.value,
+      userEmail: this.email?.value,
+      password: this.passwd?.value,
+      userRole: 'user',
+    };
+    this.accountService.addNewAccount(account).subscribe((data: NewUser)=>{
+      console.log(data);
+    });
+    this.router.navigate(['']);
   }
 
   matchPassword(group: FormGroup): ValidationErrors | null {
@@ -70,9 +93,11 @@ export class RegisterComponent implements OnInit {
     return passwd !== confirm ? { notMatch: true } : null;
   }
 
-  private myAsyncValidator(): AsyncValidatorFn {
+
+  private myUsernameAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return timer(5000).pipe(
+      return timer(2000).pipe(
+
         switchMap((val: any) => {
           console.log(1111111);
           return this.registerService.getUsername(control.value);
@@ -84,18 +109,33 @@ export class RegisterComponent implements OnInit {
     };
   }
 
+
+  private myEmailAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(2000).pipe(
+        switchMap((val: any) => {
+          console.log(1111111);
+          return this.registerService.getEmail(control.value);
+        }),
+        tap(console.log),
+        mapTo({ hasemail: true }),
+        catchError((err) => of(null))
+      );
+    };
+  }
 }
 
-export function myAsyncValidator(
-  registerService: RegisterService
-): AsyncValidatorFn {
-  return (control: AbstractControl): Observable<ValidationErrors | null> => {
-    console.log(control);
-    return registerService.getUsername(control.value).pipe(
-      map((result: any) => {
-        console.log(result);
-        return result ? null : { invalidAsync: true };
-      })
-    );
-  };
-}
+// export function myAsyncValidator(
+//   registerService: RegisterService
+// ): AsyncValidatorFn {
+//   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+//     console.log(control);
+//     return registerService.getUsername(control.value).pipe(
+//       map((result: any) => {
+//         console.log(result);
+//         return result ? null : { hasuser: true };
+//       })
+//     );
+//   };
+// }
+
