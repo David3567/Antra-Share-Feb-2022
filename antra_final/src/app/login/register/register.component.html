@@ -5,6 +5,9 @@
         <div class="field-container">
             <input type="text" id="username" formControlName="username" placeholder="Username">
             <div *ngIf="!username?.valid && (username?.dirty ||username?.touched)" class="error">
+                <div *ngIf="username?.errors?.['hasuser']">
+                    Opps, username existed
+                </div>
                 <div [hidden]="!username?.errors?.['required']">
                     Username is required
                 </div>
@@ -20,6 +23,9 @@
         <div class="field-container">
             <input type="email" class="fullwidth" id="email" formControlName="email" placeholder="Email Address">
             <div *ngIf="!email?.valid && (email?.dirty ||email?.touched)" class="error">
+                <div *ngIf="email?.errors?.['hasemail']">
+                    Opps, email existed
+                </div>
                 <div [hidden]="!email?.errors?.['required']">
                     Email is required
                 </div>
@@ -39,7 +45,6 @@
                     Password has to be at least 1 Uppercase <br> 1 special character and 5 min length
                 </div>
             </div>
-
         </div>
 
         <div class="field-container">
@@ -54,7 +59,9 @@
             </div>
         </div>
 
-        <button class="register-button" type="submit" [routerLink]="['/login']">Register</button>
+        <button class="register-button" 
+        type="submit" 
+        [disabled]="!form.valid">Sign up</button>
 
         <p>
             Have an account?? <a href="">Log In</a>
