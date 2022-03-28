@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule
+    MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule,
   ],
+  providers:[{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService]
 })
 export class NewsfeedModule { }

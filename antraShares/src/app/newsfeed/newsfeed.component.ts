@@ -1,3 +1,4 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Story } from '../interfaces/story.model';
 import { StoryService } from '../services/story.service';
@@ -15,6 +16,7 @@ import {
   ValidatorFn,
   AsyncValidatorFn,
 } from '@angular/forms';
+import { PostStoryService } from '../services/post-story.service';
 @Component({
   selector: 'app-newsfeed',
   templateUrl: './newsfeed.component.html',
@@ -23,14 +25,17 @@ import {
 export class NewsfeedComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   stories!: Story[];
+  private token = localStorage.getItem("bearerToken")!;
+  private email = this.jwt.decodeToken(this.token).userEmail;
   subcribeStoryService!: Subscription;
-  constructor(private storyService: StoryService, public dialog: MatDialog, private fb: FormBuilder,) { }
+  constructor(private storyService: StoryService, public dialog: MatDialog, private fb: FormBuilder, private jwt: JwtHelperService, private post:PostStoryService
+  ) { }
   get postContent() {
     return this.form.get('postContent');
   }
   buildform() {
     return {
-      postContent: ""
+      postContent: ["",Validators.required]
     };
   }
   ngOnInit(): void {
@@ -39,12 +44,23 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       .subscribe((storyData: any) => {
         this.stories = storyData;
       });
-      this.form = this.fb.group(this.buildform(), {
+    this.form = this.fb.group(this.buildform(), {
 
-      });
+    });
   }
   onSubmit() {
     console.log(this.form.value);
+    console.log(this.jwt.decodeToken(this.token));
+
+    console.log(this.email)
+    const story={
+      name: this.email,
+      message: this.form.value.postContent
+    }
+    console.log(story)
+    this.post.postStory(this.postContent?.value.name).subscribe((result) => {
+      console.log(result);
+    });
   }
   ngOnDestroy(): void {
     this.subcribeStoryService.unsubscribe();
