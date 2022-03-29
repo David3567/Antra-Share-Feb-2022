@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { UserinfoComponent } from './admin/userinfo/userinfo.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -34,18 +34,12 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard],
-    data:{userRole:"admin"}
+    data: { userRole: 'admin' },
+    children: [{ path: 'userinfo/:id', component: UserinfoComponent }],
   },
-  {
-    path: 'admin/userinfo/:id',
-    component: UserinfoComponent,
-    canActivate: [AuthGuard],
-    data:{userRole:"admin"}
-  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
-  { path: '', redirectTo:'home',pathMatch:'full' },
-
-  { path: '**', component: LoginComponent },
+  { path: '**', redirectTo:'home', pathMatch:'full' },
 ];
 
 @NgModule({

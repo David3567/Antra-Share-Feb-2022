@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppUserAuth } from '../interfaces/app-user.model';
 import { Users } from '../interfaces/userlist.model';
 import { SecurityService } from '../services/security.service';
@@ -13,12 +13,15 @@ import { UserinforService } from '../services/userinfor.service';
 export class AdminComponent implements OnInit {
   users!: Users[];
 
+  userurl!: {id:string, name:string};
+
   userDetail!: Users;
   securityObj: AppUserAuth = new AppUserAuth();
   constructor(
     private userinforService: UserinforService,
     private securityService: SecurityService,
     private activatedRoute: ActivatedRoute,
+    private route : Router,
   ) {
     this.securityObj = this.securityService.securityObj;
   }
@@ -37,5 +40,6 @@ export class AdminComponent implements OnInit {
   }
   onUserDetail(user: Users) {
     this.userDetail = user;
+    this.route.navigate(['/admin','userinfo', user._id]);
   }
 }
