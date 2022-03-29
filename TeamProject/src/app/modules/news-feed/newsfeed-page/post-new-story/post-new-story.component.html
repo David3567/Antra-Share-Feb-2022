@@ -1,7 +1,8 @@
 <div class="container">
     <div>
         <img src="" alt="">
-        <textarea name="" id="" cols="64" rows="4" placeholder="Start your post..."></textarea>
+        <textarea name="" id="" cols="64" rows="4" placeholder="Start your post..."
+            #textArea></textarea>
     </div>
-    <button>Post</button>
+    <button (click)="postNewStory(textArea.value)">Post</button>
 </div>

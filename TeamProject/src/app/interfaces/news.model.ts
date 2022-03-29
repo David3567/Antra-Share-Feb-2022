@@ -1,23 +1,23 @@
 export interface newsTemplate {
-  _id: string;
+  _id?: string;
   publisherName: string;
-  publishedTime: string;
-  content: Content;
+  publishedTime?: string;
+  content?: Content;
   comment?: [Comment];
-  likedIdList: [];
-  __v: number;
+  likedIdList?: [];
+  __v?: number;
 }
 
 interface Comment {
-  _id: string;
+  _id?: string;
   publisherName: string;
-  publishedTime: string;
-  content: Content;
+  publishedTime?: string;
+  content?: Content;
 }
 
 interface Content {
-  image: string;
-  video: string;
-  text: string;
-  _id: string;
+  image?: string;
+  video?: string;
+  text?: string;
+  _id?: string;
 }

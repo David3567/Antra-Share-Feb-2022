@@ -29,4 +29,9 @@ export class NewsfeedPageComponent implements OnInit {
 
     this.likedStories = updatedLikedStories;
   }
+
+  onUpdateNewStory(newStory: newsTemplate) {
+    console.log(newStory);
+    this.newsList.push(newStory);
+  }
 }

@@ -6,7 +6,7 @@
         (likedStoriesEmitter)="onUpdateLikedStories($event)"></app-like-list>
 
         <!-- Post New story form -->
-        <app-post-new-story></app-post-new-story>
+        <app-post-new-story (storyEmitter)="onUpdateNewStory($event)"></app-post-new-story>
 
         <!-- Story Card component to be rendered as many times as there are stories-->
         <app-story-card *ngFor="let story of newsList" 
