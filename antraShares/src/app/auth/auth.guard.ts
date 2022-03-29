@@ -30,15 +30,17 @@ export class AuthGuard implements CanActivate {
     let roles = route.data['userRole'] as string;
     const isAuthenticated = this.securityService.securityObj.isAuthenticated;
     const userRole = this.securityService.securityObj.userRole;
-    if(isAuthenticated){
-      if (userRole !== roles && roles ==='admin') {
+    if (isAuthenticated) {
+      if (userRole !== roles && roles === 'admin') {
         this.router.navigate([''], { queryParams: { returnUrl: state.url } });
+        // this.router.navigate([''], { relativeTo:this.activateRoute });
         return false;
       }
       return true;
     }
-  
-    this.router.navigate([''], { queryParams: { returnUrl: state.url } });
+
+    // this.router.navigate([''], { queryParams: { returnUrl: state.url } });
+    this.router.navigate([''], { relativeTo: this.activateRoute });
     return false;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AppUserAuth } from '../interfaces/app-user.model';
 import { Users } from '../interfaces/userlist.model';
 import { SecurityService } from '../services/security.service';
@@ -16,7 +17,8 @@ export class AdminComponent implements OnInit {
   securityObj: AppUserAuth = new AppUserAuth();
   constructor(
     private userinforService: UserinforService,
-    private securityService: SecurityService
+    private securityService: SecurityService,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.securityObj = this.securityService.securityObj;
   }
