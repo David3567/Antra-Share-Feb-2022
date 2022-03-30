@@ -17,12 +17,20 @@
 }
 
 .user {
-    display: flex; 
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+
+.user-detail {
+    display: flex;
     column-gap: 10px; 
     padding: 5px; 
     margin-left: 20px;
     font-size: 20px;
 }
+
 
 .userAvatar {
     width: 60px; 
