@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -13,6 +16,8 @@ import { TodolistService } from './services/todolist.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoInterceptor } from './services/todo.interceptor';
 import { CatcherrorInterceptor } from './services/catcherror.interceptor';
+import { todoreducer } from './Ngrx/todo.reducer';
+import { TodoEffect } from './Ngrx/todo.effect';
 
 @NgModule({
   declarations: [AppComponent, TodolistComponent, TodoitemComponent],
@@ -23,9 +28,23 @@ import { CatcherrorInterceptor } from './services/catcherror.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    StoreModule.forRoot({ todos: todoreducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      name: 'Todos Demo',
+    }),
+    EffectsModule.forRoot([TodoEffect]),
   ],
   providers: [
     TodolistService,
+    { provide: 'jsonplaceholder', useValue: true },
+    {
+      provide: 'baseUrl',
+      useFactory: (val: boolean) => {
+        return val ? 'https://jsonplaceholder.typicode.com' : 'localhost:3000';
+      },
+      deps: ['jsonplaceholder'],
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TodoInterceptor,

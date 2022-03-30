@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Store } from '@ngrx/store';
+
 import { tap } from 'rxjs/operators';
 import { Todo } from '../interfaces/todo.model';
 import { TodolistService } from '../services/todolist.service';
+import * as TodoActions from 'src/app/Ngrx/todo.actions';
+import * as TodoSelectors from 'src/app/Ngrx/todo.selector';
 
 @Component({
   selector: 'app-todolist',
@@ -15,12 +19,21 @@ export class TodolistComponent implements OnInit {
 
   todolist!: Todo[];
 
-  constructor(private todolistService: TodolistService) {}
+  constructor(private todolistService: TodolistService, private store: Store) {}
 
   ngOnInit(): void {
-    this.todolistService.getTodos().subscribe((data: Todo[]) => {
-      this.todolist = data;
-    });
+    // this.store.dispatch(TodoActions.initTodolist());
+    this.store.dispatch(TodoActions.loadTodolist());
+
+    this.store
+      .select(TodoSelectors.getTodoList)
+      .subscribe((todolist: Todo[]) => {
+        this.todolist = todolist;
+      });
+
+    // this.todolistService.getTodos().subscribe((data: Todo[]) => {
+    //   this.todolist = data;
+    // });
   }
 
   add() {

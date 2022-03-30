@@ -261,3 +261,5 @@
 // }
 // const p = new Person();
 // p.printcourse();
+
+console.log();

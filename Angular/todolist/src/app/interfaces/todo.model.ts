@@ -4,3 +4,8 @@ export class Todo {
   title: String = '';
   completed: Boolean = false;
 }
+
+export interface TodoState {
+  err?: string;
+  todolist: Todo[];
+}
