@@ -28,17 +28,13 @@ export class PostNewStoryComponent implements OnInit {
     this.newStory = {
       "publisherName": decoded.userName,
       "content": {
-          "image": "",
-          "text": newPost}
+          "text": newPost
+        }
     }
     
     this.newsService.postNews(this.newStory).subscribe((response)=>{
-      console.log(response);
-      this.storyEmitter.emit(response);
+      this.storyEmitter.emit(response.body);
     })
-    
-    
-    // console.log(decoded);
   }
 
 }

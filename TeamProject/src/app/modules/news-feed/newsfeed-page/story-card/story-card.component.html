@@ -3,12 +3,18 @@
         <div class="userContainer">
             <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar">
             <div class="user">
-                <div>{{ story.publisherName }} -</div>
-                <div>{{ story.publishedTime | date: 'MMM d HH:mm a'}}</div>
+                <div class="user-detail">
+                    <div>{{ story.publisherName }} -</div>
+                    <div>{{ story.publishedTime | date: 'MMM d HH:mm a'}}</div>
+                </div>
+                <button *ngIf="checkUser()" mat-icon-button aria-label="delete icon" color="warn"
+                    (click)="deletePost(story._id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
         </div>
         <div class="contentContainer">
-            <img *ngIf="story.content.image.includes('https')" src={{story.content.image}} alt="Image"
+            <img *ngIf="story.content.image?.includes('https')" src={{story.content.image}} alt="Image"
                 class="contentImg">
             <div class="content">{{ story.content.text }}</div>
         </div>

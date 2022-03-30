@@ -11,7 +11,9 @@
         <!-- Story Card component to be rendered as many times as there are stories-->
         <app-story-card *ngFor="let story of newsList" 
         [likedStories]="likedStories"
-        [story]="story" (likedStoryEmitter)="onLike($event)"></app-story-card>
+        [story]="story"
+        (likedStoryEmitter)="onLike($event)"
+        (deleteStoryEmitter)="onDeleteStory($event)"></app-story-card>
         
     </div>
     

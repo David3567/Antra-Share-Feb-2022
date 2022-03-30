@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { newsTemplate } from '../interfaces/news.model';
 
 const httpOptions = {
@@ -23,4 +24,9 @@ export class NewsfeedService {
   postNews(newStory: newsTemplate) {
     return this.http.post<newsTemplate>('http://localhost:4231/api/news', newStory, httpOptions);
   }
+
+  deletePost(id: string) {
+    return this.http.delete(`http://localhost:4231/api/news/deletePost/${id}`, httpOptions);
+  }
+  
 }

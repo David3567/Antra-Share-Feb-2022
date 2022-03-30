@@ -10,6 +10,17 @@
     width: 580px;
 }
 
+.post-container {
+    display: flex; 
+    flex-direction: column; 
+    row-gap: 10px; 
+    margin-bottom: 10px;
+}
+
+.post-container>:first-child {
+    border: transparent
+}
+
 img {
     border: 1px solid black;
     width: 65px;
