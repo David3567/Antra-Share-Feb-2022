@@ -28,6 +28,7 @@ export class StoryCardComponent implements OnInit {
     const dialogRef = this.dialog.open(CommentDialogComponent, {
       data: {
         comment: story.comment,
+        _id: story._id
       },
     });
 
