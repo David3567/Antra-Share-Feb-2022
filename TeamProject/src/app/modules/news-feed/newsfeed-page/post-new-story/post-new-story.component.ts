@@ -29,7 +29,7 @@ export class PostNewStoryComponent implements OnInit {
       "publisherName": decoded.userName,
       "content": {
           "text": newPost
-        }
+        },
     }
     
     this.newsService.postNews(this.newStory).subscribe((response)=>{

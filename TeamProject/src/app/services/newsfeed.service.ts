@@ -28,5 +28,9 @@ export class NewsfeedService {
   deletePost(id: string) {
     return this.http.delete(`http://localhost:4231/api/news/deletePost/${id}`, httpOptions);
   }
+
+  addNewComment(id:string, newComment: any){
+    return this.http.patch(`http://localhost:4231/api/news/addComment/${id}`, newComment, httpOptions) as Observable<newsTemplate>;
+  }
   
 }

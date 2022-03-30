@@ -20,7 +20,7 @@ export interface newsTemplate {
   publisherName: string;
   publishedTime?: string;
   content?: Content;
-  comment?: [Comment];
+  comment?: Comment[];
   likedIdList?: [];
   __v?: number;
   body?: any;
@@ -28,7 +28,7 @@ export interface newsTemplate {
 
 interface Comment {
   _id?: string;
-  publisherName: string;
+  publisherName?: string;
   publishedTime?: string;
   content?: Content;
 }
