@@ -12,6 +12,8 @@ export class PokemonComponent implements OnInit {
   clickedPokemon: string = '';
 
   starterPokemon: string[] = [ "Bulbasaur", "Squirtle", "Charmander" ];
+  //starterPokemon: string[] = [ "Bulbasaur","ivysaur", "venusaur", "Charmander", "charmeleon", "charizard", "Squirtle", "wartortle", "blastoise", "caterpie", "metapod", "butterfree", "weedle", "kakuna", "beedrill" ];
+
 
   pokemonName = '';
   
@@ -33,6 +35,8 @@ export class PokemonComponent implements OnInit {
 
     else {
       this.starterPokemon = [ "Bulbasaur", "Squirtle", "Charmander" ];
+      //this.starterPokemon= [ "Bulbasaur","ivysaur", "venusaur", "Charmander", "charmeleon", "charizard", "Squirtle", "wartortle", "blastoise", "caterpie", "metapod", "butterfree", "weedle", "kakuna", "beedrill" ];
+
     }
 
   }
