@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PokemonService } from "src/app/Services/pokemon.service";
 
 
@@ -9,6 +9,8 @@ import { PokemonService } from "src/app/Services/pokemon.service";
 })
 export class CardComponent implements OnInit {
   @Input() pokemon!: string;
+
+  @Output() clickedPoke = new EventEmitter();
 
   imageInfo!: any;
   imageURL!: string;
@@ -37,4 +39,10 @@ export class CardComponent implements OnInit {
       }
     );
   }
+  
+  onClick() {
+    this.clickedPoke.emit(this.name);
+  }
+
+
 }

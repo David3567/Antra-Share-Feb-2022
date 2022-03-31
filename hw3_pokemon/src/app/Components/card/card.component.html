@@ -1,23 +1,23 @@
-<div class="card">
+<div class="card" (click)="onClick()">
 
   <img src={{imageURL}}>
 
-  <div>
+  <h1>
     {{name}}
+  </h1>
+  <div>
+    # {{id}}
   </div>
   <div>
-    {{id}}
+    Weight: {{weight}}
   </div>
   <div>
-    {{weight}}
+    Height: {{height}}
   </div>
-  <div>
-    {{height}}
-  </div>
-  <div>
+  <li>
     {{type1}}
-  </div>
-  <div>
+  </li>
+  <li *ngIf="type2">
     {{type2}}
-  </div>
+  </li>
 </div>

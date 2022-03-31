@@ -9,6 +9,8 @@ import { PokemonService } from "src/app/Services/pokemon.service";
 })
 export class PokemonComponent implements OnInit {
 
+  clickedPokemon: string = '';
+
   starterPokemon: string[] = [ "Bulbasaur", "Squirtle", "Charmander" ];
 
   pokemonName = '';
@@ -20,6 +22,19 @@ export class PokemonComponent implements OnInit {
     for (let i = 0; i < this.starterPokemon.length; i++) {
       this.pokemonName = this.starterPokemon[i].toLowerCase();
     }
+  }
+
+  onClick(clickedPoke: string) {
+    if (this.starterPokemon.length > 1) {
+      this.clickedPokemon = clickedPoke;
+      console.log(this.clickedPokemon);
+      this.starterPokemon = [this.clickedPokemon];
+    }
+
+    else {
+      this.starterPokemon = [ "Bulbasaur", "Squirtle", "Charmander" ];
+    }
+
   }
 
 }
