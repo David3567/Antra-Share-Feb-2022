@@ -13,7 +13,6 @@ var decoded: any = jwt_decode(token);
   styleUrls: ['./comment-dialog.component.css'],
 })
 export class CommentDialogComponent implements OnInit {
-  @Output() udpatedStoryEmitter = new EventEmitter<newsTemplate>();
   newComment: any;
   storyID: string;
   commentList: Comment[];
@@ -31,6 +30,7 @@ export class CommentDialogComponent implements OnInit {
     this.storyID = this.data._id;
     this.commentList = this.data.comment.sort((a : any, b : any) => 
     Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
+
     this.pageList = this.commentList.slice(this.head, this.tail);
     this.pageSize = Math.ceil(this.commentList.length / 3);
 
@@ -47,6 +47,7 @@ export class CommentDialogComponent implements OnInit {
     console.log(this.head, this.tail, this.pageSize * 3);
     this.previousBtn = this.head === 0 ? true : this.previousBtn;
     this.nextBtn = false;
+    
   }
 
   onNext() {
@@ -58,6 +59,7 @@ export class CommentDialogComponent implements OnInit {
     console.log(this.head, this.tail, this.pageSize * 3);
     this.nextBtn = this.tail === this.pageSize * 3 ? true : this.nextBtn;
     this.previousBtn = false;
+    
   }
 
   postNewComment(comment: string) {
@@ -67,13 +69,17 @@ export class CommentDialogComponent implements OnInit {
         "text": comment
       }
     }
-    
-    console.log(`The id is: ${this.storyID} and the comment is ${comment}`);
+
     this.newsService.addNewComment(this.storyID, this.newComment).subscribe((response)=> {
-      this.commentList = response.body["0"].comment.sort((a : any, b : any) => 
+      this.commentList = response["body"]["0"].comment.sort((a : any, b : any) => 
       Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
-      // this.udpatedStoryEmitter.emit(response.body);
+
+      this.pageSize = Math.ceil(this.commentList.length / 3);
+      this.onNext();
+      this.onPrevious()
     });
+
+    
   }
 
 

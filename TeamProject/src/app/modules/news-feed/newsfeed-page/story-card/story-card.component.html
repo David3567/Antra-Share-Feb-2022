@@ -14,9 +14,9 @@
             </div>
         </div>
         <div class="contentContainer">
-            <img *ngIf="story.content.image?.includes('https')" src={{story.content.image}} alt="Image"
+            <img *ngIf="story?.content?.image?.includes('https')" src={{story?.content?.image}} alt="Image"
                 class="contentImg">
-            <div class="content">{{ story.content.text }}</div>
+            <div class="content">{{ story.content?.text }}</div>
         </div>
         <div class="reactionsContainer">
             <div class="comments">

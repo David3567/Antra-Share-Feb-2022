@@ -49,14 +49,14 @@ export class LoginPageComponent implements OnInit {
       "password": this.loginForm.value.passwordVal,
     }
 
-    this.securityService.login(this.user).subscribe(
-      (info) => {
+    // this.securityService.login(this.user).subscribe(
+    //   (info) => {
 
-        this.securityObj = info.body;
-        this.router.navigateByUrl(this.returnUrl);
-      },
-      (err) => { this.errorMessage = err.error },
-    );
+    //     this.securityObj = info.body;
+    //     this.router.navigateByUrl(this.returnUrl);
+    //   },
+    //   (err) => { this.errorMessage = err.error },
+    // );
   }
 
   onRegister() {

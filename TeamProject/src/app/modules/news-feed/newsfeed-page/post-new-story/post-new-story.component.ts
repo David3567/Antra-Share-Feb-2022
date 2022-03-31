@@ -33,7 +33,7 @@ export class PostNewStoryComponent implements OnInit {
     }
     
     this.newsService.postNews(this.newStory).subscribe((response)=>{
-      this.storyEmitter.emit(response.body);
+      this.storyEmitter.emit(response["body"]);
     })
   }
 

@@ -23,7 +23,7 @@ export interface newsTemplate {
   comment?: Comment[];
   likedIdList?: [];
   __v?: number;
-  body?: any;
+  // body?: any;
 }
 
 interface Comment {

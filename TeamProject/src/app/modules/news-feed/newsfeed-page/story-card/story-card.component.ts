@@ -32,9 +32,9 @@ export class StoryCardComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 
   like(id: string) {

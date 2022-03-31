@@ -10,7 +10,7 @@
     <div class="contentContainer">
       <img *ngIf="comment.content.image?.includes('https')" src="{{ comment.content.image }}" alt="Image"
         class="contentImg" />
-      <div class="content">{{ comment.content.text }}</div>
+      <div class="content">{{ comment.content?.text }}</div>
     </div>
   </div>
   
@@ -30,7 +30,7 @@
     <div>
       <strong>{{ pageIndex }}</strong> of <strong>{{ pageSize }}</strong>
     </div>
-    <button mat-raised-button color="primary" [disabled]="nextBtn" (click)="onNext()">
+    <button mat-raised-button color="primary" [disabled]="nextBtn || commentList.length < 4" (click)="onNext()">
       Next
     </button>
   </div>
