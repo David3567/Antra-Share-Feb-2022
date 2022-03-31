@@ -22,6 +22,8 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { AuthenService } from './services/authen.service';
+import { JwtService } from './services/jwt.service';
+import jwtDecode from 'jwt-decode';
 
 registerLocaleData(en);
 
@@ -46,7 +48,7 @@ registerLocaleData(en);
     NewsfeedModule,
     ProfileModule,
   ],
-  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }, AuthenService],
+  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }, AuthenService, JwtService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
