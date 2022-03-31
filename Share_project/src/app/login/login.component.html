@@ -4,42 +4,54 @@
       <img mat-card-avatar />
       <mat-card-title class="title" color="primary"> AntraShare</mat-card-title>
     </mat-card-header>
-    <form class="form" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
       <mat-form-field>
-        <mat-label for="username">User Name</mat-label>
+        <mat-label for="username">User Email</mat-label>
         <input
           matInput
-          type="text"
+          type="email"
+          formControlName="username"
           name="username"
-          id="username"
-          required
-          #username="ngModel"
-          [(ngModel)]="info.username"
         />
       </mat-form-field>
       <mat-form-field>
         <mat-label for="password">Password</mat-label>
         <input
           matInput
-          type="text"
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
           name="password"
-          id="password"
-          required
-          #password="ngModel"
-          [(ngModel)]="info.password"
         />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
       </mat-form-field>
-      <div *ngIf="!username.valid && username.touched">
+      <!-- <div *ngIf="!username?.valid && (username.touched || username.dirty)">
         <p class="warningtext">Username is required</p>
       </div>
-      <div *ngIf="!password.valid && password.touched">
+      <div *ngIf="!password.valid && (password.touched || password.dirty)">
         <p class="warningtext">Password is required</p>
-      </div>
-      <button mat-raised-button color="primary" class="login-button" (click)="checkLoginInfo(username.value, password.value)" [disabled]="check"> 
+      </div> -->
+      <button
+        mat-raised-button
+        color="primary"
+        class="login-button"
+        type="submit"
+        [disabled]="check || !loginForm.valid"
+      >
         Login
       </button>
       <mat-card-content>
-        <p>No Account? <span class="hyperlink" (click)="toRegister()">Register Now!</span></p>
+        <p>
+          No Account?
+          <span class="hyperlink" (click)="toRegister()">Register Now!</span>
+        </p>
       </mat-card-content>
     </form>
 

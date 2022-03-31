@@ -1,0 +1,24 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button-container {
+    width: 100%;
+}
+
+.imgpreview {
+    height: 300px;
+    width: 300px;
+}
+
+mat-form-field {
+    min-width: 300px;
+    width: 100%;
+}

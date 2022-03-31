@@ -9,16 +9,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login.component';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { RoleGuardService } from '../services/role-guard.service';
+import { MatIconModule } from '@angular/material/icon';
 
 
 const routes: Routes = [
   { path:'register', component: RegisterComponent},
-  { path:'login', component: LoginComponent},
+  { path:'', component: LoginComponent},
   { path:'newsfeed', 
-  loadChildren: () => import('../news-feed/news-feed.module').then((m) => m.NewsFeedModule)
+  loadChildren: () => import('../news-feed/news-feed.module').then((m) => m.NewsFeedModule),
+  canActivate: [AuthGuardService]
 },
   { path:'admin', 
-  loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule)
+  loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule),
+  canActivate: [RoleGuardService],
+  data: {
+    expectedRole: 'admin'
+  }
+
 }
 ]
 
@@ -30,7 +39,8 @@ const LoginModules = [
   MatCheckboxModule,
   MatFormFieldModule,
   FormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatIconModule
 ]
 
 @NgModule({

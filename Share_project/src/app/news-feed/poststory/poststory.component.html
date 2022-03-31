@@ -1,0 +1,37 @@
+<h1>
+    <mat-progress-bar mode="indeterminate" *ngIf='requestState'></mat-progress-bar>
+</h1>
+<h2 mat-dialog-title>Post your story</h2>
+<mat-dialog-content class = "form" [formGroup]="storyForm">
+      <mat-form-field>
+        <mat-label for="Content">Content</mat-label>
+        <textarea
+          matInput
+          type="content"
+          formControlName="content"
+          name="content"
+        ></textarea>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label for="imgurl">Image URL</mat-label>
+        <input matInput name="url" type="url" formControlName="imgurl" (change)="onUrlChange($event)"/>
+      </mat-form-field>
+      <img class="imgpreview" [src]="imageSrc" *ngIf="imageSrc"/>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <mat-toolbar class="button-container">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!storyForm.valid"
+          (click)="post()"
+        >
+          Post 
+        </button>
+        <span class="spacer"></span>
+        <button mat-raised-button color="warn" (click)="close()">
+          Cancel
+        </button>
+    </mat-toolbar>
+</mat-dialog-actions>
