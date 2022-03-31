@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { baseUrl } from '../app.module';
 import { Todo } from '../interfaces/todo.model';
 
 @Injectable()
@@ -10,7 +11,7 @@ export class TodolistService {
 
   constructor(
     private http: HttpClient,
-    @Inject('baseUrl') private baseUrl: string
+    @Inject(baseUrl) private baseUrl: string
   ) {}
 
   getTodos(): Observable<Todo[]> {

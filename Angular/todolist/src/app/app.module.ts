@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,6 +18,8 @@ import { TodoInterceptor } from './services/todo.interceptor';
 import { CatcherrorInterceptor } from './services/catcherror.interceptor';
 import { todoreducer } from './Ngrx/todo.reducer';
 import { TodoEffect } from './Ngrx/todo.effect';
+
+export const baseUrl = new InjectionToken<string>('');
 
 @NgModule({
   declarations: [AppComponent, TodolistComponent, TodoitemComponent],
@@ -39,7 +41,7 @@ import { TodoEffect } from './Ngrx/todo.effect';
     TodolistService,
     { provide: 'jsonplaceholder', useValue: true },
     {
-      provide: 'baseUrl',
+      provide: baseUrl,
       useFactory: (val: boolean) => {
         return val ? 'https://jsonplaceholder.typicode.com' : 'localhost:3000';
       },

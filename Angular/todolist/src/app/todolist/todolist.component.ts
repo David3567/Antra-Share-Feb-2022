@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Store } from '@ngrx/store';
-
 import { tap } from 'rxjs/operators';
 import { Todo } from '../interfaces/todo.model';
+import { TodolistService } from '../services/todolist.service';
+import { Store } from '@ngrx/store';
 import * as TodoActions from 'src/app/Ngrx/todo.actions';
-import * as TodoSelectors from 'src/app/Ngrx/todo.selector';
+import * as TodoSelector from 'src/app/Ngrx/todo.selector';
 
 @Component({
   selector: 'app-todolist',
@@ -15,19 +15,20 @@ import * as TodoSelectors from 'src/app/Ngrx/todo.selector';
 export class TodolistComponent implements OnInit {
   @ViewChild('inputbox', { static: true }) inputbox!: ElementRef;
   newtodo = new Todo();
-
   todolist!: Todo[];
 
-  constructor(private store: Store) {}
+  constructor(private todolistService: TodolistService, private store: Store) {}
 
   ngOnInit(): void {
+    // this.todolistService.getTodos().subscribe((data: Todo[]) => {
+    //   this.todolist = data;
+    // });
+    // this.store.dispatch(TodoActions.initTodolist());
     this.store.dispatch(TodoActions.loadTodolist());
 
-    this.store
-      .select(TodoSelectors.getTodoList)
-      .subscribe((todolist: Todo[]) => {
-        this.todolist = todolist;
-      });
+    this.store.select(TodoSelector.getTodoList).subscribe((todolist) => {
+      this.todolist = todolist;
+    });
   }
 
   add() {
@@ -41,8 +42,5 @@ export class TodolistComponent implements OnInit {
     //   .subscribe();
   }
 
-  deletetodo(id: number) {
-    // console.log('todolist: todo item id is ', id);
-    // this.todolist = this.todolist.filter((todo) => todo.id !== id);
-  }
+  deletetodo(id: number) {}
 }

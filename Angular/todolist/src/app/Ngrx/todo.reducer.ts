@@ -49,12 +49,20 @@ export const todoreducer = createReducer(
     return { ...state };
   }),
   // load todos;
-  on(TodoActions.loadTodolistSuccess, (state, { todolist }) => {
+  on(TodoActions.loadTodosSuccess, (state, action): TodoState => {
     console.log('success');
     return {
       ...state,
-      todolist,
+      todolist: action.todolist,
       err: '',
+    };
+  }),
+  on(TodoActions.loadTodosFailure, (state, action): TodoState => {
+    console.log('failure');
+    return {
+      ...state,
+      todolist: [],
+      err: action.err,
     };
   })
 );
