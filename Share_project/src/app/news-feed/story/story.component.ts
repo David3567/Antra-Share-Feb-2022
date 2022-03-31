@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { News } from '../models/news.model';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-story',
@@ -11,7 +13,9 @@ export class StoryComponent implements OnInit {
 
   @Input() storyItem!: News;
 
-  constructor() {
+  constructor(
+    public dialog: MatDialog,
+  ) {
    }
 
   ngOnInit(): void {
@@ -27,6 +31,19 @@ export class StoryComponent implements OnInit {
       this.storyItem.likedIdList.shift();
     }
     console.log(this.storyItem.likedIdList);
+  }
+
+  onClickComment(story: News) {
+    const dialogRef = this.dialog.open(CommentComponent, {
+      height: 'clamp(400px, 700px, 1000px)',
+      width: 'clamp(400px, 700px, 1000px)',
+      data: {
+        story: story,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

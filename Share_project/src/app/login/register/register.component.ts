@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { apiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -32,13 +33,13 @@ export class RegisterComponent implements OnInit {
     return this.form.get('confirm');
   }
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private api: apiService) { }
 
   ngOnInit(): void {}
 
   onSubmit() {
     console.log(this.form.value);
-    this.router.navigate(['/News Feed'])
+    // this.api.createUser(this.form.value)
   }
 
   matchPassword(group: FormGroup): ValidationErrors | null {

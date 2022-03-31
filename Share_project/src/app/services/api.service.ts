@@ -13,6 +13,7 @@ import { News } from '../news-feed/models/news.model';
 export class apiService {
 
   private userUrl = "https://jsonplaceholder.typicode.com/users"
+  private createUserUrl = "http://localhost:4231/"
 
   constructor(private http: HttpClient) { 
     
@@ -21,4 +22,8 @@ export class apiService {
   getUsers() {
     return this.http.get<User>(this.userUrl);
   }
+
+  // createUser(userInfo: CreateUser): Observable<CreateUser> {
+  //   return this.http.post<CreateUser>(this.createUserUrl, userInfo)
+  // }
 }
