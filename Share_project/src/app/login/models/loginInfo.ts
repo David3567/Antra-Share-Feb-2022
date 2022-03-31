@@ -1,25 +1,36 @@
-export class LoginInfo {
-    username: string = '';
-    password: string = '';
+// export class LoginInfo {
+//     username: string = '';
+//     password: string = '';
 
-    init(u:string, p:string) {
-        this.username = u;
-        this.password = p;
-    }
+//     init(u:string, p:string) {
+//         this.username = u;
+//         this.password = p;
+//     }
 
-    getName() {
-        return this.username;
-    }
+//     getName() {
+//         return this.username;
+//     }
 
-    getPass() {
-        return this.password;
-    }
+//     getPass() {
+//         return this.password;
+//     }
+// }
+
+// const admin = new LoginInfo();
+// admin.init("admin", "123");
+
+// const user = new LoginInfo();
+// user.init("user", "456");
+
+// export {admin, user}
+
+export interface loginInfo {
+    "name": string,
+    "userName": string,
+    "userEmail": string,
+    "userRole": string,
+    "age": number,
+    "gender": string,
+    "phone": number,
+    "bearerToken": string
 }
-
-const admin = new LoginInfo();
-admin.init("admin", "123");
-
-const user = new LoginInfo();
-user.init("user", "456");
-
-export {admin, user}

@@ -1,8 +1,8 @@
 import { Component, OnInit, Pipe, PipeTransform} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewsfeedService } from '../services/newsfeed.service';
-import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { News } from './models/news.model';
+import { PoststoryComponent } from './poststory/poststory.component';
 
 @Component({
   selector: 'app-news-feed',
@@ -32,7 +32,7 @@ export class NewsFeedComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(FavoriteListComponent);
+    const dialogRef = this.dialog.open(PoststoryComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

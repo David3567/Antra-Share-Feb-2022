@@ -14,12 +14,18 @@ import { NewsFeedComponent } from './news-feed.component';
 import { MaxlengthPipe } from './pipe/maxlength.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { CommentComponent } from './comment/comment.component';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { PoststoryComponent } from './poststory/poststory.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
 const route: Routes = [
-  { path:'', component: NewsFeedComponent}
+  { path:'', component: NewsFeedComponent, canActivate:[AuthGuardService]}
 ]
 
 const newsFeedModule = [
@@ -32,7 +38,13 @@ const newsFeedModule = [
     MatSidenavModule,
     InfiniteScrollModule,
     MatProgressBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatProgressSpinnerModule
 ];
 
 
@@ -43,7 +55,7 @@ const newsFeedModule = [
     StoryComponent,
     MaxlengthPipe,
     FavoriteListComponent,
-    CommentComponent
+    PoststoryComponent
   ],
   imports: [newsFeedModule, RouterModule.forChild(route)]
 })

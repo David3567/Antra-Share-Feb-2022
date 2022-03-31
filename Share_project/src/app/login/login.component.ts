@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginInfo, admin, user } from './models/loginInfo';
 import {Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { loginInfo } from './models/loginInfo';
 
 @Component({
   selector: 'app-login',
@@ -8,30 +10,53 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  info = new LoginInfo();
+  userInfo!: loginInfo;
   check = true;
+  loginForm: FormGroup = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
 
-  constructor(private router: Router) { }
+  hide = true;
+
+  constructor(private router: Router, private fb: FormBuilder, private auth: AuthService) {
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(loginForm: any) {
-
+  onSubmit() {
+    const afterLogin = () => {
+        if (this.auth.isLoggedIn()) {
+        this.userInfo = this.auth.getUser();
+        this.toNewsfeed();
+        console.log(this.userInfo);
+      }
+    }
+    this.Login()?.add(afterLogin);
+    
   }
 
   toRegister() {
     this.router.navigate(['/register'])
   }
 
-  checkLoginInfo(name: string, pass: string) {
-    if(admin.getName() === name && admin.getPass() === pass) {
-      console.log("admin");
-      this.toAdmin();
+  Login() {
+    const val = this.loginForm.value;
+
+    // if(admin.getName() === name && admin.getPass() === pass) {
+    //   console.log("admin");
+    //   this.toAdmin();
+    // }
+    // else if (user.getName() === name && user.getPass() === pass) {
+    //   console.log("user");
+    //   this.toNewsfeed();
+    // }
+    if (val.username && val.password) {
+      return this.auth.login(val.username, val.password)
     }
-    else if (user.getName() === name && user.getPass() === pass) {
-      console.log("user");
-      this.toNewsfeed();
+    else{
+      return null;
     }
   }
 
