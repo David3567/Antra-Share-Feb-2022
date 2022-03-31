@@ -29,11 +29,11 @@ import { TodoEffect } from './Ngrx/todo.effect';
     BrowserAnimationsModule,
     MatToolbarModule,
     StoreModule.forRoot({ todos: todoreducer }),
+    EffectsModule.forRoot([TodoEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       name: 'Todos Demo',
     }),
-    EffectsModule.forRoot([TodoEffect]),
   ],
   providers: [
     TodolistService,
@@ -45,16 +45,16 @@ import { TodoEffect } from './Ngrx/todo.effect';
       },
       deps: ['jsonplaceholder'],
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TodoInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CatcherrorInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: TodoInterceptor,
+    //   multi: true,
+    // },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: CatcherrorInterceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })
