@@ -16,8 +16,8 @@
                     This username is taken. Please choose a different one.</div>
             </mat-error>
         </mat-form-field>
-        
-            
+
+
 
         <mat-form-field appearance="fill">
             <mat-label>Enter Email</mat-label>
@@ -40,8 +40,10 @@
                     A Password is required!</div>
                 <div
                     *ngIf="password?.errors?.['minlength'] || password?.errors?.['maxlength'] || password?.errors?.['pattern']">
-                    Your password needs to be at least 5 characters long, have at least one upper & one lower case, and
-                    have at least 1 special character (@!#$% etc.)</div>
+                    Your password needs to be at least <strong>5</strong> characters long,
+                    at least <strong>1</strong> upper & <strong>1</strong> lower case,
+                    <strong>1</strong> number, and have at least <strong>1</strong> special character (@!#$% etc.)
+                </div>
             </mat-error>
         </mat-form-field>
 
@@ -55,7 +57,7 @@
                     Your password and confirmation need to match</div>
             </mat-error>
         </mat-form-field>
-        
+
 
         <button [disabled]="!regForm.valid" type="submit">Register</button>
     </form>

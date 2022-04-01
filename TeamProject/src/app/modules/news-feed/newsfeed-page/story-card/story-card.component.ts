@@ -3,10 +3,7 @@ import { newsTemplate } from 'src/app/interfaces/news.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
-import jwt_decode from "jwt-decode";
-
-let token = localStorage.getItem('bearerToken');
-let decoded: any = jwt_decode(token);
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-story-card',
@@ -19,10 +16,13 @@ export class StoryCardComponent implements OnInit {
   @Output() likedStoryEmitter = new EventEmitter<string>();
   @Output() deleteStoryEmitter = new EventEmitter<string>();
 
+  constructor(
+    private dialog: MatDialog,
+    private newsService: NewsfeedService,
+    private loginService: LoginService
+  ) { }
 
-  constructor(private dialog: MatDialog, private newsService: NewsfeedService) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   openDialog(story: newsTemplate) {
     const dialogRef = this.dialog.open(CommentDialogComponent, {
@@ -51,6 +51,6 @@ export class StoryCardComponent implements OnInit {
   }
 
   checkUser(): boolean {
-    return this.story.publisherName === decoded.userName;
+    return this.story.publisherName === this.loginService.currentUser.userName;
   }
 }
