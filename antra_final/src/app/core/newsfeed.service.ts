@@ -5,16 +5,16 @@ import { BehaviorSubject, Observable, Subject, throwError } from "rxjs";
 import { map, tap, catchError } from "rxjs/operators";
 
 
-
-const httpOptions = {
-  observe: "response" as "body", // check the whole response
-  headers: new HttpHeaders({
-    "Content-Type": "application/json",
-  }),
-};
-
 @Injectable()
 export class NewsfeedService {
+
+  httpOptions = {
+    observe: "response" as "body", // check the whole response
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+    }),
+  }; 
+
   private baseUrl = "http://localhost:4231/api/news";
 
 
@@ -55,8 +55,14 @@ export class NewsfeedService {
   
   addNewComment(id: string, data: any){
     return this.http.patch(
-      [this.baseUrl, this.addComment, id].join('/'), data, httpOptions
+      [this.baseUrl, this.addComment, id].join('/'), data, this.httpOptions
     ) as Observable<Story>
+  }
+
+  addNewStory(data: any){
+    return this.http.post(
+      [this.baseUrl, ].join('/'), data, this.httpOptions
+    )
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,13 +8,18 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Comment } from '../story.interfaces';
+import jwt_decode from "jwt-decode";
 
 @Component({
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
 })
 
+
 export class CommentComponent implements OnInit {
+  token: any = localStorage.getItem('bearerToken')
+  decoded: any = jwt_decode(this.token);
+
   pageofComments!: Array<any>;
   current_page: number = 1;
   records_per_page = 5;
@@ -22,8 +27,8 @@ export class CommentComponent implements OnInit {
   CommentForm!: FormGroup;
   pageArray: any[] = [];
   commentObject: any;
-  datas: Comment[] = this.passeddata.comment;
-  id: string = this.passeddata.id;
+  datas: Comment[] = this.passdata.comment;
+  id: string = this.passdata.id;
 
   get image() {
     return this.CommentForm.get('image');
@@ -36,7 +41,7 @@ export class CommentComponent implements OnInit {
   }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public passeddata: any,
+    @Inject(MAT_DIALOG_DATA) public passdata: any,
     private fb: FormBuilder,
     private newsfeedService: NewsfeedService
   ) { }
@@ -76,7 +81,7 @@ export class CommentComponent implements OnInit {
     console.log(this.current_page);
   }
 
-  buildform() {
+  private buildform() {
     return {
       image: [''],
       video: [''],
@@ -86,13 +91,15 @@ export class CommentComponent implements OnInit {
 
   onSubmit() {
     this.commentObject = {
-      'publisherName': 'username',
+      'publisherName': this.decoded.userName,
       'content': this.CommentForm.value,
     };
     this.newsfeedService.addNewComment(this.id, this.commentObject).subscribe((data: Comment)=>{
       console.log(data);
     })
-    // console.log(this.id);
-    // console.log(this.commentObject);
   }
 }
+// function bearerToken(bearerToken: any): string {
+//   throw new Error('Function not implemented.');
+// }
+
