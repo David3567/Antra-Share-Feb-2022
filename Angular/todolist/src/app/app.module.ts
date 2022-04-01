@@ -14,8 +14,8 @@ import { TodolistComponent } from './todolist/todolist.component';
 import { TodoitemComponent } from './todoitem/todoitem.component';
 import { TodolistService } from './services/todolist.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TodoInterceptor } from './services/todo.interceptor';
-import { CatcherrorInterceptor } from './services/catcherror.interceptor';
+import { TodoInterceptor } from './services/interceptors/todo.interceptor';
+import { CatcherrorInterceptor } from './services/interceptors/catcherror.interceptor';
 import { todoreducer } from './Ngrx/todo.reducer';
 import { TodoEffect } from './Ngrx/todo.effect';
 
@@ -38,7 +38,6 @@ export const baseUrl = new InjectionToken<string>('');
     }),
   ],
   providers: [
-    TodolistService,
     { provide: 'jsonplaceholder', useValue: true },
     {
       provide: baseUrl,
@@ -47,16 +46,16 @@ export const baseUrl = new InjectionToken<string>('');
       },
       deps: ['jsonplaceholder'],
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TodoInterceptor,
-    //   multi: true,
-    // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: CatcherrorInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TodoInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CatcherrorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

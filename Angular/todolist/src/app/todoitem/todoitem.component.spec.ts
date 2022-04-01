@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TodoitemComponent } from './todoitem.component';
+import { TodolistComponent } from '../todolist/todolist.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('TodoitemComponent', () => {
   let component: TodoitemComponent;
@@ -8,9 +10,9 @@ describe('TodoitemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoitemComponent ]
-    })
-    .compileComponents();
+      declarations: [TodoitemComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {

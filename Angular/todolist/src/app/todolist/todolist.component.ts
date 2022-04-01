@@ -17,30 +17,41 @@ export class TodolistComponent implements OnInit {
   newtodo = new Todo();
   todolist!: Todo[];
 
-  constructor(private todolistService: TodolistService, private store: Store) {}
+  constructor(
+    private readonly todolistService: TodolistService,
+    private readonly store: Store
+  ) {}
 
   ngOnInit(): void {
-    // this.todolistService.getTodos().subscribe((data: Todo[]) => {
-    //   this.todolist = data;
-    // });
-    // this.store.dispatch(TodoActions.initTodolist());
-    this.store.dispatch(TodoActions.loadTodolist());
-
-    this.store.select(TodoSelector.getTodoList).subscribe((todolist) => {
-      this.todolist = todolist;
+    this.todolistService.getTodos().subscribe((data: Todo[]) => {
+      this.todolist = data;
     });
+    // this.store.dispatch(TodoActions.initTodolist());
+    // this.store.dispatch(TodoActions.loadTodolist());
+
+    // this.store.select(TodoSelector.getTodoList).subscribe((todolist) => {
+    //   this.todolist = todolist;
+    // });
   }
 
   add() {
-    // this.todolistService
-    //   .addTodo(this.newtodo)
-    //   .pipe(
-    //     tap((val) => {
-    //       this.todolist = [val, ...this.todolist];
-    //     })
-    //   )
-    //   .subscribe();
+    this.todolistService
+      .addTodo(this.newtodo)
+      .pipe(
+        tap((val) => {
+          this.todolist = [val, ...this.todolist];
+        })
+      )
+      .subscribe();
+    // this.store.dispatch(TodoActions.addTodo({ todo: { ...this.newtodo } }));
+    // this.newtodo.title = '';
   }
 
-  deletetodo(id: number) {}
+  deletetodo(id: string) {
+    this.todolist = this.todolist.filter((todo) =>
+      todo.id ? +todo.id !== +id : true
+    );
+    this.todolistService.deleteTodo(id);
+    // this.store.dispatch(TodoActions.deleteTodo({ id }));
+  }
 }

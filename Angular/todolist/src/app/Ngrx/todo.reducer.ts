@@ -1,3 +1,4 @@
+import { act } from '@ngrx/effects';
 import { createReducer, on } from '@ngrx/store';
 import { TodoState } from '../interfaces/todo.model';
 
@@ -49,20 +50,51 @@ export const todoreducer = createReducer(
     return { ...state };
   }),
   // load todos;
-  on(TodoActions.loadTodosSuccess, (state, action): TodoState => {
-    console.log('success');
+  on(TodoActions.loadTodosSuccess, (state, { todolist }): TodoState => {
     return {
       ...state,
-      todolist: action.todolist,
+      todolist: [...[...todolist].reverse()],
       err: '',
     };
   }),
-  on(TodoActions.loadTodosFailure, (state, action): TodoState => {
-    console.log('failure');
+  on(TodoActions.loadTodosFailure, (state, { err }): TodoState => {
     return {
       ...state,
       todolist: [],
-      err: action.err,
+      err,
+    };
+  }),
+  // add todo;
+  on(TodoActions.addTodoSuccess, (state, { todo }): TodoState => {
+    return {
+      ...state,
+      todolist: [todo, ...state.todolist],
+      err: '',
+    };
+  }),
+  on(TodoActions.addTodoFailure, (state, { err }): TodoState => {
+    return {
+      ...state,
+      todolist: [],
+      err,
+    };
+  }),
+  // delete todo;
+  on(TodoActions.deleteTodoSuccess, (state, { id }): TodoState => {
+    const newtodolist = state.todolist.filter((todo) => {
+      return todo.id ? +todo.id !== +id : true;
+    });
+    return {
+      ...state,
+      todolist: [...newtodolist],
+      err: '',
+    };
+  }),
+  on(TodoActions.deleteTodoFailure, (state, { err }): TodoState => {
+    return {
+      ...state,
+      todolist: [],
+      err,
     };
   })
 );
