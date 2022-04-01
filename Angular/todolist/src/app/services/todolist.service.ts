@@ -9,13 +9,13 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class TodolistService {
-  // private baseUrl = 'https://jsonplaceholder.typicode.com';
-  private path = 'todos';
+  baseUrl = 'https://jsonplaceholder.typicode.com';
+  path = 'todos';
 
   constructor(
-    private http: HttpClient,
-    @Optional() @Inject(baseUrl) private baseUrl: string
-  ) {}
+    private http: HttpClient
+  ) // @Optional() @Inject(baseUrl) private baseUrl: string
+  {}
 
   getTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>([this.baseUrl, this.path].join('/')).pipe(

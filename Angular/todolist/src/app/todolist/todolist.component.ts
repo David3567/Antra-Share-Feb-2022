@@ -18,9 +18,8 @@ export class TodolistComponent implements OnInit {
   todolist!: Todo[];
 
   constructor(
-    private readonly todolistService: TodolistService
-  ) // private readonly store: Store
-  {}
+    private readonly todolistService: TodolistService // private readonly store: Store
+  ) {}
 
   ngOnInit(): void {
     this.todolistService.getTodos().subscribe((data: Todo[]) => {
