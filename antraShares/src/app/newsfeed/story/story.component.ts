@@ -15,15 +15,15 @@ export class StoryComponent implements OnInit {
   constructor(
     private storyService: StoryService,
     public dialog: MatDialog,
-    public variable: VariableValue
+    public variableValue: VariableValue
   ) {}
 
   ngOnInit(): void {}
   addToLikeList(story: Story) {
     this.likedme = !this.likedme;
-    if (this.variable.remove.indexOf(story._id) !== -1) {
+    if (this.variableValue.remove.indexOf(story._id!) !== -1) {
       this.likedme = !this.likedme;
-      this.variable.remove = this.variable.remove.filter(
+      this.variableValue.remove = this.variableValue.remove.filter(
         (re) => re !== story._id
       );
     }
@@ -38,7 +38,23 @@ export class StoryComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      if (this.variableValue.newComment.length > 1) {
+        this.variableValue.newComment.forEach((ele) => {
+          if (ele.id === this.storyDetail._id) {
+            this.storyDetail.comment?.push(ele.cmt!)
+          }
+        });
+      }
     });
   }
 }
+
+// name: req.body.name,
+// userName: req.body.userName,
+// userEmail: req.body.userEmail.toLowerCase(),
+// password: req.body.password,
+
+// userRole: req.body.userRole,
+// age: req.body.age,
+// gender: req.body.gender,
+// phone: req.body.phone,

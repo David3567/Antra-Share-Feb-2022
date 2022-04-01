@@ -1,15 +1,32 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p>
-    <label for="videoOrImageURL">Video or image URL</label>
-    <input
-      type="url"
-      id="videoOrImageURL"
-      formControlName="videoOrImageURL"
-      placeholder="https://example.com"
-    />
-  </p>
-  <!-- preview thing here -->
-  <button type="submit">Post</button>
-</form>
+<!-- <div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container-input">
+      <label class="container-input-label" for="image">Image: </label>
+      <input type="file" id="image" formControlName="image" />
+      <input
+        type="text"
+        id="image"
+        formControlName="image"
+        placeholder="url to image"
+      />
+    </div>
 
-
+    <div class="container-input">
+      <label class="container-input-label" for="video">Video: </label>
+      <input type="file" id="video" formControlName="video" />
+      <input
+        type="text"
+        id="video"
+        formControlName="video"
+        placeholder="url link"
+      />
+    </div>
+    <div class="container-input">
+      <label class="container-input-label" for="comment">Comment: </label>
+      <input type="text" id="comment" formControlName="text" />
+    </div>
+    <div class="container-input">
+      <button class="" type="submit">submit</button>
+    </div>
+  </form>
+</div> -->

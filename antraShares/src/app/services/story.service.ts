@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Story } from '../interfaces/story.model';
+import { VariableValue } from './variable.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoryService {
-  private baseUrl = 'http://localhost:4231/api';
   private path = 'news';
   likeListByUser: Story[] = [];
   subjectLikeList$ = new BehaviorSubject(this.likeListByUser);
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private variableValue: VariableValue) {}
   getStories() {
     return this.http.get(
-      [this.baseUrl, this.path].join('/')
+      [this.variableValue.baseUrl, this.path].join('/')
     ) as Observable<Story>;
   }
   pushIntoLikeList(likeStory: Story) {

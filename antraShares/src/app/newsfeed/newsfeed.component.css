@@ -11,17 +11,18 @@ body{
   margin: 0 var(--bar-size);
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: var(--outline-color);
+
   display: flex;
   justify-content: flex-end;
   position: fixed;
 }
 .btn-liked-list {
+  color: var(--button-font-color);
   font-size: var(--font-btn-size);
   font-weight: bold;
   cursor: pointer;
   border: none;
-  margin-right: 20px;
+  margin-right: 6%;
   background-color: inherit;
 }
 .btn-liked-list:hover{
@@ -29,8 +30,29 @@ body{
 }
 .form {
   padding-top: 90px;
+  width: 35%;
+  padding-left: 2%;
+  margin-left: 35%;
+  margin-bottom: 2%;
+  border-radius: 40px;
 }
 h1 {
   text-align: center;
   cursor: pointer;
+}
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.container-input{
+  font-size: var(--font-btn-size);
+  display: flex;
+  justify-content: flex-start;
+
+}
+.container-input-label{
+  width: 70px;
+  margin-right: 20px;
 }

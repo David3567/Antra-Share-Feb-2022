@@ -1,5 +1,4 @@
-export interface Users {
-  _id?: number;
+export interface User {
   name?: string;
   userName: string;
   userEmail: string;
@@ -8,5 +7,4 @@ export interface Users {
   age?: number;
   gender?: string;
   phone?: number;
-  avata?: string;
 }

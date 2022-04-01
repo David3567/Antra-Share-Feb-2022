@@ -1,16 +1,22 @@
-<h1>Admin page</h1>
-<div class="container">
+<div class="top-bar"></div>
+<div class="container" *ngIf="securityObj.userRole === 'admin'">
   <div class="container-user">
-      
-    <div class="container-user-tag" *ngFor="let user of users">
-      <span class="usertag" (click)="onUserDetail(user)">User tag {{user.id}} </span>
-      <button class="deleteBtn" (click)="onDeleteBtn(user)">Delete</button>
+    <div class="container-users">
+      <div class="container-user-tag" *ngFor="let user of users ; index as i" >
+        <span class="usertag" (click)="onUserDetail(user)"
+          >User tag {{ i+1 }}
+        </span>
+        <button class="deleteBtn" (click)="onDeleteBtn(user)">Delete</button>
+      </div>
     </div>
 
     <h2>Users List</h2>
     <button id="addUser">Add User</button>
   </div>
+  <!-- <router-outlet></router-outlet> -->
   <div class="container-userdetail">
+    
     <app-userinfo [userDetail]="userDetail"> </app-userinfo>
   </div>
 </div>
+<!-- User tag {{ i+1 }}  [routerLink]="['/admin','userinfo', user._id]"-->

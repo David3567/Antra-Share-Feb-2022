@@ -14,30 +14,26 @@
   <div class="story-dashboard">
     <img
       class="story-dashboard-content-img"
-      src="{{ storyDetail.content.image }}"
+      src="{{ storyDetail.content?.image }}"
       alt=""
     />
   </div>
   <div class="story-dashboard-viewer">
-    <div>
-      <a (click)="onClickComment(storyDetail)"><mat-icon> comment</mat-icon></a>
-    </div>
-    <div>Comment Number</div>
-    <div>
-      <button (click)="addToLikeList(storyDetail)">
-        <mat-icon
-          [id]="storyDetail._id"
-          class="material-icons-favorite"
-          [ngStyle]="{
-            color:
-              !likedme || variable.remove.indexOf(storyDetail._id) !== -1
-                ? '#884242'
-                : 'red'
-          }"
-          >favorite</mat-icon
-        >
-      </button>
-    </div>
-    <div>Like Number</div>
+    <button (click)="onClickComment(storyDetail)">
+      <mat-icon> comment</mat-icon> {{ storyDetail.comment?.length }}
+    </button>
+    <button (click)="addToLikeList(storyDetail)">
+      <mat-icon
+        [id]="storyDetail._id"
+        class="material-icons-favorite"
+        [ngStyle]="{
+          color:
+            !likedme || variableValue.remove.indexOf(storyDetail._id!) !== -1
+              ? '#884242'
+              : 'red'
+        }"
+        >favorite</mat-icon
+      >{{ storyDetail.likedIdList!.length }}
+    </button>
   </div>
 </div>

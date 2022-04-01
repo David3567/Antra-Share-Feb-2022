@@ -9,7 +9,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LikelistComponent } from './likelist/likelist.component';
 import { StoryCommentComponent } from './story-comment/story-comment.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import { AddCommentComponent } from './add-comment/add-comment.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     NewsfeedComponent,
@@ -18,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 
     LikelistComponent,
     StoryCommentComponent,
+    AddCommentComponent,
   ],
   exports: [NewsfeedComponent],
   imports: [
@@ -26,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
+    MatExpansionModule,
   ],
 })
 export class NewsfeedModule {}

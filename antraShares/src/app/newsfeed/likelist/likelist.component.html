@@ -1,19 +1,22 @@
 <div *ngIf="likeListStories.length > 0; else showNone">
-    <div class="container" *ngFor="let story of likeListStories">
-      <div>
-        <div class="publiser">
-          <div>{{ story.publisherName }}</div>
-          <div>{{ story.publishedTime | date}}</div>
-        </div>
-        <div>
-          <img src="{{ story.content.image }}" alt=""  />
-          <p>{{ story.content.text }}</p>
-        </div>
+  <div class="container" *ngFor="let story of likeListStories">
+    <div>
+      <div class="publiser">
+        <div>{{ story.publisherName }}</div>
+        <div>{{ story.publishedTime | date }}</div>
       </div>
-      <button class="hidden" (click)="onRemoveLike(story)">Remove</button>
+      <div>
+        <img
+          class="story-dashboard-content-img"
+          src="{{ story.content.image }}"
+          alt=""
+        />
+        <p>{{ story.content.text }}</p>
+      </div>
     </div>
+    <button class="hidden" (click)="onRemoveLike(story)">Remove</button>
   </div>
-  <ng-template #showNone>
-    <h1>You don't like any news</h1>
-  </ng-template>
-  
+</div>
+<ng-template #showNone>
+  <h1 style="color: white;">You don't like any news</h1>
+</ng-template>

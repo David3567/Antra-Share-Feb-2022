@@ -1,15 +1,45 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { Observable } from 'rxjs';
+import { SecurityService } from '../services/security.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  constructor(
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private securityService: SecurityService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    let roles = route.data['userRole'] as string;
+    const userRole = this.securityService.securityObj.userRole;
+      if(userRole){
+      if (userRole !== roles && roles === 'admin') {
+        // this.router.navigate([''], { queryParams: { returnUrl: state.url } });
+        this.router.navigate(['home'], { relativeTo:this.activateRoute });
+        return false;
+      }
+      return true;
+    }
+
+    // this.router.navigate([''], { queryParams: { returnUrl: state.url } });
+    this.router.navigate([''], { relativeTo: this.activateRoute });
+    return false;
   }
-  
 }
