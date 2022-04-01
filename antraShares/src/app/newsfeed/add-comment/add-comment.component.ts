@@ -68,6 +68,7 @@ export class AddCommentComponent implements OnInit {
       .addComment(this.data._id, this.comment)
       .subscribe((data) => {
       });
+      //updata
     this.dialogRef.close(this.comment);
     this.variableValue.newComment.push({
       id: this.data._id,

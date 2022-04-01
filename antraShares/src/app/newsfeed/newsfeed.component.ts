@@ -30,6 +30,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
 
   form!: FormGroup;
   story!: Story;
+  panelOpenState:boolean =false;
   get image() {
     return this.form.get('image');
   }
@@ -76,7 +77,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
       console.log(`Dialog result: ${result}`);
     });
   }
-
+//new post
   onSubmit() {
     let date = new Date();
     const token = localStorage.getItem('bearerToken');
@@ -95,8 +96,11 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
         text: this.text?.value,
       },
     };
+    
+    // this.stories = [this.story,...this.stories]
     this.postStoryService.postNews(this.story).subscribe((data) => {
       this.stories = [data, ...this.stories];
+      this.panelOpenState = false;
     });
   }
 }
