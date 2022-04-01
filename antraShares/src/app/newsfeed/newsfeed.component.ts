@@ -1,4 +1,12 @@
-import { Component, OnInit, Inject, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  OnDestroy,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Story } from '../interfaces/story.model';
 import { StoryService } from '../services/story.service';
 
@@ -15,13 +23,13 @@ import jwt_decode from 'jwt-decode';
   templateUrl: './newsfeed.component.html',
   styleUrls: ['./newsfeed.component.css'],
 })
-export class NewsfeedComponent implements OnInit, OnDestroy , OnChanges {
-  @Input() newPost! : Story;
+export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() newPost!: Story;
   stories!: Story[];
   subcribeStoryService!: Subscription;
 
   form!: FormGroup;
-  story!:Story
+  story!: Story;
   get image() {
     return this.form.get('image');
   }
@@ -36,7 +44,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy , OnChanges {
     public dialog: MatDialog,
     private variableValue: VariableValue,
     private fb: FormBuilder,
-    private postStoryService: PostStoryService,
+    private postStoryService: PostStoryService
   ) {}
 
   ngOnInit(): void {
@@ -45,10 +53,11 @@ export class NewsfeedComponent implements OnInit, OnDestroy , OnChanges {
       .getStories()
       .subscribe((storyData: any) => {
         this.stories = storyData;
+        this.stories.reverse();
       });
   }
   ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes)
+    console.log(changes);
   }
   ngOnDestroy(): void {
     this.subcribeStoryService.unsubscribe();
@@ -68,7 +77,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy , OnChanges {
     });
   }
 
-
   onSubmit() {
     let date = new Date();
     const token = localStorage.getItem('bearerToken');
@@ -87,15 +95,9 @@ export class NewsfeedComponent implements OnInit, OnDestroy , OnChanges {
         text: this.text?.value,
       },
     };
-    this.postStoryService.postNews(this.story).subscribe((data)=>{
-      this.stories = [...this.stories,data];
-    })
+    this.postStoryService.postNews(this.story).subscribe((data) => {
+      this.stories = [data, ...this.stories];
+    });
   }
 }
-
-
-
-
-
-
 

@@ -6,7 +6,7 @@ export class AppUser {
 export class AppUserAuth {
   userName = '';
   bearerToken? = '';
-  isAuthenticated = false;
+  isAuthenticated? = false;
   userRole = '';
 
 }

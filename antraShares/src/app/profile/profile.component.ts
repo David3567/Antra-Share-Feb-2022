@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
   }
 
   get confirmPassword() {
-    return this.form.get('confirmPassword');
+    return this.form.get('confirmPW');
   }
 
   get gender() {
@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit {
     return {
       username: ['User name', [userLength(5, 12), Validators.required]],
       password: ['1234', [characterCheck(5)]],
-      confirmPassword: ['', Validators.required],
+      confirmPW: ['', Validators.required],
       email: [{ value: 'email@gmail.com', disabled: true }],
       age: ['', Validators.required],
       phone: ['', Validators.required],
@@ -119,7 +119,7 @@ function userLength(minlen: number, maxlen: number): ValidatorFn {
 
 function matchPassword(group: FormGroup): ValidationErrors | null {
   const password = group.get('password')?.value;
-  const confirm = group.get('confirmPassword')?.value;
+  const confirm = group.get('confirmPW')?.value;
 
   return password !== confirm ? { notMatch: true } : null;
 }

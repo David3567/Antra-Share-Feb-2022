@@ -14,7 +14,7 @@ import jwt_decode from 'jwt-decode';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, DoCheck {
+export class AppComponent implements OnInit {
   title = 'antraShares';
   login!: boolean;
   securityObj: AppUserAuth = new AppUserAuth();
@@ -33,15 +33,10 @@ export class AppComponent implements OnInit, DoCheck {
       const newSecurityObj = {
         userName: decoded.userName,
         userEmail: decoded.userEmail,
-        isAuthenticated: true,
         userRole: decoded.userRole,
       };
       this.securityService.securityObj = newSecurityObj;
       this.securityObj = newSecurityObj;
     }
-  }
-  ngDoCheck(): void {
-    this.login = this.securityService.securityObj.isAuthenticated;
-    
   }
 }

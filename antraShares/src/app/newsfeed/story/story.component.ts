@@ -48,3 +48,13 @@ export class StoryComponent implements OnInit {
     });
   }
 }
+
+// name: req.body.name,
+// userName: req.body.userName,
+// userEmail: req.body.userEmail.toLowerCase(),
+// password: req.body.password,
+
+// userRole: req.body.userRole,
+// age: req.body.age,
+// gender: req.body.gender,
+// phone: req.body.phone,

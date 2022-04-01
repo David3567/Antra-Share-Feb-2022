@@ -40,6 +40,7 @@ export class AdminComponent implements OnInit {
   }
   onUserDetail(user: Users) {
     this.userDetail = user;
-    this.route.navigate(['/admin','userinfo', user._id]);
+    // this.route.navigate(['/admin','userinfo', user._id]);
+    this.route.navigate(['userinfo', user._id], {relativeTo:this.activatedRoute});
   }
 }
