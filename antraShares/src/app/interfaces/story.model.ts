@@ -35,3 +35,19 @@ export interface Comment{
       };
       _id: string;
 }
+interface Content {
+  image?: string;
+  video?: string;
+  text?: string;
+  _id?: string;
+}
+export interface newsTemplate {
+  _id?: string;
+  publisherName: string;
+  publishedTime?: string;
+  content?: Content;
+  comment?: [Comment];
+  likedIdList?: [];
+  __v?: number;
+  body?: any;
+}

@@ -35,3 +35,7 @@ h1 {
   text-align: center;
   cursor: pointer;
 }
+.example-full-width {
+  width: 50%;
+  height: 150px;
+}

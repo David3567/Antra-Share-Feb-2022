@@ -28,14 +28,14 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   private token = localStorage.getItem("bearerToken")!;
   private email = this.jwt.decodeToken(this.token).userEmail;
   subcribeStoryService!: Subscription;
-  constructor(private storyService: StoryService, public dialog: MatDialog, private fb: FormBuilder, private jwt: JwtHelperService, private post:PostStoryService
+  constructor(private storyService: StoryService, public dialog: MatDialog, private fb: FormBuilder, private jwt: JwtHelperService, private post: PostStoryService
   ) { }
   get postContent() {
     return this.form.get('postContent');
   }
   buildform() {
     return {
-      postContent: ["",Validators.required]
+      postContent: ['', Validators.required]
     };
   }
   ngOnInit(): void {
@@ -49,11 +49,13 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     });
   }
   onSubmit() {
+    console.log(this.form.valid)
     console.log(this.form.value);
     console.log(this.jwt.decodeToken(this.token));
+    console.log(this.token)
 
     console.log(this.email)
-    const story={
+    const story = {
       name: this.email,
       message: this.form.value.postContent
     }
