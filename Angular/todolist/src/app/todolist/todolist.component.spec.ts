@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TodolistComponent } from './todolist.component';
 import { TodolistService } from '../services/todolist.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TodolistComponent', () => {
   let component: TodolistComponent;
@@ -12,16 +13,16 @@ describe('TodolistComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [TodolistComponent],
       providers: [TodolistService],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
   });
 
-  //   beforeEach(() => {
-  //     fixture = TestBed.createComponent(TodolistComponent);
-  //     component = fixture.componentInstance;
-  //     fixture.detectChanges();
-  //   });
-  //   it('should create', () => {
-  //     expect(component).toBeTruthy();
-  //   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TodolistComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
