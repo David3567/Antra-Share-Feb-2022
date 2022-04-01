@@ -26,7 +26,8 @@ export class StoryCardComponent implements OnInit {
     this.dialog.open(CommentComponent,{
       width: '600px',
       height:'700px',
-      data: this.storiesdetail.comment
+      data: { comment: this.storiesdetail.comment,
+      id: this.storiesdetail._id}
     })
   }
 

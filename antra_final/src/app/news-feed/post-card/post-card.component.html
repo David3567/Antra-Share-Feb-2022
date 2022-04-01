@@ -1,11 +1,11 @@
 <div class="post-card-container">
-    <form action="post">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
         <div class="media-container">
-            <input class="media" type="text" placeholder="Image Link">
-            <input class="media" type="text" placeholder="Video Link">
+            <input class="media" type="text" formControlName ="image" placeholder="Image Link">
+            <input class="media" type="text" formControlName ="video" placeholder="Video Link">
         </div>
         <div>
-            <input class="content" type="text" placeholder="Content">
+            <input class="content" type="text"formControlName ="text"  placeholder="Content">
         </div>
         <button type="submit">
             Post
