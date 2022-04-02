@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { decode } from 'querystring';
 import { newsTemplate } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
@@ -38,4 +37,6 @@ export class NewsfeedPageComponent implements OnInit {
   onDeleteStory(id:string) {
     this.newsList = this.newsList.filter((story) => id !== story._id);
   }
+
+  
 }

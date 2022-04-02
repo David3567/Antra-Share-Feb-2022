@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { LoginService } from 'src/app/services/login.service';
+import { GuardService} from 'src/app/services/guard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-story-card',
@@ -19,7 +21,9 @@ export class StoryCardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private newsService: NewsfeedService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private guardService: GuardService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void { }
@@ -53,4 +57,16 @@ export class StoryCardComponent implements OnInit {
   checkUser(): boolean {
     return this.story.publisherName === this.loginService.currentUser.userName;
   }
+
+  openProfile(publisherName : string) {
+    console.log("this is workding: the publisher is: " + publisherName);
+    console.log(this.loginService.currentUser.userRole);
+    if (this.guardService.canActivate()) {  
+      this.router.navigateByUrl("/profile");  
+    } else {
+      this.router.navigateByUrl("/login");  
+    }
+    
+  }
+
 }

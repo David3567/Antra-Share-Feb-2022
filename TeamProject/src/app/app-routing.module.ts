@@ -7,7 +7,7 @@ import { ProfilePageComponent } from './modules/profile/profile-page/profile-pag
 import { SettingPanelComponent } from './modules/setting/setting-panel/setting-panel.component';
 import { AdminPageComponent } from './modules/admin/admin-page/admin-page.component';
 import { NewsfeedPageComponent } from './modules/news-feed/newsfeed-page/newsfeed-page.component';
-
+import { GuardService} from 'src/app/services/guard.service';
 
 const routes: Routes = [
   {
@@ -34,6 +34,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component:AdminPageComponent,
+    canActivate: [GuardService]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
