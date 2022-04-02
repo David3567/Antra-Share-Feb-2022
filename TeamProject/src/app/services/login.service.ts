@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import { AppUserAuth } from '../interfaces/user-auth.model';
 import { AppUser } from '../interfaces/users.model';
 import jwt_decode from 'jwt-decode';
+import { BehaviorSubject } from 'rxjs';
 
 const API_URL = 'http://localhost:4231/api';
 const httpOptions = {
@@ -17,13 +18,23 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class LoginService {
-  private token?: string = localStorage?.getItem('bearerToken');
-  private decoded?: any = jwt_decode(this.token);
-  public currentUser?: any = { ...this.decoded };
+  // private token?: string = ''
+  // private decoded?: any = jwt_decode(this.token);
+  private decoded: any;
+  // public currentUser?: any = { ...this.decoded };
+  currentUser = {
+    _id: '',
+    name: '',
+    userName: '',
+    userEmail: '',
+    userRole: '',
+    age: 0,
+    gender: 'female',
+    phone: 0
+  };
+  private currentUser$ = new BehaviorSubject(this.currentUser);
 
   private securityObject: AppUserAuth = new AppUserAuth();
-
-  constructor(private http: HttpClient) {}
 
   set securityObj(newObj: AppUserAuth) {
     this.securityObject = newObj;
@@ -31,6 +42,20 @@ export class LoginService {
 
   get securityObj() {
     return this.securityObject;
+  }
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    const token = localStorage.getItem('bearerToken');
+    if (token) {
+      this.decoded = jwt_decode(token);
+      this.currentUser = { ...this.decoded };
+    }
+  }
+
+  getCurrentUser() {
+    return this.currentUser$.asObservable();
   }
 
   login(entity: AppUser) {
@@ -42,9 +67,13 @@ export class LoginService {
         tap((data: any) => {
           // update shared object
           Object.assign(this.securityObject, data.body);
-
           // store jwt into localstorage
           localStorage.setItem('bearerToken', this.securityObject.bearerToken);
+          // console.log('data: ', data);
+          // this.decoded = jwt_decode(data.bearerToken); // <-----------
+          // console.log('data: ', this.decoded);
+          // this.currentUser = { ...this.decoded };
+          // console.log('data: ', data);
         })
       );
   }

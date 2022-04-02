@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { LoginService } from 'src/app/services/login.service';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-story-card',
@@ -16,13 +17,25 @@ export class StoryCardComponent implements OnInit {
   @Output() likedStoryEmitter = new EventEmitter<string>();
   @Output() deleteStoryEmitter = new EventEmitter<string>();
 
+  currentUser: any;
+
   constructor(
     private dialog: MatDialog,
     private newsService: NewsfeedService,
     private loginService: LoginService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    const token = localStorage.getItem('bearerToken');
+    if (token) {
+      let decoded = jwt_decode(token);
+      console.log('data: ', decoded);
+    }
+    // this.loginService.getCurrentUser().subscribe(user => {
+    //   console.log('in the story card: ', user);
+    // });
+    // console.log('in the story card: ', this.loginService.currentUser);
+  }
 
   openDialog(story: newsTemplate) {
     const dialogRef = this.dialog.open(CommentDialogComponent, {
@@ -50,7 +63,7 @@ export class StoryCardComponent implements OnInit {
     this.deleteStoryEmitter.emit(storyId);
   }
 
-  checkUser(): boolean {
-    return this.story.publisherName === this.loginService.currentUser.userName;
+  checkUser() {
+    // return this.story.publisherName === this.loginService.currentUser.userName;
   }
 }
