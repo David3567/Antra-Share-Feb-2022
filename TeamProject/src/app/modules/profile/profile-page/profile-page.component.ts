@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -9,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ProfilePageComponent implements OnInit {
   displayName: string = 'Apawcalypse♡';
   hide: boolean = true;
+  checkedUser: string = "";
 
   profile = new FormGroup({
     bio: new FormControl(''),
@@ -30,7 +33,7 @@ export class ProfilePageComponent implements OnInit {
     confirm: new FormControl('', Validators.required),
   });
 
-  constructor() {}
+  constructor(private LS: LoginService, private route: ActivatedRoute) { }
 
   get nameFC() {
     return this.profile.get('name');
@@ -42,7 +45,12 @@ export class ProfilePageComponent implements OnInit {
     return this.profile.get('confirm');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.checkedUser = this.route.snapshot.params["username"];
+    if (this.checkedUser) {
+      this.displayName = this.checkedUser;
+    }
+  }
 
   onSubmit() {
     console.log(this.profile.value);

@@ -31,6 +31,10 @@
     font-size: 20px;
 }
 
+.user-detail>:first-child>span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .userAvatar {
     width: 60px; 
