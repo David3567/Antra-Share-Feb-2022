@@ -27,6 +27,10 @@ const routes: Routes = [
     component: ProfilePageComponent,
   },
   {
+    path: 'profile/:username', canActivate: [GuardService],
+    component: ProfilePageComponent,
+  },
+  {
     path: 'setting',
     component: SettingPanelComponent,
     

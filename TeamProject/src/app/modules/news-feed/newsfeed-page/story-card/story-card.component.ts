@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { GuardService} from 'src/app/services/guard.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-story-card',
   templateUrl: './story-card.component.html',
@@ -35,10 +36,6 @@ export class StoryCardComponent implements OnInit {
         _id: story._id
       },
     });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
   }
 
   like(id: string) {
@@ -55,18 +52,23 @@ export class StoryCardComponent implements OnInit {
   }
 
   checkUser(): boolean {
-    return this.story.publisherName === this.loginService.currentUser.userName;
+    if (this.story.publisherName === this.loginService.currentUser["userName"] || this.loginService.currentUser["userRole"] === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  openProfile(publisherName : string) {
+  openUserProfile(publisherName : string) {
     console.log("this is workding: the publisher is: " + publisherName);
     console.log(this.loginService.currentUser.userRole);
     if (this.guardService.canActivate()) {  
-      this.router.navigateByUrl("/profile");  
+      this.router.navigate([`profile/${publisherName}`]);  
     } else {
-      this.router.navigateByUrl("/login");  
+      this.router.navigateByUrl("/newsfeed");  
     }
     
   }
+
 
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { usersTemplate } from 'src/app/interfaces/users.model';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,7 +9,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./profile-page.component.css'],
 })
 export class ProfilePageComponent implements OnInit {
+
   displayName: string = 'Apawcalypse♡';
+  userProfile?: any;
+
   hide: boolean = true;
 
   profile = new FormGroup({
@@ -30,7 +35,7 @@ export class ProfilePageComponent implements OnInit {
     confirm: new FormControl('', Validators.required),
   });
 
-  constructor() {}
+  constructor(private userService: UsersService) {}
 
   get nameFC() {
     return this.profile.get('name');
@@ -42,10 +47,19 @@ export class ProfilePageComponent implements OnInit {
     return this.profile.get('confirm');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+    this.displayName = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+    console.log(this.displayName);
+    this.userService.getUserProfile(this.displayName).subscribe((userInfo)=> {this.userProfile = userInfo});
+    console.log(this.userProfile);
+
+    // this.feedService.getNews().subscribe((news)=> this.newsList = news.reverse());
+  }
 
   onSubmit() {
     console.log(this.profile.value);
     this.displayName = this.profile.value.name;
+   
   }
 }

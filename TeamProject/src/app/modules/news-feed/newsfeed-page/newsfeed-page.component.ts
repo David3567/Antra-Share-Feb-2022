@@ -16,6 +16,7 @@ export class NewsfeedPageComponent implements OnInit {
   ngOnInit(): void {
     
     this.feedService.getNews().subscribe((news)=> this.newsList = news.reverse());
+   
   }
 
   onLike(favorite: string) {

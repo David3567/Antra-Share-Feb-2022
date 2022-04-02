@@ -3,13 +3,13 @@ export interface usersTemplate {
     name: string;
     username: string;
     email: string;
-    address: Address;
-    phone: string;
-    website: string;
-    company: Company;
+    address?: Address;
+    phone?: string;
+    website?: string;
+    company?: Company;
     password: string;
-    gender: string;
-    age: string;
+    gender?: string;
+    age?: string;
   }
   
   interface Address {

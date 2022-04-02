@@ -5,8 +5,11 @@
             <div class="user">
                 <div class="user-detail">
 
-                    <a (click)="openProfile(story.publisherName)">{{ story.publisherName }} -</a>
-                    
+                    <div><span 
+                        [ngClass]="{'active': checkUser()}" 
+                        (click)="openUserProfile(story.publisherName)">
+                        {{ story.publisherName }}
+                    </span>-</div>
                     <div>{{ story.publishedTime | date: 'MMM d HH:mm a'}}</div>
                 </div>
                 <button *ngIf="checkUser()" mat-icon-button aria-label="delete icon" color="warn"

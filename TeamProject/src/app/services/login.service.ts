@@ -59,4 +59,5 @@ export class LoginService {
 
     localStorage.removeItem('bearerToken');
   }
+
 }

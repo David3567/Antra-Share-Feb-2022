@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
 @Injectable({
@@ -7,7 +7,10 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class GuardService implements CanActivate {
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+              private loginService: LoginService,
+              private router: Router,
+              ) { }
 
    canActivate() : boolean {{
       if (this.loginService.currentUser.userRole === "user") {
