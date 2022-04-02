@@ -13,7 +13,7 @@ export class GuardService implements CanActivate {
               ) { }
 
    canActivate() : boolean {{
-      if (this.loginService.currentUser.userRole === "user") {
+      if (this.loginService.currentUser.userRole === "admin") {
         return true;
       } else {
         return false;
