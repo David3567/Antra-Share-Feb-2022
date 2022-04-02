@@ -3,8 +3,14 @@
     <div class="userContainer">
       <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar" />
       <div class="user">
-        <div>{{ comment.publisherName }} -</div>
-        <div>{{ comment.publishedTime | date: "MMM d HH:mm a" }}</div>
+        <div class="user-detail">
+          <div>{{ comment.publisherName }} -</div>
+          <div>{{ comment.publishedTime | date: "MMM d HH:mm a" }}</div>
+        </div>
+        <button *ngIf="checkUser(comment.publisherName)" mat-icon-button aria-label="delete icon" color="warn"
+          (click)="deleteComment(comment._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </div>
     <div class="contentContainer">
@@ -13,16 +19,16 @@
       <div class="content">{{ comment.content?.text }}</div>
     </div>
   </div>
-  
-    <mat-form-field class="add-comment" appearance="outline">
-      <mat-label>New Comment</mat-label>
-      <input matInput id="comment" matInput placeholder="Send your reply" #commentInput>
-      <button mat-icon-button matSuffix aria-label="comment button" 
+
+  <mat-form-field class="add-comment" appearance="outline">
+    <mat-label>New Comment</mat-label>
+    <input matInput id="comment" matInput placeholder="Send your reply" #commentInput>
+    <button mat-icon-button matSuffix aria-label="comment button"
       (click)="postNewComment(commentInput.value); commentInput.value=''" id="post">
-          <mat-icon>comment</mat-icon>
-      </button>
-    </mat-form-field>
-  
+      <mat-icon>comment</mat-icon>
+    </button>
+  </mat-form-field>
+
   <div class="action-container">
     <button mat-raised-button color="primary" [disabled]="previousBtn" (click)="onPrevious()">
       Previous

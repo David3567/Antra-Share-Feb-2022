@@ -77,4 +77,20 @@ export class CommentDialogComponent implements OnInit {
       this.onPrevious();
     });
   }
+
+  checkUser(commentOwner): boolean {
+    if(this.loginService.currentUser.userRole === "admin" 
+       || commentOwner === this.loginService.currentUser.userName) { 
+      return true
+    } else {
+      return false;
+    }
+  }
+
+  deleteComment(commentId: string) {
+    console.log("Waiting on back end deleteComment request to be created");
+    // this.newsService.deleteComment(commentId).subscribe(console.log);
+    
+  }
+
 }
