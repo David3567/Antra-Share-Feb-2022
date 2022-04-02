@@ -17,9 +17,10 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class LoginService {
-  private token?: string = localStorage?.getItem('bearerToken');
-  private decoded?: any = jwt_decode(this.token);
-  public currentUser?: any = { ...this.decoded };
+  private token: string = localStorage.getItem('bearerToken');
+  private decoded: any = this.token ? jwt_decode(this.token) : {userName: "no User logged in"};
+  public currentUser: any = { ...this.decoded };
+  
 
   private securityObject: AppUserAuth = new AppUserAuth();
 

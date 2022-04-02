@@ -20,16 +20,19 @@ export class PostNewStoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  postNewStory(newPost: string) {
+  postNewStory(newPost: HTMLInputElement) {
+    
     this.newStory = {
       "publisherName": this.loginService.currentUser.userName,
       "content": {
-        "text": newPost
+        "text": newPost.value
       },
     }
 
     this.newsService.postNews(this.newStory).subscribe((response) => {
       this.storyEmitter.emit(response["body"]);
     })
+
+    newPost.value = "";
   }
 }

@@ -46,7 +46,7 @@ export class StoryCardComponent implements OnInit {
   }
 
   deletePost(storyId: string) {
-    this.newsService.deletePost(storyId).subscribe(console.log);
+    this.newsService.deletePost(storyId).subscribe((res) => console.log(res["body"]));
     this.deleteStoryEmitter.emit(storyId);
   }
 
