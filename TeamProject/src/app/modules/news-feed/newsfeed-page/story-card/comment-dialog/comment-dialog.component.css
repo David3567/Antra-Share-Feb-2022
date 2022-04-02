@@ -33,6 +33,11 @@
   font-size: 20px;
 }
 
+.active:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .userAvatar {
   width: 60px;
   height: 60px;

@@ -53,7 +53,11 @@ export class StoryCardComponent implements OnInit {
   }
 
   checkUser(): boolean {
-    return this.story.publisherName === this.loginService.currentUser.userName;
+    if (this.story.publisherName === this.loginService.currentUser["userName"] || this.loginService.currentUser["userRole"] === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   toUserProfile(user: string) {

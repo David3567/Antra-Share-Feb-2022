@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
@@ -21,6 +22,7 @@ export class CommentDialogComponent implements OnInit {
   nextBtn: boolean = true;
 
   constructor(
+    private router: Router,
     private newsService: NewsfeedService,
     private loginService: LoginService,
     @Inject(MAT_DIALOG_DATA) public data: { comment: Comment[]; _id: string }
@@ -76,5 +78,18 @@ export class CommentDialogComponent implements OnInit {
       this.onNext();
       this.onPrevious();
     });
+  }
+
+  checkUser(username): boolean {
+    if (username === this.loginService.currentUser["userName"] || this.loginService.currentUser["userRole"] === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  toUserProfile(user: string) {
+    console.log(user);
+    this.router.navigate([`profile/${user}`]);
   }
 }
