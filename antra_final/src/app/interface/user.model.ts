@@ -1,5 +1,3 @@
-import { AddressLink } from "./address.model";
-import { CompanyLink } from "./company.model";
 
 
 export interface User {
@@ -11,4 +9,23 @@ export interface User {
     phone: string;
     website: string;
     company: CompanyLink;
+  }
+
+  export interface AddressLink {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: GeoLink;
+  }
+
+  export interface CompanyLink {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  }
+
+  export interface GeoLink {
+    lat: string;
+    lng: string;
   }
