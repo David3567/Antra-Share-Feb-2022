@@ -1,25 +1,42 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { News } from './interface/news.model';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Story } from './interface/news.model';
+import { VariableValue } from './variable.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NewsfeedService {
-  private baseUrl = 'http://localhost:4231';
-  private path = 'api/news';
-  
-  constructor(private http: HttpClient) {}
+export class StoryService {
+  private path = 'news';
+  likeListByUser: Story[] = [];
+  subjectLikeList$ = new BehaviorSubject(this.likeListByUser);
+  constructor(private http: HttpClient, private variableValue: VariableValue) {}
+  getStories() {
+    return this.http.get(
+      [this.variableValue.baseUrl, this.path].join('/')
+    ) as Observable<Story>;
+  }
+  pushIntoLikeList(likeStory: Story) {
+    const findFeedsInLikeList = this.likeListByUser.find(
+      (story) => story._id === likeStory._id
+    );
+    if (!findFeedsInLikeList) {
+      this.likeListByUser = [likeStory, ...this.likeListByUser];
+    } else {
+      this.likeListByUser = this.likeListByUser.filter(
+        (story) => story._id !== likeStory._id
+      );
+    }
 
-  getNews() {
-    return this.http.get<any>([this.baseUrl, this.path].join('/'));
+    this.subjectLikeList$.next(this.likeListByUser);
   }
 
-  addNews(news: News) {
-    return this.http.post([this.baseUrl, this.path].join('/'), news);
-  }
-
-  deleteNews(id: number) {
-    return this.http.delete([this.baseUrl, this.path, id].join('/'));
+  removeNewsFromLikeList(likeStory: Story) {
+    const deleteLike = this.likeListByUser.filter(
+      (story) => story._id !== likeStory._id
+    );
+    this.likeListByUser = deleteLike;
+    this.subjectLikeList$.next(this.likeListByUser);
   }
 }

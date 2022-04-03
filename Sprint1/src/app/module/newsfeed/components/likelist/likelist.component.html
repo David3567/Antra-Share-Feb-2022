@@ -1,15 +1,22 @@
-<li class="likelist" >
-  <div class="container">
-      <div class="title">
-        <div>{{ story.publisherName }} -</div>
-        <div>{{ story.publishedTime | date: "MMM d h:mm a" }}</div>
+<div *ngIf="likeListStories.length > 0; else showNone">
+  <div class="container" *ngFor="let story of likeListStories">
+    <div>
+      <div class="publiser">
+        <div>{{ story.publisherName }}</div>
+        <div>{{ story.publishedTime | date }}</div>
       </div>
-      <div class="content">
-        {{ story.content.text | slice: 0:10
-        }}{{ story.content.text.length > 15 ? "..." : "" }}
+      <div>
+        <img
+          class="story-dashboard-content-img"
+          src="{{ story.content.image }}"
+          alt=""
+        />
+        <p>{{ story.content.text }}</p>
       </div>
-    <div class="buttonContainer">
-      <button mat-button (click)="removeStory(story._id)">Remove</button>
     </div>
+    <button class="hidden" (click)="onRemoveLike(story)">Remove</button>
   </div>
-</li>
+</div>
+<ng-template #showNone>
+  <h1 style="color: white;">You don't like any news</h1>
+</ng-template>

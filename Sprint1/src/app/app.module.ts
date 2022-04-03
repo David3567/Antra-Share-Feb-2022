@@ -10,6 +10,8 @@ import { AdminModule } from './module/admin/admin.module';
 import { NewsfeedModule } from './module/newsfeed/newsfeed.module';
 import { HomeModule } from './module/home/home.module';
 
+import {MatMenuModule} from '@angular/material/menu';
+
 @NgModule({
   declarations: [	AppComponent ],
   imports: [
@@ -19,7 +21,8 @@ import { HomeModule } from './module/home/home.module';
 
     AdminModule,
     NewsfeedModule,
-    HomeModule
+    HomeModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],

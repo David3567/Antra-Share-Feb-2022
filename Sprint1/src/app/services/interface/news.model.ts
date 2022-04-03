@@ -1,41 +1,37 @@
-export interface News {
-  _id: string;
+export interface Story {
+  _id?: string;
   publisherName: string;
-  publishedTime: string;
+  publishedTime: Date;
   content: {
     image: string;
     video: string;
     text: string;
-    _id: string;
+    _id?: string;
   };
-  comment: 
+  comment?: [
     {
-      _id: string;
       publisherName: string;
-      publishedTime: string;
+      publishedTime: Date;
       content: {
         image: string;
         video: string;
         text: string;
-        _id: string;
+        _id?: string;
       };
-    }[];
-  likedIdList: {
-    _id: string;
-  }[];
-  __v: number;
+      _id?: string;
+    }
+  ];
+  likedIdList?: [];
+  __v?: number;
 }
-
-// interface Comment {
-//   _id: string;
-//   publisherName: string;
-//   publishedTime: string;
-//   content: Content;
-// }
-
-// interface Content {
-//   image: string;
-//   video: string;
-//   text: string;
-//   _id: string;
-// }
+export interface Comments {
+  publisherName: string;
+  publishedTime: Date;
+  content: {
+    image: string;
+    video: string;
+    text: string;
+    _id?: string;
+  };
+  _id?: string;
+}

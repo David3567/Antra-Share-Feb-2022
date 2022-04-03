@@ -1,45 +1,60 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Story } from 'src/app/services/interface/news.model';
+import { StoryService } from 'src/app/services/newsfeed.service';
 import { MatDialog } from '@angular/material/dialog';
-import { News } from 'src/app/services/interface/news.model';
-import { CommentComponent } from '../comment/comment.component';
-
+import { StoryCommentComponent } from '../comment/comment.component';
+import { VariableValue } from 'src/app/services/variable.service';
 @Component({
-  selector: 'app-showstory',
+  selector: 'app-story',
   templateUrl: './showstory.component.html',
-  styleUrls: ['./showstory.component.scss']
+  styleUrls: ['./showstory.component.scss'],
 })
-export class ShowstoryComponent implements OnInit {
-  userID="6205f461d5cf1c22aad415a6";
-  @Input() story!: News;
-  @Output() showstoryEmitter = new EventEmitter();
+export class StoryComponent implements OnInit {
+  @Input('inStory') storyDetail!: Story;
+  likedme: boolean = false;
+  constructor(
+    private storyService: StoryService,
+    public dialog: MatDialog,
+    public variableValue: VariableValue
+  ) {}
 
-  constructor(public dialog: MatDialog) { }
-
-  ngOnInit() {
-  }
-
-  ifLiked() : boolean{
-    return this.story.likedIdList.find((list)=>list._id === this.userID)? true : false;
-  }
-
-  onClick() {
-    if(this.story.likedIdList.find((list)=>list._id===this.userID)){
-      this.story.likedIdList = this.story.likedIdList.filter((list) => list._id !== this.userID)
-    }else{
-      this.story.likedIdList.push({_id:this.userID});
+  ngOnInit(): void {}
+  addToLikeList(story: Story) {
+    this.likedme = !this.likedme;
+    if (this.variableValue.remove.indexOf(story._id!) !== -1) {
+      this.likedme = !this.likedme;
+      this.variableValue.remove = this.variableValue.remove.filter(
+        (re) => re !== story._id
+      );
     }
-    // console.log("liked:", this.story);
-    this.showstoryEmitter.emit(this.story._id);
+    this.storyService.pushIntoLikeList(story);
   }
-
-  onShowComments() {
-    const dialogRef = this.dialog.open(CommentComponent, {
-      width: '950px',
-      data: {commentlist: this.story.comment},
+  onClickComment(story: Story) {
+    const dialogRef = this.dialog.open(StoryCommentComponent, {
+      height: '70%',
+      width: '50%',
+      data: {
+        story: story,
+      },
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (this.variableValue.newComment.length > 1) {
+        this.variableValue.newComment.forEach((ele) => {
+          if (ele.id === this.storyDetail._id) {
+            this.storyDetail.comment?.push(ele.cmt!)
+          }
+        });
+      }
     });
   }
 }
+
+// name: req.body.name,
+// userName: req.body.userName,
+// userEmail: req.body.userEmail.toLowerCase(),
+// password: req.body.password,
+
+// userRole: req.body.userRole,
+// age: req.body.age,
+// gender: req.body.gender,
+// phone: req.body.phone,

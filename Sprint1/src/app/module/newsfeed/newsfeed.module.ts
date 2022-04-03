@@ -1,37 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LikelistComponent } from './components/likelist/likelist.component';
+import { NewsfeedComponent } from 'src/app/module/newsfeed/components/newsfeed/newsfeed.component';
+import { StoryComponent } from 'src/app/module/newsfeed/components/showstory/showstory.component';
+import { PostStoryComponent } from 'src/app/module/newsfeed/components/poststory/poststory.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { LikelistComponent } from 'src/app/module/newsfeed/components/likelist/likelist.component';
+import { StoryCommentComponent } from 'src/app/module/newsfeed/components/comment/comment.component';
 import { MatIconModule } from '@angular/material/icon';
-import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
-import { PoststoryComponent } from './components/poststory/poststory.component';
-import { ShowstoryComponent } from './components/showstory/showstory.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NewsfeedService } from 'src/app/services/newsfeed.service';
-import { CommentComponent } from './components/comment/comment.component';
-import {MatDialogModule} from '@angular/material/dialog';
-
-
+import { AddCommentComponent } from 'src/app/module/newsfeed/components/add-comment/add-comment.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     NewsfeedComponent,
+    StoryComponent,
+    PostStoryComponent,
+
     LikelistComponent,
-    PoststoryComponent,
-    ShowstoryComponent,
-    CommentComponent,
+    StoryCommentComponent,
+    AddCommentComponent,
   ],
+  exports: [NewsfeedComponent],
   imports: [
     CommonModule,
-    MatIconModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatDialogModule,
+    FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    MatIconModule,
+    MatExpansionModule,
   ],
-  providers: [NewsfeedService],
 })
 export class NewsfeedModule {}

@@ -1,60 +1,106 @@
-import { Component, OnInit } from '@angular/core';
-import { NewsfeedService } from 'src/app/services/newsfeed.service';
-import { News } from 'src/app/services/interface/news.model';
-import { ShowstoryComponent } from '../showstory/showstory.component';
-import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  Inject,
+  OnDestroy,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import { Story } from 'src/app/services/interface/news.model';
+import { StoryService } from 'src/app/services/newsfeed.service';
+
+import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { LikelistComponent } from 'src/app/module/newsfeed/components/likelist/likelist.component';
+import { VariableValue } from 'src/app/services/variable.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { PostStoryService } from 'src/app/services/post-story.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-newsfeed',
   templateUrl: './newsfeed.component.html',
   styleUrls: ['./newsfeed.component.scss'],
 })
-export class NewsfeedComponent implements OnInit {
-  userID = '6205f461d5cf1c22aad415a6';
-  liststatus: boolean = false;
-  newslist!: News[];
-  likedStories: News[] = [];
+export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() newPost!: Story;
+  stories!: Story[];
+  subcribeStoryService!: Subscription;
 
-  securityObj: AppUserAuth = new AppUserAuth();
-
-
-  constructor(private newsFeedService: NewsfeedService, private authService: AuthService, private router: Router) {
-    this.securityObj = this.authService.securityObj;
+  form!: FormGroup;
+  story!: Story;
+  panelOpenState:boolean =false;
+  get image() {
+    return this.form.get('image');
   }
+  get video() {
+    return this.form.get('video');
+  }
+  get text() {
+    return this.form.get('text');
+  }
+  constructor(
+    private storyService: StoryService,
+    public dialog: MatDialog,
+    private variableValue: VariableValue,
+    private fb: FormBuilder,
+    private PostStoryService: PostStoryService
+  ) {}
 
   ngOnInit(): void {
-    this.newsFeedService
-      .getNews()
-      .subscribe((news: News[]) => (this.newslist = news));
-    // console.log(this.newslist);
-    console.log(this.authService.securityObj);
+    this.form = this.fb.group(this.variableValue.buildformPost());
+    this.subcribeStoryService = this.storyService
+      .getStories()
+      .subscribe((storyData: any) => {
+        this.stories = storyData;
+        this.stories.reverse();
+      });
   }
-
-  onClick() {
-    this.liststatus = !this.liststatus;
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
+  ngOnDestroy(): void {
+    this.subcribeStoryService.unsubscribe();
+  }
+  onClickLike() {
+    const dialogRef = this.dialog.open(LikelistComponent, {
+      position: {
+        bottom: '0',
+        right: '0',
+      },
+      height: '75%',
+      width: '35%',
+    });
 
-  onShowUpdate(id: string) {
-    if (this.likedStories.find((likedStory) => likedStory._id === id)) {
-      this.likedStories = this.likedStories.filter(
-        (likedStory) => likedStory._id !== id
-      );
-    } else {
-      this.likedStories.push(
-        this.newslist.find((story) => story._id === id)!
-      );
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+//new post
+  onSubmit() {
+    let date = new Date();
+    const token = localStorage.getItem('bearerToken');
+    let pbName: string = '';
+    if (token) {
+      const decoded: any = jwt_decode(token);
+      pbName = decoded.name;
     }
-  }
 
-  onListRemove(id: string) {
-    this.likedStories = this.likedStories.filter((story)=>story._id !== id);
-
-    for( let story of this.newslist){
-      if(story.likedIdList.find((list)=>list._id===this.userID) && story._id === id){
-        story.likedIdList = story.likedIdList.filter((list)=> list._id !== this.userID)
-      }
-    }
+    this.story = {
+      publisherName: pbName,
+      publishedTime: date,
+      content: {
+        image: this.image?.value,
+        video: this.video?.value,
+        text: this.text?.value,
+      },
+    };
+    
+    // this.stories = [this.story,...this.stories]
+    this.PostStoryService.postNews(this.story).subscribe((data) => {
+      this.stories = [data, ...this.stories];
+      this.panelOpenState = false;
+    });
   }
 }

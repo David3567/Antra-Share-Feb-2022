@@ -1,0 +1,19 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="image">Image</label>
+        <input type="file" id="image" formControlName="image" />
+      </div>
+      
+      <div>
+        <label for="video">Video</label>
+        <input type="file" id="video" formControlName="video" />
+      </div>
+      <div>
+        <label for="comment">Comment</label>
+        <input type="text" id="comment" formControlName="text" />
+      </div>
+      
+      <button type="submit">submit</button>
+    </form>
+  </div>

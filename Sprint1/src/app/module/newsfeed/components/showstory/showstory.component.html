@@ -1,46 +1,39 @@
-<mat-card>
-  <mat-card-title>
-    <div><mat-icon>face</mat-icon></div>
-    <div class="title_name">{{ story.publisherName }}</div>
-    <div class="title_time">{{ story.publishedTime | date: "HH:mm - MM/dd/yyyy" }}</div>
-  </mat-card-title>
-  <mat-card-content>
-    <!-- content -->
-    <div class="middle">
-      <div *ngIf="story.content.image.includes('https://')" class="image">
-        <img [src]="story.content.image" alt="Image" />
-      </div>
-      <div *ngIf="story.content.video.includes('https://')" class="video">
-        <video [src]="story.content.video"></video>
-      </div>
-      <div class="text">{{ story.content.text }}</div>
+<div class="story">
+  <div class="story-user-detail">
+    <div>
+      <!-- avatar( get from user ) -->
+      <img
+        src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
     </div>
-    <!-- button -->
-    <div class="newsfeed_action">
-      <div class="commentbtn">
-        <button
-          type="button"
-          id="commentbtn"
-          mat-button
-          (click)="onShowComments()"
-        >
-          <mat-icon>comment</mat-icon>
-        </button>
-        <label for="commentbtn">{{ story.comment.length }}</label>
-      </div>
-      <!-- <div class="spaceholder"></div> -->
-      <div class="likebtn">
-        <button
-          type="button"
-          id="likebtn"
-          mat-button
-          [ngClass]="{ like: ifLiked() }"
-          (click)="onClick()"
-        >
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <label for="commentbtn">{{ story.likedIdList.length }}</label>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
+    <div>{{ storyDetail.publisherName }}</div>
+    <div>{{ storyDetail.publishedTime | date }}</div>
+  </div>
+  <div class="story-dashboard">
+    <img
+      class="story-dashboard-content-img"
+      src="{{ storyDetail.content?.image }}"
+      alt=""
+    />
+  </div>
+  <div class="story-dashboard-viewer">
+    <button (click)="onClickComment(storyDetail)">
+      <mat-icon> comment</mat-icon> {{ storyDetail.comment?.length }}
+    </button>
+    <button (click)="addToLikeList(storyDetail)">
+      <mat-icon
+        [id]="storyDetail._id"
+        class="material-icons-favorite"
+        [ngStyle]="{
+          color:
+            !likedme || variableValue.remove.indexOf(storyDetail._id!) !== -1
+              ? '#884242'
+              : 'red'
+        }"
+        >favorite</mat-icon
+      >{{ storyDetail.likedIdList!.length }}
+    </button>
+  </div>
+</div>

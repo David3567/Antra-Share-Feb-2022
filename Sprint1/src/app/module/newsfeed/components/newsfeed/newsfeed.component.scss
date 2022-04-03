@@ -1,87 +1,58 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body{
+  overflow: hidden;
+}
+.container{
+  padding-bottom: 40px;
+
 }
 
-.header {
-  height: 3rem;
+.div-like {
+  width:95%;
+  margin: 0 var(--bar-size);
+  padding-top: 10px;
+  padding-bottom: 10px;
+
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+}
+.btn-liked-list {
+  color: var(--button-font-color);
+  font-size: var(--font-btn-size);
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-right: 6%;
+  background-color: inherit;
+}
+.btn-liked-list:hover{
+  color: var(--button-hover-color);
+}
+.form {
+  padding-top: 90px;
+  width: 35%;
+  padding-left: 2%;
+  margin-left: 35%;
+  margin-bottom: 2%;
+  border-radius: 40px;
+}
+h1 {
+  text-align: center;
+  cursor: pointer;
 }
 
-.header div {
-  flex-grow: 1;
-}
 
-.header button {
-  height: 2rem;
-  width: 2rem;
-  border-radius: 1rem;
-  flex-grow: 0;
-  background-color: white;
-  border: 1px solid red;
-  padding-top: 4px;
-  color: red;
-  z-index: 0;
-}
-
-.news_container {
+.container{
   display: flex;
   flex-direction: column;
-  height: calc(100% - 2rem - 20px);
-  width: 100%;
 }
+.container-input{
+  font-size: var(--font-btn-size);
+  display: flex;
+  justify-content: flex-start;
 
-.likelist_container {
-  border-radius: 1rem;
-  padding: 1rem;
-  position: fixed;
-  right: 25px;
-  width: 20%;
-  background-color:azure;
-  color: black;
-  // display: block;
-  height: calc(100% - 10em);
-  z-index: 11;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
 }
-.likelist_container::-webkit-scrollbar {
-  width: 0;
+.container-input-label{
+  width: 70px;
+  margin-right: 20px;
 }
-
-// .post {
-//   // width: 100%;
-//   // justify-self: center;
-//   text-align: center;
-//   // border: 1px solid red;
-//   height: 300px;
-//   flex-grow: 0;
-//   padding: 1%;
-// }
-
-// .post div {
-//   margin: 15px;
-// }
-
-// .post button {
-//   width: 5rem;
-//   background-color: aquamarine;
-//   // border: none;
-//   border-radius: 5px;
-// }
-
-.story_container {
-  flex-grow: 1;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
-  margin-top: 50px;
-}
-.story_container::-webkit-scrollbar {
-  width: 0;
-}
-
-
