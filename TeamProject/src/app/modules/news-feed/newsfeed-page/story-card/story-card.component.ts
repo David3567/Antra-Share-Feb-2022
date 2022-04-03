@@ -3,7 +3,7 @@ import { newsTemplate } from 'src/app/interfaces/news.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
-import { LoginService } from 'src/app/services/login.service';
+import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 
 @Component({
   selector: 'app-story-card',
@@ -19,7 +19,7 @@ export class StoryCardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private newsService: NewsfeedService,
-    private loginService: LoginService
+    private decoderService: JWTDecoderService
   ) { }
 
   ngOnInit(): void { }
@@ -51,6 +51,6 @@ export class StoryCardComponent implements OnInit {
   }
 
   checkUser(): boolean {
-    return this.story.publisherName === this.loginService.currentUser.userName;
+    return this.story.publisherName === this.decoderService.getCurrentUser().userName;
   }
 }
