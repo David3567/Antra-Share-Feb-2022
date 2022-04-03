@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Comment } from 'src/app/interfaces/news.model';
 import { LoginService } from 'src/app/services/login.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
@@ -32,7 +33,7 @@ export class CommentDialogComponent implements OnInit {
       Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
 
     this.pageList = this.commentList.slice(this.head, this.tail);
-    this.pageSize = Math.ceil(this.commentList.length / 3);
+    this.pageSize = this.commentList.length === 0 ? 1 : Math.ceil(this.commentList.length / 3);
 
     console.log(this.head, this.tail, this.pageSize * 3);
     this.nextBtn = this.pageSize > 1 ? false : this.nextBtn;
@@ -73,14 +74,16 @@ export class CommentDialogComponent implements OnInit {
         Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
 
       this.pageSize = Math.ceil(this.commentList.length / 3);
+
+      // Refresh dialog
       this.onNext();
       this.onPrevious();
     });
   }
 
   checkUser(commentOwner): boolean {
-    if(this.loginService.currentUser.userRole === "admin" 
-       || commentOwner === this.loginService.currentUser.userName) { 
+    if (this.loginService.currentUser.userRole === "admin"
+      || commentOwner === this.loginService.currentUser.userName) {
       return true
     } else {
       return false;
@@ -88,9 +91,13 @@ export class CommentDialogComponent implements OnInit {
   }
 
   deleteComment(commentId: string) {
-    console.log("Waiting on back end deleteComment request to be created");
-    // this.newsService.deleteComment(commentId).subscribe(console.log);
-    
+    this.newsService.deleteComment(this.storyID, commentId).subscribe(console.log);
+    const index = this.commentList.findIndex(object => object._id === commentId);
+    this.commentList.splice(index, 1);
+
+    // Refresh dialog
+    this.onNext();
+    this.onPrevious();
   }
 
 }

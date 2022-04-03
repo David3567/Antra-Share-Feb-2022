@@ -1,4 +1,27 @@
-import { compileDeclareClassMetadata } from "@angular/compiler";
+export interface newsTemplate {
+  _id?: string;
+  publisherName: string;
+  publishedTime?: string;
+  content?: Content;
+  comment?: Comment[];
+  likedIdList?: [];
+  __v?: number;
+  // body?: any;
+}
+
+export interface Comment {
+  _id?: string;
+  publisherName?: string;
+  publishedTime?: string;
+  content?: Content;
+}
+
+export interface Content {
+  image?: string;
+  video?: string;
+  text?: string;
+  _id?: string;
+}
 
 // export class newsTemplate {
 
@@ -15,39 +38,14 @@ import { compileDeclareClassMetadata } from "@angular/compiler";
 
 // }
 
-export interface newsTemplate {
-  _id?: string;
-  publisherName: string;
-  publishedTime?: string;
-  content?: Content;
-  comment?: Comment[];
-  likedIdList?: [];
-  __v?: number;
-  // body?: any;
-}
-
-interface Comment {
-  _id?: string;
-  publisherName?: string;
-  publishedTime?: string;
-  content?: Content;
-}
-
 // class Comment {
 //   constructor(
-//     publisherName: string = "",
-//   publishedTime: string = "",
-//   content: Content = new Content(),
-//   _id?: string,
+  //     publisherName: string = "",
+  //   publishedTime: string = "",
+  //   content: Content = new Content(),
+  //   _id?: string,
 //   ){}
 // }
-
-interface Content {
-  image?: string;
-  video?: string;
-  text?: string;
-  _id?: string;
-}
 
 // class Content {
 //   constructor(
