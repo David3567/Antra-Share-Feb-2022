@@ -8,6 +8,7 @@
   /* border: 1px solid red; */
   border-radius: 40px;
   box-shadow: 15px 10px #695c5c;
+  
 
 }
 .story-user-detail {
@@ -65,3 +66,10 @@ button {
 /* button:hover{
   background-color:red;
 } */
+
+.delete{
+  cursor: pointer;
+}
+.delete:hover{
+  color: red;
+}

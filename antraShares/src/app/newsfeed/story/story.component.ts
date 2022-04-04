@@ -4,6 +4,8 @@ import { StoryService } from 'src/app/services/story.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StoryCommentComponent } from '../story-comment/story-comment.component';
 import { VariableValue } from 'src/app/services/variable.service';
+import { DeleteService } from 'src/app/services/delete.service';
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -12,13 +14,27 @@ import { VariableValue } from 'src/app/services/variable.service';
 export class StoryComponent implements OnInit {
   @Input('inStory') storyDetail!: Story;
   likedme: boolean = false;
+  display: boolean = true;
+  allow: boolean = false;
   constructor(
     private storyService: StoryService,
     public dialog: MatDialog,
-    public variableValue: VariableValue
+    public variableValue: VariableValue,
+    private deleteService: DeleteService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const token = localStorage.getItem('bearerToken');
+    if (token) {
+      const decoded: any = jwt_decode(token);
+      if (
+        decoded.userRole === 'admin' ||
+        decoded.userName === this.storyDetail.publisherName
+      ) {
+        this.allow = true;
+      }
+    }
+  }
   addToLikeList(story: Story) {
     this.likedme = !this.likedme;
     if (this.variableValue.remove.indexOf(story._id!) !== -1) {
@@ -38,23 +54,20 @@ export class StoryComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (this.variableValue.newComment.length > 1) {
+      if (this.variableValue.newComment.length !== 0) {
         this.variableValue.newComment.forEach((ele) => {
           if (ele.id === this.storyDetail._id) {
-            this.storyDetail.comment?.push(ele.cmt!)
+            this.storyDetail.comment?.push(ele.cmt!);
           }
         });
       }
     });
   }
+  onDeletePost(story: Story) {
+    if (confirm('Do you want to delete this post??')) {
+      this.deleteService.deletePost(story._id).subscribe(() => {
+        this.display = false;
+      });
+    }
+  }
 }
-
-// name: req.body.name,
-// userName: req.body.userName,
-// userEmail: req.body.userEmail.toLowerCase(),
-// password: req.body.password,
-
-// userRole: req.body.userRole,
-// age: req.body.age,
-// gender: req.body.gender,
-// phone: req.body.phone,

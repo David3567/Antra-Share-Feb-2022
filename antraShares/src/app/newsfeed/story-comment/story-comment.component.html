@@ -1,22 +1,38 @@
 <div class="story" *ngFor="let comment of commentsPerpage">
-  <div class="story-user-detail">
-    <div>
-      <img
-        src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
-        alt="Avatar"
-        class="avatar"
-      />
+  <div
+    class="story-user-detail"
+
+  >
+    <div class="header">
+      <div>
+        <img
+          src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
+          alt="Avatar"
+          class="avatar"
+        />
+      </div>
+      <div>{{ comment.publisherName }}</div>
+      <div
+        class="delete"
+        (click)="onDeleteComment(comment)"
+        [ngStyle]="{
+          visibility:
+            this.comment.publisherName === userName || allow
+              ? 'visible'
+              : 'hidden'
+        }"
+      >
+        <mat-icon>delete</mat-icon>
+      </div>
     </div>
-    <div>{{ comment.publisherName }}</div>
-    <div>{{ comment.content.text }}</div>
+    <div class="comment">{{ comment.content.text }}</div>
   </div>
 </div>
 <br />
 
-
 <div class="pagination">
   <div>
-    <button (click)="onClickAddComment()"> Add comment</button>
+    <button (click)="onClickAddComment()">Add comment</button>
   </div>
   <button
     class="btn btn-previous"

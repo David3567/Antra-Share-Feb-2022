@@ -11,8 +11,14 @@
   margin-bottom: 15px;
   border-radius: 10px;
   box-shadow: 5px 2px #695c5c;
+  display: flex;
+  flex-direction: column;
 }
+.header{
+  display: flex;
 
+  justify-content: space-between;
+}
 .pagination {
   display: flex;
   justify-content: center;
@@ -45,4 +51,10 @@
   background-color: #cccccc;
   color: #666666;
   cursor: not-allowed;
+}
+.delete{
+  cursor: pointer;
+}
+.delete:hover{
+  color: red;
 }

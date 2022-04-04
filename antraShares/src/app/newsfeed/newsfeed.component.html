@@ -39,11 +39,10 @@
             <input type="text" id="comment" formControlName="text" />
           </div>
           <div class="container-input">
-            <button class="" type="submit"   >submit</button>
+            <button class="" type="submit">submit</button>
           </div>
         </form>
       </div>
-      
     </mat-expansion-panel>
   </mat-accordion>
 </div>
@@ -51,3 +50,4 @@
 <div class="container">
   <app-story *ngFor="let story of stories" [inStory]="story"></app-story>
 </div>
+<!-- (click)="onDeletePost(story)" -->

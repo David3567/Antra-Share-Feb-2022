@@ -1,4 +1,4 @@
-<div class="story">
+<div class="story" [ngStyle]="{ display: display ? 'true' : 'none' }">
   <div class="story-user-detail">
     <div>
       <!-- avatar( get from user ) -->
@@ -10,6 +10,9 @@
     </div>
     <div>{{ storyDetail.publisherName }}</div>
     <div>{{ storyDetail.publishedTime | date }}</div>
+    <div class="delete" [ngStyle]="{ visibility: allow ? 'visible' : 'hidden' }" (click)="onDeletePost(storyDetail)">
+      <mat-icon> delete</mat-icon>
+    </div>
   </div>
   <div class="story-dashboard">
     <img

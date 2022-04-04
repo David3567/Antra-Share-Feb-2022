@@ -18,6 +18,7 @@ import jwt_decode from 'jwt-decode';
 export class AddCommentComponent implements OnInit {
   form!: FormGroup;
   comment!: Comments;
+  after!: Comments;
   get image() {
     return this.form.get('image');
   }
@@ -52,7 +53,7 @@ export class AddCommentComponent implements OnInit {
     let pbName: string = '';
     if (token) {
       const decoded: any = jwt_decode(token);
-      pbName = decoded.name;
+      pbName = decoded.userName;
     }
 
     this.comment = {
@@ -67,12 +68,16 @@ export class AddCommentComponent implements OnInit {
     this.addCommentService
       .addComment(this.data._id, this.comment)
       .subscribe((data) => {
+        // this.dialogRef.close(data);
       });
-      //updata
-    this.dialogRef.close(this.comment);
+
+    
+
+   this.dialogRef.close(this.comment)
     this.variableValue.newComment.push({
       id: this.data._id,
       cmt: this.comment,
     });
+    //updata
   }
 }

@@ -17,6 +17,7 @@ import { VariableValue } from '../services/variable.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PostStoryService } from '../services/post-story.service';
 import jwt_decode from 'jwt-decode';
+import { DeleteService } from '../services/delete.service';
 
 @Component({
   selector: 'app-newsfeed',
@@ -30,7 +31,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
 
   form!: FormGroup;
   story!: Story;
-  panelOpenState:boolean =false;
+  panelOpenState: boolean = false;
   get image() {
     return this.form.get('image');
   }
@@ -45,7 +46,8 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
     public dialog: MatDialog,
     private variableValue: VariableValue,
     private fb: FormBuilder,
-    private postStoryService: PostStoryService
+    private postStoryService: PostStoryService,
+    private deleteService: DeleteService
   ) {}
 
   ngOnInit(): void {
@@ -77,7 +79,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
       console.log(`Dialog result: ${result}`);
     });
   }
-//new post
+  //new post
   onSubmit() {
     let date = new Date();
     const token = localStorage.getItem('bearerToken');
@@ -96,12 +98,17 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
         text: this.text?.value,
       },
     };
-    
+
     // this.stories = [this.story,...this.stories]
     this.postStoryService.postNews(this.story).subscribe((data) => {
       this.stories = [data, ...this.stories];
       this.panelOpenState = false;
     });
   }
+  onDeletePost(story: Story) {
+    console.log(story._id);
+    // this.deleteService.deletePost(story._id).subscribe(() => {
+    //   this.stories = this.stories.filter((data) => data._id !== story._id);
+    // });
+  }
 }
-
