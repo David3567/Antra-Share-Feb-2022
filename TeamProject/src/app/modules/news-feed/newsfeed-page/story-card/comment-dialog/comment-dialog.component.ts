@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Comment } from 'src/app/interfaces/news.model';
-import { LoginService } from 'src/app/services/login.service';
+import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class CommentDialogComponent implements OnInit {
 
   constructor(
     private newsService: NewsfeedService,
-    private loginService: LoginService,
+    private decoderService: JWTDecoderService,
     @Inject(MAT_DIALOG_DATA) public data: { comment: Comment[]; _id: string }
   ) { }
 
@@ -63,7 +63,7 @@ export class CommentDialogComponent implements OnInit {
 
   postNewComment(comment: string) {
     this.newComment = {
-      "publisherName": this.loginService.currentUser.userName,
+      "publisherName": this.decoderService.getCurrentUser().userName,
       "content": {
         "text": comment
       }
@@ -82,8 +82,8 @@ export class CommentDialogComponent implements OnInit {
   }
 
   checkUser(commentOwner): boolean {
-    if (this.loginService.currentUser.userRole === "admin"
-      || commentOwner === this.loginService.currentUser.userName) {
+    if (this.decoderService.getCurrentUser().userRole === "admin"
+      || commentOwner === this.decoderService.getCurrentUser().userName) {
       return true
     } else {
       return false;

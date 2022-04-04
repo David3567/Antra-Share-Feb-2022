@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { newsTemplate } from 'src/app/interfaces/news.model';
-import { LoginService } from 'src/app/services/login.service';
+import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
 @Component({
@@ -14,22 +14,23 @@ export class PostNewStoryComponent implements OnInit {
 
   constructor(
     private newsService: NewsfeedService,
-    private loginService: LoginService
+    private decoderService: JWTDecoderService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  postNewStory(newPost: string) {
+  postNewStory(newPost: HTMLInputElement) {
     this.newStory = {
-      "publisherName": this.loginService.currentUser.userName,
+      "publisherName": this.decoderService.getCurrentUser().userName,
       "content": {
-        "text": newPost
+        "text": newPost.value
       },
     }
 
     this.newsService.postNews(this.newStory).subscribe((response) => {
       this.storyEmitter.emit(response["body"]);
     })
+
+    newPost.value = "";
   }
 }
