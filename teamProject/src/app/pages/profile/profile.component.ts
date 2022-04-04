@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-      let username = localStorage.getItem('username');
+      let username = localStorage.getItem('profileToShow');
       if (username==null)
       {
         console.log('error retriving user')
@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
             }
             else {
               this.userProfile = data;
-              console.log(this.userProfile)
+              //console.log(this.userProfile)
             }
           }
           

@@ -50,28 +50,37 @@ export class RegisterFormComponent implements OnInit {
     this.cd.detectChanges();
   }
 
-  usernameValidator(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.authenService.getSpecificUser(control.value).pipe(
-        delay(1000),
-        map(
-          (item: any) => {
-            console.log(item);
-            return item ? { error: true, duplicated: true } : null
-          }
-        ))
-    }
-  }
+  // ************************* 
+  //JIANFENG, JIE, line 58-69  using getSpecifiedUser api does not validate username when registering, so I reverted to previous code by uncommenting line 71-79.
+
+
 
   // usernameValidator(): AsyncValidatorFn {
   //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-  //     return this.checkIfUsernameExists(control.value).pipe(
-  //       map(res => {
-  //         return res ? { error: true, duplicated: true } : null;
-  //       })
-  //     );
-  //   };
+  //     return this.authenService.getSpecificUser(control.value).pipe(
+  //       delay(1000),
+  //       map(
+  //         (item: any) => {
+  //           console.log(item);
+  //           return item ? { error: true, duplicated: true } : null
+  //         }
+  //       ))
+  //   }
   // }
+
+  usernameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.checkIfUsernameExists(control.value).pipe(
+        map(res => {
+          return res ? { error: true, duplicated: true } : null;
+        })
+      );
+    };
+  }
+
+  checkIfUsernameExists(username: string): Observable<boolean> {
+    return of(this.DBuserNames.includes(username)).pipe(delay(1000));
+  }
 
   checkIfEmailExists(email: string): Observable<boolean> {
     return of(this.DBuserEmails.includes(email)).pipe(delay(1000));

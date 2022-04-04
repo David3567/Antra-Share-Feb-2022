@@ -1,27 +1,9 @@
 <nz-descriptions nzTitle="User Info" [nzBordered] = true [nzColumn]="2">
-  <nz-descriptions-item nzTitle="ID" [nzSpan]="2">{{user.id}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="Name">{{user.name}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="Email">{{user.email}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="Phone">{{user.phone}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="Website">{{user.website}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="Address" [nzSpan]="2">
-    Street: {{user.address.street}}
-    <br>
-    Suite: {{user.address.suite}}
-    <br>
-    City: {{user.address.city}}
-    <br>
-    Zipcode: {{user.address.zipcode}}
-    <br>
-    Lat: {{user.address.geo.lat}}
-    <br>
-    Lng: {{user.address.geo.lng}}
-  </nz-descriptions-item>
-  <nz-descriptions-item nzTitle="Company" [nzSpan]="2">
-    Name: {{user.company.name}}
-    <br>
-    CatchPhrase: {{user.company.catchPhrase}}
-    <br>
-    Bs: {{user.company.bs}}
-  </nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Username" [nzSpan]="2">{{userData.userName}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Email" [nzSpan]="2">{{userData.userEmail}}</nz-descriptions-item>
+  <!-- <nz-descriptions-item nzTitle="Password" [nzSpan]="2">{{userData.password}}</nz-descriptions-item> -->
+  <nz-descriptions-item nzTitle="Role" [nzSpan]="2">{{userData.userRole}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Age" [nzSpan]="2">{{userData.age}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Gender" [nzSpan]="2">{{userData.gender}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="Phone" [nzSpan]="2">{{userData.phone}}</nz-descriptions-item>
 </nz-descriptions>

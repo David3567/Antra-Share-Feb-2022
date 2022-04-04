@@ -4,10 +4,9 @@
         <ul nz-menu nzMode="inline" class="sider-menu">
           <li nz-submenu nzClose nzIcon="user" nzTitle="User List">
             <ul class="contentArea-sideBar_ul">
-              <app-useritems *ngFor="let user of userlist; index as i" [user]="user" [selected]="selectedList[i]"
-                (userIdEmiter)="deleteUser($event)" (userEmiter)="selectUser($event)"
-                (unselectSingleUserEmiter)="unSelectSingleUser()">
-              </app-useritems>
+              <li nz-menu-item *ngFor="let user of userlist" (mousedown)="selectUser(user)">
+                {{user}}
+              </li>
             </ul>
           </li>
         </ul>

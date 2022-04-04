@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from 'src/app/interfaces/user.model';
-import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { Component, DoCheck, Input } from '@angular/core';
+import { NewUser } from "src/app/interfaces/backEndUser.model";
+import { AuthenService } from "src/app/services/authen.service";
 
 
 @Component({
@@ -8,13 +8,19 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
   templateUrl: './userdetail.component.html',
   styleUrls: ['./userdetail.component.less']
 })
-export class UserdetailComponent implements OnInit {
+export class UserdetailComponent implements DoCheck {
 
-  @Input() user!:User;
+  @Input() user!: string;
 
-  constructor() { }
+  userData!: NewUser;
 
-  ngOnInit(): void {
+  constructor(private authenService: AuthenService) {}
+
+  ngDoCheck(): void {
+    this.authenService.getSpecificUser(this.user).subscribe(
+      (data) => {
+        this.userData = data;
+      }
+    )
   }
-
 }
