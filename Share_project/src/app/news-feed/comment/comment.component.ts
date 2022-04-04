@@ -5,6 +5,7 @@ import { commentUser } from '../models/commentUser.model';
 import { News } from '../models/news.model';
 import jwt_decode from "jwt-decode";
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment',
@@ -21,6 +22,7 @@ export class CommentComponent implements OnInit {
   comments!: commentUser[];
   commentsPerpage!: commentUser[];
   pages: number[] = [];
+  postId: any = this.data.story._id;
   CommentForm!: FormGroup
 
   get image() {
@@ -39,6 +41,7 @@ export class CommentComponent implements OnInit {
     private data: { story: News },
     private newsApi: NewsfeedService,
     private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -76,24 +79,24 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment(index: any) {
-    let commentId = this.data.story.comment[index]._id;
-    let postId = this.data.story._id
-    this.newsApi.deleteOneComment(postId, commentId).subscribe((data: any) => {
+    let trueIndex = this.start + index;
+    let commentId = this.data.story.comment[trueIndex]._id;
+
+    this.newsApi.deleteOneComment(this.postId, commentId).subscribe((data: any) => {
       console.log( "delete data: ", data)
     })
-    
+    location.reload();
   }
 
   onSubmit() {
     //FIX PUBLISHER NAME ONCE WE HAVE LOGIN WORKING PROPERLY
-    console.log(' ', this.CommentForm.value)
     const commentForm = {
       'publisherName': 'Basel45',
       'content': this.CommentForm.value
     }
-    console.log('comment form: ', commentForm)
-    this.newsApi.addComment(this.data.story._id, commentForm).subscribe((data: any) => {
+    this.newsApi.addComment(this.postId, commentForm).subscribe((data: any) => {
       console.log("submit comment: ", data)
-    })
+    });
+    location.reload();
   }
 }

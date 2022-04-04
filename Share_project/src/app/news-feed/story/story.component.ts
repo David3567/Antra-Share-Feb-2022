@@ -10,6 +10,7 @@ import { CommentComponent } from '../comment/comment.component';
 })
 export class StoryComponent implements OnInit {
   likeStatus: string = "unlike";
+  commentLength!: number;
 
   @Input() storyItem!: News;
 
@@ -19,6 +20,7 @@ export class StoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.commentLength = this.storyItem.comment.length
   }
 
   likeClick() {
