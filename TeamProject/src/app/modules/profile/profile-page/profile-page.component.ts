@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { flatMap, tap } from 'rxjs';
+import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProfilePageComponent implements OnInit {
   displayName: string = 'Apawcalypse♡';
-  userName: string = '@SiameseCat101';
+  userName: string = 'SiameseCat101';
   user: any;
   hide: boolean = true;
   checkedUser: string = "";
@@ -35,7 +37,9 @@ export class ProfilePageComponent implements OnInit {
     confirm: new FormControl('', Validators.required),
   });
 
-  constructor(private profileService: UsersService) { }
+  constructor(private profileService: UsersService,
+    private route: ActivatedRoute,
+    private decoderServ: JWTDecoderService) { }
 
   get nameFC() {
     return this.profile.get('name');
@@ -48,18 +52,24 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProfile();
+    if(!this.route.snapshot.params["username"]) {
+      this.displayName = this.decoderServ.getCurrentUser().name;
+      console.log(this.decoderServ.getCurrentUser());
+      this.userName = this.decoderServ.getCurrentUser().userName ? this.decoderServ.getCurrentUser().userName : null;
+      return
+    }
+    
+    this.userName = this.route.snapshot.params["username"];
+    this.getUserInfo();
+    
   }
 
-  getProfile() {
-    this.profileService.getUserName().pipe(
-      tap((username: string) => this.userName = username),
-      flatMap((username: string) => this.profileService.getProfile(username))).pipe(
-        tap(console.log)).
-      subscribe(info => {
-        this.user = info
-        this.displayName = info.name
-      })
+  getUserInfo() {
+    this.profileService.getProfile(this.userName).subscribe((response) => {
+      console.log(response);
+      this.user = response;
+      this.displayName = this.user.name ? this.user.name : (this.user ? this.userName : null);
+    });
   }
 
   onSubmit() {

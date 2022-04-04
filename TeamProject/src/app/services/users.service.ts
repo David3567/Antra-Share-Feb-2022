@@ -1,28 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { JWTDecoderService } from './jwt-decoder.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private username$ = new BehaviorSubject('Guest');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwt: JWTDecoderService) { }
 
   getUsers() {
-    return this.http.get<any>("http://localhost:3000/users");
+    // return this.http.get<any>("http://localhost:3000/users");
+    return this.http.get<any>("http://localhost:4231/api/users/getAllUsers");
   }
 
   getProfile(username: string) {
     return this.http.get<any>(['http://localhost:4231/api/users/getProfile', username].join('/'));
-  }
-
-  setUserName(username: string) {
-    this.username$.next(username);
-  }
-
-  getUserName() {
-    return this.username$;
   }
 }
