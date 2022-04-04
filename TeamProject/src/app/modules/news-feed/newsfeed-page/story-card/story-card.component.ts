@@ -64,7 +64,9 @@ export class StoryCardComponent implements OnInit {
   }
 
   onProfile(username: string) {
-    this.profileService.setUserName(username);
-    this.router.navigate(['profile']);
+    if (this.checkUser()) {
+      this.profileService.setUserName(username);
+      this.router.navigate(['profile']);
+    }
   }
 }
