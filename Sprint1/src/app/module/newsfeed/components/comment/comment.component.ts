@@ -1,9 +1,12 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Comments, Story } from 'src/app/services/interface/news.model';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VariableValue } from 'src/app/services/variable.service';
 import { StoryService } from 'src/app/services/newsfeed.service';
 import { AddCommentComponent } from '../add-comment/add-comment.component';
+import { DeleteService } from 'src/app/services/delete.service';
+import jwt_decode from 'jwt-decode';
+
 @Component({
   selector: 'app-story-comment',
   templateUrl: './comment.component.html',
@@ -11,6 +14,7 @@ import { AddCommentComponent } from '../add-comment/add-comment.component';
 })
 export class StoryCommentComponent implements OnInit {
   @Input() myFirstInputParameter!: string;
+  @Output() deleteCommentEmitter = new EventEmitter<string>();
 
   start!: number;
   end!: number;
@@ -21,11 +25,16 @@ export class StoryCommentComponent implements OnInit {
   comments!: Comments[];
   commentsPerpage!: Comments[];
   pages: number[] = [];
+  allow: boolean = false;
+  display: boolean = false;
+
+  userName!: string;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     private data: { story: Story },
     private variableValue: VariableValue,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private deleteService: DeleteService
   ) {}
   //
   // console.log("dfadsf")
@@ -37,15 +46,26 @@ export class StoryCommentComponent implements OnInit {
     this.end = this.variableValue.end;
     this.size = this.variableValue.size;
     this.comments = this.data.story.comment!;
-    if (this.variableValue.newComment.length > 1) {
+    if (this.variableValue.newComment.length !== 0) {
       this.variableValue.newComment.forEach((ele) => {
         if (ele.id === this.data.story._id) {
           this.comments = [...this.comments, ele.cmt!];
+          this.variableValue.newComment = this.variableValue.newComment.filter(
+            (data) => data.id !== ele.id
+          );
         }
       });
     }
     this.countpage();
     this.commentsPerpage = [...this.comments.slice(this.start, this.size)];
+    const token = localStorage.getItem('bearerToken');
+    if (token) {
+      const decoded: any = jwt_decode(token);
+      this.userName = decoded.userName;
+      if (decoded.userRole === 'admin') {
+        // this.allow = true;
+      }
+    }
   }
   onNext() {
     this.page++;
@@ -77,12 +97,29 @@ export class StoryCommentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((newcomment) => {
       if (newcomment !== undefined) {
+        console.log(newcomment);
         this.comments = [...this.comments, newcomment];
         this.countpage();
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
       }
     });
   }
+  onDeleteComment(comment: Comments) {
+    console.log(comment._id);
+    console.log(this.data.story._id);
+    if (confirm('Do you want to delete this comment??')) {
+      this.deleteService
+        .deleteComment(this.data.story._id, comment._id)
+        .subscribe(() => {
+          this.display = true;
+          console.log(this.data.story.comment)
+          //this.data.story.comment =  this.data.story.comment.filter((comment) =>  comment._id!=this.data.story.comment._id);
+        });
+        this.deleteCommentEmitter.emit(comment._id)
+
+    }
+  }
+
   private countpage() {
     this.max = this.comments.length;
     this.totalP =

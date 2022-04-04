@@ -1,14 +1,11 @@
 .container {
+  margin: 5px;
   display: flex;
-  height: 250px;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 20px;
-  margin-bottom: 10px;
-
-  background-color: antiquewhite;
-  border-radius: 40px;
-  box-shadow: 5px 2px #695c5c;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  min-height: 150px;
 }
 .story-dashboard-content-img {
   padding-top: var(--pading-to-top);
@@ -30,4 +27,22 @@ img {
 }
 .mat-dialog-container {
   background-color: var(--outline-color)!important;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 0 5px;
+  border: 1px solid gainsboro;
+}
+
+.buttonContainer {
+  text-align: right;
+  margin: 5px;
+}
+.buttonContainer button {
+  background-color: gainsboro;
 }

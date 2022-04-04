@@ -1,13 +1,13 @@
 <div *ngIf="likeListStories.length > 0; else showNone">
   <div class="container" *ngFor="let story of likeListStories">
     <div>
-      <div class="publiser">
+      <div class="title">
         <div>{{ story.publisherName }}</div>
         <div>{{ story.publishedTime | date }}</div>
       </div>
       <div>
         <img
-          class="story-dashboard-content-img"
+          class="content"
           src="{{ story.content.image }}"
           alt=""
         />
@@ -18,5 +18,5 @@
   </div>
 </div>
 <ng-template #showNone>
-  <h1 style="color: white;">You don't like any news</h1>
+  <h1 style="color: white;">No liked story</h1>
 </ng-template>

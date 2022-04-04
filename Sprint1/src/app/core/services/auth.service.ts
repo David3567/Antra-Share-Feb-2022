@@ -74,6 +74,12 @@ export class AuthService {
     );
   }
 
+  getProfile(username: string) {
+    return this.http.get<any>(
+      [API_URL, 'users', 'getProfile', username].join('/'),httpOptions
+    );
+  }
+
   resetSecurityObject(): void {
     this.securityObject.userName = "";
     this.securityObject.userEmail = "";

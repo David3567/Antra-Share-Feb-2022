@@ -1,16 +1,26 @@
-<div class="story" *ngFor="let comment of commentsPerpage">
-  <div class="story-user-detail">
-    <div>
-      <img
-        src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
-        alt="Avatar"
-        class="avatar"
-      />
-    </div>
+
+<div class="comment_container">
+<h2 mat-dialog-title>Comments</h2>
+
+<mat-dialog-content *ngFor="let comment of commentsPerpage">
+  <div class="comment_title">
+    <div><mat-icon>face</mat-icon></div>
     <div>{{ comment.publisherName }}</div>
-    <div>{{ comment.content.text }}</div>
+    <div
+        class="delete"
+        (click)="onDeleteComment(comment)"
+        [ngStyle]="{
+          visibility:
+            this.comment.publisherName === userName || allow
+              ? 'visible'
+              : 'hidden'
+        }"
+      >
+        <mat-icon>delete</mat-icon>
+      </div>
+    <div class="comment_text">{{ comment.content.text }}</div>
   </div>
-</div>
+</mat-dialog-content>
 <br />
 
 
@@ -41,4 +51,5 @@
   <button class="btn btn-next" (click)="onNext()" [disabled]="end >= max">
     Next
   </button>
+</div>
 </div>

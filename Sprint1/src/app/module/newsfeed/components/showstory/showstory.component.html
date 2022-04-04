@@ -1,16 +1,22 @@
-<div class="story">
-  <div class="story-user-detail">
+<mat-card>
+  
+    <mat-card-title>
+    <div><mat-icon>face</mat-icon></div>
     <div>
-      <!-- avatar( get from user ) -->
-      <img
-        src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
-        alt="Avatar"
-        class="avatar"
-      />
+      <button (click)="lookProfile(storyDetail.publisherName)">{{storyDetail.publisherName}}</button>
     </div>
-    <div>{{ storyDetail.publisherName }}</div>
     <div>{{ storyDetail.publishedTime | date }}</div>
-  </div>
+    <button
+      mat-icon-button
+      *ngIf="checkUserRole()"
+      aria-label="delete icon"
+      (click)="deletePost(storyDetail._id!)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-title>
+
+  <mat-card-content>
   <div class="story-dashboard">
     <img
       class="story-dashboard-content-img"
@@ -36,4 +42,5 @@
       >{{ storyDetail.likedIdList!.length }}
     </button>
   </div>
-</div>
+</mat-card-content>
+</mat-card>

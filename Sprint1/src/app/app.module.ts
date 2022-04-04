@@ -11,6 +11,7 @@ import { NewsfeedModule } from './module/newsfeed/newsfeed.module';
 import { HomeModule } from './module/home/home.module';
 
 import {MatMenuModule} from '@angular/material/menu';
+import { ProfileModule } from './module/profile/profile.module';
 
 @NgModule({
   declarations: [	AppComponent ],
@@ -22,7 +23,8 @@ import {MatMenuModule} from '@angular/material/menu';
     AdminModule,
     NewsfeedModule,
     HomeModule,
-    MatMenuModule
+    MatMenuModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent],

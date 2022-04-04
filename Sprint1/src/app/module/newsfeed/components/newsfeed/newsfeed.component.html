@@ -1,5 +1,5 @@
-<div class="div-like">
-  <button class="btn-liked-list" (click)="onClickLike()">Like List</button>
+<div class="header">
+  <button (click)="onClickLike()"><mat-icon>favorite</mat-icon></button>
 </div>
 
 <!-- new post -->
@@ -7,7 +7,7 @@
   <mat-accordion>
     <mat-expansion-panel [(expanded)]="panelOpenState">
       <mat-expansion-panel-header>
-        <mat-panel-title> <h1>Post News Feed Form</h1> </mat-panel-title>
+        <mat-panel-title> <h1>Whats on your mind?</h1> </mat-panel-title>
       </mat-expansion-panel-header>
       <!-- <app-post-story></app-post-story> -->
 
@@ -48,6 +48,8 @@
   </mat-accordion>
 </div>
 
-<div class="container">
-  <app-story *ngFor="let story of stories" [inStory]="story"></app-story>
+<div class="story_container">
+  
+  <app-story (deleteStoryEmitter)="onDelete($event)" *ngFor="let story of stories" [inStory]="story"></app-story>
+
 </div>

@@ -84,7 +84,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
     let pbName: string = '';
     if (token) {
       const decoded: any = jwt_decode(token);
-      pbName = decoded.name;
+      pbName = decoded.userName;
     }
 
     this.story = {
@@ -96,11 +96,18 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
         text: this.text?.value,
       },
     };
-    
+
     // this.stories = [this.story,...this.stories]
     this.PostStoryService.postNews(this.story).subscribe((data) => {
       this.stories = [data, ...this.stories];
       this.panelOpenState = false;
     });
   }
+  onDelete(id: string) {
+    this.stories = this.stories.filter((story) => id !== story._id);
+  }
+  onDeleteComment(id: string) {
+    
+  }
+  
 }

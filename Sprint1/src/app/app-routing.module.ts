@@ -6,6 +6,7 @@ import { LoginComponent } from './module/home/components/login/login.component';
 import { AdminComponent } from './module/admin/components/admin/admin.component';
 import { NewsfeedComponent } from './module/newsfeed/components/newsfeed/newsfeed.component';
 import { RegisterComponent } from './module/home/components/register/register.component';
+import { ProfileGuard } from './core/guards/profile.guard';
 
 const routes: Routes = [
   {
@@ -27,6 +28,13 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    children:[
+      {
+        path: ':username',
+        component: ProfileComponent,
+        canActivate: [ProfileGuard],
+      }
+    ]
   },
   {
     path: 'setting',

@@ -8,7 +8,7 @@ export class VariableValue {
   end = 4;
   size = 4;
 
-  newComment: [{ id?: string; cmt?: Comments }]=[{}];
+  newComment: { id: string; cmt: Comments }[]=[];
   
 
   buildformPost() {

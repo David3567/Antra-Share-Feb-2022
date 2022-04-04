@@ -1,9 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Story } from 'src/app/services/interface/news.model';
 import { StoryService } from 'src/app/services/newsfeed.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StoryCommentComponent } from '../comment/comment.component';
 import { VariableValue } from 'src/app/services/variable.service';
+import { DeleteService } from 'src/app/services/delete.service';
+import jwt_decode from 'jwt-decode';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
+import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
+
 @Component({
   selector: 'app-story',
   templateUrl: './showstory.component.html',
@@ -11,14 +17,36 @@ import { VariableValue } from 'src/app/services/variable.service';
 })
 export class StoryComponent implements OnInit {
   @Input('inStory') storyDetail!: Story;
+  securityObj: AppUserAuth  = new AppUserAuth();
+  
+  @Output() deleteStoryEmitter = new EventEmitter<string>();
   likedme: boolean = false;
+  display: boolean = true;
+  allow: boolean = false;
   constructor(
     private storyService: StoryService,
     public dialog: MatDialog,
-    public variableValue: VariableValue
-  ) {}
+    public variableValue: VariableValue,
+    private authService: AuthService,
+    private router: Router,
+    private deleteService: DeleteService
+  ) {
+    this.securityObj = this.authService.securityObj;
+    // console.log("SHow", this.securityObj);
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const token = localStorage.getItem('bearerToken');
+    if (token) {
+      const decoded: any = jwt_decode(token);
+      if (
+        decoded.userRole === 'admin' ||
+        decoded.userName === this.storyDetail.publisherName
+      ) {
+        this.allow = true;
+      }
+    }
+  }
   addToLikeList(story: Story) {
     this.likedme = !this.likedme;
     if (this.variableValue.remove.indexOf(story._id!) !== -1) {
@@ -38,23 +66,39 @@ export class StoryComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (this.variableValue.newComment.length > 1) {
+      if (this.variableValue.newComment.length !== 0) {
         this.variableValue.newComment.forEach((ele) => {
           if (ele.id === this.storyDetail._id) {
-            this.storyDetail.comment?.push(ele.cmt!)
+            this.storyDetail.comment?.push(ele.cmt!);
           }
         });
       }
     });
   }
+  deletePost(id: string) {
+    this.deleteService.deletePost(id).subscribe((res) => console.log(res));
+    this.deleteStoryEmitter.emit(id);
+  }
+  onDeletePost(story: Story) {
+    if (confirm('Do you want to delete this post??')) {
+      this.deleteService.deletePost(story._id).subscribe(() => {
+        this.display = false;
+      });
+    }
+  }
+  checkUserRole(): boolean {
+    // console.log("SHow", this.securityObj);
+    if (
+      this.securityObj.isAuthenticated ||
+      this.storyDetail.publisherName === this.securityObj.userName
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  lookProfile(username: string) {
+    console.log(['profile', username].join('/'));
+    this.router.navigate([['profile', username].join('/')]);
+  }
 }
-
-// name: req.body.name,
-// userName: req.body.userName,
-// userEmail: req.body.userEmail.toLowerCase(),
-// password: req.body.password,
-
-// userRole: req.body.userRole,
-// age: req.body.age,
-// gender: req.body.gender,
-// phone: req.body.phone,
