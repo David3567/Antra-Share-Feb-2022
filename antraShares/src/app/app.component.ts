@@ -22,14 +22,12 @@ export class AppComponent implements OnInit {
   constructor(
     private variable: VariableValue,
     private securityService: SecurityService,
-    private route : Router,
+    private route: Router
   ) {
     this.securityObj = this.securityService.securityObj;
   }
   ngOnInit(): void {
     const token = localStorage.getItem('bearerToken');
-    console.log('start')
-    console.log(token)
     if (token) {
       const decoded: any = jwt_decode(token);
 
@@ -42,9 +40,7 @@ export class AppComponent implements OnInit {
       this.securityObj = newSecurityObj;
     }
   }
-  onClickProfile(){
-    const userName = localStorage.getItem('userName');
-    console.log(userName)
-    this.route.navigate(['./profile', userName ])
+  onClickProfile() {
+    this.route.navigate(['./profile', this.securityService.getUserName()]);
   }
 }

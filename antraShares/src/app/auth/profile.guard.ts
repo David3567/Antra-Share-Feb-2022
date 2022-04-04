@@ -32,7 +32,7 @@ export class ProfileGuard implements CanActivate {
     if (userRole === 'admin' || userName === route.params['username']) {
       return true;
     }
-    // this.router.navigate([''], { relativeTo: this.activateRoute });
+    this.router.navigate(['home'], { relativeTo: this.activateRoute });
     return false;
   }
 }

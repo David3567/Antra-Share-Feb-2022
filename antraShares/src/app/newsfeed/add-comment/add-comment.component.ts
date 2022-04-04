@@ -8,7 +8,7 @@ import {
 import { Comments } from 'src/app/interfaces/story.model';
 import { AddCommentService } from 'src/app/services/add-comment.service';
 import { VariableValue } from 'src/app/services/variable.service';
-import jwt_decode from 'jwt-decode';
+import { SecurityService } from 'src/app/services/security.service';
 
 @Component({
   selector: 'app-add-comment',
@@ -34,6 +34,7 @@ export class AddCommentComponent implements OnInit {
     public data: { _id: string },
     private fb: FormBuilder,
     private addCommentService: AddCommentService,
+    private securityService: SecurityService,
     private variableValue: VariableValue
   ) {}
 
@@ -49,15 +50,9 @@ export class AddCommentComponent implements OnInit {
   }
   onSubmit() {
     let date = new Date();
-    const token = localStorage.getItem('bearerToken');
-    let pbName: string = '';
-    if (token) {
-      const decoded: any = jwt_decode(token);
-      pbName = decoded.userName;
-    }
 
-   let comment : Comments = {
-      publisherName: pbName,
+    let comment: Comments = {
+      publisherName: this.securityService.getUserName(),
       publishedTime: date,
       content: {
         image: this.image?.value,
@@ -65,15 +60,15 @@ export class AddCommentComponent implements OnInit {
         text: this.text?.value,
       },
     };
-    this.addCommentService
-      .addComment(this.data._id, comment)
-      .subscribe((data) => {
-        // this.dialogRef.close(data);
-      });
+    // this.addCommentService
+    //   .addComment(this.data._id, comment)
+    //   .subscribe((newdata) => {
 
-    
+    //   });
+    this.addCommentService.addComment(this.data._id, comment);
 
-   this.dialogRef.close(this.comment)
+    this.dialogRef.close(comment);
+
     this.variableValue.newComment.push({
       id: this.data._id,
       cmt: comment,

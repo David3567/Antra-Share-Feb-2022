@@ -6,6 +6,7 @@ import { StoryCommentComponent } from '../story-comment/story-comment.component'
 import { VariableValue } from 'src/app/services/variable.service';
 import { DeleteService } from 'src/app/services/delete.service';
 import jwt_decode from 'jwt-decode';
+import { SecurityService } from 'src/app/services/security.service';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -13,6 +14,7 @@ import jwt_decode from 'jwt-decode';
 })
 export class StoryComponent implements OnInit {
   @Input('inStory') storyDetail!: Story;
+
   likedme: boolean = false;
   display: boolean = true;
   allow: boolean = false;
@@ -20,7 +22,8 @@ export class StoryComponent implements OnInit {
     private storyService: StoryService,
     public dialog: MatDialog,
     public variableValue: VariableValue,
-    private deleteService: DeleteService
+    private deleteService: DeleteService,
+    private securityService: SecurityService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +36,6 @@ export class StoryComponent implements OnInit {
       ) {
         this.allow = true;
       }
-      
     }
   }
   addToLikeList(story: Story) {
@@ -44,7 +46,7 @@ export class StoryComponent implements OnInit {
         (re) => re !== story._id
       );
     }
-    
+
     this.storyService.pushIntoLikeList(story);
   }
   onClickComment(story: Story) {
@@ -55,11 +57,22 @@ export class StoryComponent implements OnInit {
         story: story,
       },
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    console.log(123);
+    console.log(this.variableValue.newComment.length);
+    dialogRef.afterClosed().subscribe((del) => {
+      if(del){
+        this.storyDetail.comment = del;
+        console.log('in story');
+      console.log(del);
+      }
       if (this.variableValue.newComment.length !== 0) {
         this.variableValue.newComment.forEach((ele) => {
           if (ele.id === this.storyDetail._id) {
             this.storyDetail.comment?.push(ele.cmt!);
+            this.variableValue.newComment =
+              this.variableValue.newComment.filter(
+                (cmt) => cmt.id !== this.storyDetail._id
+              );
           }
         });
       }

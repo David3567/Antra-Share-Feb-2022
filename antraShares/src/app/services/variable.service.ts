@@ -1,6 +1,6 @@
-import { Comments, Story } from 'src/app/interfaces/story.model';
+import { Comments } from 'src/app/interfaces/story.model';
 export class VariableValue {
-  baseUrl ='http://localhost:4231/api'
+  baseUrl = 'http://localhost:4231/api';
   login: boolean = true;
   remove: string[] = [];
 
@@ -8,8 +8,7 @@ export class VariableValue {
   end = 4;
   size = 4;
 
-  newComment: { id: string; cmt: Comments }[]=[];
-  
+  newComment: { id: string; cmt: Comments }[] = [];
 
   buildformPost() {
     return {

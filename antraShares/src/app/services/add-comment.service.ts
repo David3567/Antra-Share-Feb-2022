@@ -12,12 +12,20 @@ export class AddCommentService {
   private add = 'addComment';
   addNewComment$ = new Subject<Comments>();
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
+  // addComment(id: string, comment: Comments) {
+  //   this.addNewComment$.next(comment);
+  //   return this.http.patch(
+  //     [this.variableValue.baseUrl, this.path, this.add, id].join('/'),
+  //     comment
+  //   ) as Observable<Comments>;
+   
+  // }
   addComment(id: string, comment: Comments) {
-    this.addNewComment$.next(comment);
-    return this.http.patch(
+    const newP = this.http.patch(
       [this.variableValue.baseUrl, this.path, this.add, id].join('/'),
       comment
     ) as Observable<Comments>;
+    return newP.subscribe()
    
   }
 }

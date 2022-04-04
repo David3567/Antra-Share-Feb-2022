@@ -42,7 +42,4 @@ export class StoryService {
     this.likeListByUser = deleteLike;
     this.subjectLikeList$.next(this.likeListByUser);
   }
-  addNewComment(story: Story){
-    this.newComment$.next(story);
-  }
 }

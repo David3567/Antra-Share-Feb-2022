@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Comments, Story } from 'src/app/interfaces/story.model';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VariableValue } from 'src/app/services/variable.service';
 import { StoryService } from 'src/app/services/story.service';
 import { AddCommentComponent } from '../add-comment/add-comment.component';
@@ -28,17 +28,13 @@ export class StoryCommentComponent implements OnInit {
 
   userName!: string;
   constructor(
+    public dialogClose: MatDialogRef<StoryCommentComponent>,
     @Inject(MAT_DIALOG_DATA)
     private data: { story: Story },
     private variableValue: VariableValue,
     public dialog: MatDialog,
     private deleteService: DeleteService
   ) {}
-  //
-  // console.log("dfadsf")
-  //   this.variableValue.newComment.forEach(ele=>{
-  //     console.log(ele.id)
-  //   })
   ngOnInit(): void {
     this.start = this.variableValue.start;
     this.end = this.variableValue.end;
@@ -90,31 +86,37 @@ export class StoryCommentComponent implements OnInit {
       width: '25%',
       data: {
         _id: this.data.story._id,
+  
       },
     });
-
+   
     dialogRef.afterClosed().subscribe((newcomment) => {
-      console.log("in story-commnet ")
+      console.log("in story-commnet")
+      
+      console.log(newcomment)
       if (newcomment !== undefined) {
-        // console.log(newcomment);
         this.comments = [...this.comments, newcomment];
         this.countpage();
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         newcomment = undefined;
       }
     });
+   
+   
+    
   }
   onDeleteComment(comment: Comments) {
     if (confirm('Do you want to delete this comment??')) {
       this.deleteService
         .deleteComment(this.data.story._id, comment._id)
-        .subscribe((del) => {
+        .subscribe(() => {
           this.comments = this.comments.filter(
             (data) => data._id !== comment._id
           );
           this.countpage();
           this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         });
+        this.dialogClose.close(this.comments);
     }
   }
 

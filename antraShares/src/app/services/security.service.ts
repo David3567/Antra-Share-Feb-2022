@@ -15,33 +15,14 @@ const httpOptions = {
 })
 export class SecurityService {
   private securityObject: AppUserAuth = new AppUserAuth();
-  constructor(
-    private variableValue: VariableValue,
-    private http: HttpClient,
-
-  ) {}
+  
+  constructor(private variableValue: VariableValue, private http: HttpClient) {}
   set securityObj(newObj: AppUserAuth) {
     this.securityObject = newObj;
   }
   get securityObj() {
     return this.securityObject;
   }
-  /**
-   * const token = localStorage.getItem('bearerToken');
-    console.log('start')
-    console.log(token)
-    if (token) {
-      const decoded: any = jwt_decode(token);
-
-      const newSecurityObj = {
-        userName: decoded.userName,
-        userEmail: decoded.userEmail,
-        userRole: decoded.userRole,
-      };
-      this.securityService.securityObj = newSecurityObj;
-      this.securityObj = newSecurityObj;
-    }
-   */
   login(entity: AppUser) {
     this.resetSecurityObject();
 
@@ -55,11 +36,10 @@ export class SecurityService {
         tap((data: any) => {
           Object.assign(this.securityObject, data.body);
           const authen = this.securityObject.bearerToken;
-          console.log(this.securityObject.bearerToken);
-          const decoded: any = jwt_decode(this.securityObject.bearerToken||'');
-          // store jwt into localstorage
+          const decoded: any = jwt_decode(
+            this.securityObject.bearerToken || ''
+          );
           localStorage.setItem('bearerToken', authen!);
-          localStorage.setItem('userName', decoded.userName!);
         })
       );
   }
@@ -76,5 +56,8 @@ export class SecurityService {
     this.securityObject.userRole = '';
 
     localStorage.removeItem('bearerToken');
+  }
+  getUserName(){
+   return this.securityObj.userName
   }
 }

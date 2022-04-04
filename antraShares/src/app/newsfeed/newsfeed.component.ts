@@ -13,8 +13,7 @@ import { LikelistComponent } from './likelist/likelist.component';
 import { VariableValue } from '../services/variable.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PostStoryService } from '../services/post-story.service';
-import jwt_decode from 'jwt-decode';
-import { DeleteService } from '../services/delete.service';
+import { SecurityService } from '../services/security.service';
 
 @Component({
   selector: 'app-newsfeed',
@@ -44,6 +43,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     private variableValue: VariableValue,
     private fb: FormBuilder,
     private postStoryService: PostStoryService,
+    private securityService : SecurityService,
   ) {}
 
   ngOnInit(): void {
@@ -75,15 +75,8 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   //new post
   onSubmit() {
     let date = new Date();
-    const token = localStorage.getItem('bearerToken');
-    let pbName: string = '';
-    if (token) {
-      const decoded: any = jwt_decode(token);
-      pbName = decoded.userName;
-    }
-
     this.story = {
-      publisherName: pbName,
+      publisherName: this.securityService.getUserName(),
       publishedTime: date,
       content: {
         image: this.image?.value,
