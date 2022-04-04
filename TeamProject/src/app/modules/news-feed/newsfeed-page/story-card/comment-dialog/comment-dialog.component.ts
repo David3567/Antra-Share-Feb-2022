@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { LoginService } from 'src/app/services/login.service';
+import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class CommentDialogComponent implements OnInit {
 
   constructor(
     private newsService: NewsfeedService,
-    private loginService: LoginService,
+    private decoderService: JWTDecoderService,
     @Inject(MAT_DIALOG_DATA) public data: { comment: Comment[]; _id: string }
   ) { }
 
@@ -32,7 +32,7 @@ export class CommentDialogComponent implements OnInit {
       Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
 
     this.pageList = this.commentList.slice(this.head, this.tail);
-    this.pageSize = Math.ceil(this.commentList.length / 3);
+    this.pageSize = this.commentList.length === 0 ? 1 : Math.ceil(this.commentList.length / 3);
 
     console.log(this.head, this.tail, this.pageSize * 3);
     this.nextBtn = this.pageSize > 1 ? false : this.nextBtn;
@@ -62,7 +62,7 @@ export class CommentDialogComponent implements OnInit {
 
   postNewComment(comment: string) {
     this.newComment = {
-      "publisherName": this.loginService.currentUser.userName,
+      "publisherName": this.decoderService.getCurrentUser().userName,
       "content": {
         "text": comment
       }
