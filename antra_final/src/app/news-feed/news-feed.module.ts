@@ -8,9 +8,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-import { ShortenPipe } from '../core/shorten.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { CommentComponent } from './comment/comment.component';
+import { ShortenPipe } from '../core/shorten.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { CommentComponent } from './comment/comment.component';
     StoryCardComponent,
     PostCardComponent,
     LikeListComponent,
-    ShortenPipe,
     CommentComponent,
   ],
   imports: [

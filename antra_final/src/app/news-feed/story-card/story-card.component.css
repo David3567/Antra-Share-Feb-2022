@@ -25,6 +25,7 @@ mat-card-title {
     font-size: 15px;
     /* font-style: oblique; */
     font-weight: 700;
+    cursor: pointer;
 }
 
 mat-card-title-group {
