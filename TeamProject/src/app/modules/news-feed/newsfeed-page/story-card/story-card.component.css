@@ -1,88 +1,89 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container {
-    padding: 10px;
-    width: 580px; 
-    box-sizing: border-box; 
-    border: 1px solid black; 
-    border-radius: 3px; 
-    box-shadow: 6px 6px 6px 0 black;
+  padding: 10px;
+  width: 580px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: 6px 6px 6px 0 black;
 }
 
 .userContainer {
-    display: flex; 
-    align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
 }
 
 .user {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .user-detail {
-    display: flex;
-    column-gap: 10px; 
-    padding: 5px; 
-    margin-left: 20px;
-    font-size: 20px;
+  display: flex;
+  column-gap: 10px;
+  padding: 5px;
+  margin-left: 20px;
+  font-size: 20px;
 }
 
+.active:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 .userAvatar {
-    width: 60px; 
-    height: 60px; 
-    border-radius: 50%; 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
-
 .contentContainer {
-    display: flex;
-    column-gap: 10px; 
-    width: 100%; 
+  display: flex;
+  column-gap: 10px;
+  width: 100%;
 }
 
 .contentImg {
-    padding: 7px 0;
-    max-width: 290px;
+  padding: 7px 0;
+  max-width: 290px;
 }
 
 .content {
-    padding: 7px 0;
-    min-height: 40px;
+  padding: 7px 0;
+  min-height: 40px;
 }
 
 .reactionsContainer {
-    display: flex; 
-    justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .comments {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    column-gap: 10px; 
-    width: 250px; 
-    border: 1px solid black; 
-    padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  width: 250px;
+  border: 1px solid black;
+  padding: 5px;
 }
 
 .like {
-    color: lightgray; 
-    margin-bottom: 4px; 
-    font-size: 25px;
-    
+  color: lightgray;
+  margin-bottom: 4px;
+  font-size: 25px;
 }
 
 .liked {
-    color: red;
+  color: red;
 }
 
 .like:hover {
-    cursor: pointer;
-    font-size: 35px;
-    transform: scale(1.4);
+  cursor: pointer;
+  font-size: 35px;
+  transform: scale(1.4);
 }

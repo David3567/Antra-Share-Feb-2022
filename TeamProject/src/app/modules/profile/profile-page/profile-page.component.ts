@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { flatMap, tap } from 'rxjs';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -8,6 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ProfilePageComponent implements OnInit {
   displayName: string = 'Apawcalypse♡';
+  userName: string = '@SiameseCat101';
+  user: any;
   hide: boolean = true;
 
   profile = new FormGroup({
@@ -30,7 +34,7 @@ export class ProfilePageComponent implements OnInit {
     confirm: new FormControl('', Validators.required),
   });
 
-  constructor() {}
+  constructor(private profileService: UsersService) { }
 
   get nameFC() {
     return this.profile.get('name');
@@ -42,7 +46,20 @@ export class ProfilePageComponent implements OnInit {
     return this.profile.get('confirm');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getProfile();
+  }
+
+  getProfile() {
+    this.profileService.getUserName().pipe(
+      tap((username: string) => this.userName = username),
+      flatMap((username: string) => this.profileService.getProfile(username))).pipe(
+        tap(console.log)).
+      subscribe(info => {
+        this.user = info
+        this.displayName = info.name
+      })
+  }
 
   onSubmit() {
     console.log(this.profile.value);
