@@ -65,7 +65,7 @@ export class StoryCardComponent implements OnInit {
     if (this.guardService.canActivate()) {  
       this.router.navigate([`profile/${publisherName}`]);  
     } else {
-      this.router.navigateByUrl("/newsfeed");  
+      this.router.navigateByUrl("/");  
     }
     
   }
