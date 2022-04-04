@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { Loginobject } from '../interface/loginobject.model';
 import { UserProfile } from '../interface/user-profile.model';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,10 @@ export class LoginService {
       .pipe(
         tap((data: any) => {
           Object.assign(this.userObject, data.body);
-          localStorage.setItem('bearerToken', this.userObject.bearerToken);
+          let decodedToken: any = jwt_decode(this.userObject.bearerToken);
+          // let newDecodedToken: any = { ...decodedToken, userRole: undefined };
+          localStorage.setItem('bearerToken', JSON.stringify(decodedToken));
+          // console.log(newDecodedToken.userName);
         })
       );
   }
