@@ -1,9 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Story} from '../story.interfaces';
 import {MatDialog} from '@angular/material/dialog';
 import { CommentComponent } from '../comment/comment.component';
 import { Variables } from 'src/app/core/globalVariable';
+import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/core/profile.service';
+import { NewUser } from 'src/app/interface/newuser.model';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,17 +15,35 @@ import { Variables } from 'src/app/core/globalVariable';
   templateUrl: './story-card.component.html',
   styleUrls: ['./story-card.component.css']
 })
-export class StoryCardComponent implements OnInit {
+export class StoryCardComponent implements OnInit, OnDestroy {
   @Input() storiesdetail!: Story;
   @Input() currentUser!: string;
   @Input() currentUserRole!: string;
   liked: boolean = false;
+  userList!: NewUser;
 
   constructor(private newsfeedservice:NewsfeedService,
+    private profileService: ProfileService,
     public dialog: MatDialog,
-    public variable: Variables ) { }
+    public variable: Variables,
+    private router: Router ) { }
+    subscriptionProfile$ =  new Subscription();
 
   ngOnInit(): void {
+
+  }
+
+  onToProfile(name: string) {
+    this.subscriptionProfile$ = this.profileService.getProfiles(name).subscribe((data: any) => {
+      this.userList = data;
+    })
+    console.log(this.userList);
+
+    this.profileService.updateCurrentUser(this.userList);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionProfile$.unsubscribe();
   }
 
   showComment(){

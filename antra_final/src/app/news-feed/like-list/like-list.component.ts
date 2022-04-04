@@ -4,11 +4,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Subscription } from 'rxjs';
 import { Variables } from 'src/app/core/globalVariable';
+import { ShortenPipe } from 'src/app/core/shorten.pipe';
 
 @Component({
   selector: 'app-like-list',
   templateUrl: './like-list.component.html',
-  styleUrls: ['./like-list.component.css']
+  styleUrls: ['./like-list.component.css'],
 })
 export class LikeListComponent implements OnInit, OnDestroy {
   likedList!: Story[];

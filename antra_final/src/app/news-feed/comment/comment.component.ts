@@ -8,7 +8,7 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Comment } from '../story.interfaces';
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 @Component({
   templateUrl: './comment.component.html',
@@ -17,8 +17,8 @@ import jwt_decode from "jwt-decode";
 
 
 export class CommentComponent implements OnInit {
-  token: any = localStorage.getItem('bearerToken')
-  decoded: any = jwt_decode(this.token);
+  token: any = localStorage.getItem('bearerToken');
+  user: any = JSON.parse(this.token);
 
   pageofComments!: Array<any>;
   current_page: number = 1;
@@ -91,15 +91,15 @@ export class CommentComponent implements OnInit {
 
   onSubmit() {
     this.commentObject = {
-      'publisherName': this.decoded.userName,
+      'publisherName': this.user.userName,
       'content': this.CommentForm.value,
     };
     this.newsfeedService.addNewComment(this.id, this.commentObject).subscribe((data: Comment)=>{
       console.log(data);
     })
+    // console.log(typeof this.token);
+    console.log(this.user.userRole);
   }
 }
-// function bearerToken(bearerToken: any): string {
-//   throw new Error('Function not implemented.');
-// }
+
 
