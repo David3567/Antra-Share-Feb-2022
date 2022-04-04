@@ -1,23 +1,26 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
+import { JWTDecoderService } from "./jwt-decoder.service";
 import { LoginService } from "./login.service";
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class ProfileGuard implements CanActivate {
-    constructor(private LS: LoginService, private router: Router) { }
+    constructor(private decoderService: JWTDecoderService,
+        private LS: LoginService,
+        private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot,
-                state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         return this.LS.isAuthenticated().then((authenticated) => {
             if (authenticated) {
-                if(this.LS.currentUser["userRole"] === "admin") {
+                if (this.decoderService.getCurrentUser().userRole === "admin") {
                     return true;
-                } else if(route.params["username"] === this.LS.currentUser["userName"]) {
+                } else if (route.params["username"] === this.decoderService.getCurrentUser().userName) {
                     this.router.navigate(["profile"]);
-                }else {
+                } else {
                     return false;
                 }
             } else {
