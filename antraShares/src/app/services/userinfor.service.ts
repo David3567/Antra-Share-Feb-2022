@@ -10,11 +10,17 @@ import { VariableValue } from './variable.service';
 export class UserinforService {
   private path = 'users';
   private getAllUser = 'getAllUsers';
+  private getProfile = 'getProfile';
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
   getUsers() {
     return this.http.get(
       [this.variableValue.baseUrl, this.path, this.getAllUser].join('/')
     ) as Observable<Users[]>;
+  }
+  getUser(name: string) {
+    return this.http.get(
+      [this.variableValue.baseUrl, this.path, this.getProfile, name].join('/')
+    ) as Observable<Users>;
   }
   deleteUser(user: Users) {
     const url = `${this.variableValue.baseUrl}/${this.path}/${user._id}`;

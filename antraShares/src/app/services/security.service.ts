@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { VariableValue } from './variable.service';
 import { AppUser, AppUserAuth } from '../interfaces/app-user.model';
 import { Observable, tap } from 'rxjs';
-
+import jwt_decode from 'jwt-decode';
 const httpOptions = {
   observe: 'response' as 'body',
   headers: new HttpHeaders({
@@ -26,6 +26,22 @@ export class SecurityService {
   get securityObj() {
     return this.securityObject;
   }
+  /**
+   * const token = localStorage.getItem('bearerToken');
+    console.log('start')
+    console.log(token)
+    if (token) {
+      const decoded: any = jwt_decode(token);
+
+      const newSecurityObj = {
+        userName: decoded.userName,
+        userEmail: decoded.userEmail,
+        userRole: decoded.userRole,
+      };
+      this.securityService.securityObj = newSecurityObj;
+      this.securityObj = newSecurityObj;
+    }
+   */
   login(entity: AppUser) {
     this.resetSecurityObject();
 
@@ -40,8 +56,10 @@ export class SecurityService {
           Object.assign(this.securityObject, data.body);
           const authen = this.securityObject.bearerToken;
           console.log(this.securityObject.bearerToken);
+          const decoded: any = jwt_decode(this.securityObject.bearerToken||'');
           // store jwt into localstorage
           localStorage.setItem('bearerToken', authen!);
+          localStorage.setItem('userName', decoded.userName!);
         })
       );
   }

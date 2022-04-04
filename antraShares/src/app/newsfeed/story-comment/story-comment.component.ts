@@ -76,10 +76,12 @@ export class StoryCommentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((newcomment) => {
+      console.log("in story-commnet ")
       if (newcomment !== undefined) {
         this.comments = [...this.comments, newcomment];
         this.countpage();
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
+        newcomment = undefined;
       }
     });
   }

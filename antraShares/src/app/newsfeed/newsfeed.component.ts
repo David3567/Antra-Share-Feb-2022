@@ -84,7 +84,8 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
     let pbName: string = '';
     if (token) {
       const decoded: any = jwt_decode(token);
-      pbName = decoded.name;
+      console.log(token);
+      pbName = decoded.userName;
     }
 
     this.story = {
@@ -96,7 +97,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
         text: this.text?.value,
       },
     };
-    
     // this.stories = [this.story,...this.stories]
     this.postStoryService.postNews(this.story).subscribe((data) => {
       this.stories = [data, ...this.stories];

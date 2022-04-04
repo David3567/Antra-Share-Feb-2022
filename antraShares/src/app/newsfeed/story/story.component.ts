@@ -4,6 +4,7 @@ import { StoryService } from 'src/app/services/story.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StoryCommentComponent } from '../story-comment/story-comment.component';
 import { VariableValue } from 'src/app/services/variable.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -15,7 +16,8 @@ export class StoryComponent implements OnInit {
   constructor(
     private storyService: StoryService,
     public dialog: MatDialog,
-    public variableValue: VariableValue
+    public variableValue: VariableValue,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
@@ -38,10 +40,13 @@ export class StoryComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result)
       if (this.variableValue.newComment.length > 1) {
         this.variableValue.newComment.forEach((ele) => {
           if (ele.id === this.storyDetail._id) {
-            this.storyDetail.comment?.push(ele.cmt!)
+            console.log("hohohoh in story");
+            this.storyDetail  
+            // this.storyDetail.comment?.push(ele.cmt!)
           }
         });
       }
@@ -49,12 +54,3 @@ export class StoryComponent implements OnInit {
   }
 }
 
-// name: req.body.name,
-// userName: req.body.userName,
-// userEmail: req.body.userEmail.toLowerCase(),
-// password: req.body.password,
-
-// userRole: req.body.userRole,
-// age: req.body.age,
-// gender: req.body.gender,
-// phone: req.body.phone,

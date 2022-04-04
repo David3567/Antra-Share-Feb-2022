@@ -17,7 +17,7 @@ import jwt_decode from 'jwt-decode';
 })
 export class AddCommentComponent implements OnInit {
   form!: FormGroup;
-  comment!: Comments;
+  // comment!: Comments;
   get image() {
     return this.form.get('image');
   }
@@ -55,7 +55,7 @@ export class AddCommentComponent implements OnInit {
       pbName = decoded.name;
     }
 
-    this.comment = {
+   let comment : Comments = {
       publisherName: pbName,
       publishedTime: date,
       content: {
@@ -65,14 +65,15 @@ export class AddCommentComponent implements OnInit {
       },
     };
     this.addCommentService
-      .addComment(this.data._id, this.comment)
+      .addComment(this.data._id, comment)
       .subscribe((data) => {
       });
       //updata
-    this.dialogRef.close(this.comment);
+    this.dialogRef.close(comment);
     this.variableValue.newComment.push({
       id: this.data._id,
-      cmt: this.comment,
+      cmt: comment,
     });
+
   }
 }

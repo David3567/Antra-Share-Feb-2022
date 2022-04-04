@@ -8,7 +8,14 @@
         class="avatar"
       />
     </div>
-    <div>{{ storyDetail.publisherName }}</div>
+    <div>
+      <!-- [routerLink]="['/profile', storyDetail.publisherName]" [state]="{data:storyDetail.publisherName}" -->
+      <a
+        [routerLink]="['/profile', storyDetail.publisherName]"
+      >
+        {{ storyDetail.publisherName }}</a
+      >
+    </div>
     <div>{{ storyDetail.publishedTime | date }}</div>
   </div>
   <div class="story-dashboard">
@@ -37,3 +44,5 @@
     </button>
   </div>
 </div>
+
+<router-outlet></router-outlet>

@@ -2,10 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import {
-  FormGroup, FormBuilder, Validators, AbstractControl,
-  ValidationErrors, FormControl
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+  FormControl,
 } from '@angular/forms';
 import { MatError } from '@angular/material/form-field';
+import { Story } from '../interfaces/story.model';
+import { User } from '../interfaces/user.model';
+import { UserinforService } from '../services/userinfor.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 const THUMBUP_ICON =
   `
@@ -17,23 +25,20 @@ const THUMBUP_ICON =
   </svg>
 `;
 
-// export interface Tile {
-//   color: string;
-//   text: string;
-// }
-
-const color = "lightblue";
+const color = 'lightblue';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
   hide = true;
   form!: FormGroup;
   myForm!: FormGroup;
   selectedGender!: string;
+  userNameUrl!: string;
+  userProfile!: User;
   floatLabelControl = new FormControl('auto');
   get username() {
     return this.form.get('username');
@@ -48,7 +53,7 @@ export class ProfileComponent implements OnInit {
   }
 
   get gender() {
-    return this.form.get('gender')
+    return this.form.get('gender');
   }
 
   get age() {
@@ -56,12 +61,20 @@ export class ProfileComponent implements OnInit {
   }
 
   get phone() {
-    return this.form.get('phone')
+    return this.form.get('phone');
   }
 
-
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private fb: FormBuilder) {
-    iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private fb: FormBuilder,
+    private userinforSerVive: UserinforService,
+    private route :ActivatedRoute,
+  ) {
+    iconRegistry.addSvgIconLiteral(
+      'thumbs-up',
+      sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON)
+    );
   }
 
   ngOnInit(): void {
@@ -69,17 +82,26 @@ export class ProfileComponent implements OnInit {
       validators: matchPassword,
       floatLabel: this.floatLabelControl,
     });
+    this.route.paramMap.subscribe((params: ParamMap)=>{
+      this.userNameUrl = params.get('username') || '';
+      // console.log(params.get('username'))
+    })
+    this.userinforSerVive.getUser(this.userNameUrl).subscribe((data)=>{
+     this.userProfile = data
+    })
+    //get data form story
+    // this.profile = history.state.data;
   }
 
   buildform() {
     return {
-      username: ['User name', [userLength(5, 12), Validators.required]],
-      password: ['1234', [characterCheck(5)]],
+      username: ['', [userLength(5, 12), Validators.required]],
+      password: ['', [characterCheck(5)]],
       confirmPW: ['', Validators.required],
-      email: [{ value: 'email@gmail.com', disabled: true }],
+      email: [''],
       age: ['', Validators.required],
       phone: ['', Validators.required],
-      gender: ['', Validators.required]
+      gender: ['', Validators.required],
     };
   }
 
@@ -92,21 +114,26 @@ export class ProfileComponent implements OnInit {
   }
 
   getErrorMessage(): string {
-    if (this.password?.errors?.['needUpper']) return "Password need at least 1 upper";
-    if (this.password?.errors?.['needNumber']) return "Password need at least 1 number";
-    if (this.password?.errors?.['needSpecial']) return "Password need at least 1 special";
-    if (this.password?.errors?.['needLower']) return "Password need at least 1 lower";
-    if (this.password?.errors?.['minlen']) return "Passwords need to be longer than " + this.password?.errors?.['minlength'];
-    return "";
+    if (this.password?.errors?.['needUpper'])
+      return 'Password need at least 1 upper';
+    if (this.password?.errors?.['needNumber'])
+      return 'Password need at least 1 number';
+    if (this.password?.errors?.['needSpecial'])
+      return 'Password need at least 1 special';
+    if (this.password?.errors?.['needLower'])
+      return 'Password need at least 1 lower';
+    if (this.password?.errors?.['minlen'])
+      return (
+        'Passwords need to be longer than ' +
+        this.password?.errors?.['minlength']
+      );
+    return '';
   }
-
 }
-
 
 interface ValidatorFn {
   (control: AbstractControl): ValidationErrors | null;
 }
-
 
 function userLength(minlen: number, maxlen: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -145,4 +172,3 @@ function characterCheck(minlen: number): ValidatorFn {
     return null;
   };
 }
-
