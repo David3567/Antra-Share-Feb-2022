@@ -24,7 +24,7 @@ export class ProfilePageComponent implements OnInit {
       Validators.minLength(5),
       Validators.maxLength(12),
     ]),
-    email: new FormControl({ value: 'catLover78@gmail.com', disabled: true }),
+    email: new FormControl({ value: '', disabled: true }),
     age: new FormControl(''),
     gender: new FormControl(''),
     password: new FormControl('', [
@@ -56,11 +56,13 @@ export class ProfilePageComponent implements OnInit {
       this.displayName = this.decoderServ.getCurrentUser().name;
       console.log(this.decoderServ.getCurrentUser());
       this.userName = this.decoderServ.getCurrentUser().userName ? this.decoderServ.getCurrentUser().userName : null;
+      this.profile.get('email').setValue(this.decoderServ.getCurrentUser().userEmail);
       return
     }
-    
+        
     this.userName = this.route.snapshot.params["username"];
     this.getUserInfo();
+    
     
   }
 
@@ -69,6 +71,7 @@ export class ProfilePageComponent implements OnInit {
       console.log(response);
       this.user = response;
       this.displayName = this.user.name ? this.user.name : (this.user ? this.userName : null);
+      this.profile.get('email').setValue(this.user.userEmail);
     });
   }
 

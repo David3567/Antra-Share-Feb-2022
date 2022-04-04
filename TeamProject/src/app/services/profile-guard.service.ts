@@ -19,12 +19,14 @@ export class ProfileGuard implements CanActivate {
                 if (this.decoderService.getCurrentUser().userRole === "admin") {
                     return true;
                 } else if (route.params["username"] === this.decoderService.getCurrentUser().userName) {
-                    this.router.navigate([`profile/${this.decoderService.getCurrentUser().userName}`]);
+                    return true;
                 } else {
                     return false;
                 }
             } else {
                 this.router.navigate(["/"]);
+                return false;
+                
             }
         });
     }
