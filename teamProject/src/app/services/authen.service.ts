@@ -31,7 +31,8 @@ export class AuthenService {
   }
 
   getSpecificUser(username:string){
-    return this.http.get<NewUser>(AUTH_API+'users/getprofile/'+username).pipe(catchError(error=>{ return of(false)}));
+    // return this.http.get<NewUser>(AUTH_API+'users/getprofile/'+username).pipe(catchError(error=>{ return of(false)}));
+    return this.http.get<NewUser>(AUTH_API+'users/getprofile/'+username);
   }
 
   register(userName: string, userEmail: string, password: string, userRole: string): Observable<any> {
