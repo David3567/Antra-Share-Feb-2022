@@ -18,6 +18,7 @@ export class JwtService {
     this.token = data.bearerToken;
     localStorage.setItem('token', this.token);
     localStorage.setItem('username', data.userName);
+    localStorage.setItem('profileToShow', data.userName);
   }
 
   DecodeToken() {
@@ -25,5 +26,15 @@ export class JwtService {
     this.userEmail = this.decodedToken.userEmail;
     this.userRole = this.decodedToken.userRole;
   }
-
+  
+  isAdmin() {
+    if(this.userRole == 'admin') {
+      console.log(this.userName);
+      return true;
+    }
+    else {
+      console.log(this.userName);
+      return false;
+    }
+  }
 }

@@ -18,8 +18,8 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup = this.fb.group(
     {
-      email: ['kru24528@gmail.com', [Validators.required, Validators.email]],
-      password: ['Kru24528',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
+      email: ['kruadmin445@gmail.com', [Validators.required, Validators.email]],
+      password: ['Kruadmin445',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
     }
   );
 
@@ -43,7 +43,7 @@ export class LoginFormComponent implements OnInit {
       (data) => {
         this.jwtService.getJWT(data);
         this.jwtService.DecodeToken();
-
+        
         setTimeout(() => {
           this.router.navigateByUrl('default/newsfeed');
         }, 2000);
