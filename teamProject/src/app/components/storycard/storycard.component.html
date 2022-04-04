@@ -8,7 +8,9 @@
     </nz-card>
   
     <ng-template #avatarTemplate>
-      <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+      <div (click)="showProfile()">
+        <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" ></nz-avatar>
+      </div>
     </ng-template>
   
     <ng-template #coverTemplate>

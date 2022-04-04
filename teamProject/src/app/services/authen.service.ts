@@ -77,4 +77,12 @@ export class AuthenService {
   grantDeleteAccessbility(publisherName:string):boolean{
     return this.verifyProfileAccessbility(publisherName);
   }
+
+  getUserName(): string {
+    const token = localStorage.getItem('token');
+    if(token!==null){
+      return this.decodeToken(token).userName;
+    }
+    return'';
+  }
 }

@@ -1,5 +1,6 @@
 import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/interfaces/comment.model';
 import { News } from 'src/app/interfaces/news.model';
@@ -34,7 +35,7 @@ export class StorycardComponent implements OnInit {
   canDeleteComment:boolean[] = new Array(5).fill(false);
 
 
-  constructor(private newsfeedservice:NewsfeedService, private authen:AuthenService) { }
+  constructor(private newsfeedservice:NewsfeedService, private authen:AuthenService, private router: Router) { }
 
   ngOnInit(): void {
     if(this.news?.comment.length<=5)
@@ -124,5 +125,12 @@ export class StorycardComponent implements OnInit {
         location.reload()
       }
     );
+  }
+
+  showProfile(){
+    localStorage.setItem('userName',this.news.publisherName)
+    setTimeout(() => {
+      this.router.navigateByUrl('default/profile');
+    }, 1000);
   }
 }
