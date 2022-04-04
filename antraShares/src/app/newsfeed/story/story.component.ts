@@ -33,6 +33,7 @@ export class StoryComponent implements OnInit {
       ) {
         this.allow = true;
       }
+      
     }
   }
   addToLikeList(story: Story) {
@@ -43,6 +44,7 @@ export class StoryComponent implements OnInit {
         (re) => re !== story._id
       );
     }
+    
     this.storyService.pushIntoLikeList(story);
   }
   onClickComment(story: Story) {

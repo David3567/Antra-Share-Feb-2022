@@ -13,14 +13,9 @@ export class DeleteService {
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
 
   deletePost(id: string | undefined) {
-    const del = this.http.delete(
+    return this.http.delete(
       [this.variableValue.baseUrl, this.DPost, id].join('/')
     );
-    console.log([this.variableValue.baseUrl, this.DPost, id].join('/'));
-    console.log(del);
-    return del;
-    // return this.http.delete(
-    //   [this.variableValue.baseUrl, this.DPost, id].join('/')
   }
   deleteComment(postId: string | undefined, commentId: string | undefined) {
     return this.http.delete(

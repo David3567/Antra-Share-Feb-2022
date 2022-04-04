@@ -10,7 +10,10 @@ import { VariableValue } from './variable.service';
 export class PostStoryService {
   private path = 'news';
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
-  postNews(data:Story){
-    return this.http.post([this.variableValue.baseUrl,this.path].join('/'),data) as Observable<Story>;
+  postNews(data: Story) {
+    return this.http.post(
+      [this.variableValue.baseUrl, this.path].join('/'),
+      data
+    ) as Observable<Story>;
   }
 }

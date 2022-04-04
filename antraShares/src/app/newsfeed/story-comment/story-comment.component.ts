@@ -61,7 +61,7 @@ export class StoryCommentComponent implements OnInit {
       const decoded: any = jwt_decode(token);
       this.userName = decoded.userName;
       if (decoded.userRole === 'admin') {
-        // this.allow = true;
+        this.allow = true;
       }
     }
   }
@@ -95,7 +95,7 @@ export class StoryCommentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((newcomment) => {
       if (newcomment !== undefined) {
-        console.log(newcomment);
+        // console.log(newcomment);
         this.comments = [...this.comments, newcomment];
         this.countpage();
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
@@ -103,13 +103,15 @@ export class StoryCommentComponent implements OnInit {
     });
   }
   onDeleteComment(comment: Comments) {
-    console.log(comment._id);
-    console.log(this.data.story._id);
     if (confirm('Do you want to delete this comment??')) {
       this.deleteService
         .deleteComment(this.data.story._id, comment._id)
-        .subscribe(() => {
-          this.display = true;
+        .subscribe((del) => {
+          this.comments = this.comments.filter(
+            (data) => data._id !== comment._id
+          );
+          this.countpage();
+          this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         });
     }
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Story } from '../interfaces/story.model';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Comments, Story } from '../interfaces/story.model';
 import { VariableValue } from './variable.service';
 
 @Injectable({
@@ -11,6 +11,9 @@ export class StoryService {
   private path = 'news';
   likeListByUser: Story[] = [];
   subjectLikeList$ = new BehaviorSubject(this.likeListByUser);
+
+  newComment$ = new Subject<Comments>();
+  
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
   getStories() {
     return this.http.get(
@@ -38,5 +41,8 @@ export class StoryService {
     );
     this.likeListByUser = deleteLike;
     this.subjectLikeList$.next(this.likeListByUser);
+  }
+  addNewComment(story: Story){
+    this.newComment$.next(story);
   }
 }

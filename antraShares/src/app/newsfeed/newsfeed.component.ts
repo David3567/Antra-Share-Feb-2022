@@ -1,11 +1,8 @@
 import {
   Component,
   OnInit,
-  Inject,
   OnDestroy,
   Input,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import { Story } from '../interfaces/story.model';
 import { StoryService } from '../services/story.service';
@@ -24,7 +21,7 @@ import { DeleteService } from '../services/delete.service';
   templateUrl: './newsfeed.component.html',
   styleUrls: ['./newsfeed.component.css'],
 })
-export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
+export class NewsfeedComponent implements OnInit, OnDestroy {
   @Input() newPost!: Story;
   stories!: Story[];
   subcribeStoryService!: Subscription;
@@ -47,7 +44,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
     private variableValue: VariableValue,
     private fb: FormBuilder,
     private postStoryService: PostStoryService,
-    private deleteService: DeleteService
   ) {}
 
   ngOnInit(): void {
@@ -58,9 +54,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
         this.stories = storyData;
         this.stories.reverse();
       });
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
   ngOnDestroy(): void {
     this.subcribeStoryService.unsubscribe();
@@ -86,7 +79,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
     let pbName: string = '';
     if (token) {
       const decoded: any = jwt_decode(token);
-      pbName = decoded.name;
+      pbName = decoded.userName;
     }
 
     this.story = {
@@ -104,11 +97,5 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
       this.stories = [data, ...this.stories];
       this.panelOpenState = false;
     });
-  }
-  onDeletePost(story: Story) {
-    console.log(story._id);
-    // this.deleteService.deletePost(story._id).subscribe(() => {
-    //   this.stories = this.stories.filter((data) => data._id !== story._id);
-    // });
   }
 }
