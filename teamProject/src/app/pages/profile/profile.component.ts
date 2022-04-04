@@ -12,7 +12,7 @@ import { AuthenService } from 'src/app/services/authen.service';
 })
 export class ProfileComponent implements OnInit {
 
-  userProfile!:NewUser;
+  userProfile?:NewUser;
 
   myForm: FormGroup = this.formbuilder.group({
     username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
@@ -42,11 +42,10 @@ export class ProfileComponent implements OnInit {
   constructor(private authen:AuthenService, private formbuilder: FormBuilder, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-
-      let username = localStorage.getItem('profileToShow');
+      let username = localStorage.getItem('userName');
       if (username==null)
       {
-        console.log('error retriving user')
+        username = this.authen.getUserName();
       }
       else 
       {
@@ -59,7 +58,8 @@ export class ProfileComponent implements OnInit {
             }
             else {
               this.userProfile = data;
-              //console.log(this.userProfile)
+              console.log(this.userProfile)
+              this.cdr.detectChanges();
             }
           }
           
@@ -87,7 +87,6 @@ export class ProfileComponent implements OnInit {
     setTimeout(() => {
       this.isVisible = false;
       this.isConfirmLoading = false;
-      this.userProfile.userName=this.myForm.get('username')?.value;
       this.resetForm();
       this.cdr.detectChanges();
     }, 1000);

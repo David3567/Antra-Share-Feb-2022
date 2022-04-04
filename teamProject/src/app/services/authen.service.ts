@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, map } from 'rxjs/operators';
 import { NewUser } from "src/app/interfaces/backEndUser.model";
+import { JwtUserModel } from "src/app/interfaces/jwt.model";
+import jwt_decode from 'jwt-decode';
+
 
 const AUTH_API = 'http://localhost:4231/api/';
 const httpOptions = {
@@ -49,5 +52,38 @@ export class AuthenService {
       userEmail,
       password
     }, httpOptions);
+  }
+
+  saveJwtToken(token:string){
+    localStorage.setItem('token',token);
+  }
+
+  decodeToken(token:string):JwtUserModel {
+    return jwt_decode(token) as JwtUserModel;
+  }
+
+  verifyProfileAccessbility(publisherName:string):boolean{
+    const token = localStorage.getItem('token');
+    if(token!==null){
+      const user:JwtUserModel =  this.decodeToken(token);
+      if((user.userName===publisherName)||(user.userRole==='admin'))
+        return true;
+    }
+    else console.log('error when retriving token')
+    return false;
+  }
+
+  //currently this function is the same to the profile because their requirement are the same
+  //open to change when any requirement change happpens
+  grantDeleteAccessbility(publisherName:string):boolean{
+    return this.verifyProfileAccessbility(publisherName);
+  }
+
+  getUserName(): string {
+    const token = localStorage.getItem('token');
+    if(token!==null){
+      return this.decodeToken(token).userName;
+    }
+    return'';
   }
 }

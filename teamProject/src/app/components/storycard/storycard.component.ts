@@ -1,10 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/interfaces/comment.model';
 import { News } from 'src/app/interfaces/news.model';
+import { AuthenService } from 'src/app/services/authen.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
+
+import { __spreadArrays } from 'tslib';
+
 import { JwtService } from "src/app/services/jwt.service";
 import { Router } from '@angular/router';
+
 
 
 const pageLength = 5;
@@ -29,23 +37,31 @@ export class StorycardComponent implements OnInit {
   showForward:boolean = true;
   showBack:boolean = false;
   inputValue?:string;
+  canDelete?:boolean;
+  canDeleteComment:boolean[] = new Array(5).fill(false);
 
 
-  constructor(private newsfeedservice:NewsfeedService, private jwtService: JwtService, private router: Router) { }
+  constructor(private newsfeedservice:NewsfeedService, private authen:AuthenService, private router: Router) { }
+
 
   ngOnInit(): void {
     if(this.news?.comment.length<=5)
      this.showForward = false;
+     this.canDelete = this.authen.grantDeleteAccessbility(this.news?.publisherName)
   }
 
   addLike() {
     this.addLikeEmitter.emit(this.news);
+    console.log(this.news._id);
   }
 
   buildPageArray(startIndex:number){
     this.pageArray = [];
+    let count = 0;
     for (let index = startIndex; (index < startIndex+5)&&(index<this.news.comment.length); index++) {
       this.pageArray.push(this.news.comment[index])
+      this.canDeleteComment[count] = this.authen.grantDeleteAccessbility(this.news.comment[index].publisherName);
+      count++;
     }
   }
 
@@ -98,16 +114,31 @@ export class StorycardComponent implements OnInit {
     )
   }
 
-  showProfile() {
-    if(this.jwtService.isAdmin() == true) {
-      console.warn('is admin');
-      localStorage.setItem('profileToShow', this.news.publisherName);
-      try {
-        this.router.navigateByUrl('/default/profile');
-      } catch (error) {}
-    }
-    else {
-      console.warn('not an admin');
-    }
+  showDetail(){
+
+  }
+
+  deleteNews(){
+    this.newsfeedservice.deleteNews(this.news._id).subscribe(
+      ()=>{
+        location.reload()
+      }
+    );
+  }
+
+  deleteComment(comment_id:string){
+    this.newsfeedservice.deleteComment(this.news._id, comment_id).subscribe(
+      ()=>{
+        location.reload()
+      }
+    );
+  }
+
+  showProfile(){
+    localStorage.setItem('userName',this.news.publisherName)
+    setTimeout(() => {
+      this.router.navigateByUrl('default/profile');
+    }, 1000);
+
   }
 }

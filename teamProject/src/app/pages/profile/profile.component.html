@@ -4,8 +4,8 @@
             <div nz-col nzSpan="16">
                 <nz-card  [nzActions]="[actionEdit, actionLike,  actionEllipsis]">
                     <nz-card-meta
-                      nzTitle={{userProfile.userName}}
-                      nzDescription={{userProfile.userEmail}}
+                      nzTitle={{userProfile?.userName}}
+                      nzDescription={{userProfile?.userEmail}}
                       [nzAvatar]="avatarTemplate"
                     ></nz-card-meta>
                   </nz-card>

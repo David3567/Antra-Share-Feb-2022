@@ -19,13 +19,12 @@ export class NewsfeedService {
   baseUrl:string = "http://localhost:4231"
   
   constructor(private httpclient:HttpClient) {
-
   }
 
   getNewsFromDataBase(){
     let data = this.httpclient.get<News[]>("http://localhost:4231/api/news")
     //data.subscribe(data=>{console.log(data);
-    data.subscribe(data=>{})
+    //data.subscribe(data=>{})
     return data;
   }
   
@@ -75,5 +74,13 @@ export class NewsfeedService {
       }, httpOptions);
     }
     else return of('not success, username lost');
+  }
+
+  deleteNews(_id:string){
+    return this.httpclient.delete('http://localhost:4231/api/news/deletePost/'+_id);
+  }
+
+  deleteComment(_id:string,comment_id:string){
+    return this.httpclient.delete('http://localhost:4231/api/news/deleteComment/'+_id+'/'+comment_id);
   }
 }
