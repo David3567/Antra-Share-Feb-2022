@@ -2,5 +2,5 @@
 
     <app-post-card></app-post-card>
     <app-story-card *ngFor="let stories of Storieslist" 
-    [storiesdetail]="stories"></app-story-card>
+    [storiesdetail]="stories" [currentUser]="currentUser" [currentUserRole]="currentUserRole"></app-story-card>
 </div>

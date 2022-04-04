@@ -17,6 +17,8 @@ import { Subscription } from 'rxjs';
 })
 export class StoryCardComponent implements OnInit, OnDestroy {
   @Input() storiesdetail!: Story;
+  @Input() currentUser!: string;
+  @Input() currentUserRole!: string;
   liked: boolean = false;
   userList!: NewUser;
 
@@ -66,6 +68,12 @@ export class StoryCardComponent implements OnInit, OnDestroy {
     } else {
       this.newsfeedservice.removeFromLikedList(data);
     }
+  }
+
+  onDeletePost() {
+    this.newsfeedservice.deletePost(this.storiesdetail._id).subscribe((data: any) => {
+      console.log(data);
+    });
   }
 
 }

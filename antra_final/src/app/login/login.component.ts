@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
 import { LoginService } from '../core/login.service';
 import { Loginobject } from '../interface/loginobject.model';
 import { UserProfile } from '../interface/user-profile.model';
@@ -53,11 +54,15 @@ export class LoginComponent implements OnInit {
         this.userProfile = data.body;
         this.loginService.setIsAuth(true);
         this.router.navigateByUrl(this.proceedUrl);
+        // this.loginService.decodeToken();
+        // this.loginService.getCurrentUsername();
       },
       (err) => {
         this.errorText = err.error;
       }
     )
+
+
   }
 }
 

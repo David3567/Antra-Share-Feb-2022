@@ -16,6 +16,7 @@ export class NewsfeedService {
   }; 
 
   private baseUrl = "http://localhost:4231/api/news";
+  private deletePostUrl = 'deletePost';
 
 
   likedList: Story[] = [];
@@ -63,6 +64,16 @@ export class NewsfeedService {
     return this.http.post(
       [this.baseUrl, ].join('/'), data, this.httpOptions
     )
+  }
+
+  deletePost(id: string) {
+    return this.http.delete(
+      [this.baseUrl, this.deletePostUrl, id].join('/')
+    )
+  }
+
+  deleteComment() {
+    
   }
 }
 
