@@ -3,8 +3,8 @@ import { newsTemplate } from 'src/app/interfaces/news.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
-import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 
 @Component({
   selector: 'app-story-card',
@@ -20,8 +20,8 @@ export class StoryCardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private newsService: NewsfeedService,
-    private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private decoderService: JWTDecoderService
   ) { }
 
   ngOnInit(): void { }
@@ -48,16 +48,16 @@ export class StoryCardComponent implements OnInit {
   }
 
   deletePost(storyId: string) {
-    this.newsService.deletePost(storyId).subscribe(console.log);
+    this.newsService.deletePost(storyId).subscribe((res) => console.log(res["body"]));
     this.deleteStoryEmitter.emit(storyId);
   }
 
   checkUser(): boolean {
-    if (this.story.publisherName === this.loginService.currentUser["userName"] || this.loginService.currentUser["userRole"] === 'admin') {
-      return true;
+    if (this.decoderService.getCurrentUser().userRole === "admin"
+      || this.story.publisherName === this.decoderService.getCurrentUser().userName) {
+      return true
     } else {
       return false;
-    }
   }
 
   toUserProfile(user: string) {

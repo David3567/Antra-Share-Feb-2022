@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import { Comment } from 'src/app/interfaces/news.model';
+import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class CommentDialogComponent implements OnInit {
   constructor(
     private router: Router,
     private newsService: NewsfeedService,
-    private loginService: LoginService,
+    private decoderService: JWTDecoderService,
     @Inject(MAT_DIALOG_DATA) public data: { comment: Comment[]; _id: string }
   ) { }
 
@@ -34,7 +35,7 @@ export class CommentDialogComponent implements OnInit {
       Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
 
     this.pageList = this.commentList.slice(this.head, this.tail);
-    this.pageSize = Math.ceil(this.commentList.length / 3);
+    this.pageSize = this.commentList.length === 0 ? 1 : Math.ceil(this.commentList.length / 3);
 
     console.log(this.head, this.tail, this.pageSize * 3);
     this.nextBtn = this.pageSize > 1 ? false : this.nextBtn;
@@ -64,7 +65,7 @@ export class CommentDialogComponent implements OnInit {
 
   postNewComment(comment: string) {
     this.newComment = {
-      "publisherName": this.loginService.currentUser.userName,
+      "publisherName": this.decoderService.getCurrentUser().userName,
       "content": {
         "text": comment
       }
@@ -75,14 +76,17 @@ export class CommentDialogComponent implements OnInit {
         Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
 
       this.pageSize = Math.ceil(this.commentList.length / 3);
+
+      // Refresh dialog
       this.onNext();
       this.onPrevious();
     });
   }
 
-  checkUser(username): boolean {
-    if (username === this.loginService.currentUser["userName"] || this.loginService.currentUser["userRole"] === 'admin') {
-      return true;
+  checkUser(commentOwner): boolean {
+    if (this.decoderService.getCurrentUser().userRole === "admin"
+      || commentOwner === this.decoderService.getCurrentUser().userName) {
+      return true
     } else {
       return false;
     }
@@ -91,5 +95,15 @@ export class CommentDialogComponent implements OnInit {
   toUserProfile(user: string) {
     console.log(user);
     this.router.navigate([`profile/${user}`]);
+  }
+
+  deleteComment(commentId: string) {
+    this.newsService.deleteComment(this.storyID, commentId).subscribe(console.log);
+    const index = this.commentList.findIndex(object => object._id === commentId);
+    this.commentList.splice(index, 1);
+
+    // Refresh dialog
+    this.onNext();
+    this.onPrevious();
   }
 }

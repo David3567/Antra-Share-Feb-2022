@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { AppUserAuth } from '../interfaces/user-auth.model';
 import { AppUser } from '../interfaces/users.model';
-import jwt_decode from 'jwt-decode';
 
 const API_URL = 'http://localhost:4231/api';
 const httpOptions = {
@@ -17,13 +16,10 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class LoginService {
-  private token: string = localStorage?.getItem('bearerToken');
-  private decoded: any = this.token ? jwt_decode(this.token) : {userName:"No User loggedIn"};
-  public currentUser?: any = { ...this.decoded };
 
   private securityObject: AppUserAuth = new AppUserAuth();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   set securityObj(newObj: AppUserAuth) {
     this.securityObject = newObj;
