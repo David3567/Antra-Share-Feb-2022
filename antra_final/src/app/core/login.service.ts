@@ -1,13 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import jwtDecode from 'jwt-decode';
 import { tap } from 'rxjs';
 import { Loginobject } from '../interface/loginobject.model';
 import { UserProfile } from '../interface/user-profile.model';
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+  token: string = '';
+  decoded: any;
+  currentUser: string = '';
+  currentUserRole: string = '';
 
   private isAuthenticated = false;
 
@@ -36,7 +43,7 @@ export class LoginService {
       .pipe(
         tap((data: any) => {
           Object.assign(this.userObject, data.body);
-          localStorage.setItem('bearerToken', this.userObject.bearerToken);
+          localStorage.setItem('bearerToken', JSON.stringify(this.userObject.bearerToken));
         })
       );
   }
@@ -47,6 +54,26 @@ export class LoginService {
 
   setIsAuth(input: boolean) {
     this.isAuthenticated = input;
+  }
+
+  decodeToken() {
+    this.token = JSON.parse(localStorage.getItem('bearerToken')!);
+    this.decoded = jwtDecode(this.token);
+    // console.log(this.decoded);
+  }
+
+  getCurrentUsername() {
+    this.token = JSON.parse(localStorage.getItem('bearerToken')!);
+    this.decoded = jwtDecode(this.token);
+    return this.currentUser = this.decoded.userName;
+    // console.log(this.currentUser);
+  }
+
+  getCurrentUserRole() {
+    this.token = JSON.parse(localStorage.getItem('bearerToken')!);
+    this.decoded = jwtDecode(this.token);
+    return this.currentUserRole = this.decoded.userRole;
+    // console.log(this.currentUserRole);
   }
 
 }

@@ -95,3 +95,7 @@ img {
     max-width: 12vw;
     /* border: solid black 1px; */
 }
+
+.delete-btn button {
+    color: red;
+}

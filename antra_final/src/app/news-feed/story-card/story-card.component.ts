@@ -13,6 +13,8 @@ import { Variables } from 'src/app/core/globalVariable';
 })
 export class StoryCardComponent implements OnInit {
   @Input() storiesdetail!: Story;
+  @Input() currentUser!: string;
+  @Input() currentUserRole!: string;
   liked: boolean = false;
 
   constructor(private newsfeedservice:NewsfeedService,
@@ -44,6 +46,12 @@ export class StoryCardComponent implements OnInit {
     } else {
       this.newsfeedservice.removeFromLikedList(data);
     }
+  }
+
+  onDeletePost() {
+    this.newsfeedservice.deletePost(this.storiesdetail._id).subscribe((data: any) => {
+      console.log(data);
+    });
   }
 
 }
