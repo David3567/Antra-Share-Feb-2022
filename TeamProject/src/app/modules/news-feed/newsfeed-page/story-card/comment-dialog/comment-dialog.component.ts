@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Comment } from 'src/app/interfaces/news.model';
 import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
@@ -73,8 +74,30 @@ export class CommentDialogComponent implements OnInit {
         Date.parse(b.publishedTime) - Date.parse(a.publishedTime));
 
       this.pageSize = Math.ceil(this.commentList.length / 3);
+
+      // Refresh dialog
       this.onNext();
       this.onPrevious();
     });
   }
+
+  checkUser(commentOwner): boolean {
+    if (this.decoderService.getCurrentUser().userRole === "admin"
+      || commentOwner === this.decoderService.getCurrentUser().userName) {
+      return true
+    } else {
+      return false;
+    }
+  }
+
+  deleteComment(commentId: string) {
+    this.newsService.deleteComment(this.storyID, commentId).subscribe(console.log);
+    const index = this.commentList.findIndex(object => object._id === commentId);
+    this.commentList.splice(index, 1);
+
+    // Refresh dialog
+    this.onNext();
+    this.onPrevious();
+  }
+
 }

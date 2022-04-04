@@ -51,6 +51,11 @@ export class StoryCardComponent implements OnInit {
   }
 
   checkUser(): boolean {
-    return this.story.publisherName === this.decoderService.getCurrentUser().userName;
+    if (this.decoderService.getCurrentUser().userRole === "admin"
+      || this.story.publisherName === this.decoderService.getCurrentUser().userName) {
+      return true
+    } else {
+      return false;
+    }
   }
 }
