@@ -16,7 +16,9 @@
     </ng-template>
   
     <ng-template #actionSetting>
-      <i nz-icon nzType="setting"></i>
+      <a nz-dropdown [nzDropdownMenu]="menu">
+        <i nz-icon nzType="setting"></i>
+      </a>
     </ng-template>
   
     <ng-template #actionEdit>
@@ -27,13 +29,20 @@
   
     <nz-modal [(nzVisible)]="isVisible" nzCentered nzTitle="COMMENTS" (nzOnCancel)="handleCancel()">
       <ng-container *nzModalContent>
-        <div ngClass="commentContainer" *ngFor="let item of pageArray">
-          {{item.publishedTime | date: 'short'}}
-          <nz-card-meta
-          nzTitle = {{item.publisherName}}
-          nzDescription = {{item.content.text}}
-          [nzAvatar] = "avatarTemplate"></nz-card-meta>
-        </div>
+          <div ngClass="commentContainer" *ngFor="let item of pageArray; index as i">
+            <div class="comment_holder">
+              <div class="comment_content">
+                {{item.publishedTime | date: 'short'}}
+                <nz-card-meta
+                nzTitle = {{item.publisherName}}
+                nzDescription = {{item.content.text}}
+                [nzAvatar] = "avatarTemplate"></nz-card-meta>
+              </div>
+              <div *ngIf="canDeleteComment[i]">
+                <button nz-button nzType="primary" nzDanger (click)="deleteComment(item._id)">Delete</button>
+              </div>
+            </div>
+          </div>
         <div class="comment_inputholder">
           <textarea rows="4" nz-input [(ngModel)]="inputValue"></textarea>
         </div>
@@ -66,3 +75,12 @@
             </ng-template>
     </ng-template>
   </div>
+
+
+    <!--drop down menu-->
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable class="centerText">
+        <li nz-menu-item  (click)="showDetail()">Detail</li>
+        <li nz-menu-item nzDanger (click)="deleteNews()" *ngIf="canDelete">Delete</li>
+      </ul>
+    </nz-dropdown-menu>

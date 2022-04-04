@@ -3,7 +3,7 @@ export interface NewUser {
   "userName": string,
   "userEmail": string,
   "password": string,
-  "userRole": "user",
+  "userRole": string,
   "age": number,
   "gender": string,
   "phone": number

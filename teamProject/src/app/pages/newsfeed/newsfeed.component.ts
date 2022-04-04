@@ -93,6 +93,7 @@ export class NewsfeedComponent implements OnInit, OnChanges{
           console.log(data);
           setTimeout(() => {
             this.modalIsVisible = false;
+            location.reload();
           }, 1000);
         },
         (err) => {
