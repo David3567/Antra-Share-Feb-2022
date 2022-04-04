@@ -17,7 +17,7 @@ export class JwtService {
     //console.warn(data);
     this.token = data.bearerToken;
     localStorage.setItem('token', this.token);
-    localStorage.setItem('username', data.userName);
+    //localStorage.setItem('username', data.userName);
     localStorage.setItem('profileToShow', data.userName);
   }
 
