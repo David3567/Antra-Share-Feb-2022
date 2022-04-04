@@ -51,8 +51,8 @@ export class ProfilePageComponent implements OnInit {
     console.log(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
     this.displayName = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
     console.log(this.displayName);
-    this.userService.getUserProfile(this.displayName).subscribe((userInfo)=> {this.userProfile = userInfo});
-    console.log(this.userProfile);
+    // this.userService.getUserProfile(this.displayName).subscribe((userInfo)=> {this.userProfile = userInfo});
+    // console.log(this.userProfile);
 
     // this.feedService.getNews().subscribe((news)=> this.newsList = news.reverse());
   }

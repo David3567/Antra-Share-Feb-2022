@@ -9,11 +9,10 @@ export class GuardService implements CanActivate {
 
   constructor(
               private loginService: LoginService,
-              private router: Router,
               ) { }
 
    canActivate() : boolean {{
-      if (this.loginService.currentUser.userRole === "admin") {
+      if (this.loginService.currentUser.userRole === "user") {
         return true;
       } else {
         return false;
