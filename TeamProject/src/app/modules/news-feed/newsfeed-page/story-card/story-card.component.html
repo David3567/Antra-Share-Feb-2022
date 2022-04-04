@@ -4,7 +4,8 @@
             <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar">
             <div class="user">
                 <div class="user-detail">
-                    <div><span [ngClass]="{'active': checkUser()}" (click)="toUserProfile(story.publisherName)">{{ story.publisherName }}</span> -</div>
+                    <div><span [ngClass]="{'active': checkUser()}" (click)="onProfile(story.publisherName)">{{
+                            story.publisherName }}</span> -</div>
                     <div>{{ story.publishedTime | date: 'MMM d HH:mm a'}}</div>
                 </div>
                 <button *ngIf="checkUser()" mat-icon-button aria-label="delete icon" color="warn"

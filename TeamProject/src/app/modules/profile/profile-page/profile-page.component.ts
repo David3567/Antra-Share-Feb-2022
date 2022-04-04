@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import { flatMap, tap } from 'rxjs';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -10,6 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class ProfilePageComponent implements OnInit {
   displayName: string = 'Apawcalypse♡';
+  userName: string = '@SiameseCat101';
+  user: any;
   hide: boolean = true;
   checkedUser: string = "";
 
@@ -33,7 +35,7 @@ export class ProfilePageComponent implements OnInit {
     confirm: new FormControl('', Validators.required),
   });
 
-  constructor(private LS: LoginService, private route: ActivatedRoute) { }
+  constructor(private profileService: UsersService) { }
 
   get nameFC() {
     return this.profile.get('name');
@@ -46,10 +48,18 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.checkedUser = this.route.snapshot.params["username"];
-    if (this.checkedUser) {
-      this.displayName = this.checkedUser;
-    }
+    this.getProfile();
+  }
+
+  getProfile() {
+    this.profileService.getUserName().pipe(
+      tap((username: string) => this.userName = username),
+      flatMap((username: string) => this.profileService.getProfile(username))).pipe(
+        tap(console.log)).
+      subscribe(info => {
+        this.user = info
+        this.displayName = info.name
+      })
   }
 
   onSubmit() {

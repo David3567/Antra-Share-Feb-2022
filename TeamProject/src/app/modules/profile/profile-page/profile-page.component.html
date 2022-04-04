@@ -4,7 +4,7 @@
       <div mat-card-avatar class="profile-pix" title="Profile Picture"></div>
       <div class="profile-header">
         <mat-card-title>{{ displayName }}</mat-card-title>
-        <mat-card-subtitle>@SiameseCat101</mat-card-subtitle>
+        <mat-card-subtitle> @{{ userName }}</mat-card-subtitle>
       </div>
     </mat-card-header>
 
@@ -12,13 +12,9 @@
       <form [formGroup]="profile" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
           <mat-label>Bio</mat-label>
-          <textarea
-            matInput
-            maxlength="160"
-            id="bio-textarea"
+          <textarea matInput maxlength="160" id="bio-textarea"
             placeholder="The Siamese cat is one of the first distinctly recognized breeds of Asian cat."
-            formControlName="bio"
-          >
+            formControlName="bio">
           </textarea>
         </mat-form-field>
 
@@ -67,19 +63,13 @@
         <div class="password-container">
           <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input
-              matInput
-              [type]="hide ? 'password' : 'text'"
-              formControlName="password"
-            />
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
             <mat-icon matSuffix (click)="hide = !hide">{{
               hide ? "visibility_off" : "visibility"
-            }}</mat-icon>
-            <mat-error
-              *ngIf="
+              }}</mat-icon>
+            <mat-error *ngIf="
                 !passwordFC.valid && (passwordFC.dirty || passwordFC.touched)
-              "
-            >
+              ">
               <div [hidden]="!passwordFC.errors.required">
                 Password can't be blank
               </div>
@@ -91,22 +81,16 @@
                 character (#?!@$%^&*) required
               </div>
             </mat-error>
-            <mat-hint
-              >Min length <strong>5</strong>; Use <strong>1</strong> uppercase
-              and <strong>1</strong> special character</mat-hint
-            >
+            <mat-hint>Min length <strong>5</strong>; Use <strong>1</strong> uppercase
+              and <strong>1</strong> special character</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Confirm Password</mat-label>
-            <input
-              matInput
-              [type]="hide ? 'password' : 'text'"
-              formControlName="confirm"
-            />
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirm" />
             <mat-icon matSuffix (click)="hide = !hide">{{
               hide ? "visibility_off" : "visibility"
-            }}</mat-icon>
+              }}</mat-icon>
             <mat-error *ngIf="!confirmFC.valid && confirmFC.touched">
               Must confirm password
             </mat-error>
@@ -114,12 +98,8 @@
           </mat-form-field>
         </div>
 
-        <button
-          mat-flat-button
-          color="primary"
-          type="submit"
-          [disabled]="!profile.valid || passwordFC.value !== confirmFC.value"
-        >
+        <button mat-flat-button color="primary" type="submit"
+          [disabled]="!profile.valid || passwordFC.value !== confirmFC.value">
           Save
         </button>
       </form>

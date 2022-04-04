@@ -5,6 +5,8 @@ import { CommentDialogComponent } from './comment-dialog/comment-dialog.componen
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { Router } from '@angular/router';
 import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
+import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-story-card',
@@ -20,8 +22,9 @@ export class StoryCardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private newsService: NewsfeedService,
-    private router: Router,
-    private decoderService: JWTDecoderService
+    private decoderService: JWTDecoderService,
+    private profileService: UsersService,
+    private router: Router
   ) { }
 
   ngOnInit(): void { }
@@ -62,5 +65,10 @@ export class StoryCardComponent implements OnInit {
 
   toUserProfile(user: string) {
     this.router.navigate([`profile/${user}`]);
+  }
+
+  onProfile(username: string) {
+    this.profileService.setUserName(username);
+    this.router.navigate(['profile']);
   }
 }
