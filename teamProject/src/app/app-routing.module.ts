@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GuardService } from './services/guard.service';
 
 const routes: Routes = [
   {path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)},

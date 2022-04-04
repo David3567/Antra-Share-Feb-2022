@@ -1,3 +1,4 @@
+
 import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,7 +7,12 @@ import { Comment } from 'src/app/interfaces/comment.model';
 import { News } from 'src/app/interfaces/news.model';
 import { AuthenService } from 'src/app/services/authen.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
+
 import { __spreadArrays } from 'tslib';
+
+import { JwtService } from "src/app/services/jwt.service";
+import { Router } from '@angular/router';
+
 
 
 const pageLength = 5;
@@ -36,6 +42,7 @@ export class StorycardComponent implements OnInit {
 
 
   constructor(private newsfeedservice:NewsfeedService, private authen:AuthenService, private router: Router) { }
+
 
   ngOnInit(): void {
     if(this.news?.comment.length<=5)
@@ -132,5 +139,6 @@ export class StorycardComponent implements OnInit {
     setTimeout(() => {
       this.router.navigateByUrl('default/profile');
     }, 1000);
+
   }
 }

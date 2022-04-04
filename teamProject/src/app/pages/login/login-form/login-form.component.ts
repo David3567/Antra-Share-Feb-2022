@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenService } from 'src/app/services/authen.service';
+import { JwtService } from "src/app/services/jwt.service";
 
 
 @Component({
@@ -17,8 +18,8 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup = this.fb.group(
     {
-      email: ['', [Validators.required, Validators.email]],
-      password: ['',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
+      email: ['kruadmin445@gmail.com', [Validators.required, Validators.email]],
+      password: ['Kruadmin445',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
     }
   );
 
@@ -31,24 +32,21 @@ export class LoginFormComponent implements OnInit {
   }
 
 
-  constructor(private fb:FormBuilder, private router: Router, private authenService: AuthenService, private cd: ChangeDetectorRef) { }
+  constructor(private fb:FormBuilder, private router: Router, private authenService: AuthenService, private cd: ChangeDetectorRef, private jwtService: JwtService) { }
 
   ngOnInit(): void { }
 
   onSubmit(){
-    console.log(this.loginForm.value);
+    //console.log(this.loginForm.value);
 
     this.authenService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       (data) => {
-        console.log(data.userName);
         localStorage.setItem('token', data.bearerToken);
         this.authenService.saveJwtToken(data.bearerToken);
-        const token = localStorage.getItem('token');
-        if(token!=null)
-        {
-          console.log(this.authenService.decodeToken(token))
-        }
 
+        //this.jwtService.getJWT(data);
+        //this.jwtService.DecodeToken();
+        
         setTimeout(() => {
           this.router.navigateByUrl('default/newsfeed');
         }, 2000);
