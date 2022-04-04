@@ -81,6 +81,7 @@ export class CommentComponent implements OnInit {
     this.newsApi.deleteOneComment(postId, commentId).subscribe((data: any) => {
       console.log( "delete data: ", data)
     })
+    
   }
 
   onSubmit() {
