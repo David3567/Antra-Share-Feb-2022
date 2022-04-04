@@ -7,7 +7,7 @@ export class Interceptor implements HttpInterceptor {
   constructor( private tokenService: TokenService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const token = this.tokenService.getJWTToken();
+    const token = this.tokenService.getUser();
     req = req.clone({
       url:  req.url,
       setHeaders: {

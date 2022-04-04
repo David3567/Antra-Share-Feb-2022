@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/interfaces/comment.model';
 import { News } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
+import { TokenService } from 'src/app/services/token.service';
 
 
 const pageLength = 5;
@@ -29,7 +31,7 @@ export class StorycardComponent implements OnInit {
   inputValue?:string;
 
 
-  constructor(private newsfeedservice:NewsfeedService) { }
+  constructor(private newsfeedservice:NewsfeedService, private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
     if(this.news?.comment.length<=5)
@@ -94,5 +96,18 @@ export class StorycardComponent implements OnInit {
         location.reload();
       }
     )
+  }
+
+  showProfile() {
+    if(this.tokenService.isAdmin() == true) {
+      console.warn('is admin');
+      localStorage.setItem('profileToShow', this.news.publisherName);
+      try {
+        this.router.navigateByUrl('/default/profile');
+      } catch (error) {}
+    }
+    else {
+      console.warn('not an admin');
+    }
   }
 }

@@ -8,6 +8,8 @@ const AUTH_API = 'http://localhost:4231/api/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+export const JWT_NAME = 'blog-token';
+
 @Injectable({
   providedIn: 'root'
 })

@@ -3,10 +3,11 @@ import jwt_decode from 'jwt-decode';
 
 
 @Injectable()
-export class JWTTokenService {
+export class TokenService {
 
     jwtToken!: string;
     decodedToken!: { [key: string]: string };
+    userRole!: string;
 
     constructor() {
     }
@@ -47,6 +48,15 @@ export class JWTTokenService {
       if (expiryTime) {
         return ((1000 * expiryTime) - (new Date()).getTime()) < 5000;
       } else {
+        return false;
+      }
+    }
+
+    isAdmin() {
+      if(this.userRole == 'admin') {
+        return true;
+      }
+      else {
         return false;
       }
     }
