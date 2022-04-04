@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { News } from '../news-feed/models/news.model';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
 
@@ -10,7 +10,9 @@ import { catchError, throwError } from 'rxjs';
 export class NewsfeedService {
 
   private baseUrl = "http://localhost:4231/api"
-  private news_path = "/news"
+  private news_path = "news"
+  private comment = 'addComment'
+  private delete = 'deleteComment'
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +32,7 @@ export class NewsfeedService {
   }
 
   getStories() {
-    return this.http.get<News>([this.baseUrl, this.news_path].join(""));
+    return this.http.get<News>([this.baseUrl, this.news_path].join("/"));
   }
 
   postStory(story:string) {
@@ -40,9 +42,30 @@ export class NewsfeedService {
       }
   } 
     console.log("post Story service")
-    return this.http.post([this.baseUrl, this.news_path].join(""), story, options).pipe(
+    return this.http.post([this.baseUrl, this.news_path].join("/"), story, options).pipe(
       catchError(this.handleError)
     );
+  }
+
+  addComment(id: any, commentData: any) {
+    const options = { 
+      observe: "response" as "body",
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      }),
+  } 
+    console.log('id: ', id);
+    return this.http.patch(
+      [this.baseUrl, this.news_path, this.comment, id].join('/'), 
+      commentData, 
+      options
+    )
+  }
+
+  deleteOneComment(postId: any, commentId: any) {
+    return this.http.delete(
+      [this.baseUrl, this.news_path, this.delete, postId, commentId].join('/')
+    )
   }
 
 }

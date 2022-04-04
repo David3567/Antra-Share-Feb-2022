@@ -15,7 +15,7 @@ export class apiService {
   private all = 'users/getAllUsers'
   private findOne = 'users/getProfile'
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     
   }
 
