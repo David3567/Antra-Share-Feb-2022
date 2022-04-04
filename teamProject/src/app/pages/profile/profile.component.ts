@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
             }
             else {
               this.userProfile = data;
-              console.log(this.userProfile)
+              //console.log(this.userProfile)
             }
           }
           

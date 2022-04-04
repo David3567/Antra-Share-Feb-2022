@@ -23,7 +23,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { AuthenService } from './services/authen.service';
 import { JwtService } from './services/jwt.service';
-import jwtDecode from 'jwt-decode';
+import { GuardService } from './services/guard.service';
 
 registerLocaleData(en);
 
@@ -48,7 +48,7 @@ registerLocaleData(en);
     NewsfeedModule,
     ProfileModule,
   ],
-  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }, AuthenService, JwtService],
+  providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }, AuthenService, JwtService, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

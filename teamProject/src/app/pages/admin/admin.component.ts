@@ -28,6 +28,6 @@ export class AdminComponent implements OnInit {
     }
     this.selected = true;
     this.selectedUser = user;
-    console.log(this.selectedUser);
+    //console.log(this.selectedUser);
   }
 }

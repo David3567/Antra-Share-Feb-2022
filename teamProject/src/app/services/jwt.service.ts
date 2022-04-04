@@ -29,11 +29,9 @@ export class JwtService {
   
   isAdmin() {
     if(this.userRole == 'admin') {
-      console.log(this.userName);
       return true;
     }
     else {
-      console.log(this.userName);
       return false;
     }
   }
