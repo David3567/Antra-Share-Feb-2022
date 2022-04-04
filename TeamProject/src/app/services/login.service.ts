@@ -55,4 +55,12 @@ export class LoginService {
 
     localStorage.removeItem('bearerToken');
   }
+
+  isAuthenticated() {
+    const promise = new Promise((res, rej)=> {
+      res(!!localStorage.getItem('bearerToken'));
+    });
+
+    return promise;
+  }
 }

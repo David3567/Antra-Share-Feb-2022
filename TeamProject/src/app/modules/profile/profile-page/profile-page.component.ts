@@ -13,6 +13,7 @@ export class ProfilePageComponent implements OnInit {
   userName: string = '@SiameseCat101';
   user: any;
   hide: boolean = true;
+  checkedUser: string = "";
 
   profile = new FormGroup({
     bio: new FormControl(''),

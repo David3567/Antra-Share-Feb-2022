@@ -7,6 +7,7 @@ import { ProfilePageComponent } from './modules/profile/profile-page/profile-pag
 import { SettingPanelComponent } from './modules/setting/setting-panel/setting-panel.component';
 import { AdminPageComponent } from './modules/admin/admin-page/admin-page.component';
 import { NewsfeedPageComponent } from './modules/news-feed/newsfeed-page/newsfeed-page.component';
+import { ProfileGuard } from './services/profile-guard.service';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
   },
   {
     path: 'profile',
+    component: ProfilePageComponent,
+  },
+  {
+    path: 'profile/:username', canActivate: [ProfileGuard],
     component: ProfilePageComponent,
   },
   {

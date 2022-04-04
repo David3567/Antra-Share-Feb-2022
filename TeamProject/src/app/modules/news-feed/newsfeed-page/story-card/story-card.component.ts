@@ -3,6 +3,7 @@ import { newsTemplate } from 'src/app/interfaces/news.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
+import { Router } from '@angular/router';
 import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
@@ -60,7 +61,10 @@ export class StoryCardComponent implements OnInit {
       return true
     } else {
       return false;
-    }
+  }
+
+  toUserProfile(user: string) {
+    this.router.navigate([`profile/${user}`]);
   }
 
   onProfile(username: string) {
