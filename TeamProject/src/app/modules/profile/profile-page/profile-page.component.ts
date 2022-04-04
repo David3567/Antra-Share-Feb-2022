@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { flatMap, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,12 +9,13 @@ import { UsersService } from 'src/app/services/users.service';
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.css'],
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent implements OnInit, OnDestroy {
   displayName: string = 'Apawcalypse♡';
   userName: string = '@SiameseCat101';
   user: any;
   hide: boolean = true;
   checkedUser: string = "";
+  subs: Subscription;
 
   profile = new FormGroup({
     bio: new FormControl(''),
@@ -51,10 +53,14 @@ export class ProfilePageComponent implements OnInit {
     this.getProfile();
   }
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
   getProfile() {
-    this.profileService.getUserName().pipe(
+    this.subs = this.profileService.getUserName().pipe(
       tap((username: string) => this.userName = username),
-      flatMap((username: string) => this.profileService.getProfile(username))).pipe(
+      switchMap((username: string) => this.profileService.getProfile(username))).pipe(
         tap(console.log)).
       subscribe(info => {
         this.user = info
