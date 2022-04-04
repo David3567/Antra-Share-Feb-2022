@@ -64,9 +64,9 @@ export class RegisterComponent implements OnInit {
   ) {
     this.form = this.fb.group(
       {
-        name: new FormControl('', Validators.required),
-        username: new FormControl('', Validators.required),
-        useremail: new FormControl(
+        name: ['', Validators.required],
+        username: ['', Validators.required, this.validateUserName()],
+        useremail: [
           '',
           [
             Validators.minLength(5),
@@ -75,22 +75,22 @@ export class RegisterComponent implements OnInit {
             this.extraCheckUserEmail(),
           ],
           [this.validateUserEmail()]
-        ),
-        password: new FormControl('', [
+        ],
+        password: ['', [
           Validators.minLength(5),
           Validators.maxLength(30),
           Validators.required,
           this.extraCheckPassword(),
-        ]),
-        pconfirm: new FormControl(
+        ]],
+        pconfirm: [
           '',
           [Validators.required],
           [this.validatePasswordConfirm()]
-        ),
-        userrole: new FormControl('', Validators.required, []),
-        age: new FormControl(''),
-        gender: new FormControl(''),
-        phone: new FormControl(''),
+        ],
+        userrole: ['', Validators.required, []],
+        age: [''],
+        gender: [''],
+        phone: [''],
       },
       {
         // asyncValidator: this.validateUserIsAuthenticated(),
@@ -156,9 +156,35 @@ export class RegisterComponent implements OnInit {
 
   validateUserEmail(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.authService.registercheckuseremail(control.value).pipe(
-        map((res) => {
-          return res ? { userEmailExist: true } : null;
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.authService.registercheckuseremail(control.value).pipe(
+            tap((data) => {
+              console.log('data in validater: ', data);
+            }),
+            map((res) => {
+              return res ? { userEmailExist: true } : null;
+            })
+            // catchError(err => of(err))
+          );
+        })
+      );
+    };
+  }
+
+  validateUserName(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.authService.registercheckusername(control.value).pipe(
+            tap((data) => {
+              console.log('data in validater: ', data);
+            }),
+            map((res) => {
+              return res ? { userNameExist: true } : null;
+            })
+            // catchError(err => of(err))
+          );
         })
       );
     };
@@ -176,24 +202,24 @@ export class RegisterComponent implements OnInit {
   }
 
   // validateUserIsAuthenticated(): AsyncValidatorFn {
-  //   return (group: AbstractControl): Observable<ValidationErrors | null> => {
-  //     const obj = {
-  //       userEmail: group.value.useremail,
-  //       password: group.value.password,
-  //       userName: group.value.username,
-  //       name: group.value.name,
-  //       userRole: group.value.userrole,
-  //       age: group.value.age,
-  //       gender: group.value.gender,
-  //       phone: group.value.phone,
-  //     };
+  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+  //     // const obj = {
+  //     //   userEmail: group.value.useremail,
+  //     //   password: group.value.password,
+  //     //   userName: group.value.username,
+  //     //   name: group.value.name,
+  //     //   userRole: group.value.userrole,
+  //     //   age: group.value.age,
+  //     //   gender: group.value.gender,
+  //     //   phone: group.value.phone,
+  //     // };
 
   //     return timer(500).pipe(
   //       switchMap(() => {
-  //         return this.authService.registercheckuseremail(obj.userEmail).pipe(
+  //         return this.authService.registercheckuseremail(control.value).pipe(
   //           tap((data) => {
   //             console.log('data in validater: ', data);
-  //             this.error = data.body;
+  //             // this.error = data.body;
   //         }),
   //           map((data) => null),
   //           catchError((err: any) => {

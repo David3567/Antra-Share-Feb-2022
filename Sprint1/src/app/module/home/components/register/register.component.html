@@ -20,6 +20,9 @@
         class="invalid"
       >
         <li *ngIf="username?.errors?.['required']">Username is required!</li>
+        <li *ngIf="username?.errors?.['userNameExist']">
+          Username has been used.
+        </li>
       </ul>
 
       <!-- name -->

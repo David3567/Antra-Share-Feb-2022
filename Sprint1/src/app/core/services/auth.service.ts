@@ -74,6 +74,13 @@ export class AuthService {
     );
   }
 
+  registercheckusername(username: string) {
+    return this.http.get<any>(
+      [API_URL, 'register', 'checkExistByUserName', username].join('/'),
+      httpOptions
+    );
+  }
+
   resetSecurityObject(): void {
     this.securityObject.userName = "";
     this.securityObject.userEmail = "";
