@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Comment } from 'src/app/interfaces/news.model';
 import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
@@ -22,6 +23,7 @@ export class CommentDialogComponent implements OnInit {
   nextBtn: boolean = true;
 
   constructor(
+    private router: Router,
     private newsService: NewsfeedService,
     private decoderService: JWTDecoderService,
     @Inject(MAT_DIALOG_DATA) public data: { comment: Comment[]; _id: string }
@@ -90,6 +92,11 @@ export class CommentDialogComponent implements OnInit {
     }
   }
 
+  toUserProfile(user: string) {
+    console.log(user);
+    this.router.navigate([`profile/${user}`]);
+  }
+
   deleteComment(commentId: string) {
     this.newsService.deleteComment(this.storyID, commentId).subscribe(console.log);
     const index = this.commentList.findIndex(object => object._id === commentId);
@@ -99,5 +106,4 @@ export class CommentDialogComponent implements OnInit {
     this.onNext();
     this.onPrevious();
   }
-
 }
