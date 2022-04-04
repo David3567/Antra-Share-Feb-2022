@@ -91,7 +91,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
         text: this.text?.value,
       },
     };
-
     // this.stories = [this.story,...this.stories]
     this.postStoryService.postNews(this.story).subscribe((data) => {
       this.stories = [data, ...this.stories];

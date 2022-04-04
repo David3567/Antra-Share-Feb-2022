@@ -9,6 +9,7 @@ import { AppUserAuth } from './interfaces/app-user.model';
 import { SecurityService } from './services/security.service';
 import { VariableValue } from './services/variable.service';
 import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,13 +21,15 @@ export class AppComponent implements OnInit {
   securityObj: AppUserAuth = new AppUserAuth();
   constructor(
     private variable: VariableValue,
-    private securityService: SecurityService
+    private securityService: SecurityService,
+    private route : Router,
   ) {
     this.securityObj = this.securityService.securityObj;
   }
   ngOnInit(): void {
     const token = localStorage.getItem('bearerToken');
-
+    console.log('start')
+    console.log(token)
     if (token) {
       const decoded: any = jwt_decode(token);
 
@@ -38,5 +41,10 @@ export class AppComponent implements OnInit {
       this.securityService.securityObj = newSecurityObj;
       this.securityObj = newSecurityObj;
     }
+  }
+  onClickProfile(){
+    const userName = localStorage.getItem('userName');
+    console.log(userName)
+    this.route.navigate(['./profile', userName ])
   }
 }

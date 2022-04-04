@@ -3,8 +3,8 @@
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>User Name</mat-card-title>
-    <mat-card-subtitle>User Email</mat-card-subtitle>
+    <mat-card-title>User Name :: {{userProfile?.userName}}</mat-card-title>
+    <mat-card-subtitle>User Email :: {{userProfile?.userEmail}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <h1>Profile settings</h1>
@@ -25,7 +25,7 @@
           type="text"
           id="username"
           formControlName="username"
-          placeholder="Username"
+          [placeholder]="userProfile?.userName"
         />
 
         <div *ngIf="!form.valid && (form.dirty || form.touched)" class="error">
@@ -95,7 +95,7 @@
           type="text"
           id="email"
           formControlName="email"
-          placeholder="Email"
+          [placeholder]=userProfile?.userEmail
         />
         <!-- <div *ngIf="!form.valid && (form.dirty || form.touched)" class="error">
           <div *ngIf="email?.errors?.['hasemail']">

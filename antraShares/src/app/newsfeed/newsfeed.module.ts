@@ -11,6 +11,7 @@ import { StoryCommentComponent } from './story-comment/story-comment.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { AppRoutingModule } from '../app-routing.module';
 @NgModule({
   declarations: [
     NewsfeedComponent,
@@ -29,6 +30,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDialogModule,
     MatIconModule,
     MatExpansionModule,
+    AppRoutingModule
   ],
 })
 export class NewsfeedModule {}

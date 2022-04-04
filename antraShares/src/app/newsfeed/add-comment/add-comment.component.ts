@@ -56,7 +56,7 @@ export class AddCommentComponent implements OnInit {
       pbName = decoded.userName;
     }
 
-    this.comment = {
+   let comment : Comments = {
       publisherName: pbName,
       publishedTime: date,
       content: {
@@ -66,7 +66,7 @@ export class AddCommentComponent implements OnInit {
       },
     };
     this.addCommentService
-      .addComment(this.data._id, this.comment)
+      .addComment(this.data._id, comment)
       .subscribe((data) => {
         // this.dialogRef.close(data);
       });
@@ -76,7 +76,7 @@ export class AddCommentComponent implements OnInit {
    this.dialogRef.close(this.comment)
     this.variableValue.newComment.push({
       id: this.data._id,
-      cmt: this.comment,
+      cmt: comment,
     });
     //updata
   }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Comments } from '../interfaces/story.model';
 import { VariableValue } from './variable.service';
 
@@ -10,11 +10,14 @@ import { VariableValue } from './variable.service';
 export class AddCommentService {
   private path = 'news';
   private add = 'addComment';
-  constructor(private http: HttpClient, private variableValue :VariableValue) {}
+  addNewComment$ = new Subject<Comments>();
+  constructor(private http: HttpClient, private variableValue: VariableValue) {}
   addComment(id: string, comment: Comments) {
+    this.addNewComment$.next(comment);
     return this.http.patch(
-      [this.variableValue.baseUrl, this.path,this.add, id].join('/'),
+      [this.variableValue.baseUrl, this.path, this.add, id].join('/'),
       comment
     ) as Observable<Comments>;
+   
   }
 }

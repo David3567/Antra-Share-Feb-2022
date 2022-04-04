@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { UserinfoComponent } from './admin/userinfo/userinfo.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ProfileGuard } from './auth/profile.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterPageComponent } from './login/register-page/register-page.component';
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
@@ -16,10 +17,16 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
 
   {
-    path: 'profile',
+    path: 'profile/:username',
     component: ProfileComponent,
-    canActivate: [AuthGuard],
+    canActivate: [ProfileGuard],
   },
+  // {
+  //   path: 'profile',
+  //   component: ProfileComponent,
+  //   canActivate: [AuthGuard],
+  //   // data: { userRole: 'admin', userOwer:'' },
+  // },
   {
     path: 'setting',
     component: SettingComponent,
@@ -39,7 +46,7 @@ const routes: Routes = [
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
-  { path: '**', redirectTo:'home', pathMatch:'full' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

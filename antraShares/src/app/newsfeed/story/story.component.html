@@ -8,7 +8,14 @@
         class="avatar"
       />
     </div>
-    <div>{{ storyDetail.publisherName }}</div>
+    <div>
+      <!-- [routerLink]="['/profile', storyDetail.publisherName]" [state]="{data:storyDetail.publisherName}" -->
+      <a
+        [routerLink]="['/profile', storyDetail.publisherName]"
+      >
+        {{ storyDetail.publisherName }}</a
+      >
+    </div>
     <div>{{ storyDetail.publishedTime | date }}</div>
     <div class="delete" [ngStyle]="{ visibility: allow ? 'visible' : 'hidden' }" (click)="onDeletePost(storyDetail)">
       <mat-icon> delete</mat-icon>
@@ -40,3 +47,5 @@
     </button>
   </div>
 </div>
+
+<router-outlet></router-outlet>
