@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { News } from '../news-feed/models/news.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import decode from 'jwt-decode';
+import { tokenInfo } from '../login/models/tokenInfo';
 
 
 @Injectable({
@@ -11,6 +13,7 @@ export class NewsfeedService {
 
   private baseUrl = "http://localhost:4231/api"
   private news_path = "/news"
+  private delete_path = "/deletePost/"
 
   constructor(private http: HttpClient) { }
 
@@ -43,6 +46,11 @@ export class NewsfeedService {
     return this.http.post([this.baseUrl, this.news_path].join(""), story, options).pipe(
       catchError(this.handleError)
     );
+  }
+
+  deleteStory(storyid: string) {
+
+    return this.http.delete([this.baseUrl, this.news_path, this.delete_path, storyid].join(''))
   }
 
 }

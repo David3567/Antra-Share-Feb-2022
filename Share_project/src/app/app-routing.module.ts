@@ -7,13 +7,13 @@ const routes: Routes = [
     path: 'My Profile',
     loadChildren: () =>
       import('./profile/profile.module').then((m) => m.ProfileModule),
-    canActivate: [AuthGuardService]
+    canLoad: [AuthGuardService]
   },
   {
     path: 'Settings',
     loadChildren: () =>
       import('./settings/settings.module').then((m) => m.SettingsModule),
-    canActivate: [AuthGuardService]
+    canLoad: [AuthGuardService]
   },
   {
     path: '',

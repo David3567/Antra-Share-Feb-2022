@@ -24,8 +24,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
+
 const route: Routes = [
-  { path:'', component: NewsFeedComponent, canActivate:[AuthGuardService]}
+  { path:'', component: NewsFeedComponent, canLoad: [AuthGuardService]}
 ]
 
 const newsFeedModule = [
