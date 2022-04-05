@@ -60,19 +60,20 @@ export class AddCommentComponent implements OnInit {
         text: this.text?.value,
       },
     };
-    // this.addCommentService
-    //   .addComment(this.data._id, comment)
-    //   .subscribe((newdata) => {
-
-    //   });
-    this.addCommentService.addComment(this.data._id, comment);
-
-    this.dialogRef.close(comment);
-
-    this.variableValue.newComment.push({
-      id: this.data._id,
-      cmt: comment,
-    });
-    //updata
+    this.addCommentService
+      .addComment(this.data._id, comment)
+      .subscribe((newdata) => {
+        const newComment = newdata[0].comment.pop();
+        this.variableValue.newComment.push({
+          id: this.data._id,
+          cmt: newComment,
+        });
+        Promise.resolve(newComment).then(
+          (comment) => {
+            return this.dialogRef.close(comment);
+          },
+          (err) => console.error(err)
+        );
+      });
   }
 }

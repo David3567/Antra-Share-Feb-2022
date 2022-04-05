@@ -116,7 +116,8 @@ export class StoryCommentComponent implements OnInit {
           this.countpage();
           this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         });
-        this.dialogClose.close(this.comments);
+        // location.reload();
+        // this.dialogClose.close(this.comments);
     }
   }
 

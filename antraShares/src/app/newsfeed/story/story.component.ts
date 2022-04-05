@@ -57,13 +57,13 @@ export class StoryComponent implements OnInit {
         story: story,
       },
     });
-    console.log(123);
-    console.log(this.variableValue.newComment.length);
+    // console.log(123);
+    // console.log(this.variableValue.newComment.length);
     dialogRef.afterClosed().subscribe((del) => {
-      if(del){
+      if (del) {
         this.storyDetail.comment = del;
-        console.log('in story');
-      console.log(del);
+        //   console.log('in story');
+        // console.log(del);
       }
       if (this.variableValue.newComment.length !== 0) {
         this.variableValue.newComment.forEach((ele) => {
