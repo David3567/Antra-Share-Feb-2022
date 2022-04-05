@@ -19,14 +19,15 @@ const routes: Routes = [
   { path:'', component: LoginComponent},
   { path:'newsfeed', 
   loadChildren: () => import('../news-feed/news-feed.module').then((m) => m.NewsFeedModule),
-  canActivate: [AuthGuardService]
+  canLoad: [AuthGuardService]
 },
   { path:'admin', 
   loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule),
   canActivate: [RoleGuardService],
   data: {
     expectedRole: 'admin'
-  }
+  },
+  canLoad: [AuthGuardService]
 
 }
 ]

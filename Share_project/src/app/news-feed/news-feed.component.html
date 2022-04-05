@@ -30,6 +30,7 @@
     </cdk-virtual-scroll-viewport> -->
 
     <div
+      *ngIf="storyObs | async"
       class="story-container"
       infinite-scroll
       (scrolled)="onScrollDown($event)"
