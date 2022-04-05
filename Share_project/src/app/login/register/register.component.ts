@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    console.log('in submit')
     const userInfo: CreateUser = {
       userName: this.username?.value,
       userEmail: this.email?.value,
