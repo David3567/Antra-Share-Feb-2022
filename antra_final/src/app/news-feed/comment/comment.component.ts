@@ -1,14 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  ReactiveFormsModule,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Comment } from '../story.interfaces';
 import jwt_decode from "jwt-decode";
+import { DeleteService } from 'src/app/core/delete.service';
 
 @Component({
   templateUrl: './comment.component.html',
@@ -17,6 +16,7 @@ import jwt_decode from "jwt-decode";
 
 
 export class CommentComponent implements OnInit {
+  
   token: any = localStorage.getItem('bearerToken')
   decoded: any = jwt_decode(this.token);
 
@@ -29,6 +29,8 @@ export class CommentComponent implements OnInit {
   commentObject: any;
   datas: Comment[] = this.passdata.comment;
   id: string = this.passdata.id;
+  currentUser: string = this.passdata.currUser;
+  currentUserRole: string = this.passdata.currUserRole;
 
   get image() {
     return this.CommentForm.get('image');
@@ -43,7 +45,8 @@ export class CommentComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public passdata: any,
     private fb: FormBuilder,
-    private newsfeedService: NewsfeedService
+    private newsfeedService: NewsfeedService,
+    private deleteservice: DeleteService
   ) { }
 
   ngOnInit(): void {
@@ -98,8 +101,12 @@ export class CommentComponent implements OnInit {
       console.log(data);
     })
   }
-}
-// function bearerToken(bearerToken: any): string {
-//   throw new Error('Function not implemented.');
-// }
 
+  onDeleteComment(comment: Comment) {
+    this.deleteservice.deleteComment(this.id, comment._id).subscribe((data: any) => {
+      console.log(data);
+      this.datas = this.datas.filter(
+        (data) => data._id !== comment._id);
+    })
+  }
+}

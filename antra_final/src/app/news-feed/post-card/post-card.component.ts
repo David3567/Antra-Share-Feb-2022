@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Story } from '../story.interfaces';
 import jwt_decode from "jwt-decode";
@@ -10,6 +10,8 @@ import { NewsfeedService } from 'src/app/core/newsfeed.service';
   styleUrls: ['./post-card.component.css']
 })
 export class PostCardComponent implements OnInit {
+  @Output() updateStoryEmitter = new EventEmitter();
+
   token: any = localStorage.getItem('bearerToken')
   decoded: any = jwt_decode(this.token);
 
@@ -50,7 +52,10 @@ export class PostCardComponent implements OnInit {
     };
     this.newsfeedService.addNewStory(this.storyObject).subscribe((data: any) => {
       console.log(data);
+      
+      
     })
+    this.updateStoryEmitter.emit();
   }
 }
 

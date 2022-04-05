@@ -10,26 +10,30 @@
     <div class="wholecontent">
       <div class="content">
         <p>
-          <b>{{ data.publisherName }}</b>__ <i>{{ data.publishedTime | date }}</i>
+          <b>{{ data.publisherName }}</b>__<i>{{ data.publishedTime | date }}</i>
         </p>
         <div class="media">{{ data.content.text }}</div>
       </div>
-      <div class="mediapic"><img src="{{ data.content.image }}" /></div>
+      <div class="mediapic"><img src="{{ data.content.image }}" alt="comment image" /></div>
+      <div *ngIf="data.publisherName === currentUser || currentUserRole === 'admin'" class="delete-btn">
+        <button class="delete" (click)="onDeleteComment(data)">X</button>
+      </div>
     </div>
   </li>
+
 </ul>
 
 <div class="addcomment-container">
   <form (ngSubmit)="onSubmit()" [formGroup]="CommentForm">
     <div class="media-container">
-        <input class="comment_media" type="text" placeholder="Image Link" formControlName ="image" id="image">
-        <input class="comment_media" type="text" placeholder="Video Link" formControlName ="video" id="video">
+      <input class="comment_media" type="text" placeholder="Image Link" formControlName="image" id="image">
+      <input class="comment_media" type="text" placeholder="Video Link" formControlName="video" id="video">
     </div>
     <div>
-        <input class="comment_content" type="text" placeholder="Content" formControlName ="text" id="text">
+      <input class="comment_content" type="text" placeholder="Content" formControlName="text" id="text">
     </div>
     <button type="submit">
-        Post
+      Post
     </button>
   </form>
 </div>
@@ -38,11 +42,13 @@
 
   <div class="pagination">
 
-    <li *ngFor="let page of pageArray">
-      <a (click)="setPage(page)"
-      [ngStyle]="{'background-color': page === current_page ? 'lightgrey' : 'transparent'}"
-      >{{page}}</a>
-    </li>
+    <ul>
+      <li *ngFor="let page of pageArray">
+        <a (click)="setPage(page)"
+          [ngStyle]="{'background-color': page === current_page ? 'lightgrey' : 'transparent'}">{{page}}</a>
+      </li>
+
+    </ul>
 
   </div>
 

@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-import { Story} from '../story.interfaces';
-import {MatDialog} from '@angular/material/dialog';
+import { Story } from '../story.interfaces';
+import { MatDialog } from '@angular/material/dialog';
 import { CommentComponent } from '../comment/comment.component';
 import { Variables } from 'src/app/core/globalVariable';
+import { DeleteService } from 'src/app/core/delete.service';
 
 
 @Component({
@@ -15,25 +16,35 @@ export class StoryCardComponent implements OnInit {
   @Input() storiesdetail!: Story;
   @Input() currentUser!: string;
   @Input() currentUserRole!: string;
-  liked: boolean = false;
+  @Output() storyTriggerEvent = new EventEmitter<string>();
 
-  constructor(private newsfeedservice:NewsfeedService,
+  liked: boolean = false;
+  deletePostTrigger: boolean = false;
+
+  constructor(
+    private deleteservice: DeleteService,
+    private newsfeedservice: NewsfeedService,
     public dialog: MatDialog,
-    public variable: Variables ) { }
+    public variable: Variables
+  ) { }
 
   ngOnInit(): void {
   }
 
-  showComment(){
-    this.dialog.open(CommentComponent,{
+  showComment() {
+    this.dialog.open(CommentComponent, {
       width: '600px',
-      height:'700px',
-      data: { comment: this.storiesdetail.comment,
-      id: this.storiesdetail._id}
+      height: '700px',
+      data: {
+        comment: this.storiesdetail.comment,
+        id: this.storiesdetail._id,
+        currUser: this.currentUser,
+        currUserRole: this.currentUserRole
+      }
     })
   }
 
-  onLiked(data:Story){
+  onLiked(data: Story) {
     this.liked = !this.liked;
     if (this.liked === true) {
       if (this.variable.removed.indexOf(data._id) !== -1) {
@@ -48,11 +59,8 @@ export class StoryCardComponent implements OnInit {
     }
   }
 
-  onDeletePost() {
-    this.newsfeedservice.deletePost(this.storiesdetail._id).subscribe((data: any) => {
-      console.log(data);
-    });
+  onDeleteStory() {
+    this.storyTriggerEvent.emit(this.storiesdetail._id);
   }
-
 }
 

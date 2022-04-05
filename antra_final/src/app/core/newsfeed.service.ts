@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Story } from '../news-feed/story.interfaces';
-import { BehaviorSubject, Observable, Subject, throwError } from "rxjs";
-import { map, tap, catchError } from "rxjs/operators";
+import { BehaviorSubject, Observable } from "rxjs";
 
 
 @Injectable()
@@ -16,8 +15,6 @@ export class NewsfeedService {
   }; 
 
   private baseUrl = "http://localhost:4231/api/news";
-  private deletePostUrl = 'deletePost';
-
 
   likedList: Story[] = [];
   storyList = [];
@@ -64,16 +61,6 @@ export class NewsfeedService {
     return this.http.post(
       [this.baseUrl, ].join('/'), data, this.httpOptions
     )
-  }
-
-  deletePost(id: string) {
-    return this.http.delete(
-      [this.baseUrl, this.deletePostUrl, id].join('/')
-    )
-  }
-
-  deleteComment() {
-    
   }
 }
 

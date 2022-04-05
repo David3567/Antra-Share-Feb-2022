@@ -4,7 +4,6 @@ import jwtDecode from 'jwt-decode';
 import { tap } from 'rxjs';
 import { Loginobject } from '../interface/loginobject.model';
 import { UserProfile } from '../interface/user-profile.model';
-import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -59,21 +58,16 @@ export class LoginService {
   decodeToken() {
     this.token = JSON.parse(localStorage.getItem('bearerToken')!);
     this.decoded = jwtDecode(this.token);
-    // console.log(this.decoded);
   }
 
   getCurrentUsername() {
-    this.token = JSON.parse(localStorage.getItem('bearerToken')!);
-    this.decoded = jwtDecode(this.token);
+    this.decodeToken();
     return this.currentUser = this.decoded.userName;
-    // console.log(this.currentUser);
   }
 
   getCurrentUserRole() {
-    this.token = JSON.parse(localStorage.getItem('bearerToken')!);
-    this.decoded = jwtDecode(this.token);
+    this.decodeToken();
     return this.currentUserRole = this.decoded.userRole;
-    // console.log(this.currentUserRole);
   }
 
 }
