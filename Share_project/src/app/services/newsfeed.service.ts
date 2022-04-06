@@ -15,6 +15,8 @@ export class NewsfeedService {
   private news_path = "/news"
   private delete_path = "/deletePost/"
 
+  private likedList:string[] = [];
+
   constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse) {
@@ -51,6 +53,18 @@ export class NewsfeedService {
   deleteStory(storyid: string) {
 
     return this.http.delete([this.baseUrl, this.news_path, this.delete_path, storyid].join(''))
+  }
+
+  likeStory(storyid: string) {
+    this.likedList.push(storyid);
+  }
+
+  disLikeStory(storyid: string) {
+    this.likedList = this.likedList.filter((val) => val !== storyid);
+  }
+  
+  getLikelist() {
+    return this.likedList;
   }
 
 }

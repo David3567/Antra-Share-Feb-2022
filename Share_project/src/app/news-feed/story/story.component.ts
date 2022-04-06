@@ -29,19 +29,19 @@ export class StoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.storyItem);
   }
 
   likeClick() {
     if(this.likeStatus === "unlike") {
       this.likeStatus = "like";
-      this.storyItem.likedIdList.push("1");
+      // this.storyItem.likedIdList.push(this.currentUser);
+      this.service.likeStory(this.storyItem._id);
     }
     else if (this.likeStatus === "like") {
       this.likeStatus = "unlike";
-      this.storyItem.likedIdList.shift();
+      // this.storyItem.likedIdList.shift();
+      this.service.disLikeStory(this.storyItem._id);
     }
-    console.log(this.storyItem.likedIdList);
   }
 
   onClickComment(story: News) {

@@ -6,6 +6,7 @@ import * as StoryActions from './news.action';
 
 const state: NewsState = {
   storylist: [],
+  likedlist: []
 };
 
 export const Newsreducer = createReducer(
@@ -46,7 +47,7 @@ export const Newsreducer = createReducer(
   // delete story;
   on(StoryActions.deleteStorySuccess, (state, { id }): NewsState => {
     const newstorylist = state.storylist.filter((story) => {
-      return story._id ? +story._id !== +id : true;
+      return story._id ? story._id !== id : true;
     });
     return {
       ...state,
@@ -60,5 +61,5 @@ export const Newsreducer = createReducer(
       storylist: [],
       err,
     };
-  })
+  }),
 );
