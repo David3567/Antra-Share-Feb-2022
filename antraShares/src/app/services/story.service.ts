@@ -13,6 +13,7 @@ export class StoryService {
   subjectLikeList$ = new BehaviorSubject(this.likeListByUser);
 
   newComment$ = new Subject<Comments>();
+  storiesS$ = new Subject<Story[]>();
   
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
   getStories() {

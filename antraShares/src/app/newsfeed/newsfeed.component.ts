@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  Input,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Story } from '../interfaces/story.model';
 import { StoryService } from '../services/story.service';
 
@@ -43,7 +38,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     private variableValue: VariableValue,
     private fb: FormBuilder,
     private postStoryService: PostStoryService,
-    private securityService : SecurityService,
+    private securityService: SecurityService
   ) {}
 
   ngOnInit(): void {
@@ -51,9 +46,14 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.subcribeStoryService = this.storyService
       .getStories()
       .subscribe((storyData: any) => {
-        this.stories = storyData;
-        this.stories.reverse();
+        this.storyService.storiesS$.next(storyData);
+        // this.stories = storyData;
+        // this.stories.reverse();
       });
+    this.storyService.storiesS$.subscribe((story) => {
+      this.stories = story;
+      this.stories.reverse();
+    });
   }
   ngOnDestroy(): void {
     this.subcribeStoryService.unsubscribe();

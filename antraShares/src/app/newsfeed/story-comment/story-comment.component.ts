@@ -1,6 +1,10 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Comments, Story } from 'src/app/interfaces/story.model';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { VariableValue } from 'src/app/services/variable.service';
 import { StoryService } from 'src/app/services/story.service';
 import { AddCommentComponent } from '../add-comment/add-comment.component';
@@ -33,7 +37,8 @@ export class StoryCommentComponent implements OnInit {
     private data: { story: Story },
     private variableValue: VariableValue,
     public dialog: MatDialog,
-    private deleteService: DeleteService
+    private deleteService: DeleteService,
+    private storyService: StoryService
   ) {}
   ngOnInit(): void {
     this.start = this.variableValue.start;
@@ -86,14 +91,11 @@ export class StoryCommentComponent implements OnInit {
       width: '25%',
       data: {
         _id: this.data.story._id,
-  
       },
     });
-   
+
     dialogRef.afterClosed().subscribe((newcomment) => {
-      console.log("in story-commnet")
-      
-      console.log(newcomment)
+
       if (newcomment !== undefined) {
         this.comments = [...this.comments, newcomment];
         this.countpage();
@@ -101,23 +103,24 @@ export class StoryCommentComponent implements OnInit {
         newcomment = undefined;
       }
     });
-   
-   
-    
   }
   onDeleteComment(comment: Comments) {
     if (confirm('Do you want to delete this comment??')) {
       this.deleteService
         .deleteComment(this.data.story._id, comment._id)
-        .subscribe(() => {
+        .subscribe((data) => {
           this.comments = this.comments.filter(
             (data) => data._id !== comment._id
           );
+
+          this.storyService.getStories().subscribe((data: any) => {
+            this.storyService.storiesS$.next(data);
+          });
           this.countpage();
           this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         });
-        // location.reload();
-        // this.dialogClose.close(this.comments);
+      // location.reload();
+      // this.dialogClose.close(this.comments);
     }
   }
 
