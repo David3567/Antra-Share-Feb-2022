@@ -99,6 +99,8 @@ export class CommentComponent implements OnInit {
     };
     this.newsfeedService.addNewComment(this.id, this.commentObject).subscribe((data: Comment)=>{
       console.log(data);
+      this.datas.unshift(this.commentObject);
+      console.log(this.datas);
     })
   }
 

@@ -1,14 +1,14 @@
 <div class="newsfeed-container">
 
     <app-post-card 
-        (updateStoryEmitter)="updateStory()">
+        (updateStoryEmitter)="onUpdateStory($event)">
     </app-post-card>
 
     <app-story-card *ngFor="let stories of Storieslist" 
         [storiesdetail]="stories" 
         [currentUser]="currentUser" 
         [currentUserRole]="currentUserRole"
-        (storyTriggerEvent)="onDeleteStory($event)">
+        (deleteStoryEmitter)="onDeleteStory($event)">
      </app-story-card>
 
 </div>

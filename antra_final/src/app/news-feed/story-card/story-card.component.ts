@@ -16,7 +16,7 @@ export class StoryCardComponent implements OnInit {
   @Input() storiesdetail!: Story;
   @Input() currentUser!: string;
   @Input() currentUserRole!: string;
-  @Output() storyTriggerEvent = new EventEmitter<string>();
+  @Output() deleteStoryEmitter = new EventEmitter();
 
   liked: boolean = false;
   deletePostTrigger: boolean = false;
@@ -60,7 +60,7 @@ export class StoryCardComponent implements OnInit {
   }
 
   onDeleteStory() {
-    this.storyTriggerEvent.emit(this.storiesdetail._id);
+    this.deleteStoryEmitter.emit(this.storiesdetail._id);
   }
 }
 

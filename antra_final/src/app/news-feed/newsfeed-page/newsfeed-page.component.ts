@@ -3,9 +3,7 @@ import { Story } from '../story.interfaces';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/login.service';
-import { StoryCardComponent } from '../story-card/story-card.component';
 import { DeleteService } from 'src/app/core/delete.service';
-import { debounceTime } from "rxjs/operators";
 
 @Component({
   selector: 'app-newsfeed-page',
@@ -14,7 +12,7 @@ import { debounceTime } from "rxjs/operators";
 })
 export class NewsfeedPageComponent implements OnInit, OnDestroy {
 
-  Storieslist!: Story[];
+  Storieslist: Story[] = [];
   subsciptionStories$ = new Subscription();
   currentUser: string = '';
   currentUserRole: string = '';
@@ -25,7 +23,6 @@ export class NewsfeedPageComponent implements OnInit, OnDestroy {
     private loginservice: LoginService) { }
 
   ngOnInit (): void {
-
     this.subsciptionStories$ = this.newsfeedservice.getStoris().subscribe((data: Story[])=>{
       this.Storieslist = data.reverse();
     })
@@ -39,6 +36,13 @@ export class NewsfeedPageComponent implements OnInit, OnDestroy {
     this.subsciptionStories$.unsubscribe();
   }
 
+  onUpdateStory(object: any) {
+    // this.Storieslist = this.Storieslist.unshift(object);
+    this.Storieslist.unshift(object);
+    
+    console.log(this.Storieslist);
+  }
+
   onDeleteStory(id: string) {
     this.deleteservice.deletePost(id).subscribe((data: any) => {
       console.log(data);
@@ -47,10 +51,4 @@ export class NewsfeedPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateStory() {
-    //debounceTime(2000);
-    this.subsciptionStories$ = this.newsfeedservice.getStoris().pipe(debounceTime(1000)).subscribe((data: Story[])=>{
-      this.Storieslist = data.reverse();
-    })
-  }
 }

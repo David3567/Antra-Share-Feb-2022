@@ -51,11 +51,11 @@ export class PostCardComponent implements OnInit {
       'content': this.form.value,
     };
     this.newsfeedService.addNewStory(this.storyObject).subscribe((data: any) => {
-      console.log(data);
-      
+      console.log(data);  
       
     })
-    this.updateStoryEmitter.emit();
+    this.updateStoryEmitter.emit(this.storyObject); 
+    
   }
 }
 
