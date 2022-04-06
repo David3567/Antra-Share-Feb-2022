@@ -2,6 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { News } from '../models/news.model';
 import { CommentComponent } from '../comment/comment.component';
+import { NewsfeedService } from 'src/app/services/newsfeed.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Store } from '@ngrx/store';
+import * as StoryActions from 'src/app/news-feed/ngrx/news.action';
+
 
 @Component({
   selector: 'app-story',
@@ -11,12 +16,17 @@ import { CommentComponent } from '../comment/comment.component';
 export class StoryComponent implements OnInit {
   likeStatus: string = "unlike";
   commentLength!: number;
+  currentUser: string;
 
   @Input() storyItem!: News;
 
   constructor(
     public dialog: MatDialog,
+    private service: NewsfeedService,
+    private authService: AuthService,
+    private store: Store
   ) {
+    this.currentUser = this.authService.getUserInfo().userName;
    }
 
   ngOnInit(): void {
@@ -26,13 +36,14 @@ export class StoryComponent implements OnInit {
   likeClick() {
     if(this.likeStatus === "unlike") {
       this.likeStatus = "like";
-      this.storyItem.likedIdList.push("1");
+      // this.storyItem.likedIdList.push(this.currentUser);
+      this.service.likeStory(this.storyItem._id);
     }
     else if (this.likeStatus === "like") {
       this.likeStatus = "unlike";
-      this.storyItem.likedIdList.shift();
+      // this.storyItem.likedIdList.shift();
+      this.service.disLikeStory(this.storyItem._id);
     }
-    console.log(this.storyItem.likedIdList);
   }
 
   onClickComment(story: News) {
@@ -46,6 +57,15 @@ export class StoryComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  checkPostOwner() {
+    return this.currentUser === this.storyItem.publisherName ? true : false;
+  }
+
+  deletePost() {
+    this.store.dispatch(StoryActions.deleteStory({id: this.storyItem._id}));
+    // this.service.deleteStory(this.storyItem._id!);
   }
 
 }

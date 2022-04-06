@@ -1,19 +1,18 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, shareReplay, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import * as moment from "moment";
 import { loginInfo } from '../login/models/loginInfo';
 import decode from 'jwt-decode';
+import { tokenInfo } from '../login/models/tokenInfo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService{
   url = 'http://localhost:4231/api/login'
-  userInfo!: loginInfo;
 
   constructor(private http: HttpClient) {
-    this.logout();
    }
 
   login(username: string, password: string) {
@@ -24,7 +23,7 @@ export class AuthService{
       "password": password
     });
 
-    console.log(infoJson);
+    // console.log(infoJson);
     return this.http.post<loginInfo>(this.url, infoJson, {'headers':headers}).pipe(catchError(this.handleError)).subscribe(res => {
       this.setSession(res);
     });
@@ -32,22 +31,19 @@ export class AuthService{
 
   private setSession(authResult:loginInfo) {
     const expiresAt = moment().add(20000, 'second');
-    console.log(decode(authResult.bearerToken));
-    localStorage.setItem('name', authResult.userName);
+
     localStorage.setItem('token', authResult.bearerToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-    localStorage.setItem('role', authResult.userRole)
+
   }
 
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("expires_at");
-    localStorage.removeItem('role');
-    localStorage.removeItem('name');
   }
 
   isLoggedIn() {
-    console.log(moment().isBefore(this.getExpiration()) + "   isloggedIn")
+    // console.log(moment().isBefore(this.getExpiration()) + "   isloggedIn")
     return moment().isBefore(this.getExpiration());
   }
 
@@ -58,14 +54,14 @@ export class AuthService{
   getExpiration() {
     const expiration = localStorage.getItem("expires_at");
     const expiresAt = JSON.parse(expiration || '{}');
-    console.log('expiresat' + expiration)
-    console.log("getExp");
-    console.log(moment(expiresAt))
+    // console.log('expiresat' + expiration)
+    // console.log("getExp");
+    // console.log(moment(expiresAt))
     return moment(expiresAt)
   }
 
-  public getUser() {
-    return this.userInfo;
+  public getUserInfo() {
+    return decode<tokenInfo>(localStorage.getItem('token')!);
   }
 
   private handleError(error: HttpErrorResponse) {

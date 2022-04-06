@@ -25,8 +25,9 @@ import { CommentComponent } from './comment/comment.component';
 
 
 
+
 const route: Routes = [
-  { path:'', component: NewsFeedComponent, canActivate:[AuthGuardService]}
+  { path:'', component: NewsFeedComponent, canLoad: [AuthGuardService]}
 ]
 
 const newsFeedModule = [

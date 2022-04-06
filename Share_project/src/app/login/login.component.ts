@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { loginInfo } from './models/loginInfo';
+import { tokenInfo } from './models/tokenInfo';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  userInfo!: loginInfo;
+export class LoginComponent implements OnInit, OnDestroy {
   check = true;
   loginForm: FormGroup = this.fb.group({
       username: ['', Validators.required],
@@ -28,9 +27,15 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const afterLogin = () => {
         if (this.auth.isLoggedIn()) {
-        this.userInfo = this.auth.getUser();
-        this.toNewsfeed();
-        console.log(this.userInfo);
+          const userRole = this.auth.getUserInfo().userRole;
+          // console.log(userRole);
+          if (userRole === 'admin'){
+            this.toAdmin();
+          }
+          else if (userRole === 'user'){
+
+            this.toNewsfeed();
+          }
       }
     }
     this.Login()?.add(afterLogin);
@@ -69,8 +74,12 @@ export class LoginComponent implements OnInit {
   }
 
   checkBox(check:boolean) {
-    console.log(check)
+    // console.log(check)
     this.check = !check;
+  }
+
+  ngOnDestroy(): void {
+    
   }
 
 }

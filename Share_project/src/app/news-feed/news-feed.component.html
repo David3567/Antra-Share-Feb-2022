@@ -1,10 +1,12 @@
 <mat-drawer-container class="news-feed-container">
   <mat-drawer #drawer class="sidenav" mode="side" position="end" autosize>
-    <mat-card *ngIf="getLikedStory().length < 1 ? true : false">
+    <mat-card *ngIf="!getLikedStory()">
       <mat-card-content>no one liked</mat-card-content>
     </mat-card>
-    <div *ngFor="let story of getLikedStory()">
-      <app-favorite-list [likedStory]="story"></app-favorite-list>
+    <div *ngIf="getLikedStory()">
+        <div *ngFor="let story of likedList">
+          <app-favorite-list [likedStory]="story"></app-favorite-list>
+        </div>
     </div>
   </mat-drawer>
 
@@ -30,6 +32,7 @@
     </cdk-virtual-scroll-viewport> -->
 
     <div
+      *ngIf="storyObs | async"
       class="story-container"
       infinite-scroll
       (scrolled)="onScrollDown($event)"

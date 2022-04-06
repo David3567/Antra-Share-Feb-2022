@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { News } from '../news-feed/models/news.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import decode from 'jwt-decode';
+import { tokenInfo } from '../login/models/tokenInfo';
 
 
 @Injectable({
@@ -13,6 +15,9 @@ export class NewsfeedService {
   private news_path = "news"
   private comment = 'addComment'
   private delete = 'deleteComment'
+  private delete_path = "deletePost"
+
+  private likedList:string[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -66,6 +71,23 @@ export class NewsfeedService {
     return this.http.delete(
       [this.baseUrl, this.news_path, this.delete, postId, commentId].join('/')
     )
+  }
+  
+  deleteStory(storyid: string) {
+
+    return this.http.delete([this.baseUrl, this.news_path, this.delete_path, storyid].join(''))
+  }
+
+  likeStory(storyid: string) {
+    this.likedList.push(storyid);
+  }
+
+  disLikeStory(storyid: string) {
+    this.likedList = this.likedList.filter((val) => val !== storyid);
+  }
+  
+  getLikelist() {
+    return this.likedList;
   }
 
 }

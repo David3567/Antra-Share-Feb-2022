@@ -1,7 +1,10 @@
-<mat-card class="story-card">
+<mat-card *ngIf="storyItem" class="story-card">
     <mat-card-title-group>
         <mat-card-title>{{storyItem.publisherName}}</mat-card-title>
         <mat-card-subtitle>{{storyItem.publishedTime | date}}</mat-card-subtitle> 
+        <button mat-flat-button *ngIf="checkPostOwner()" (click)="deletePost()">
+            <mat-icon>delete</mat-icon>
+        </button>
     </mat-card-title-group>
     <img mat-card-image src={{storyItem.content.image}}>
     <mat-card-content>
