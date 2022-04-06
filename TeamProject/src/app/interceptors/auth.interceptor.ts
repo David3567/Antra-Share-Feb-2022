@@ -26,7 +26,9 @@ export class AuthInterceptor implements HttpInterceptor {
       // retry(1),
       catchError((err: HttpErrorResponse) => {
         alert(err.error);
-        this.route.navigateByUrl('/');
+        if (token === null || err.error === "Invalid token.") {
+          this.route.navigateByUrl('/');
+        }
         return of(null);
         // return throwError(err);
       }
