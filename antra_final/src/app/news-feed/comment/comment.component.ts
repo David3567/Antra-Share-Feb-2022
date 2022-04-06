@@ -6,8 +6,10 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Comment } from '../story.interfaces';
+
 import jwt_decode from "jwt-decode";
 import { DeleteService } from 'src/app/core/delete.service';
+
 
 @Component({
   templateUrl: './comment.component.html',
@@ -16,9 +18,11 @@ import { DeleteService } from 'src/app/core/delete.service';
 
 
 export class CommentComponent implements OnInit {
+
   
   token: any = localStorage.getItem('bearerToken')
   decoded: any = jwt_decode(this.token);
+
 
   pageofComments!: Array<any>;
   current_page: number = 1;
@@ -94,7 +98,7 @@ export class CommentComponent implements OnInit {
 
   onSubmit() {
     this.commentObject = {
-      'publisherName': this.decoded.userName,
+      'publisherName': this.user.userName,
       'content': this.CommentForm.value,
     };
     this.newsfeedService.addNewComment(this.id, this.commentObject).subscribe((data: Comment)=>{
@@ -102,6 +106,8 @@ export class CommentComponent implements OnInit {
       this.datas.unshift(this.commentObject);
       console.log(this.datas);
     })
+    // console.log(typeof this.token);
+    console.log(this.user.userRole);
   }
 
   onDeleteComment(comment: Comment) {

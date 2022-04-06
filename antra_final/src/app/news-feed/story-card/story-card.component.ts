@@ -1,10 +1,14 @@
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Story } from '../story.interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentComponent } from '../comment/comment.component';
 import { Variables } from 'src/app/core/globalVariable';
+
 import { DeleteService } from 'src/app/core/delete.service';
+
 
 
 @Component({
@@ -12,13 +16,14 @@ import { DeleteService } from 'src/app/core/delete.service';
   templateUrl: './story-card.component.html',
   styleUrls: ['./story-card.component.css']
 })
-export class StoryCardComponent implements OnInit {
+export class StoryCardComponent implements OnInit, OnDestroy {
   @Input() storiesdetail!: Story;
   @Input() currentUser!: string;
   @Input() currentUserRole!: string;
   @Output() deleteStoryEmitter = new EventEmitter();
 
   liked: boolean = false;
+
   deletePostTrigger: boolean = false;
 
   constructor(
@@ -28,7 +33,22 @@ export class StoryCardComponent implements OnInit {
     public variable: Variables
   ) { }
 
+
   ngOnInit(): void {
+
+  }
+
+  onToProfile(name: string) {
+    this.subscriptionProfile$ = this.profileService.getProfiles(name).subscribe((data: any) => {
+      this.userList = data;
+    })
+    console.log(this.userList);
+
+    this.profileService.updateCurrentUser(this.userList);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionProfile$.unsubscribe();
   }
 
   showComment() {

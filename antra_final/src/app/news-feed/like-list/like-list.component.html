@@ -2,7 +2,7 @@
     <div>
         <h3>{{likedetail.publisherName}}</h3>
         <h5>{{likedetail.publishedTime | date}}</h5>
-        <p>{{likedetail.content.text | shorten}}</p>
+        <p>{{likedetail.content.text }}</p>
     </div>
 
     <button (click)="onRemoveLiked(likedetail)">

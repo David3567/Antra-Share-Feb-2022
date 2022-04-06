@@ -4,10 +4,10 @@
     <div class="picture-container">
       <img src="https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_960_720.jpg" alt="">
       <div class="posts">
-        <p><a href="">All Posts</a></p>
+        <p><a>All Posts</a></p>
       </div>
       <div class="likes">
-        <p><a href="">Liked Posts</a></p>
+        <p><a>Liked Posts</a></p>
       </div>
     </div>
 
@@ -32,9 +32,21 @@
           </div>
 
           <p><label for="email">Email: </label>
-            could not be changed</p>
+            Could not be changed</p>
+
+          <!-- <p>Phone:<input type="text"></p> -->
+          <p><label for="gender">Age: </label>
+            <input type="number" id="age" formControlName="age">
+          </p>
+
+
+          <p><label for="gender">Geneder: </label>
+            <input type="radio" value="male" id="gender" formControlName="gender"> Male
+            <input type="radio" value="female" id="gender" formControlName="gender"> Female
+          </p>
+
           <p><label for="pswd">Password: </label>
-            <input type="text" id="pswd" formControlName="pswd">
+            <input type="password" id="pswd" formControlName="pswd">
           </p>
 
           <div *ngIf="!pswd?.valid && (pswd?.dirty ||pswd?.touched)" class="error">
@@ -45,30 +57,23 @@
               Password has to be at least 1 Uppercase <br> 1 special character and 5 min length
             </div>
           </div>
-          <!-- <p>Phone:<input type="text"></p> -->
-          <p><label for="gender">Age: </label>
-            <input type="number" id="age" formControlName="age"></p>
 
-
-          <p><label for="gender">Geneder: </label>
-            <input type="radio" value="male" id="gender" formControlName="gender"> Male
-            <input type="radio" value="female" id="gender" formControlName="gender"> Female
-
-          </p>
-
-          <button type="submit">Save</button> <button (click)="backprofile()">Back</button>
+          <button (click)="editprofile()" type="submit">Save</button>
+          <button (click)="backprofile()" type="submit">GoBack</button>
         </form>
       </div>
       <div *ngIf="!editstatus">
-        <!-- <p>Name:</p> -->
-        <p>Username: </p>
-        <p>Email:</p>
-        <p>Password:</p>
-        <!-- <p>Phone:</p> -->
-        <p>Age:</p>
-        <p>Gender:</p>
+        <div *ngFor="let user of userList">
+          <div>
+            <p>UserName: {{user.userName}}</p>
+            <p>Email: {{user.userEmail}}</p>
+            <p>Age: {{user.age}}</p>
+            <p>Gender: {{user.gender}}</p>
+            <p>Password: {{user.password | shorten }}</p>
+          </div>
 
-        <p><button (click)="editprofile()">edit</button></p>
+        </div>
+        <button (click)="editprofile()">Edit</button>
       </div>
 
 
