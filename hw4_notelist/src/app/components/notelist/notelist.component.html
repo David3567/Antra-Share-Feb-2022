@@ -1,0 +1,15 @@
+<div id="outerContainer">
+  <div id="notelistContainer">
+    <div id="heading">
+      <h1>NOTES</h1>
+      <h1 (click)="showForm()">[ + ]</h1>
+    </div>
+    <div id="notelist" *ngFor="let note of notelist">
+      <h1 (click)="showDetail(note.id)">{{note.title}}</h1>
+      <h1 (click)="deleteNote(note.id)">[ – ]</h1>
+    </div>
+    <div id="notelist">
+    </div>
+  </div>
+  <app-notedetail></app-notedetail>
+</div>
