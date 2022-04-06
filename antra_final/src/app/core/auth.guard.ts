@@ -19,31 +19,20 @@ export class AuthGuard implements CanActivate {
 
   constructor(private router: Router,
     private loginService: LoginService,
-    private profileService: ProfileService) { }
+    private profileService: ProfileService) { 
 
+      this.profileService.getCurrentUser().subscribe((data) => {
+        this.userList = data;
+        console.log(this.userList);
+      })
+
+    }
 
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    // const isAuth = this.loginService.getIsAuth();
-    // if (!isAuth) {
-    //   return this.router.navigate(['/settings']);
-    // } else {
-    //   if (this.user.userRole === "admin") {
-    //     return true;
-    //   } else if (this.user.userName === this.userList.userName) {
-    //     return true;
-    //   } else {
-    //     return true;
-    //   }
-    // }
-
-      this.profileService.getCurrentUser().subscribe((data) => {
-        this.userList = data;
-        console.log(this.userList);
-      })
 
     const isAuth = this.loginService.getIsAuth();
     if (!isAuth) {
