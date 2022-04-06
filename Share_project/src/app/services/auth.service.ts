@@ -13,7 +13,6 @@ export class AuthService{
   url = 'http://localhost:4231/api/login'
 
   constructor(private http: HttpClient) {
-    this.logout();
    }
 
   login(username: string, password: string) {

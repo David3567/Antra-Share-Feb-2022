@@ -5,7 +5,7 @@
     </mat-card-title-group>
     <mat-card-content>
       {{likedStory.content.text | maxlength}}
-      <button mat-icon-button color="warn" class="delete-button">
+      <button mat-icon-button color="warn" class="delete-button" (click)="deleteLiked()">
           <mat-icon>remove_circle</mat-icon>
       </button>
     </mat-card-content>
