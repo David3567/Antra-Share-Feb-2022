@@ -45,10 +45,10 @@
                     <source src="{{storiesdetail.content.video}}" type="text/html">
                 </video>
             </div>
-            
+
         </div>
     </div>
     <div *ngIf="storiesdetail.publisherName === currentUser || currentUserRole === 'admin'" class="delete-btn">
-        <button class="delete" (click)="onDeletePost()">X</button>
+        <button class="delete" (click)="onDeleteStory()">X</button>
     </div>
 </mat-card>

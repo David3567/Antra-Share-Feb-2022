@@ -1,14 +1,15 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  ReactiveFormsModule,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Comment } from '../story.interfaces';
-// import jwt_decode from "jwt-decode";
+
+import jwt_decode from "jwt-decode";
+import { DeleteService } from 'src/app/core/delete.service';
+
 
 @Component({
   templateUrl: './comment.component.html',
@@ -17,8 +18,11 @@ import { Comment } from '../story.interfaces';
 
 
 export class CommentComponent implements OnInit {
-  token: any = localStorage.getItem('bearerToken');
-  user: any = JSON.parse(this.token);
+
+  
+  token: any = localStorage.getItem('bearerToken')
+  decoded: any = jwt_decode(this.token);
+
 
   pageofComments!: Array<any>;
   current_page: number = 1;
@@ -29,6 +33,8 @@ export class CommentComponent implements OnInit {
   commentObject: any;
   datas: Comment[] = this.passdata.comment;
   id: string = this.passdata.id;
+  currentUser: string = this.passdata.currUser;
+  currentUserRole: string = this.passdata.currUserRole;
 
   get image() {
     return this.CommentForm.get('image');
@@ -43,7 +49,8 @@ export class CommentComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public passdata: any,
     private fb: FormBuilder,
-    private newsfeedService: NewsfeedService
+    private newsfeedService: NewsfeedService,
+    private deleteservice: DeleteService
   ) { }
 
   ngOnInit(): void {
@@ -96,10 +103,18 @@ export class CommentComponent implements OnInit {
     };
     this.newsfeedService.addNewComment(this.id, this.commentObject).subscribe((data: Comment)=>{
       console.log(data);
+      this.datas.unshift(this.commentObject);
+      console.log(this.datas);
     })
     // console.log(typeof this.token);
     console.log(this.user.userRole);
   }
+
+  onDeleteComment(comment: Comment) {
+    this.deleteservice.deleteComment(this.id, comment._id).subscribe((data: any) => {
+      console.log(data);
+      this.datas = this.datas.filter(
+        (data) => data._id !== comment._id);
+    })
+  }
 }
-
-

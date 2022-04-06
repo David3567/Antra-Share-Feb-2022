@@ -1,13 +1,14 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-import { Story} from '../story.interfaces';
-import {MatDialog} from '@angular/material/dialog';
+import { Story } from '../story.interfaces';
+import { MatDialog } from '@angular/material/dialog';
 import { CommentComponent } from '../comment/comment.component';
 import { Variables } from 'src/app/core/globalVariable';
-import { Router } from '@angular/router';
-import { ProfileService } from 'src/app/core/profile.service';
-import { NewUser } from 'src/app/interface/newuser.model';
-import { Subscription } from 'rxjs';
+
+import { DeleteService } from 'src/app/core/delete.service';
+
 
 
 @Component({
@@ -19,15 +20,19 @@ export class StoryCardComponent implements OnInit, OnDestroy {
   @Input() storiesdetail!: Story;
   @Input() currentUser!: string;
   @Input() currentUserRole!: string;
-  liked: boolean = false;
-  userList!: NewUser;
+  @Output() deleteStoryEmitter = new EventEmitter();
 
-  constructor(private newsfeedservice:NewsfeedService,
-    private profileService: ProfileService,
+  liked: boolean = false;
+
+  deletePostTrigger: boolean = false;
+
+  constructor(
+    private deleteservice: DeleteService,
+    private newsfeedservice: NewsfeedService,
     public dialog: MatDialog,
-    public variable: Variables,
-    private router: Router ) { }
-    subscriptionProfile$ =  new Subscription();
+    public variable: Variables
+  ) { }
+
 
   ngOnInit(): void {
 
@@ -46,16 +51,20 @@ export class StoryCardComponent implements OnInit, OnDestroy {
     this.subscriptionProfile$.unsubscribe();
   }
 
-  showComment(){
-    this.dialog.open(CommentComponent,{
+  showComment() {
+    this.dialog.open(CommentComponent, {
       width: '600px',
-      height:'700px',
-      data: { comment: this.storiesdetail.comment,
-      id: this.storiesdetail._id}
+      height: '700px',
+      data: {
+        comment: this.storiesdetail.comment,
+        id: this.storiesdetail._id,
+        currUser: this.currentUser,
+        currUserRole: this.currentUserRole
+      }
     })
   }
 
-  onLiked(data:Story){
+  onLiked(data: Story) {
     this.liked = !this.liked;
     if (this.liked === true) {
       if (this.variable.removed.indexOf(data._id) !== -1) {
@@ -70,11 +79,8 @@ export class StoryCardComponent implements OnInit, OnDestroy {
     }
   }
 
-  onDeletePost() {
-    this.newsfeedservice.deletePost(this.storiesdetail._id).subscribe((data: any) => {
-      console.log(data);
-    });
+  onDeleteStory() {
+    this.deleteStoryEmitter.emit(this.storiesdetail._id);
   }
-
 }
 
