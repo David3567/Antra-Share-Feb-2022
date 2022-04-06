@@ -75,7 +75,7 @@ export class NewsfeedService {
   
   deleteStory(storyid: string) {
 
-    return this.http.delete([this.baseUrl, this.news_path, this.delete_path, storyid].join(''))
+    return this.http.delete([this.baseUrl, this.news_path, this.delete_path, storyid].join('/'))
   }
 
   likeStory(storyid: string) {
