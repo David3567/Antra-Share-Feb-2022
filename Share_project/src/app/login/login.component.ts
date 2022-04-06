@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const afterLogin = () => {
         if (this.auth.isLoggedIn()) {
           const userRole = this.auth.getUserInfo().userRole;
-          console.log(userRole);
+          // console.log(userRole);
           if (userRole === 'admin'){
             this.toAdmin();
           }
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   checkBox(check:boolean) {
-    console.log(check)
+    // console.log(check)
     this.check = !check;
   }
 

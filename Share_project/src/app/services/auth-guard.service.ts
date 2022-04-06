@@ -14,7 +14,7 @@ export class AuthGuardService implements CanActivate, CanLoad{
     console.log('canActivate');
     const loginstatus = this.auth.isLoggedIn();
     if (!loginstatus || loginstatus == null) {
-      console.log(this.auth.isLoggedIn() + "   inside if");
+      // console.log(this.auth.isLoggedIn() + "   inside if");
         this.router.navigate(['/']);
         return false;
       }

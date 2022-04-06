@@ -24,7 +24,7 @@ export class AuthService{
       "password": password
     });
 
-    console.log(infoJson);
+    // console.log(infoJson);
     return this.http.post<loginInfo>(this.url, infoJson, {'headers':headers}).pipe(catchError(this.handleError)).subscribe(res => {
       this.setSession(res);
     });
