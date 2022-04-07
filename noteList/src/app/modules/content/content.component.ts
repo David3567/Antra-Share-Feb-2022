@@ -1,33 +1,44 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Note } from 'src/app/interfaces/note.model';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  styleUrls: ['./content.component.css'],
 })
-export class ContentComponent implements OnInit {
-  noteForm!: FormGroup;
-  @Input() display?: Note;
+export class ContentComponent implements OnInit, OnChanges {
+  @Input() noteInfo?: Note;
 
-  constructor(private fb: FormBuilder) { }
+  noteForm = new FormGroup({
+    title: new FormControl(''),
+    content: new FormControl(''),
+  });
 
-  ngOnInit(): void {
-    this.setForm();
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log(
+    //   changes['noteInfo'].previousValue,
+    //   changes['noteInfo'].currentValue
+    // );
+    this.noteForm.get('title')?.setValue(this.noteInfo?.title);
+    this.noteForm.get('content')?.setValue(this.noteInfo?.content);
   }
 
-  setForm() {
-    this.noteForm = this.fb.group({
-      title: [''],
-      content: ['']
-    });
+  onRevert() {
+    console.log('noteInfo', this.noteInfo);
   }
 
   onSave() {
-    console.log(this.display);
+    console.log('value', this.noteForm.value);
   }
-
-
-
 }

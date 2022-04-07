@@ -1,20 +1,21 @@
-import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/interfaces/note.model';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  noteList: Note[] = [{ title: 'title A', content: '' }, { title: 'title B', content: '' }];
+  noteList: Note[] = [
+    { title: 'title A', content: '' },
+    { title: 'title B', content: '' },
+  ];
   selected?: Note;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onClick(index: number) {
     // console.log(this.noteList[index]);
@@ -26,6 +27,6 @@ export class ListComponent implements OnInit {
   }
 
   onAdd() {
-    this.noteList.push({ title: 'title', content: '' })
+    this.noteList.push({ title: 'title', content: '' });
   }
 }

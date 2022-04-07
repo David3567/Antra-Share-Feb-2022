@@ -8,10 +8,6 @@ textarea {
   height: 100px;
 }
 
-.action {
-  margin-left: 20px;
-}
-
 .action > button {
   margin-right: 10px;
 }
