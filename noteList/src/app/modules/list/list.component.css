@@ -1,3 +1,18 @@
+.app-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.list-container {
+  width: 50%;
+  background-color: grey;
+}
+
+app-content {
+  width: 50%;
+}
+
 ul {
   margin: 10px 20px;
   line-height: 50px;

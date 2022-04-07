@@ -9,6 +9,7 @@ import { Note } from 'src/app/interfaces/note.model';
 })
 export class ListComponent implements OnInit {
   noteList: Note[] = [{ title: 'title A', content: '' }, { title: 'title B', content: '' }];
+  selected?: Note;
 
   constructor() { }
 
@@ -16,10 +17,15 @@ export class ListComponent implements OnInit {
   }
 
   onClick(index: number) {
-    console.log(this.noteList[index]);
+    // console.log(this.noteList[index]);
+    this.selected = this.noteList[index];
   }
 
   onDelete(index: number) {
     return this.noteList.splice(index, 1);
+  }
+
+  onAdd() {
+    this.noteList.push({ title: 'title', content: '' })
   }
 }

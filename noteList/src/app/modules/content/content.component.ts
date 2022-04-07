@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Note } from 'src/app/interfaces/note.model';
 
 @Component({
   selector: 'app-content',
@@ -8,6 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ContentComponent implements OnInit {
   noteForm!: FormGroup;
+  @Input() display?: Note;
 
   constructor(private fb: FormBuilder) { }
 
@@ -20,6 +22,10 @@ export class ContentComponent implements OnInit {
       title: [''],
       content: ['']
     });
+  }
+
+  onSave() {
+    console.log(this.display);
   }
 
 
