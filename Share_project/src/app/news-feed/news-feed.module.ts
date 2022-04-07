@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CommentComponent } from './comment/comment.component';
 
 
 
@@ -45,7 +46,7 @@ const newsFeedModule = [
     ReactiveFormsModule,
     MatInputModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
 ];
 
 
@@ -56,7 +57,8 @@ const newsFeedModule = [
     StoryComponent,
     MaxlengthPipe,
     FavoriteListComponent,
-    PoststoryComponent
+    PoststoryComponent,
+    CommentComponent
   ],
   imports: [newsFeedModule, RouterModule.forChild(route)]
 })

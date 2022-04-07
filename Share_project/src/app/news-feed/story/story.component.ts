@@ -15,6 +15,7 @@ import * as StoryActions from 'src/app/news-feed/ngrx/news.action';
 })
 export class StoryComponent implements OnInit {
   likeStatus: string = "unlike";
+  commentLength!: number;
   currentUser: string;
 
   @Input() storyItem!: News;
@@ -29,6 +30,7 @@ export class StoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.commentLength = this.storyItem.comment.length
   }
 
   likeClick() {

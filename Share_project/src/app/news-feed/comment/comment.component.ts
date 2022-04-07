@@ -1,7 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { commentUser } from '../models/commentUser.model';
 import { News } from '../models/news.model';
+import jwt_decode from "jwt-decode";
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment',
@@ -18,10 +22,26 @@ export class CommentComponent implements OnInit {
   comments!: commentUser[];
   commentsPerpage!: commentUser[];
   pages: number[] = [];
+  postId: any = this.data.story._id;
+  CommentForm!: FormGroup
+
+  get image() {
+    return this.CommentForm.get('image');
+  }
+  get video() {
+    return this.CommentForm.get('video');
+  }
+  get text() {
+    return this.CommentForm.get('text');
+  }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA)
+    //changed inject check if have errors
+    @Inject(MAT_DIALOG_DATA) 
     private data: { story: News },
+    private newsApi: NewsfeedService,
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +53,15 @@ export class CommentComponent implements OnInit {
     this.totalPages = this.max % this.paginationSize === 0 ? Math.trunc(this.max / this.paginationSize) : Math.trunc(this.max / this.paginationSize) + 1;
     this.pages = new Array(this.totalPages);
     this.commentsPerpage = [...this.comments.slice(this.start, this.paginationSize)];
+    this.CommentForm = this.fb.group(this.commentBuild());
+  }
+
+  private commentBuild() {
+    return {
+      image: [''],
+      video: [''],
+      text: [''],
+    }
   }
 
   onNext() {
@@ -49,8 +78,25 @@ export class CommentComponent implements OnInit {
     this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
   }
 
-  onSubmit() {
-    console.log('hello')
+  deleteComment(index: any) {
+    let trueIndex = this.start + index;
+    let commentId = this.data.story.comment[trueIndex]._id;
+
+    this.newsApi.deleteOneComment(this.postId, commentId).subscribe((data: any) => {
+      console.log( "delete data: ", data)
+    })
+    location.reload();
   }
 
+  onSubmit() {
+    //FIX PUBLISHER NAME ONCE WE HAVE LOGIN WORKING PROPERLY
+    const commentForm = {
+      'publisherName': 'Basel45',
+      'content': this.CommentForm.value
+    }
+    this.newsApi.addComment(this.postId, commentForm).subscribe((data: any) => {
+      console.log("submit comment: ", data)
+    });
+    location.reload();
+  }
 }

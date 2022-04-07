@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { apiService } from 'src/app/services/api.service';
+import { CreateUser } from '../models/createUser';
 
 @Component({
   selector: 'app-register',
@@ -38,8 +39,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.form.value);
-    // this.api.createUser(this.form.value)
+    console.log('in submit')
+    const userInfo: CreateUser = {
+      userName: this.username?.value,
+      userEmail: this.email?.value,
+      password: this.password?.value,
+      userRole: 'user',
+    };
+    this.api.createUser(userInfo).subscribe((data: CreateUser) => console.log("on submit register component:", data))
+    this.router.navigate(['/'])
   }
 
   matchPassword(group: FormGroup): ValidationErrors | null {
@@ -51,6 +59,7 @@ export class RegisterComponent implements OnInit {
 
   toLogin() {
     this.router.navigate(['/'])
+    console.log('login')
   }
 
 }
