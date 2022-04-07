@@ -1,0 +1,21 @@
+ul {
+  margin: 10px 20px;
+  line-height: 50px;
+  font-size: 25px;
+  cursor: default;
+}
+
+li {
+  cursor: pointer;
+}
+
+button {
+  float: right;
+  margin-top: 5px;
+  color: red;
+  cursor: pointer;
+}
+
+ul > button {
+  color: white;
+}

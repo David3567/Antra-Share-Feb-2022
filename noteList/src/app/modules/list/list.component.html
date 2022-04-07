@@ -1,0 +1,12 @@
+<ul>
+  Notes
+  <button mat-icon-button>
+    <mat-icon>note_add</mat-icon>
+  </button>
+  <li *ngFor="let note of noteList; let i = index" (click)="onClick(i)">
+    {{ note.title }}
+    <button mat-icon-button>
+      <mat-icon (click)="onDelete(i)">delete</mat-icon>
+    </button>
+  </li>
+</ul>

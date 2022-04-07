@@ -1,0 +1,20 @@
+<form [formGroup]="noteForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Note</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="3"
+      formControlName="content"
+    ></textarea>
+  </mat-form-field>
+</form>
+<div class="action">
+  <button mat-stroked-button color="warn">Revert</button>
+  <button mat-flat-button color="primary">Save</button>
+</div>
