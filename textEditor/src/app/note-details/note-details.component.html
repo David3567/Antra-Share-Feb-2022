@@ -1,0 +1,19 @@
+<form #noteForm="ngForm" (ngSubmit)="onSave(noteForm)">
+    <div class="container">
+        <input type="text" name="title" 
+          [(ngModel)]="noteOnDisplay.title">
+        <br><br>
+        <textarea cols="30" rows="10" name="content" 
+          [(ngModel)]="noteOnDisplay.content"></textarea>
+        <br><br>
+        <button 
+          type="button" 
+          style="margin-right: 150px;"
+          [disabled]="noteOnDisplay.title == '' && noteOnDisplay.content =='' " 
+          (click)="onRevert()"
+          >Revert</button>
+        <button 
+          type="submit" 
+          [disabled]="noteOnDisplay.title == '' && noteOnDisplay.content =='' "
+          >Save</button>
+    </div>

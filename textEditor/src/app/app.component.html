@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="leftSide">
+    <div class="header">
+      <div class="note">Notes</div>
+      <div class="add" (click)="onNewNote()">+</div>
+    </div>
+    <app-notes-list 
+      *ngFor="let note of notesList; let i = index" 
+      [note]="note" 
+      [index]="i"
+      (deleteNoteEmitter)="onDeleteNote($event)"
+      (editEmitter)="prepForEdit($event)"></app-notes-list>
+  </div>
+  <div style="width: 50%;">
+    <app-note-details (newNoteEmitter)="onSaveNewNote($event)"></app-note-details>
+  </div>
+</div>

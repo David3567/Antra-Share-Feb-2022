@@ -1,0 +1,12 @@
+.container{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.container>div {
+    cursor: pointer;
+}
+
+.delete {
+    margin-right: 10px;
+}
