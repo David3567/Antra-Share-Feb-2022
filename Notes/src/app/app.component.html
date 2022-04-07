@@ -1,0 +1,42 @@
+<div class="split left">
+  <div class="header">
+    <h1>Notes</h1>
+    <h1 (click)="add()" class="addbutton">+</h1>
+  </div>
+  <div *ngIf="notesList.length > 0">
+    <ul *ngFor="let item of notesList">
+      <li>
+        <h1 (click)="select(item)">{{ item.title }}</h1>
+        <h1 (click)="delete(item)">[X]</h1>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="split right">
+  <form
+    [formGroup]="noteForm"
+    class="form-group"
+    (ngSubmit)="onSubmit()"
+    [hidden]="hide"
+  >
+    <input
+      type="text"
+      id="noteTitle"
+      formControlName="title"
+      (ngModelChange)="check()"
+    />
+    <span class="spacer"></span>
+    <span class="spacer"></span>
+    <textarea
+      type="textarea"
+      id="noteContent"
+      formControlName="content"
+      (ngModelChange)="check()"
+    ></textarea>
+    <span class="spacer"></span>
+    <div class="button-group">
+      <button type="button" (click)="Revert()" [disabled]="!enableRevert">Revert</button>
+      <button type="submit" [disabled]="!enableSave">Save</button>
+    </div>
+  </form>
+</div>

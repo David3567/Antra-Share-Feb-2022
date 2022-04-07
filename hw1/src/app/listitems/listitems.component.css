@@ -1,0 +1,21 @@
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.container {
+    width: 48%;
+    margin: 1%;
+}
+
+@media (max-width: 600px) {
+    ul {
+        flex-direction: column;
+    }
+
+    .container {
+        width: 98%;
+        margin: 1%;
+    }
+}

@@ -1,0 +1,14 @@
+li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 5px;
+}
+
+button {
+    border-radius: 10%;
+    height: 40px;
+    width: 80px;
+    color: white;
+}
