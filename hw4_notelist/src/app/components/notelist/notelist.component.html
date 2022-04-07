@@ -1,15 +1,34 @@
 <div id="outerContainer">
   <div id="notelistContainer">
     <div id="heading">
-      <h1>NOTES</h1>
-      <h1 (click)="showForm()">[ + ]</h1>
+      <p>NOTES</p>
+      <p (click)="clearForm()">[ + ]</p>
     </div>
-    <div id="notelist" *ngFor="let note of notelist">
-      <h1 (click)="showDetail(note.id)">{{note.title}}</h1>
-      <h1 (click)="deleteNote(note.id)">[ – ]</h1>
+    <div id="notelist" *ngFor="let note of notes">
+      <p (click)="showDetail(note.id)">{{note.title}}</p>
+      <p (click)="deleteNote(note.id)">[ – ]</p>
     </div>
     <div id="notelist">
     </div>
   </div>
-  <app-notedetail></app-notedetail>
+  <div id="notedetailContainer">
+    <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Title</label><br>
+        <input type="text" id="title" name="title" formControlName="title">
+      </div>  
+      <div>
+        <label for="description">Description</label><br>
+        <textarea name="description" id="description" cols="29" rows="10" formControlName="description"></textarea>
+      </div>
+      <div id="addButton" *ngIf="isAdding === true">
+        <button type="reset">Clear</button>
+        <button type="submit" [disabled]="!noteForm.valid">Submit</button>
+      </div>
+      <div id="editButton" *ngIf="isAdding === false">
+        <button type="button" (click)="reset()">Undo</button>
+        <button type="button" [disabled]="!noteForm.valid" (click)="edit()">Edit</button>
+      </div>
+    </form>
+  </div>
 </div>

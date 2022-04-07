@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Note } from 'src/app/interfaces/note.interface';
-import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-notelist',
@@ -9,38 +9,73 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class NotelistComponent implements OnInit {
 
-  notelist!: Note[];
+  notes: Note[] = [];
+  title!: string;
+  description!: string;
 
-  constructor(private noteService: NoteService) { }
+  isAdding: boolean = true;
+  newId: number = 1;
+  updateId!: number;
+  updateIndex!: number;
 
-  ngOnInit(): void {
-    this.notelist = this.noteService.getNotes();
+  noteForm = new FormGroup ({
+    title: new FormControl(this.title, [Validators.required]),
+    description: new FormControl(this.description, [Validators.required])
+  });
+
+  constructor() {}
+
+  ngOnInit() {}
+
+  clearForm() {
+    this.noteForm.controls['title'].setValue('');
+    this.noteForm.controls['description'].setValue('');
+  }
+  
+  deleteNote(id: number) {
+    for (let i = 0; i < this.notes.length; i++) {
+      if (this.notes[i].id === id) {
+        this.notes.splice(i, 1);
+      }
+    }
   }
 
-  showForm() {
-    console.log('show form');
-  }
-
-  addNote() {
-    this.noteService.addNote();
-    console.log(this.notelist);
+  onSubmit() {
+      let newNote: Note = {
+        id: this.newId,
+        title: this.noteForm.value.title,
+        description: this.noteForm.value.description
+      }
+      this.notes.push(newNote);
+      this.newId = this.newId + 1;
+      this.clearForm();
+      console.log(this.notes);
   }
 
   showDetail(id: number) {
-    for (let i = 0; i < this.notelist.length; i++) {
-      if (this.notelist[i].id === id) {
-        console.log(this.notelist[i].description);
+    for (let i = 0; i < this.notes.length; i++) {
+      if (this.notes[i].id === id) {
+        this.noteForm.controls['title'].setValue(this.notes[i].title);
+        this.noteForm.controls['description'].setValue(this.notes[i].description);
+        this.isAdding = false;
+        this.updateId = id;
+        this.updateIndex = this.notes.findIndex(obj => {
+          return obj.id === this.updateId;
+        });
       }
     }
   }
 
-  deleteNote(id: number) {
-    console.log(id);
-    for (let i = 0; i < this.notelist.length; i++) {
-      if (this.notelist[i].id === id) {
-        this.notelist.splice(i, 1);
-      }
-    }
+  edit() {
+    this.notes[this.updateIndex].title = this.noteForm.value.title;
+    this.notes[this.updateIndex].description = this.noteForm.value.description;
+    this.clearForm();
+  }
+
+
+  reset() {
+    this.noteForm.controls['title'].setValue(this.notes[this.updateIndex].title);
+    this.noteForm.controls['description'].setValue(this.notes[this.updateIndex].description);
   }
 
 }

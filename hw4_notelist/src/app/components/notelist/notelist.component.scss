@@ -1,24 +1,78 @@
 #outerContainer {
   display: grid;
-  grid-template-columns: 50vw 50vw;
+  grid-template-columns: 35vw 1fr;
   background-color: darkgray;
   height: 100vh;
 
   #notelistContainer {
     padding: 1rem;
+    font-size: 2em;
+    font-weight: 100;
   }
 
   #heading, #notelist {
     display: flex;
     justify-content: space-between;
-
   }
-  h1:hover {
+  
+  #heading {
+    margin-bottom: 1rem;
+  }
+
+  #heading > p:last-of-type:hover {
     cursor: pointer;
     transform: scale(0.95);
   }
 
-  h1:active {
+  #heading > p:last-of-type:active {
     transform: scale(0.9);
+  }
+
+  #notelist > p:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+  }
+
+  #notelist > p:active {
+    transform: scale(0.9);
+  }
+}
+
+
+#notedetailContainer {
+  background-color: lightgray;
+  height: 100%;
+  padding: 2.5rem 5rem;
+  font-size: 2rem;
+  
+  input {
+    font-size: 2rem;
+    height: 2.3rem;
+    width: 600px;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+  }
+
+  #description {
+    font-size: 2rem;
+    height: 15rem;
+    padding: 0 0.8rem;
+  }
+  
+  button {
+    font-size: 1.5rem;
+    padding: 0.25rem 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    width: 8rem;
+  }
+
+  #addButton > button {
+    background-color: green;
+  }
+
+  #editButton > button {
+    background-color: yellow;
   }
 }
