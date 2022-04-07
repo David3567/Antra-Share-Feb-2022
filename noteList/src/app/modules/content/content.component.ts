@@ -1,9 +1,11 @@
 import {
   Component,
   Input,
+  Output,
   OnChanges,
   OnInit,
   SimpleChanges,
+  EventEmitter,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Note } from 'src/app/interfaces/note.model';
@@ -15,6 +17,7 @@ import { Note } from 'src/app/interfaces/note.model';
 })
 export class ContentComponent implements OnInit, OnChanges {
   @Input() noteInfo?: Note;
+  @Output() sendNote = new EventEmitter<Note>();
 
   noteForm = new FormGroup({
     title: new FormControl(''),
@@ -36,9 +39,12 @@ export class ContentComponent implements OnInit, OnChanges {
 
   onRevert() {
     console.log('noteInfo', this.noteInfo);
+    this.noteForm.get('title')?.setValue(this.noteInfo?.title);
+    this.noteForm.get('content')?.setValue(this.noteInfo?.content);
   }
 
   onSave() {
-    console.log('value', this.noteForm.value);
+    // console.log('value', this.noteForm.value);
+    this.sendNote.emit(this.noteForm.value);
   }
 }

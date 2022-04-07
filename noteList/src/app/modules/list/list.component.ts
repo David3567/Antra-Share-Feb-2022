@@ -29,4 +29,8 @@ export class ListComponent implements OnInit {
   onAdd() {
     this.noteList.push({ title: 'title', content: '' });
   }
+
+  onSave(obj: Note) {
+    console.log(obj);
+  }
 }
