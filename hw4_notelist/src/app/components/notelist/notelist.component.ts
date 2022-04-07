@@ -30,6 +30,7 @@ export class NotelistComponent implements OnInit {
   clearForm() {
     this.noteForm.controls['title'].setValue('');
     this.noteForm.controls['description'].setValue('');
+    this.isAdding = true;
   }
   
   deleteNote(id: number) {
