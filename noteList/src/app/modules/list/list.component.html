@@ -1,10 +1,15 @@
 <div class="app-container">
   <div class="list-container">
     <ul>
-      Notes
-      <button mat-icon-button>
-        <mat-icon (click)="onAdd()">note_add</mat-icon>
-      </button>
+      <div class="header">
+        <strong>My Dictionary</strong>
+        <button mat-icon-button matTooltip="Add New Note" (click)="onAdd()">
+          <mat-icon>note_add</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Reset Cloud" (click)="onCloud()">
+          <mat-icon>cloud_off</mat-icon>
+        </button>
+      </div>
       <li *ngFor="let note of noteList; let i = index" (click)="onClick(i)">
         {{ note.title }}
         <button mat-icon-button>
@@ -14,8 +19,8 @@
     </ul>
   </div>
   <app-content
-    [noteInfo]="selected"
-    [index]="indexNum"
+    [note]="selected"
+    [index]="indexBase"
     (sendNote)="onSave($event)"
   ></app-content>
 </div>

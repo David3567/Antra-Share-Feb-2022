@@ -1,10 +1,10 @@
 <form [formGroup]="noteForm" (ngSubmit)="onSave()" novalidate>
   <mat-form-field appearance="outline">
-    <mat-label>Title</mat-label>
+    <mat-label>Word</mat-label>
     <input matInput formControlName="title" />
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Note</mat-label>
+    <mat-label>Definition</mat-label>
     <textarea
       matInput
       cdkTextareaAutosize
@@ -21,7 +21,7 @@
       (click)="onRevert()"
       [disabled]="index === -1"
     >
-      Revert
+      Undo
     </button>
     <button
       mat-flat-button

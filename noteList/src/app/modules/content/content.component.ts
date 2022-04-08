@@ -16,7 +16,7 @@ import { Note } from 'src/app/interfaces/note.model';
   styleUrls: ['./content.component.css'],
 })
 export class ContentComponent implements OnInit, OnChanges {
-  @Input() noteInfo?: Note;
+  @Input() note?: Note;
   @Input() index?: number;
   @Output() sendNote = new EventEmitter<Note>();
 
@@ -34,17 +34,19 @@ export class ContentComponent implements OnInit, OnChanges {
     //   changes['noteInfo'].previousValue,
     //   changes['noteInfo'].currentValue
     // );
-    this.noteForm.get('title')?.setValue(this.noteInfo?.title);
-    this.noteForm.get('content')?.setValue(this.noteInfo?.content);
+    this.noteForm.get('title')?.setValue(this.note?.title);
+    this.noteForm.get('content')?.setValue(this.note?.content);
   }
 
   onRevert() {
-    this.noteForm.get('title')?.setValue(this.noteInfo?.title);
-    this.noteForm.get('content')?.setValue(this.noteInfo?.content);
+    this.noteForm.get('title')?.setValue(this.note?.title);
+    this.noteForm.get('content')?.setValue(this.note?.content);
+    alert('Changes was reversed.');
   }
 
   onSave() {
-    this.noteInfo = this.noteForm.value;
+    this.note = this.noteForm.value;
     this.sendNote.emit({ index: this.index, ...this.noteForm.value });
+    alert('Changes was saved.');
   }
 }

@@ -8,19 +8,51 @@ import { Note } from 'src/app/interfaces/note.model';
 })
 export class ListComponent implements OnInit {
   noteList: Note[] = [
-    { title: 'title A', content: '' },
-    { title: 'title B', content: '' },
+    {
+      title: 'Convivial',
+      content:
+        'ADJECTIVE\n(of an atmosphere or event) friendly, lively, and enjoyable.',
+    },
+    {
+      title: 'Proclivity',
+      content:
+        'NOUN\na tendency to choose or do something regularly; an inclination or predisposition toward a particular thing.',
+    },
+    {
+      title: 'Lurid',
+      content:
+        'ADJECTIVE\nvery vivid in color, especially so as to create an unpleasantly harsh or unnatural effect.',
+    },
+    {
+      title: 'Spire',
+      content:
+        'NOUN\na tapering conical or pyramidal structure on the top of a building, typically a church tower.',
+    },
+    {
+      title: 'Abject',
+      content:
+        'ADJECTIVE\n(of something bad) experienced or present to the maximum degree.',
+    },
+    {
+      title: 'Ungainly',
+      content: 'ADJECTIVE\n(of a person or movement) awkward; clumsy.',
+    },
   ];
   selected?: Note;
-  indexNum: number = -1;
+  indexBase: number = -1;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const getLocal: any = localStorage.getItem('Notes');
+    this.noteList = localStorage.getItem('Notes')
+      ? JSON.parse(getLocal)
+      : this.noteList;
+  }
 
   onClick(index: number) {
     this.selected = this.noteList[index];
-    this.indexNum = index;
+    this.indexBase = index;
   }
 
   onDelete(index: number) {
@@ -28,7 +60,7 @@ export class ListComponent implements OnInit {
   }
 
   onAdd() {
-    this.noteList.push({ title: 'title', content: '' });
+    this.noteList.push({ title: 'New', content: '' });
   }
 
   onSave(note: any) {
@@ -36,7 +68,15 @@ export class ListComponent implements OnInit {
       title: note.title,
       content: note.content,
     });
+    localStorage.setItem('Notes', JSON.stringify(this.noteList));
+  }
 
-    console.log(this.noteList);
+  onCloud() {
+    const choice = confirm('Do you wish to reset the list to DEFAULT values?');
+    if (choice === true) {
+      localStorage.removeItem('Notes');
+      location.reload();
+      alert('Reset complete.');
+    }
   }
 }

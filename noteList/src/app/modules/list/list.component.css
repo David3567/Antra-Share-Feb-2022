@@ -31,6 +31,6 @@ button {
   cursor: pointer;
 }
 
-ul > button {
+.header > button {
   color: white;
 }
