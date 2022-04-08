@@ -7,7 +7,7 @@ header {
     display: flex; 
     justify-content: flex-end; 
     padding: 10px;
-    background-color: #273c75;
+    /* background-color: #273c75; */
 }
 
 main {

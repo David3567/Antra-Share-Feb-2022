@@ -6,18 +6,25 @@
   line-height: 50px;
   display: flex;
   list-style: none;
-   background: linear-gradient(to right, rgb(109, 196, 236), rgb(87, 141, 223));
+  background-color: #3F51B5;
+   /* background: linear-gradient(to right, rgb(109, 196, 236), rgb(87, 141, 223)); */
 }
 
 
 .NavBar li {
+  
   text-align: center;
   width: 150px;
   font-size: 20px;
 }
 
+a {
+  color: white;
+}
+
 a:link {
   text-decoration: none;
+  
 }
 
 a:visited {
