@@ -15,7 +15,7 @@ main {
     height: calc(100vh - 50px);
     width: 100%;
     border: 1px solid black;
-    background-color: #0097e6;
+    /* background-color: #0097e6; */
 }
 
 .container {
