@@ -6,6 +6,7 @@ import { News } from '../models/news.model';
 import jwt_decode from "jwt-decode";
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-comment',
@@ -24,6 +25,7 @@ export class CommentComponent implements OnInit {
   pages: number[] = [];
   postId: any = this.data.story._id;
   CommentForm!: FormGroup
+  username!: any
 
   get image() {
     return this.CommentForm.get('image');
@@ -41,7 +43,8 @@ export class CommentComponent implements OnInit {
     private data: { story: News },
     private newsApi: NewsfeedService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +57,7 @@ export class CommentComponent implements OnInit {
     this.pages = new Array(this.totalPages);
     this.commentsPerpage = [...this.comments.slice(this.start, this.paginationSize)];
     this.CommentForm = this.fb.group(this.commentBuild());
+    this.username = this.authService.getUserInfo().name;
   }
 
   private commentBuild() {
@@ -89,11 +93,12 @@ export class CommentComponent implements OnInit {
   }
 
   onSubmit() {
-    //FIX PUBLISHER NAME ONCE WE HAVE LOGIN WORKING PROPERLY
-    const commentForm = {
-      'publisherName': 'Basel45',
-      'content': this.CommentForm.value
-    }
+    const commentForm = JSON.stringify({
+      publisherName: this.username,
+      publishedTime: new Date(),
+      content: this.CommentForm.value
+    })
+
     this.newsApi.addComment(this.postId, commentForm).subscribe((data: any) => {
       console.log("submit comment: ", data)
     });

@@ -8,7 +8,7 @@
               alt="Avatar"
               class="avatar"
             />
-            <div *ngIf="comment.publisherName === 'Basel45' " (click)="deleteComment(i)">X</div>
+            <div *ngIf="comment.publisherName === this.username " (click)="deleteComment(i)">X</div>
           </div>
           <div>{{ comment.publisherName }}</div>
           <div>{{ comment.content.text }}</div>
