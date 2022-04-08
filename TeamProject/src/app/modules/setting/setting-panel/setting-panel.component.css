@@ -10,7 +10,7 @@
     justify-content: center; 
     height: calc(100vh - 50px);
     width: 100%;
-    background-color: #0097e6;
+    background-color: white;
     
 }
 .container {
@@ -19,7 +19,8 @@
     height: 480px;
     width: 600px;
     background-color: white;
-    border: 1px solid;
+    border: 3px solid #3F51B5;
+    border-radius: 3px;
     align-items: center;
     justify-content: center;
 }

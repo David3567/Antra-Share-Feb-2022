@@ -1,12 +1,12 @@
 <div *ngIf="getUrl() !== ('/login' || '/' )">
-    <div class="NavBar" *ngIf="getUrl() !== '/register'">
+    <div class="NavBar" *ngIf="getUrl() !== '/register'" style="box-shadow: 0 0 3px 3px black;">
         <li><a routerLink="/newsfeed">Newsfeed</a></li>
         <li style="flex-grow: 1"></li>
         <li><a routerLink="/profile">Profile</a></li>
         <li><a routerLink="/setting">Setting</a></li>
-        <!-- <li *ngIf="token.role === 'admin'">
+        <li *ngIf="decoded?.userRole === 'admin'">
             <a routerLink="/admin">Admin</a>
-        </li> -->
+        </li>
     </div>
 </div>
 

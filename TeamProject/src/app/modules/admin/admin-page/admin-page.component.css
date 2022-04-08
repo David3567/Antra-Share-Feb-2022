@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: white;
+    color: black;
 }
 
 header {
@@ -47,6 +47,7 @@ nav {
     display: flex;
     flex-direction: column;
     min-width: 250px;
+    background-color: #3F51B5;
 }
 nav>:nth-child(n) {
     max-height: 100%;
@@ -60,8 +61,8 @@ nav>div{
 ul {
     margin-top: 0;
     padding-left: 0;
-    background-color: #273c75;
     overflow-y: auto;
+    background-color: white;
 }
 
 
@@ -72,7 +73,8 @@ li {
     margin: 0 0;
     padding: 10px;
     list-style: none;
-    color: white
+    color: black;
+    background-color: white;
 }
 
 span:hover {
@@ -80,13 +82,15 @@ span:hover {
 }
 
 .selected {
-    background-color: #0097e6;
+    /* background-color: #0097e6; */
+    color: black;
 }
 
 li>div {
     display: flex;
     justify-content: space-between;
     height: 25px;
+    color: black;
 }
 
 .delete {

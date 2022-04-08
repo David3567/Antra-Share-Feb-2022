@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'TeamProject';
+  token = localStorage.getItem('bearerToken');
+  decoded = jwtDecode(this.token);
   
   constructor(private router: Router){}
 
@@ -18,3 +21,7 @@ export class AppComponent {
   
   
 }
+function jwt_decode(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+

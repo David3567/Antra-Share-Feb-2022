@@ -10,12 +10,13 @@
   align-items: center;
   min-height: calc(100vh - 50px);
   min-width: 390px;
-  background-color: #0097e6;
+  background-color: white;
 }
 
 mat-card {
   width: 600px;
   padding: 16px;
+  outline: 3px solid #3F51B5;
 }
 
 .profile-pix {
