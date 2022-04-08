@@ -12,14 +12,15 @@ export class ListComponent implements OnInit {
     { title: 'title B', content: '' },
   ];
   selected?: Note;
+  indexNum: number = -1;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onClick(index: number) {
-    // console.log(this.noteList[index]);
     this.selected = this.noteList[index];
+    this.indexNum = index;
   }
 
   onDelete(index: number) {
@@ -30,7 +31,12 @@ export class ListComponent implements OnInit {
     this.noteList.push({ title: 'title', content: '' });
   }
 
-  onSave(obj: Note) {
-    console.log(obj);
+  onSave(note: any) {
+    this.noteList.splice(note.index, 1, {
+      title: note.title,
+      content: note.content,
+    });
+
+    console.log(this.noteList);
   }
 }

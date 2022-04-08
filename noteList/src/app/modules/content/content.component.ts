@@ -17,6 +17,7 @@ import { Note } from 'src/app/interfaces/note.model';
 })
 export class ContentComponent implements OnInit, OnChanges {
   @Input() noteInfo?: Note;
+  @Input() index?: number;
   @Output() sendNote = new EventEmitter<Note>();
 
   noteForm = new FormGroup({
@@ -38,13 +39,12 @@ export class ContentComponent implements OnInit, OnChanges {
   }
 
   onRevert() {
-    console.log('noteInfo', this.noteInfo);
     this.noteForm.get('title')?.setValue(this.noteInfo?.title);
     this.noteForm.get('content')?.setValue(this.noteInfo?.content);
   }
 
   onSave() {
-    // console.log('value', this.noteForm.value);
-    this.sendNote.emit(this.noteForm.value);
+    this.noteInfo = this.noteForm.value;
+    this.sendNote.emit({ index: this.index, ...this.noteForm.value });
   }
 }

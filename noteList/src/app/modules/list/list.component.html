@@ -13,5 +13,9 @@
       </li>
     </ul>
   </div>
-  <app-content [noteInfo]="selected" (sendNote)="onSave($event)"></app-content>
+  <app-content
+    [noteInfo]="selected"
+    [index]="indexNum"
+    (sendNote)="onSave($event)"
+  ></app-content>
 </div>

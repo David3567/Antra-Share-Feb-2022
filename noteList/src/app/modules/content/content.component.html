@@ -14,9 +14,22 @@
     ></textarea>
   </mat-form-field>
   <div class="action">
-    <button mat-stroked-button color="warn" type="button" (click)="onRevert()">
+    <button
+      mat-stroked-button
+      color="warn"
+      type="button"
+      (click)="onRevert()"
+      [disabled]="index === -1"
+    >
       Revert
     </button>
-    <button mat-flat-button color="primary" type="submit">Save</button>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="index === -1"
+    >
+      Save
+    </button>
   </div>
 </form>
