@@ -9,13 +9,16 @@ import { LoginModule } from './modules/login/login.module';
 import { SettingModule } from './modules/setting/setting.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,    
+    AppRoutingModule,
     BrowserAnimationsModule,
     NewsFeedModule,
     AdminModule,
@@ -23,7 +26,11 @@ import { AppComponent } from './app.component';
     LoginModule,
     SettingModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

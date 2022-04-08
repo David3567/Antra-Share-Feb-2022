@@ -21,12 +21,13 @@ export class ProfileGuard implements CanActivate {
                 } else if (route.params["username"] === this.decoderService.getCurrentUser().userName) {
                     return true;
                 } else {
+                    alert("You are not authorized.");
+                    this.router.navigateByUrl('newsfeed');
                     return false;
                 }
             } else {
-                this.router.navigate(["/"]);
+                this.router.navigateByUrl('/');
                 return false;
-                
             }
         });
     }

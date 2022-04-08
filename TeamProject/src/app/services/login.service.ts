@@ -17,13 +17,10 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class LoginService {
-  private token: string = localStorage?.getItem('bearerToken');
-  private decoded: any = this.token ? jwt_decode(this.token) : {userName:"No User loggedIn"};
-  public currentUser?: any = { ...this.decoded };
 
   private securityObject: AppUserAuth = new AppUserAuth();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   set securityObj(newObj: AppUserAuth) {
     this.securityObject = newObj;
@@ -61,7 +58,7 @@ export class LoginService {
   }
 
   isAuthenticated() {
-    const promise = new Promise((res, rej)=> {
+    const promise = new Promise((res, rej) => {
       res(!!localStorage.getItem('bearerToken'));
     });
 
