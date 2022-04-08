@@ -19,6 +19,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   @Input() newPost!: Story;
   stories!: Story[];
   subcribeStoryService!: Subscription;
+  subcribestoriesS!: Subscription;
 
   form!: FormGroup;
   story!: Story;
@@ -47,16 +48,15 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       .getStories()
       .subscribe((storyData: any) => {
         this.storyService.storiesS$.next(storyData);
-        // this.stories = storyData;
-        // this.stories.reverse();
       });
-    this.storyService.storiesS$.subscribe((story) => {
+    this.subcribestoriesS = this.storyService.storiesS$.subscribe((story) => {
       this.stories = story;
       this.stories.reverse();
     });
   }
   ngOnDestroy(): void {
     this.subcribeStoryService.unsubscribe();
+    this.subcribestoriesS.unsubscribe();
   }
   onClickLike() {
     const dialogRef = this.dialog.open(LikelistComponent, {

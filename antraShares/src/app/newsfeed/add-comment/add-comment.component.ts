@@ -62,8 +62,7 @@ export class AddCommentComponent implements OnInit {
     };
     this.addCommentService
       .addComment(this.data._id, comment)
-      .subscribe((newdata) => {
-        const newComment = newdata[0].comment.pop();
+      .subscribe((newComment) => {
         this.variableValue.newComment.push({
           id: this.data._id,
           cmt: newComment,

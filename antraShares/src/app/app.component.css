@@ -40,7 +40,7 @@ body {
 
   left: 0;
 }
-.matmenu{
+.matmenu {
   /* width: var(--bar-size); */
 }
 /* .left-side {
@@ -75,9 +75,9 @@ button:hover {
   color: var(--button-hover-color);
 }
 
-
 .div-like {
-  width:95%;
+  height: 45px;
+  width: 95%;
   margin: 0 var(--bar-size);
   padding-top: 10px;
   padding-bottom: 10px;
@@ -86,6 +86,6 @@ button:hover {
   justify-content: flex-end;
   position: fixed;
 }
-.active{
-  background-color:aquamarine;
+.active {
+  background-color: aquamarine;
 }
