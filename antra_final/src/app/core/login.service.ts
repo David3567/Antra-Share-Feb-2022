@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import jwtDecode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import { tap } from 'rxjs';
 import { Loginobject } from '../interface/loginobject.model';
 import { UserProfile } from '../interface/user-profile.model';
@@ -60,7 +60,7 @@ export class LoginService {
 
   decodeToken() {
     this.token = JSON.parse(localStorage.getItem('bearerToken')!);
-    this.decoded = jwtDecode(this.token);
+    this.decoded = jwt_decode(this.token);
   }
 
   getCurrentUsername() {

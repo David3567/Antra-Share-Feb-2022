@@ -106,8 +106,6 @@ export class CommentComponent implements OnInit {
       this.datas.unshift(this.commentObject);
       console.log(this.datas);
     })
-    // console.log(typeof this.token);
-    console.log(this.user.userRole);
   }
 
   onDeleteComment(comment: Comment) {

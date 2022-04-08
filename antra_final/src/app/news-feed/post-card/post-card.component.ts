@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Story } from '../story.interfaces';
 
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-// import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-post-card',
