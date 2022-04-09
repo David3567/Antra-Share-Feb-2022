@@ -8,7 +8,7 @@ import { DeleteService } from 'src/app/core/delete.service';
 import { Subscription } from 'rxjs';
 import { NewUser } from 'src/app/interface/newuser.model';
 import { ProfileService } from 'src/app/core/profile.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -33,7 +33,8 @@ export class StoryCardComponent implements OnInit {
     private newsfeedservice: NewsfeedService,
     public dialog: MatDialog,
     public variable: Variables,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
