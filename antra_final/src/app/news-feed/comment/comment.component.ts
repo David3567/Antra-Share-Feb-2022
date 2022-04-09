@@ -5,7 +5,7 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-import { Comment } from '../story.interfaces';
+import { Comment } from '../../interface/story.interfaces';
 import jwt_decode from "jwt-decode";
 import { DeleteService } from 'src/app/core/delete.service';
 

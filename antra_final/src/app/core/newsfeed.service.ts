@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Story } from '../news-feed/story.interfaces';
+import { Story } from '../interface/story.interfaces';
 import { BehaviorSubject, Observable } from "rxjs";
 
 

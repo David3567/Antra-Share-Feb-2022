@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { Story } from '../story.interfaces';
+import { Story } from '../../interface/story.interfaces';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/login.service';

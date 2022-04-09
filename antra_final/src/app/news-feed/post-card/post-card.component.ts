@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Story } from '../story.interfaces';
+import { Story } from '../../interface/story.interfaces';
 import jwt_decode from "jwt-decode";
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 

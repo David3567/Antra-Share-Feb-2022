@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
-import { Story } from '../story.interfaces';
+import { Story } from '../../interface/story.interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentComponent } from '../comment/comment.component';
 import { Variables } from 'src/app/core/globalVariable';

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, OnDestroy} from '@angular/core';
-import { Story } from '../story.interfaces';
+import { Story } from '../../interface/story.interfaces';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsfeedService } from 'src/app/core/newsfeed.service';
 import { Subscription } from 'rxjs';
