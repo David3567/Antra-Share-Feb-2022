@@ -44,19 +44,19 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group(this.variableValue.buildformPost());
-    this.subcribeStoryService = this.storyService
-      .getStories()
-      .subscribe((storyData: any) => {
-        this.storyService.storiesS$.next(storyData);
-      });
     // this.subcribeStoryService = this.storyService
-    //   .getStoriesScroll(1)
+    //   .getStories()
     //   .subscribe((storyData: any) => {
     //     this.storyService.storiesS$.next(storyData);
     //   });
+    this.subcribeStoryService = this.storyService
+      .getStoriesScroll(this.variableValue.page, this.variableValue.perpage)
+      .subscribe((storyData: any) => {
+        this.storyService.storiesS$.next(storyData);
+      });
     this.subcribestoriesS = this.storyService.storiesS$.subscribe((story) => {
       this.stories = story;
-      this.stories.reverse();
+      // this.stories.reverse();
     });
   }
   ngOnDestroy(): void {
@@ -96,12 +96,13 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     });
   }
   onScroll() {
-    console.log("scrolled!!");
+    console.log('scrolled!!');
+    this.variableValue.page++
     this.subcribeStoryService = this.storyService
-      .getStoriesScroll(2)
+      .getStoriesScroll(this.variableValue.page, this.variableValue.perpage)
       .subscribe((storyData: any) => {
-        console.log(storyData)
-        // this.stories = [...this.stories, ...storyData.reverse()]
+        console.log(storyData);
+        this.stories = [...this.stories, ...storyData];
       });
   }
 }

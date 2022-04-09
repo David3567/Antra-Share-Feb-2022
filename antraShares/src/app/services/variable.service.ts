@@ -17,4 +17,7 @@ export class VariableValue {
       text: [''],
     };
   }
+  
+  page = 1
+  perpage = 5;
 }

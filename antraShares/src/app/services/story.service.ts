@@ -21,9 +21,9 @@ export class StoryService {
       [this.variableValue.baseUrl, this.path].join('/')
     ) as Observable<Story>;
   }
-  getStoriesScroll(per: number) {
+  getStoriesScroll(page: number, perpage: number) {
     return this.http.get(
-      [this.variableValue.baseUrl,this.path, per, '4'].join('/')
+      [this.variableValue.baseUrl, this.path, page, perpage].join('/')
     ) as Observable<Story>;
   }
   pushIntoLikeList(likeStory: Story) {

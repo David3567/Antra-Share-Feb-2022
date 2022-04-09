@@ -95,36 +95,36 @@ export class StoryCommentComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((newcomment) => {
-
       if (newcomment !== undefined) {
         this.comments = [...this.comments, newcomment];
         this.countpage();
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         newcomment = undefined;
       }
-      console.log(this.comments)
+      console.log(this.comments);
     });
   }
   onDeleteComment(comment: Comments) {
-    console.log(comment)
-    console.log(this.data.story)
+    console.log(comment);
+    console.log(this.data.story);
     if (confirm('Do you want to delete this comment??')) {
       this.deleteService
         .deleteComment(this.data.story._id, comment._id)
         .subscribe((data) => {
-
           this.comments = this.comments.filter(
             (data) => data._id !== comment._id
           );
-  
-          this.storyService.getStories().subscribe((data: any) => {
-            this.storyService.storiesS$.next(data);
-          });
+          this.storyService
+            .getStoriesScroll(
+              1,
+              this.variableValue.page * this.variableValue.perpage
+            )
+            .subscribe((data: any) => {
+              this.storyService.storiesS$.next(data);
+            });
           this.countpage();
           this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         });
-      // location.reload();
-      // this.dialogClose.close(this.comments);
     }
   }
 
