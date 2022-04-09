@@ -14,11 +14,16 @@ export class StoryService {
 
   newComment$ = new Subject<Comments>();
   storiesS$ = new Subject<Story[]>();
-  
+
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
   getStories() {
     return this.http.get(
       [this.variableValue.baseUrl, this.path].join('/')
+    ) as Observable<Story>;
+  }
+  getStoriesScroll(per: number) {
+    return this.http.get(
+      [this.variableValue.baseUrl,this.path, per, '4'].join('/')
     ) as Observable<Story>;
   }
   pushIntoLikeList(likeStory: Story) {

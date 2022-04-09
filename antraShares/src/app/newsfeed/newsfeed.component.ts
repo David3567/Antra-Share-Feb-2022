@@ -49,6 +49,11 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       .subscribe((storyData: any) => {
         this.storyService.storiesS$.next(storyData);
       });
+    // this.subcribeStoryService = this.storyService
+    //   .getStoriesScroll(1)
+    //   .subscribe((storyData: any) => {
+    //     this.storyService.storiesS$.next(storyData);
+    //   });
     this.subcribestoriesS = this.storyService.storiesS$.subscribe((story) => {
       this.stories = story;
       this.stories.reverse();
@@ -89,5 +94,14 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       this.stories = [data, ...this.stories];
       this.panelOpenState = false;
     });
+  }
+  onScroll() {
+    console.log("scrolled!!");
+    this.subcribeStoryService = this.storyService
+      .getStoriesScroll(2)
+      .subscribe((storyData: any) => {
+        console.log(storyData)
+        // this.stories = [...this.stories, ...storyData.reverse()]
+      });
   }
 }

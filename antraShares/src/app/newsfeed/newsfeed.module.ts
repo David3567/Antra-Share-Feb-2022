@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AppRoutingModule } from '../app-routing.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     NewsfeedComponent,
@@ -30,7 +31,8 @@ import { AppRoutingModule } from '../app-routing.module';
     MatDialogModule,
     MatIconModule,
     MatExpansionModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InfiniteScrollModule,
   ],
 })
 export class NewsfeedModule {}
