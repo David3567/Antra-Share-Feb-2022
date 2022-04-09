@@ -42,10 +42,9 @@ export class LoginService {
       .pipe(
         tap((data: any) => {
           Object.assign(this.userObject, data.body);
-          let decodedToken: any = jwt_decode(this.userObject.bearerToken);
+          // let decodedToken: any = jwt_decode(this.userObject.bearerToken);
           // let newDecodedToken: any = { ...decodedToken, userRole: undefined };
-          localStorage.setItem('bearerToken', JSON.stringify(decodedToken));
-          // console.log(newDecodedToken.userName);
+          localStorage.setItem('bearerToken', JSON.stringify(this.userObject.bearerToken));
         })
       );
   }
