@@ -5,16 +5,19 @@ import {
   Router
 } from "@angular/router";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, of, Observable, switchMap} from "rxjs";
 import { LoginService } from "./login.service";
 import { ProfileService } from "./profile.service";
 import { NewUser } from "../interface/newuser.model";
 
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   authService: any;
-  token: any = localStorage.getItem('bearerToken');
-  user: any = JSON.parse(this.token);
+  // token: any = localStorage.getItem('bearerToken');
+  // user: any = JSON.parse(this.token);
+  username: any = this.loginService.getCurrentUsername();
+  userrole: any = this.loginService.getCurrentUserRole();
   userList!: NewUser[];
 
   constructor(private router: Router,
@@ -31,19 +34,35 @@ export class AuthGuard implements CanActivate {
       console.log(this.userList);
     })
 
-    const isAuth = this.loginService.getIsAuth();
-    if (!isAuth) {
-      return this.router.navigate(['/login']);
-    } else {
-      if (this.user.userRole === "admin") {
-        return isAuth;
-      } else if (this.user.userName === this.userList[0].userName) {
-        return isAuth;
-      } else {
-        return !isAuth;
-      }
-    }
+    // return this.loginService.getIsAuth().subscribe((data: any) => {
+    //   if (!data) {
+    //     return this.router.navigate(['/login']);
+    //   } else {
+    //     if (this.user.userRole === "admin") {
+    //       return true;
+    //     } else if (this.user.userName === this.userList[0].userName) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }
+    // }
 
-  }
+    return this.loginService.getIsAuth().pipe(switchMap((data) => {
+      if (!data) {
+            return this.router.navigate(['/login']);
+          } else {
+            if (this.userrole === "admin") {
+              return of(true);
+            } else if (this.username === this.userList[0].userName) {
+              return of(true);
+            } else {
+              return of(false);
+            }
+          }
+    }) 
+    ) }
+
+
 
 }

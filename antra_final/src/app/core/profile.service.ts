@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NewUser } from '../interface/newuser.model';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,18 @@ import { NewUser } from '../interface/newuser.model';
 export class ProfileService {
 
   url = 'http://localhost:4231/api/users';
-  private getProfile = 'getProfile';
+  private getprofile = 'getProfile';
 
   userList: NewUser[]  = [];
 
   subjectCurrentUser$ = new BehaviorSubject(this.userList);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private loginService: LoginService) { }
 
-  getProfiles(username: string) {
-    return this.http.get([this.url, this.getProfile, username].join('/'));
+  getProfile(username: string) {
+    return this.http.get([this.url, this.getprofile, username].join('/'));
+    // return this.loginService.getCurrentUsername
   }
 
   updateCurrentUser(data: NewUser) { 

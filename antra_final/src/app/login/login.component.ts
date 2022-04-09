@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
     this.loginService.getLoginValidation(this.userLoginInfo).subscribe(
       (data) => {
         this.userProfile = data.body;
-        this.loginService.setIsAuth(true);
         this.router.navigateByUrl(this.proceedUrl);
         // this.loginService.decodeToken();
         // this.loginService.getCurrentUsername();
@@ -61,7 +60,6 @@ export class LoginComponent implements OnInit {
         this.errorText = err.error;
       }
     )
-
 
   }
 }

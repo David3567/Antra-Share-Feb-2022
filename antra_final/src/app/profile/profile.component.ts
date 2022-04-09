@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     getCurrentUser().subscribe((data) => {
       this.userList = data;
     })
-    // console.log(this.userList);
+    console.log(this.userList);
     this.profileForm = this.fb.group(this.buildform());
   }
 

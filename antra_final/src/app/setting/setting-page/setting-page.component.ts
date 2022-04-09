@@ -13,8 +13,7 @@ export class SettingPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loginService: LoginService
-    ) { }
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +21,6 @@ export class SettingPageComponent implements OnInit {
   onLogOut() {
     this.router.navigateByUrl(this.logInUrl);
     localStorage.removeItem('bearerToken');
-    this.loginService.setIsAuth(false);
   }
 
 }

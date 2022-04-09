@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
-import { tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { Loginobject } from '../interface/loginobject.model';
 import { UserProfile } from '../interface/user-profile.model';
 
@@ -15,7 +15,6 @@ export class LoginService {
   currentUser: string = '';
   currentUserRole: string = '';
 
-  private isAuthenticated = false;
 
   httpOptions = {
     observe: 'response' as 'body',
@@ -50,14 +49,14 @@ export class LoginService {
   }
 
   getIsAuth() {
-    return this.isAuthenticated;
+    const isAuth$ = new Observable<any>((data) => {
+      data.next(!!localStorage.getItem('bearerToken'))
+    });
+    return of(isAuth$);
   }
 
-  setIsAuth(input: boolean) {
-    this.isAuthenticated = input;
-  }
 
-  decodeToken() {
+  private decodeToken() {
     this.token = JSON.parse(localStorage.getItem('bearerToken')!);
     this.decoded = jwt_decode(this.token);
   }
