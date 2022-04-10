@@ -25,12 +25,6 @@
       </button>
     </div>
 
-    <!-- <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
-      <div *cdkVirtualFor="let story of storyList" class="story">
-        <app-story [storyItem]="story"> </app-story>
-      </div>
-    </cdk-virtual-scroll-viewport> -->
-
     <div
       *ngIf="storyObs | async"
       class="story-container"

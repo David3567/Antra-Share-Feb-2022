@@ -30,7 +30,6 @@ export class StoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.storyItem)
     this.commentLength = this.storyItem?.comment.length;
   }
 
