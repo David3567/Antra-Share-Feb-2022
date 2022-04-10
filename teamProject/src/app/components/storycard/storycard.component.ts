@@ -11,8 +11,6 @@ import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { __spreadArrays } from 'tslib';
 
 import { JwtService } from "src/app/services/jwt.service";
-import { Router } from '@angular/router';
-
 
 
 const pageLength = 5;
