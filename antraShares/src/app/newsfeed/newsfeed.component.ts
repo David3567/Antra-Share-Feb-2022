@@ -96,12 +96,10 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     });
   }
   onScroll() {
-    console.log('scrolled!!');
     this.variableValue.page++
     this.subcribeStoryService = this.storyService
       .getStoriesScroll(this.variableValue.page, this.variableValue.perpage)
       .subscribe((storyData: any) => {
-        console.log(storyData);
         this.stories = [...this.stories, ...storyData];
       });
   }

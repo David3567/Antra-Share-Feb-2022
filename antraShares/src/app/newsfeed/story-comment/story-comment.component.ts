@@ -101,12 +101,9 @@ export class StoryCommentComponent implements OnInit {
         this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         newcomment = undefined;
       }
-      console.log(this.comments);
     });
   }
   onDeleteComment(comment: Comments) {
-    console.log(comment);
-    console.log(this.data.story);
     if (confirm('Do you want to delete this comment??')) {
       this.deleteService
         .deleteComment(this.data.story._id, comment._id)
