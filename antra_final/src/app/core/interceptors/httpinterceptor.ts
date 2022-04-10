@@ -1,4 +1,4 @@
-import { Injectable, NgModule } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import {
     HttpEvent,
@@ -6,7 +6,6 @@ import {
     HttpHandler,
     HttpRequest,
 } from "@angular/common/http";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 
 @Injectable()
@@ -19,15 +18,18 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         const token = localStorage.getItem("bearerToken");
 
         if (token) {
-            const authReq = req.clone({
-                headers: req.headers.set("Authorization", "Bearer" + token)
+            const newReq = req.clone({
+                // headers: req.headers.set("authorization", "Bearer" + token)
+                setHeaders: {Authorization: `Bearer${token}`}
             });
-            return <any>next.handle(authReq).pipe(
+            console.log("newReq: ", newReq);
+            return <any>next.handle(newReq).pipe(
                 catchError((err) => {
                     console.log("from interceptor: ", err.error);
                     return of(null);
                 })
             );
+            // return <any>next.handle(newReq);
         } else {
             return <any>next.handle(req).pipe(
                 catchError((err) => {

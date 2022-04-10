@@ -15,6 +15,7 @@ import { SettingModule } from './setting/setting.module';
 import { NewsfeedService } from './core/newsfeed.service';
 import { Variables } from './core/globalVariable';
 import { HttpRequestInterceptor } from './core/interceptors/httpinterceptor';
+import { ErrorCatchingInterceptor } from './core/interceptors/errorinterceptor';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,18 @@ import { HttpRequestInterceptor } from './core/interceptors/httpinterceptor';
     SettingModule,
     BrowserAnimationsModule
   ],
-  providers: [NewsfeedService, Variables, 
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: HttpRequestInterceptor,
-          multi: true,
-        },
-],
+  providers: [NewsfeedService, Variables,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorCatchingInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
