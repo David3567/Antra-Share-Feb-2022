@@ -30,7 +30,8 @@ export class StoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.commentLength = this.storyItem.comment.length
+    console.log(this.storyItem)
+    this.commentLength = this.storyItem?.comment.length;
   }
 
   likeClick() {
@@ -54,9 +55,9 @@ export class StoryComponent implements OnInit {
         story: story,
       },
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 
   checkPostOwner() {
