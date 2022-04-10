@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { tokenInfo } from './models/tokenInfo';
 
 @Component({
   selector: 'app-login',
@@ -49,14 +48,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   Login() {
     const val = this.loginForm.value;
 
-    // if(admin.getName() === name && admin.getPass() === pass) {
-    //   console.log("admin");
-    //   this.toAdmin();
-    // }
-    // else if (user.getName() === name && user.getPass() === pass) {
-    //   console.log("user");
-    //   this.toNewsfeed();
-    // }
     if (val.username && val.password) {
       return this.auth.login(val.username, val.password)
     }
