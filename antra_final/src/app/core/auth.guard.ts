@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
 
     this.profileService.getCurrentUser().subscribe((data) => {
       this.userList = data;
-      console.log(this.userList);
+      // console.log(this.userList);
     })
 
     // return this.loginService.getIsAuth().subscribe((data: any) => {
