@@ -1,5 +1,4 @@
 
-import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,10 +7,6 @@ import { News } from 'src/app/interfaces/news.model';
 import { AuthenService } from 'src/app/services/authen.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
-import { __spreadArrays } from 'tslib';
-
-import { JwtService } from "src/app/services/jwt.service";
-import { Router } from '@angular/router';
 
 
 
