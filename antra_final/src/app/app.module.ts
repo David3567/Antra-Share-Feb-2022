@@ -15,6 +15,7 @@ import { SettingModule } from './setting/setting.module';
 import { NewsfeedService } from './core/newsfeed.service';
 import { Variables } from './core/globalVariable';
 import { HttpRequestInterceptor } from './core/header/interceptors/httpinterceptors';
+import { ErrorCatchInterceptor } from './core/header/interceptors/errorinterceptors';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,11 @@ import { HttpRequestInterceptor } from './core/header/interceptors/httpintercept
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorCatchInterceptor,
       multi: true,
     },
 
