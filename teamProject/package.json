@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@auth0/angular-jwt": "^5.0.2",
+    "angular-middleware": "^2.1.9",
     "jwt-decode": "^3.1.2",
     "ng-zorro-antd": "^12.1.1",
     "rxjs": "~6.6.0",
