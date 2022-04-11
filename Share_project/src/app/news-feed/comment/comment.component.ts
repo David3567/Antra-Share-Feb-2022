@@ -15,8 +15,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CommentComponent implements OnInit {
   start: number = 0;
-  end: number = 3;
-  paginationSize: number = 3;
+  end: number = 2;
+  paginationSize: number = 2;
   max!: number;
   totalPages!: number;
   page: number = 0;

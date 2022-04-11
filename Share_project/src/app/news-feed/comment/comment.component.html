@@ -2,16 +2,18 @@
 
     <div class="commentContainer" *ngFor="let comment of commentsPerpage; index as i">
         <div class="comment">
-          <div>
+          <div class="comment-user">
             <img
               src="https://clicknathan.com/wp-content/uploads/2013/07/avatar-2.jpg"
               alt="Avatar"
               class="avatar"
             />
-            <div *ngIf="comment.publisherName === this.username " (click)="deleteComment(i)">X</div>
+            <div>{{ comment.publisherName }}</div>
+            <div *ngIf="comment.publisherName === this.username " (click)="deleteComment(i)">
+              <mat-icon class="delete-btn">delete</mat-icon>
+            </div>
           </div>
-          <div>{{ comment.publisherName }}</div>
-          <div>{{ comment.content.text }}</div>
+          <div class="comment-text">{{ comment.content.text }}</div>
           <br />
         </div>
     </div>
