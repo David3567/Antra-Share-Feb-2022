@@ -18,8 +18,8 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup = this.fb.group(
     {
-      email: ['kruadmin445@gmail.com', [Validators.required, Validators.email]],
-      password: ['Kruadmin445',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['',[Validators.minLength(5),Validators.pattern("(?=.*[A-Z])(?=.*[^a-zA-Z]).{5,}"), Validators.required]]
     }
   );
 
@@ -41,7 +41,7 @@ export class LoginFormComponent implements OnInit {
 
     this.authenService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       (data) => {
-        localStorage.setItem('token', data.bearerToken);
+        localStorage.setItem('bearerToken', data.bearerToken);
         this.authenService.saveJwtToken(data.bearerToken);
 
         //this.jwtService.getJWT(data);
