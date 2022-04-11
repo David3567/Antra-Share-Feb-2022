@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, debounceTime, map } from 'rxjs/operators';
+import { catchError, debounceTime, map, tap } from 'rxjs/operators';
 import { NewUser } from "src/app/interfaces/backEndUser.model";
 import { JwtUserModel } from "src/app/interfaces/jwt.model";
 import jwt_decode from 'jwt-decode';
+import { Auth } from '../interfaces/auth.model';
 
 
 const AUTH_API = 'http://localhost:4231/api/';
@@ -15,7 +16,17 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthenService {
+  private authObj: Auth = new Auth();
+
   constructor(private http: HttpClient) { }
+
+  set authObject(newObj:Auth){
+    this.authObj = newObj;
+  }
+
+  get authObject(){
+    return this.authObj;
+  }
 
   getAllUserNames() {
     return this.http.get<NewUser[]>(AUTH_API + 'users/getAllUsers').pipe(map(val => {
@@ -47,11 +58,16 @@ export class AuthenService {
     }, httpOptions);
   }
 
-  login(userEmail: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'login', {
+  login(userEmail: string, password: string,) {
+    this.resetAuthObject();
+    return this.http.post<Auth>(AUTH_API + 'login', {
       userEmail,
       password
-    }, httpOptions);
+    }, httpOptions).pipe(tap((data: any) => {
+      Object.assign(this.authObj, data.body);
+      localStorage.setItem('bearerToken', this.authObj.bearerToken);
+      console.log(this.authObj.bearerToken)
+    }));
   }
 
   saveJwtToken(token:string){
@@ -85,5 +101,14 @@ export class AuthenService {
       return this.decodeToken(token).userName;
     }
     return'';
+  }
+
+
+  resetAuthObject(): void {
+    this.authObj.userEmail = "";
+    this.authObj.bearerToken = "";
+    this.authObj.isAuthenticated = false;
+
+    localStorage.removeItem("bearerToken");
   }
 }
