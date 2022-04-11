@@ -54,7 +54,7 @@ export class AuthGuard implements CanActivate {
           } else {
             if (this.userrole === "admin") {
               return of(true);
-            } else if (this.username === this.userList[0].userName) {
+            } else if (this.username === this.userList[0]?.userName) {
               return of(true);
             } else {
               return of(false);

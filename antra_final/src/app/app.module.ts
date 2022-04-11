@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,8 +14,6 @@ import { ProfileModule } from './profile/profile.module';
 import { SettingModule } from './setting/setting.module';
 import { NewsfeedService } from './core/newsfeed.service';
 import { Variables } from './core/globalVariable';
-import { HttpRequestInterceptor } from './core/interceptors/httpinterceptor';
-import { ErrorCatchingInterceptor } from './core/interceptors/errorinterceptor';
 
 @NgModule({
   declarations: [
@@ -35,16 +33,7 @@ import { ErrorCatchingInterceptor } from './core/interceptors/errorinterceptor';
     BrowserAnimationsModule
   ],
   providers: [NewsfeedService, Variables,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpRequestInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorCatchingInterceptor,
-      multi: true
-    }
+
   ],
   bootstrap: [AppComponent]
 })
