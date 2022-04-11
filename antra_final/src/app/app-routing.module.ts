@@ -8,6 +8,7 @@ import { SettingPageComponent } from './setting/setting-page/setting-page.compon
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './core/auth.guard';
 
+
 const routes: Routes = [
  
  {path: 'news', component: NewsfeedPageComponent },
