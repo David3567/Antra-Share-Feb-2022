@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { flatMap, tap } from 'rxjs';
+
 import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -39,7 +39,7 @@ export class ProfilePageComponent implements OnInit {
 
   constructor(private profileService: UsersService,
     private route: ActivatedRoute,
-    private decoderServ: JWTDecoderService) { }
+    private jwtService: JWTDecoderService) { }
 
   get nameFC() {
     return this.profile.get('name');
@@ -52,18 +52,16 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!this.route.snapshot.params["username"]) {
-      this.displayName = this.decoderServ.getCurrentUser().name;
-      console.log(this.decoderServ.getCurrentUser());
-      this.userName = this.decoderServ.getCurrentUser().userName ? this.decoderServ.getCurrentUser().userName : null;
-      this.profile.get('email').setValue(this.decoderServ.getCurrentUser().userEmail);
+    if (!this.route.snapshot.params["username"]) {
+      this.displayName = this.jwtService.getCurrentUser().name;
+      console.log(this.jwtService.getCurrentUser());
+      this.userName = this.jwtService.getCurrentUser().userName ? this.jwtService.getCurrentUser().userName : null;
+      this.profile.get('email').setValue(this.jwtService.getCurrentUser().userEmail);
       return
     }
-        
+
     this.userName = this.route.snapshot.params["username"];
     this.getUserInfo();
-    
-    
   }
 
   getUserInfo() {

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { AppUserAuth } from '../interfaces/user-auth.model';
 import { AppUser } from '../interfaces/users.model';
-import jwt_decode from 'jwt-decode';
 
 const API_URL = 'http://localhost:4231/api';
 const httpOptions = {

@@ -14,9 +14,12 @@ export class SettingPanelComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toLogin() {
-    this.loginService.logout();
-    this.router.navigate(['login']);
+  onLogout() {
+    const dialog = confirm("Are you sure you want to logout?");
+    if (dialog) {
+      this.loginService.logout();
+      this.router.navigate(['login']);
+    }
   }
 
 }

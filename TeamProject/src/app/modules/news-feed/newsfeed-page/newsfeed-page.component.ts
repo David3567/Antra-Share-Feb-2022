@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { decode } from 'querystring';
 import { newsTemplate } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
@@ -12,19 +11,19 @@ export class NewsfeedPageComponent implements OnInit {
   newsList: newsTemplate[];
   likedStories: newsTemplate[] = [];
 
-  constructor(private feedService: NewsfeedService) { }
+  constructor(private newsService: NewsfeedService) { }
 
   ngOnInit(): void {
-    
-    this.feedService.getNews().subscribe((news)=> this.newsList = news.reverse());
+
+    this.newsService.getNews().subscribe((news) => this.newsList = news.reverse());
   }
 
   onLike(favorite: string) {
-    if(this.likedStories.find((likedStory) => likedStory._id === favorite)) {
+    if (this.likedStories.find((likedStory) => likedStory._id === favorite)) {
       this.likedStories = this.likedStories.filter((likedStory) => likedStory._id !== favorite);
     } else {
       this.likedStories.push(this.newsList.find((story) => story._id === favorite));
-    } 
+    }
   }
 
   onUpdateLikedStories(updatedLikedStories: any) {
@@ -35,7 +34,7 @@ export class NewsfeedPageComponent implements OnInit {
     this.newsList.unshift(newStory);
   }
 
-  onDeleteStory(id:string) {
+  onDeleteStory(id: string) {
     this.newsList = this.newsList.filter((story) => id !== story._id);
   }
 }

@@ -1,24 +1,24 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
-import { JWTDecoderService } from "./jwt-decoder.service";
-import { LoginService } from "./login.service";
+import { JWTDecoderService } from "../services/jwt-decoder.service";
+import { LoginService } from "../services/login.service";
 
 @Injectable({
     providedIn: 'root',
 })
 export class ProfileGuard implements CanActivate {
-    constructor(private decoderService: JWTDecoderService,
-        private LS: LoginService,
+    constructor(private jwtService: JWTDecoderService,
+        private loginService: LoginService,
         private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        return this.LS.isAuthenticated().then((authenticated) => {
+        return this.loginService.isAuthenticated().then((authenticated) => {
             if (authenticated) {
-                if (this.decoderService.getCurrentUser().userRole === "admin") {
+                if (this.jwtService.getCurrentUser().userRole === "admin") {
                     return true;
-                } else if (route.params["username"] === this.decoderService.getCurrentUser().userName) {
+                } else if (route.params["username"] === this.jwtService.getCurrentUser().userName) {
                     return true;
                 } else {
                     alert("You are not authorized.");
@@ -26,6 +26,7 @@ export class ProfileGuard implements CanActivate {
                     return false;
                 }
             } else {
+                alert("You need to be logged in.")
                 this.router.navigateByUrl('/');
                 return false;
             }

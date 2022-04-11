@@ -7,7 +7,9 @@ import { ProfilePageComponent } from './modules/profile/profile-page/profile-pag
 import { SettingPanelComponent } from './modules/setting/setting-panel/setting-panel.component';
 import { AdminPageComponent } from './modules/admin/admin-page/admin-page.component';
 import { NewsfeedPageComponent } from './modules/news-feed/newsfeed-page/newsfeed-page.component';
-import { ProfileGuard } from './services/profile-guard.service';
+import { ProfileGuard } from './guards/profile-guard.service';
+import { AdminGuard } from './guards/admin-guard.service';
+import { GenericGuard } from './guards/generic-guard.service';
 
 
 const routes: Routes = [
@@ -20,11 +22,11 @@ const routes: Routes = [
     component: RegisterPageComponent,
   },
   {
-    path: 'newsfeed',
+    path: 'newsfeed', canActivate: [GenericGuard],
     component: NewsfeedPageComponent,
   },
   {
-    path: 'profile',
+    path: 'profile', canActivate: [GenericGuard],
     component: ProfilePageComponent,
   },
   {
@@ -32,13 +34,13 @@ const routes: Routes = [
     component: ProfilePageComponent,
   },
   {
-    path: 'setting',
+    path: 'setting', canActivate: [GenericGuard],
     component: SettingPanelComponent,
-    
+
   },
   {
-    path: 'admin',
-    component:AdminPageComponent,
+    path: 'admin', canActivate: [AdminGuard],
+    component: AdminPageComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },

@@ -1,53 +1,65 @@
 <div class="container">
   <mat-card>
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
-        <img src="./assets/images/ANTRA_Tech.jpg" alt="logo">
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="usernameVal" />
-          <mat-error *ngIf="!usernameVal?.valid && (usernameVal?.dirty || usernameVal?.touched)" class="error">
-            <div *ngIf="usernameVal?.errors?.['required']">
-              Username is required!</div>
-            <div *ngIf="usernameVal?.errors?.['email']">
-              The entry should follow the email format!
-            </div>
-          </mat-error>
-        </mat-form-field>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <img src="./assets/images/ANTRA_Tech.jpg" alt="logo" />
 
-
-        <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" maxlength="50" formControlName="passwordVal" />
-          <mat-icon matSuffix (click)="hide = !hide">{{
-            hide ? "visibility_off" : "visibility"
-            }}</mat-icon>
-          <mat-error *ngIf="!passwordVal?.valid && (passwordVal?.dirty || passwordVal?.touched)" class="error">
-            <div *ngIf="passwordVal?.errors?.['required']">
-              Password is required!</div>
-            <div *ngIf="passwordVal?.errors?.['minlength']">
-              Min length <strong>5</strong> required
-            </div>
-            <div *ngIf="passwordVal?.errors?.['pattern']">
-              <strong>1</strong> uppercase and <strong>1</strong> special character (#?!@$%^&*) required
-            </div>
-          </mat-error>
-        </mat-form-field>
-
-        <div class="login-Container">
-          <button class="button loginBtn" type="submit" [disabled]="!loginForm.valid">Login</button>
-          <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-        </div>
-
-        <a (click)="onRegister()" class="registrationLink">No Accounts? Register
-          Now!</a>
-        <div class=" formFooter">
-          <div class="agreement">
-            <input type="checkbox" name="agreement" id=""><label for="agreement">Agreement</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="usernameVal" />
+        <mat-error
+          *ngIf="
+            !usernameVal?.valid && (usernameVal?.dirty || usernameVal?.touched)
+          "
+        >
+          <div *ngIf="usernameVal?.errors?.['required']">
+            Email is required!
           </div>
-          <a href="#">Need Help?</a>
-        </div>
-      </form>
-    </mat-card-content>
+          <div *ngIf="usernameVal?.errors?.['email']">
+            The entry should follow the email format!
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          maxlength="50"
+          formControlName="passwordVal"
+        />
+        <mat-icon matSuffix (click)="hide = !hide">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+        <mat-error
+          *ngIf="
+            !passwordVal?.valid && (passwordVal?.dirty || passwordVal?.touched)
+          "
+        >
+          <div *ngIf="passwordVal?.errors?.['required']">
+            Password is required!
+          </div>
+          <div *ngIf="passwordVal?.errors?.['minlength']">
+            Min length <strong>5</strong> required
+          </div>
+          <div *ngIf="passwordVal?.errors?.['pattern']">
+            <strong>1</strong> uppercase and <strong>1</strong> special
+            character (#?!@$%^&*) required
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        class="login-button"
+        color="primary"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
+
+      <a href="register" class="register-link">No Accounts? Register Now!</a>
+    </form>
   </mat-card>
 </div>

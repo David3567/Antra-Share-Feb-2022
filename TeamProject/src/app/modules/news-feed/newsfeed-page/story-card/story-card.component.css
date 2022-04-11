@@ -2,32 +2,19 @@
   box-sizing: border-box;
 }
 
-.container {
+mat-card {
   padding: 10px;
-  width: 580px;
-  box-sizing: border-box;
-  border: 1px solid black;
-  border-radius: 3px;
-  box-shadow: 6px 6px 6px 0 black;
+  width: 600px;
 }
 
-.userContainer {
-  display: flex;
-  align-items: flex-end;
-}
-
-.user {
+.header-container {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.user-detail {
-  display: flex;
-  column-gap: 10px;
-  padding: 5px;
-  margin-left: 20px;
-  font-size: 20px;
+.profile-header {
+  margin-top: 10px;
 }
 
 .active:hover {
@@ -35,57 +22,50 @@
   cursor: pointer;
 }
 
-.userAvatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+.profile-pix {
+  background-image: url("src/assets/images/avatar_placeholder.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 65px;
+  width: 65px;
 }
 
-.contentContainer {
+mat-card-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  column-gap: 10px;
-  width: 100%;
 }
 
-.contentImg {
-  padding: 7px 0;
-  max-width: 290px;
+mat-card-content > p {
+  align-self: flex-start;
+  padding-left: 98px;
 }
 
-.content {
-  padding: 7px 0;
-  min-height: 40px;
+.content-image {
+  width: 65%;
+  border-radius: 10px;
 }
 
-.reactionsContainer {
+mat-card-actions {
   display: flex;
   justify-content: space-between;
+  margin: 0;
+  padding: 0;
 }
 
 .comments {
   display: flex;
-  justify-content: center;
   align-items: center;
-  column-gap: 10px;
-  width: 250px;
-  border: 1px solid black;
-  padding: 5px;
 }
 
-.like {
+.like-button {
   color: lightgray;
-  margin-bottom: 4px;
-  font-size: 25px;
 }
 
 .liked {
-  color: red;
+  color: #ff4081;
 }
 
-.like:hover {
-  cursor: pointer;
-  font-size: 35px;
-  transform: scale(1.4);
+.like-button:hover {
+  color: #ff4081;
 }
