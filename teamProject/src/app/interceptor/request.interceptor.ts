@@ -5,14 +5,12 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
-  HttpResponse,
-  HttpErrorResponse,
 } from "@angular/common/http";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { catchError, tap } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
+
 
 @Injectable()
-export class requestInterceptor implements HttpInterceptor {
+export class RequestInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -21,9 +19,9 @@ export class requestInterceptor implements HttpInterceptor {
     console.log(req.url);
 
     //get token from localStorage;
-    const token = "bearerToken";
+    const token = localStorage.getItem("bearerToken");
     const authReq = req.clone({
-      setHeaders: {Authorization: token}
+      headers: req.headers.set("Authorization", "Bearer" + token),
     })
 
     return next.handle(authReq);

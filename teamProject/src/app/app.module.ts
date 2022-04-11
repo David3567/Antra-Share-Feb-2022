@@ -25,8 +25,8 @@ import { AuthenService } from './services/authen.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { JwtService } from './services/jwt.service';
 import { GuardService } from './services/guard.service';
-import { requestInterceptor } from './core/req.interceptor';
-import { errorHandleInterceptor } from './core/httpError.interceptor';
+import { RequestInterceptor } from './interceptor/request.interceptor';
+import { ErrorHandledInterceptor } from './interceptor/error-handled.interceptor';
 
 registerLocaleData(en);
 
@@ -55,12 +55,12 @@ registerLocaleData(en);
   providers: [UserlistService,NewsfeedService, { provide: NZ_I18N, useValue: en_US }, AuthenService, JwtService, GuardService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: requestInterceptor,
+      useClass: RequestInterceptor,
       multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: errorHandleInterceptor,
+      useClass: ErrorHandledInterceptor,
       multi: true
     }
   ],
