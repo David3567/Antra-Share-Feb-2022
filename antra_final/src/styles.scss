@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:host{
+    //position: fixed;
+    width: 100vw;
+    height: 100vh; 
+    --color-green-background: #F8FBF6;
+    --color-yellowgreen-main: #D7DBD6;
+    --color-grey-hover: lightgray;
+
+}

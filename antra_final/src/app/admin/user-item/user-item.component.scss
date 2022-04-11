@@ -1,0 +1,30 @@
+span {
+    overflow: auto;
+  }
+
+.item_card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item_card:hover {
+  background-color: var(--color-grey-hover);
+  cursor: pointer;
+}
+
+button {
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  font-size: 1.7rem;
+}
+
+button:active {
+  font-size: 1.3rem;
+}

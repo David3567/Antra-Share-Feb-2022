@@ -1,0 +1,6 @@
+<div class="newsfeed-container">
+
+    <app-post-card></app-post-card>
+    <app-story-card *ngFor="let stories of Storieslist" 
+    [storiesdetail]="stories"></app-story-card>
+</div>

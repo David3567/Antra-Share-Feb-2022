@@ -1,0 +1,71 @@
+<h1>Register Account</h1>
+<div class="main-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="field-container">
+            <input type="text" id="username" formControlName="username" placeholder="Username">
+            <div *ngIf="!username?.valid && (username?.dirty ||username?.touched)" class="error">
+                <div *ngIf="username?.errors?.['hasuser']">
+                    Opps, username existed
+                </div>
+                <div [hidden]="!username?.errors?.['required']">
+                    Username is required
+                </div>
+                <div [hidden]="!username?.errors?.['minlength']">
+                    Min Length is 5
+                </div>
+                <div [hidden]="!username?.errors?.['maxlength']">
+                    Max Length is 12
+                </div>
+            </div>
+        </div>
+
+        <div class="field-container">
+            <input type="email" class="fullwidth" id="email" formControlName="email" placeholder="Email Address">
+            <div *ngIf="!email?.valid && (email?.dirty ||email?.touched)" class="error">
+                <div *ngIf="email?.errors?.['hasemail']">
+                    Opps, email existed
+                </div>
+                <div [hidden]="!email?.errors?.['required']">
+                    Email is required
+                </div>
+                <div [hidden]="!email?.errors?.['email']">
+                    Invalid email id
+                </div>
+            </div>
+        </div>
+
+        <div class="field-container">
+            <input type="text" id="passwd" formControlName="passwd" placeholder="Password">
+            <div *ngIf="!passwd?.valid && (passwd?.dirty ||passwd?.touched)" class="error">
+                <div [hidden]="!passwd?.errors?.['required']">
+                    Password is required
+                </div>
+                <div [hidden]="!passwd?.errors?.['pattern']">
+                    Password has to be at least 1 Uppercase <br> 1 special character and 5 min length
+                </div>
+            </div>
+        </div>
+
+        <div class="field-container">
+            <input type="text" id="confirm" formControlName="confirm" placeholder="Confirm Password">
+            <div *ngIf="!form?.valid && (form?.dirty || form?.touched)" class="error">
+                <div [hidden]="!confirm?.errors?.['required']">
+                    Confirm password is required
+                </div>
+                <div *ngIf="form.errors?.['notMatch']">
+                    Password and confirm password do not match!
+                </div>
+            </div>
+        </div>
+
+        <button class="register-button" 
+        type="submit" 
+        [disabled]="!form.valid">Sign up</button>
+
+        <p>
+            Have an account?? <a href="">Log In</a>
+            instead
+        </p>
+    </form>
+</div>

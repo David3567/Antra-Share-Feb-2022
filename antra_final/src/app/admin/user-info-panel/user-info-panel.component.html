@@ -1,0 +1,20 @@
+<div class="userpanel_container">
+    <h2>User list:</h2>
+    <div class="userlist_upper">
+        
+        <app-user-item
+            *ngFor = "let user of userlist"
+            [userInfo]="user"
+            (deletedId)="deleteuser($event)"
+            (selectedId)="selectuser(user)"
+        ></app-user-item>
+    </div>
+    
+    <div >
+        <button mat-flat-button > Add User </button>
+    </div>
+
+</div>
+
+
+

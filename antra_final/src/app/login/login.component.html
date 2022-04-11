@@ -1,0 +1,24 @@
+<h1>Log In</h1>
+<div class="main-container">
+    <form [formGroup]="form" (ngSubmit)="onLogIn()">
+
+        <div class="email-container">
+            <input type="email" placeholder="Email" formControlName="email"><br>
+            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
+                Invalid email
+            </div>
+            <div class="error">{{errorText}}</div>
+        </div>
+
+        <div class="password-container">
+            <input type="password" placeholder="Password" formControlName="password"><br>
+            <div *ngIf="!password?.valid && (password?.dirty || password?.touched)" class="error">
+                Invalid password
+            </div>
+        </div>
+
+        <p>New User? <a routerLink="/register">Register</a></p>
+        <button type="login" class="login-button" (click)="onLogIn()">Log In</button>
+    </form>
+
+</div>
