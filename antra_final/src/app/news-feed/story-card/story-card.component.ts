@@ -43,7 +43,7 @@ export class StoryCardComponent implements OnInit {
     this.subscriptionProfile$ = this.profileService.
       getProfile(name).subscribe((data: any) => {
         this.userList = data;
-        console.log(this.userList);
+        // console.log(this.userList);
         this.profileService.updateCurrentUser(this.userList);
         this.router.navigate(['profile']);
 

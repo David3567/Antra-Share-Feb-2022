@@ -10,7 +10,7 @@ import { UserProfile } from '../interface/user-profile.model';
 })
 export class LoginService {
 
-  token: string = '';
+  token: any;
   decoded: any;
   currentUser: string = '';
   currentUserRole: string = '';
@@ -41,9 +41,7 @@ export class LoginService {
       .pipe(
         tap((data: any) => {
           Object.assign(this.userObject, data.body);
-          // let decodedToken: any = jwt_decode(this.userObject.bearerToken);
-          // let newDecodedToken: any = { ...decodedToken, userRole: undefined };
-          localStorage.setItem('bearerToken', JSON.stringify(this.userObject.bearerToken));
+          localStorage.setItem('bearerToken', this.userObject.bearerToken);
         })
       );
   }
@@ -57,7 +55,8 @@ export class LoginService {
 
 
   private decodeToken() {
-    this.token = JSON.parse(localStorage.getItem('bearerToken')!);
+    // this.token = JSON.parse(localStorage.getItem('bearerToken')!);
+    this.token = localStorage.getItem('bearerToken');
     this.decoded = jwt_decode(this.token);
   }
 
