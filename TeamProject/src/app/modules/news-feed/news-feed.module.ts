@@ -6,6 +6,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { NewsfeedPageComponent } from './newsfeed-page/newsfeed-page.component';
 import { PostNewStoryComponent } from './newsfeed-page/post-new-story/post-new-story.component';
@@ -13,7 +15,6 @@ import { StoryCardComponent } from './newsfeed-page/story-card/story-card.compon
 import { LikeListComponent } from './newsfeed-page/like-list/like-list.component';
 import { LikedStoryComponent } from './newsfeed-page/like-list/liked-story/liked-story.component';
 import { CommentDialogComponent } from './newsfeed-page/story-card/comment-dialog/comment-dialog.component';
-import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,9 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   exports: [NewsfeedPageComponent],
 })
-export class NewsFeedModule {}
+export class NewsFeedModule { }

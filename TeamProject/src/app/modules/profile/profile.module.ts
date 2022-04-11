@@ -9,8 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
-import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { RangePipe } from 'src/app/pipes/range.pipe';
+
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [ProfilePageComponent, RangePipe],
@@ -27,4 +28,4 @@ import { RangePipe } from 'src/app/pipes/range.pipe';
   ],
   exports: [ProfilePageComponent],
 })
-export class ProfileModule {}
+export class ProfileModule { }

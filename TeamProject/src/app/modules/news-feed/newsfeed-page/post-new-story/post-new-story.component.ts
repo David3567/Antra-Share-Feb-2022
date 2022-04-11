@@ -14,14 +14,14 @@ export class PostNewStoryComponent implements OnInit {
 
   constructor(
     private newsService: NewsfeedService,
-    private decoderService: JWTDecoderService
+    private jwtService: JWTDecoderService
   ) { }
 
   ngOnInit(): void { }
 
   postNewStory(newPost: HTMLInputElement) {
     this.newStory = {
-      "publisherName": this.decoderService.getCurrentUser().userName,
+      "publisherName": this.jwtService.getCurrentUser().userName,
       "content": {
         "text": newPost.value
       },

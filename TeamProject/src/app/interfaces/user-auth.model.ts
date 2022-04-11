@@ -1,8 +1,7 @@
 export class AppUserAuth {
-
-  constructor(public name: string = "",
-              public userName: string = "",
-              public userEmail: string = "",
-              public userRole: string = "",
-              public bearerToken: string = "") { }
+  name: string = "";
+  userName: string = "";
+  userEmail: string = "";
+  userRole: string = "";
+  bearerToken: string = "";
 }

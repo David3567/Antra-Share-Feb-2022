@@ -1,43 +1,76 @@
 <mat-dialog-content>
-  <div class="container" *ngFor="let comment of pageList">
-    <div class="userContainer">
-      <img src="./assets/images/avatar_placeholder.jpg" alt="" class="userAvatar" />
-      <div class="user">
-        <div class="user-detail">
-          <div><span (click)="toUserProfile(comment.publisherName)"
-              [ngClass]="{'active': checkUser(comment.publisherName)}">{{ comment.publisherName }}</span> -</div>
-          <div>{{ comment.publishedTime | date: "MMM d HH:mm a" }}</div>
+  <mat-card *ngFor="let comment of pageList">
+    <mat-card-header>
+      <div mat-card-avatar class="profile-pix"></div>
+      <div class="header-container">
+        <div class="profile-header">
+          <mat-card-title
+            [ngClass]="{ active: checkUser(comment.publisherName) }"
+            (click)="onProfile(comment.publisherName)"
+          >
+            {{ comment.publisherName }}
+          </mat-card-title>
+          <mat-card-subtitle>{{
+            comment.publishedTime | date: "short"
+          }}</mat-card-subtitle>
         </div>
-        <button *ngIf="checkUser(comment.publisherName)" mat-icon-button aria-label="delete icon" color="warn"
-          (click)="deleteComment(comment._id)">
+        <button
+          mat-icon-button
+          *ngIf="checkUser(comment.publisherName)"
+          aria-label="delete button"
+          color="warn"
+          (click)="deleteComment(comment._id)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-    </div>
-    <div class="contentContainer">
-      <img *ngIf="comment.content.image?.includes('https')" src="{{ comment.content.image }}" alt="Image"
-        class="contentImg" />
-      <div class="content">{{ comment.content?.text }}</div>
-    </div>
-  </div>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="content">{{ comment.content?.text }}</p>
+      <img
+        mat-card-image
+        *ngIf="comment.content.image?.includes('https')"
+        class="content-image"
+        [src]="comment.content.image"
+        alt="comment image"
+        onerror="this.onerror=null;this.src='assets/images/error_404.png';"
+      />
+    </mat-card-content>
+  </mat-card>
 
-  <mat-form-field class="add-comment" appearance="outline">
+  <mat-form-field appearance="outline">
     <mat-label>New Comment</mat-label>
-    <input matInput id="comment" matInput placeholder="Send your reply" #commentInput>
-    <button mat-icon-button matSuffix aria-label="comment button"
-      (click)="postNewComment(commentInput.value); commentInput.value=''" id="post">
-      <mat-icon>comment</mat-icon>
+    <input matInput placeholder="Send your reply" #commentInput />
+    <button
+      mat-icon-button
+      matSuffix
+      id="post"
+      color="primary"
+      aria-label="comment button"
+      (click)="postNewComment(commentInput.value); commentInput.value = ''"
+    >
+      <mat-icon>rate_review</mat-icon>
     </button>
   </mat-form-field>
 
   <div class="action-container">
-    <button mat-raised-button color="primary" [disabled]="previousBtn" (click)="onPrevious()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="previousBtn"
+      (click)="onPrevious()"
+    >
       Previous
     </button>
     <div>
       <strong>{{ pageIndex }}</strong> of <strong>{{ pageSize }}</strong>
     </div>
-    <button mat-raised-button color="primary" [disabled]="nextBtn || commentList.length < 4" (click)="onNext()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="nextBtn || commentList.length < 4"
+      (click)="onNext()"
+    >
       Next
     </button>
   </div>

@@ -1,9 +1,10 @@
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, Form, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, of, throwError, timer } from 'rxjs';
+import { Observable, timer } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+
 import { RegisterService } from 'src/app/services/register.service';
-import { mapTo, catchError, map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-page',
@@ -11,7 +12,7 @@ import { mapTo, catchError, map, switchMap, tap } from 'rxjs/operators';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
-
+  hide: boolean = true;
   regForm: FormGroup;
   usernameStatus: string;
   emailStatus: string;
@@ -20,6 +21,22 @@ export class RegisterPageComponent implements OnInit {
   constructor(private build: FormBuilder,
     private router: Router,
     private regService: RegisterService) { }
+
+  get username() {
+    return this.regForm.get('username');
+  }
+  get email() {
+    return this.regForm.get('email');
+  }
+  // get passwordGroup() {
+  //   return this.regForm.get('passwordGroup');
+  // }
+  get confirm() {
+    return this.regForm.get('confirm');
+  }
+  get password() {
+    return this.regForm.get('password');
+  }
 
   ngOnInit(): void {
     this.regForm = this.build.group({
@@ -35,33 +52,9 @@ export class RegisterPageComponent implements OnInit {
     );
   }
 
-  get username() {
-    return this.regForm.get('username');
-  }
-
-  get email() {
-    return this.regForm.get('email');
-  }
-
-  // get passwordGroup() {
-  //   return this.regForm.get('passwordGroup');
-  // }
-
-  get confirm() {
-    return this.regForm.get('confirm');
-  }
-  get password() {
-    return this.regForm.get('password');
-  }
-
   onSubmit(signUpForm: FormGroup) {
     console.log(signUpForm.value);
-
     this.router.navigate(['/login']);
-  }
-
-  test() {
-    return console.log(this.username.errors);
   }
 
   // matchPassword(password: string, confirm: string) {
@@ -92,22 +85,12 @@ export class RegisterPageComponent implements OnInit {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return timer(500).pipe(
         switchMap(() => {
-          return this.regService.getUserByEmail(control.value).pipe()
+          return this.regService.getUserByEmail(control.value)
         }),
         map((val) => {
-
           return val ? { emailExists: true } : null;
         })
       );
     }
   }
-
-  checkEmailExistsNow(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.regService.getUserByEmail(control.value).pipe(
-        map((val) => { return val ? { emailExists: true } : null })
-      )
-    }
-  }
-
 }

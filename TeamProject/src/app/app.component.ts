@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppUserAuth } from './interfaces/user-auth.model';
+import { JWTDecoderService } from './services/jwt-decoder.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'TeamProject';
-  
-  constructor(private router: Router){}
+  decoded: AppUserAuth;
+
+  constructor(private router: Router, private jwtService: JWTDecoderService) { }
 
   getUrl() {
+    this.decoded = this.jwtService.getCurrentUser();
     return this.router.url;
   }
-  
-  
 }

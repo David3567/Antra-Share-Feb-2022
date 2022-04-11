@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Comment } from 'src/app/interfaces/news.model';
+
 import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
@@ -25,7 +26,7 @@ export class CommentDialogComponent implements OnInit {
   constructor(
     private router: Router,
     private newsService: NewsfeedService,
-    private decoderService: JWTDecoderService,
+    private jwtService: JWTDecoderService,
     @Inject(MAT_DIALOG_DATA) public data: { comment: Comment[]; _id: string }
   ) { }
 
@@ -65,7 +66,7 @@ export class CommentDialogComponent implements OnInit {
 
   postNewComment(comment: string) {
     this.newComment = {
-      "publisherName": this.decoderService.getCurrentUser().userName,
+      "publisherName": this.jwtService.getCurrentUser().userName,
       "content": {
         "text": comment
       }
@@ -84,17 +85,18 @@ export class CommentDialogComponent implements OnInit {
   }
 
   checkUser(commentOwner): boolean {
-    if (this.decoderService.getCurrentUser().userRole === "admin"
-      || commentOwner === this.decoderService.getCurrentUser().userName) {
+    if (this.jwtService.getCurrentUser().userRole === "admin"
+      || commentOwner === this.jwtService.getCurrentUser().userName) {
       return true
     } else {
       return false;
     }
   }
 
-  toUserProfile(user: string) {
-    console.log(user);
-    this.router.navigate([`profile/${user}`]);
+  onProfile(username: string) {
+    if (this.checkUser(username)) {
+      this.router.navigate([`profile/${username}`]);
+    }
   }
 
   deleteComment(commentId: string) {

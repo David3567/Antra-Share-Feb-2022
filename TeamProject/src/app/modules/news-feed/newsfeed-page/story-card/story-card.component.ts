@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { newsTemplate } from 'src/app/interfaces/news.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
-import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { Router } from '@angular/router';
+
+import { newsTemplate } from 'src/app/interfaces/news.model';
+
+import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { JWTDecoderService } from 'src/app/services/jwt-decoder.service';
-import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-story-card',
@@ -21,8 +22,7 @@ export class StoryCardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private newsService: NewsfeedService,
-    private decoderService: JWTDecoderService,
-    private profileService: UsersService,
+    private jwtService: JWTDecoderService,
     private router: Router
   ) { }
 
@@ -36,9 +36,10 @@ export class StoryCardComponent implements OnInit {
       },
     });
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      location.reload();
+    });
   }
 
   like(id: string) {
@@ -55,8 +56,8 @@ export class StoryCardComponent implements OnInit {
   }
 
   checkUser(): boolean {
-    if (this.decoderService.getCurrentUser().userRole === "admin"
-      || this.story.publisherName === this.decoderService.getCurrentUser().userName) {
+    if (this.jwtService.getCurrentUser().userRole === "admin"
+      || this.story.publisherName === this.jwtService.getCurrentUser().userName) {
       return true
     } else {
       return false;

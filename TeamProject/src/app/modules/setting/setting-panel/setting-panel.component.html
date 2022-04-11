@@ -1,14 +1,14 @@
-<div class="main-container" role = "link">
-    <div class="container">
-        <div class="setting-panel-container">
-            Setting Panel
-        </div>
-        <button  class = "logoutBtn" (click)="toLogin()">Logout Button</button>
-        <!-- <footer>
-            <button>My Profile</button>
-            <button>News Feed</button>
-            <button>Settings</button>
-        </footer> -->
+<div class="main-container" role="link">
+  <mat-card>
+    <div id="backdrop">
+      <button
+        mat-flat-button
+        color="primary"
+        class="logout-button"
+        (click)="onLogout()"
+      >
+        Logout
+      </button>
     </div>
+  </mat-card>
 </div>
-
