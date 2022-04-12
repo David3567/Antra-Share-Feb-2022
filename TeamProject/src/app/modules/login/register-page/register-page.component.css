@@ -1,71 +1,52 @@
-* {
-  box-sizing: border-box;
-}
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: calc(100vh - 50px);
-  background-color: #0097e6;
-  overflow-y: auto;
+  align-items: center;
+  height: 100vh;
+  min-width: 378px;
+  background-color: #edf1f5;
+}
+
+mat-card {
+  border: solid #3f51b5;
+  background-color: #fafafa;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
-  border: 2px solid black;
-  border-radius: 5px;
+  width: 300px;
   padding: 20px;
-  width: 350px;
-  max-height: calc(100vh - 50px);
-  overflow-y: auto;
-  background-color: white;
-  box-shadow: 6px 6px 6px 0 black;
+  row-gap: 10px;
 }
 
-h2 {
+h1 {
   text-align: center;
+  margin-bottom: 40px;
+  font-size: 24px;
   font-weight: bold;
-  font-size: 25px;
-  margin-bottom: 5px;
 }
 
-button {
-  margin: 10px 0;
-  width: 100px;
+#password-field {
+  padding-bottom: 10px;
+}
+
+.register-button {
   align-self: center;
-  border: 1px solid transparent;
-  border-radius: 7px;
-  width: 50%;
-  height: 40px;
-  color: white;
+  width: 40%;
+  margin: 15px 0 20px 0;
   font-size: 16px;
-  background-color: #428bca;
 }
 
 button:hover {
   cursor: pointer;
 }
 
-label {
-  margin-bottom: -10px;
+.agreement {
+  display: flex;
 }
 
-input {
-  width: 100%;
-  border-radius: 5px;
-  border-color: #ebebeb;
-  padding: 10px;
-  font-size: 15px;
-  border-style: inset;
-  border-width: 2px;
-}
-
-button[type="submit"]:disabled {
-  background-color: lightgray;
-}
-
-.errors {
-  color: red;
+.form-footer {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,29 +1,24 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 50px);
-  min-width: 390px;
-  background-color: #0097e6;
+  min-height: calc(100vh - 64px);
+  min-width: 480px;
+  background-color: #edf1f5;
 }
 
 mat-card {
   width: 600px;
   padding: 16px;
+  box-sizing: border-box;
 }
 
 .profile-pix {
   background-image: url("src/assets/images/siamese.jpg");
   background-position: center;
   background-size: cover;
-  height: 60px;
-  width: 60px;
+  height: 65px;
+  width: 65px;
 }
 
 .profile-header {

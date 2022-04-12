@@ -1,10 +1,10 @@
 <div class="container">
   <mat-card class="profile-card">
     <mat-card-header>
-      <div mat-card-avatar class="profile-pix" title="Profile Picture"></div>
+      <div mat-card-avatar class="profile-pix"></div>
       <div class="profile-header">
         <mat-card-title>{{ displayName }}</mat-card-title>
-        <mat-card-subtitle>@SiameseCat101</mat-card-subtitle>
+        <mat-card-subtitle> @{{ userName }}</mat-card-subtitle>
       </div>
     </mat-card-header>
 
@@ -39,7 +39,11 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" />
+          <input
+            matInput
+            formControlName="email"
+            placeholder="test@gmail.com"
+          />
         </mat-form-field>
 
         <div class="userinfo-container">
@@ -88,7 +92,7 @@
               </div>
               <div [hidden]="!passwordFC.errors.pattern">
                 <strong>1</strong> uppercase and <strong>1</strong> special
-                character (#?!@$%^&*) required
+                character (#?!@$%^&*-) required
               </div>
             </mat-error>
             <mat-hint

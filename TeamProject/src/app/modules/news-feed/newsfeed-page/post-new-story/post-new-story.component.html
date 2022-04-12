@@ -1,7 +1,45 @@
-<div class="container">
-    <div>
-        <img src="" alt="">
-        <textarea name="" id="" cols="64" rows="4" placeholder="Start your post..."></textarea>
+<mat-card class="profile-card">
+  <mat-card-header>
+    <div mat-card-avatar class="profile-pix" title="Profile Picture"></div>
+    <mat-form-field appearance="outline">
+      <textarea
+        matInput
+        id="post-textarea"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="2"
+        maxlength="280"
+        placeholder="What's happening?"
+        #textArea
+      ></textarea>
+    </mat-form-field>
+  </mat-card-header>
+  <mat-card-actions>
+    <button
+      id="image-btn"
+      mat-icon-button
+      color="primary"
+      aria-label="image icon"
+    >
+      <mat-icon>image</mat-icon>
+    </button>
+    <button
+      id="post-btn"
+      mat-icon-button
+      color="primary"
+      aria-label="post icon"
+      (click)="postNewStory(textArea)"
+    >
+      <mat-icon>send</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<!-- <div class="container">
+    <div class="post-container">
+        <img src="./assets/images/avatar_placeholder.jpg" alt="">
+        <textarea name="" id="" cols="64" rows="4" placeholder="Start your post..."
+            #textArea></textarea>
     </div>
-    <button>Post</button>
-</div>
+    <button (click)="postNewStory(textArea)">Post</button>
+</div> -->

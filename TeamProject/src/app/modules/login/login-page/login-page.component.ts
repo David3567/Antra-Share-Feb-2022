@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { max } from 'rxjs';
+import { AppUserAuth } from 'src/app/interfaces/user-auth.model';
+import { AppUser } from 'src/app/interfaces/users.model';
+
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login-page',
@@ -17,7 +13,12 @@ import { max } from 'rxjs';
 })
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
+  hide: boolean = true;
+  errorMessage: string = "";
 
+  user: AppUser = new AppUser();
+  securityObj: AppUserAuth = null;
+  returnUrl: string = 'newsfeed';
 
 
   get usernameVal() {
@@ -28,42 +29,30 @@ export class LoginPageComponent implements OnInit {
     return this.loginForm.get('passwordVal');
   }
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      usernameVal: ['', [Validators.minLength(5), Validators.maxLength(16), Validators.required], []],
-      passwordVal: ['', [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required], []],
+      usernameVal: ["", [Validators.required, Validators.email]],
+      passwordVal: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-+/]).{5,}$"), Validators.required], []],
     });
-
   }
-
 
   onSubmit() {
-    console.log(this.loginForm.value);
-  }
-
-  onRegister() {
-    this.router.navigate(['register']);
-  }
-
-}
-
-interface ValidatorFn {
-  (control: AbstractControl): ValidationErrors | null;
-}
-
-function customValidator(minlen: number, maxlen: number): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-
-    if (control.value.length < minlen) {
-      return { minlen: true, minlength: minlen };
+    this.user = {
+      "userEmail": this.loginForm.value.usernameVal,
+      "password": this.loginForm.value.passwordVal,
     }
 
-    if (control.value.length > maxlen) {
-      return { maxlen: true, maxlength: maxlen };
-    }
-
-    return null;
-  };
+    this.loginService.login(this.user).subscribe(
+      (info) => {
+        this.securityObj = info.body;
+        this.router.navigateByUrl(this.returnUrl);
+      },
+      (err) => { this.errorMessage = err.error },
+    );
+  }
 }

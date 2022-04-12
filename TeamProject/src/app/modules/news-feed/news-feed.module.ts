@@ -5,6 +5,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { NewsfeedPageComponent } from './newsfeed-page/newsfeed-page.component';
 import { PostNewStoryComponent } from './newsfeed-page/post-new-story/post-new-story.component';
@@ -29,7 +32,10 @@ import { CommentDialogComponent } from './newsfeed-page/story-card/comment-dialo
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule
   ],
   exports: [NewsfeedPageComponent],
 })
-export class NewsFeedModule {}
+export class NewsFeedModule { }

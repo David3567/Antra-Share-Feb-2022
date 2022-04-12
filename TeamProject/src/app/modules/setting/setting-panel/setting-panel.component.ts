@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-setting-panel',
@@ -8,13 +9,17 @@ import { Router, Routes } from '@angular/router';
 })
 export class SettingPanelComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
-  toLogin() {
-    this.router.navigate(['login']);
+  onLogout() {
+    const dialog = confirm("Are you sure you want to logout?");
+    if (dialog) {
+      this.loginService.logout();
+      this.router.navigate(['login']);
+    }
   }
 
 }

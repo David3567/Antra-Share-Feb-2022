@@ -1,11 +1,15 @@
-    <div class="NavBar">
-        <li><a routerLink="/newsfeed">Newsfeed</a></li>
-        <li style="flex-grow: 1"></li>
-        <li><a routerLink="/login">Login</a></li>
-        <!-- <li><a routerLink="/register">Register</a></li> -->
-        <li><a routerLink="/profile">Profile</a></li>
-        <li><a routerLink="/setting">Setting</a></li>
-        <!-- <li><a routerLink="/admin">Admin</a></li> -->
-    </div>
+<div *ngIf="getUrl() !== ('/login' || '/')">
+  <mat-toolbar color="primary" *ngIf="getUrl() !== '/register'">
+    <button mat-icon-button aria-label="Newsfeed button" routerLink="newsfeed">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <span routerLink="profile">Profile</span>
+    <span *ngIf="decoded?.userRole === 'admin'" routerLink="admin">
+      Admin
+    </span>
+    <span routerLink="setting">Setting</span>
+  </mat-toolbar>
+</div>
 
-    <router-outlet></router-outlet>
+<router-outlet></router-outlet>

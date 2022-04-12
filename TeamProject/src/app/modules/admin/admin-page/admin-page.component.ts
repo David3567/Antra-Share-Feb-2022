@@ -16,18 +16,21 @@ export class AdminPageComponent implements OnInit {
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((users)=> {
+    this.userService.getUsers().subscribe((users) => {
       this.userList = users;
       this.userToShow = users[0];
     })
   }
 
-  showUserDetails(selectedUser:usersTemplate) {
+  showUserDetails(selectedUser: usersTemplate) {
     this.userToShow = selectedUser;
+    // console.log(this.userToShow);
+    // console.log(this.userToShow._id);
   }
 
-  deleteUser(id:number) {
-    this.userList = this.userList.filter((user)=> user.id !== id);
+  deleteUser(id: string) {
+    console.log(id);
+    this.userList = this.userList.filter((user) => user._id !== id);
   }
 
 }
