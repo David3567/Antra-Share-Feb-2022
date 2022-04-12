@@ -47,7 +47,7 @@ li {
   padding: 10px;
   list-style: none;
   color: white;
-  background-color: #3f51b5;
+  /* background-color: #3f51b5; */
 }
 
 span:hover {

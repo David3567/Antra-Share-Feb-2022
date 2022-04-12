@@ -1,12 +1,13 @@
 <div class="container">
-    <div>
-        <h2>{{ userDetails.name }} info</h2>
+    <div class= "userDetail-container">   
+        <h2>{{ userDetails.name }} Info</h2>
         <ul>
-            <li>UserName: {{ userDetails.username }}</li>
-            <li>Password: ********</li>
-            <li>UserEmail: {{ userDetails.email }}</li>
-            <li>Gender: </li>
-            <li>Age: </li>
+            <li>UserName: {{ userDetails.userName }}</li>
+            <li>ID: {{ userDetails._id }}</li>
+            <li>Password: {{ userDetails.password }}</li>
+            <li>UserEmail: {{ userDetails.userEmail }}</li>
+            <li>UserRole: {{ userDetails.userRole }} </li>
+            <!-- <li>Age: </li> -->
         </ul>
-    </div>
+    </div> 
 </div>

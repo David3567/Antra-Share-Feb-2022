@@ -5,7 +5,7 @@
       <li
         *ngFor="let user of userList"
         (click)="showUserDetails(user)"
-        [ngClass]="{ selected: user.id === userToShow.id }"
+        [ngClass]="{ selected: user._id === userToShow._id }"
       >
         <div>
           <span>{{ user.name }}</span>
@@ -13,7 +13,7 @@
             mat-icon-button
             class="delete"
             color="accent"
-            (click)="deleteUser(user.id)"
+            (click)="deleteUser(user._id)"
           >
             <mat-icon>remove_circle_outline</mat-icon>
           </button>
