@@ -10,7 +10,7 @@ import jwtDecode from 'jwt-decode';
 export class AppComponent {
   title = 'TeamProject';
   token = localStorage.getItem('bearerToken');
-  decoded = jwtDecode(this.token);
+  decoded = this.token ? jwtDecode(this.token) : {username: "Guest", userRole: 'guest'};
   
   constructor(private router: Router){}
 
