@@ -5,6 +5,10 @@
   display: flex;
 }
 
+.userDetail-container {
+  padding:30px;
+}
+
 h2 {
   padding: 10px 0;
   text-decoration: underline;
@@ -16,3 +20,4 @@ ul {
   list-style: none;
   font-size: 20px;
 }
+
