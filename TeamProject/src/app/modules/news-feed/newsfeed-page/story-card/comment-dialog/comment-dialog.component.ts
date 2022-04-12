@@ -16,12 +16,13 @@ export class CommentDialogComponent implements OnInit {
   storyID: string;
   commentList: Comment[];
   pageList: Comment[];
-  pageIndex: number = 1;
+  pageIndex: number = 0;
   pageSize: number;
   head: number = 0;
   tail: number = 3;
   previousBtn: boolean = true;
   nextBtn: boolean = true;
+  pageNumbers: number[] = [];
 
   constructor(
     private router: Router,
@@ -40,6 +41,8 @@ export class CommentDialogComponent implements OnInit {
 
     console.log(this.head, this.tail, this.pageSize * 3);
     this.nextBtn = this.pageSize > 1 ? false : this.nextBtn;
+
+    this.updatePages();
   }
 
   onPrevious() {
@@ -62,6 +65,15 @@ export class CommentDialogComponent implements OnInit {
     console.log(this.head, this.tail, this.pageSize * 3);
     this.nextBtn = this.tail === this.pageSize * 3 ? true : this.nextBtn;
     this.previousBtn = false;
+  }
+
+  updateComments(page: number) {
+    this.head = page*3;
+    this.tail = (page*3 + 3);
+    this.pageIndex = page;
+    this.pageList = this.commentList.slice( 0 + page*3 , 3 + page*3 );
+    this.previousBtn = this.pageNumbers[0] === this.pageIndex ? true : false;
+    this.nextBtn = this.pageNumbers[this.pageNumbers.length-1] === this.pageIndex ? true : false;
   }
 
   postNewComment(comment: string) {
@@ -104,8 +116,19 @@ export class CommentDialogComponent implements OnInit {
     const index = this.commentList.findIndex(object => object._id === commentId);
     this.commentList.splice(index, 1);
 
+    this.pageSize = Math.ceil(this.commentList.length / 3);
+    this.updatePages();
+
     // Refresh dialog
     this.onNext();
     this.onPrevious();
+  }
+
+  updatePages() {
+    this.pageNumbers = [];
+    for (let i = 0 ; i< this.pageSize; i++) {
+    
+      this.pageNumbers.push(i);
+    }
   }
 }

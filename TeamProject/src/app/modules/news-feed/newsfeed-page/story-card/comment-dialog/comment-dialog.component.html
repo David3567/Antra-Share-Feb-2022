@@ -4,73 +4,50 @@
       <div mat-card-avatar class="profile-pix"></div>
       <div class="header-container">
         <div class="profile-header">
-          <mat-card-title
-            [ngClass]="{ active: checkUser(comment.publisherName) }"
-            (click)="onProfile(comment.publisherName)"
-          >
+          <mat-card-title [ngClass]="{ active: checkUser(comment.publisherName) }"
+            (click)="onProfile(comment.publisherName)">
             {{ comment.publisherName }}
           </mat-card-title>
           <mat-card-subtitle>{{
             comment.publishedTime | date: "short"
-          }}</mat-card-subtitle>
+            }}</mat-card-subtitle>
         </div>
-        <button
-          mat-icon-button
-          *ngIf="checkUser(comment.publisherName)"
-          aria-label="delete button"
-          color="warn"
-          (click)="deleteComment(comment._id)"
-        >
+        <button mat-icon-button *ngIf="checkUser(comment.publisherName)" aria-label="delete button" color="warn"
+          (click)="deleteComment(comment._id)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
     </mat-card-header>
     <mat-card-content>
       <p class="content">{{ comment.content?.text }}</p>
-      <img
-        mat-card-image
-        *ngIf="comment.content.image?.includes('https')"
-        class="content-image"
-        [src]="comment.content.image"
-        alt="comment image"
-        onerror="this.onerror=null;this.src='assets/images/error_404.png';"
-      />
+      <img mat-card-image *ngIf="comment.content.image?.includes('https')" class="content-image"
+        [src]="comment.content.image" alt="comment image"
+        onerror="this.onerror=null;this.src='assets/images/error_404.png';" />
     </mat-card-content>
   </mat-card>
 
   <mat-form-field appearance="outline">
     <mat-label>New Comment</mat-label>
     <input matInput placeholder="Send your reply" #commentInput />
-    <button
-      mat-icon-button
-      matSuffix
-      id="post"
-      color="primary"
-      aria-label="comment button"
-      (click)="postNewComment(commentInput.value); commentInput.value = ''"
-    >
+    <button mat-icon-button matSuffix id="post" color="primary" aria-label="comment button"
+      (click)="postNewComment(commentInput.value); commentInput.value = ''">
       <mat-icon>rate_review</mat-icon>
     </button>
   </mat-form-field>
 
   <div class="action-container">
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="previousBtn"
-      (click)="onPrevious()"
-    >
+    <button mat-raised-button color="primary" [disabled]="previousBtn" (click)="onPrevious()">
       Previous
     </button>
     <div>
-      <strong>{{ pageIndex }}</strong> of <strong>{{ pageSize }}</strong>
+      <!-- <strong>{{ pageIndex }}</strong> of <strong>{{ pageSize }}</strong>
+       -->
+      <ul>
+        <li (click)="updateComments(page)" *ngFor="let page of pageNumbers"
+          [ngStyle]="{'background-color': page === pageIndex? 'lightskyblue' : 'transparent'}">{{page+1}}</li>
+      </ul>
     </div>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="nextBtn || commentList.length < 4"
-      (click)="onNext()"
-    >
+    <button mat-raised-button color="primary" [disabled]="nextBtn || commentList.length < 4" (click)="onNext()">
       Next
     </button>
   </div>

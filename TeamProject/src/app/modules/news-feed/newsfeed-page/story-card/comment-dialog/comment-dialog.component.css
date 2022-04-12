@@ -71,3 +71,24 @@ mat-form-field {
 .action-container > div {
   padding: 0 10px;
 }
+
+ul {
+  display: flex; 
+  column-gap: 2px;
+}
+
+li {
+  border:1px solid grey; 
+  padding: 2px 7px; 
+  list-style: none;
+  cursor: pointer;
+  
+}
+
+li:hover {
+  background-color: lightskyblue;
+}
+
+li:focus {
+  background-color: lightskyblue;
+}
