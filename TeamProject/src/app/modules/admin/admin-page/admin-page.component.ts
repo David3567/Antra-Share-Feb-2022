@@ -24,8 +24,8 @@ export class AdminPageComponent implements OnInit {
 
   showUserDetails(selectedUser: usersTemplate) {
     this.userToShow = selectedUser;
-    console.log(this.userToShow);
-    console.log(this.userToShow._id);
+    // console.log(this.userToShow);
+    // console.log(this.userToShow._id);
   }
 
   deleteUser(id: string) {
