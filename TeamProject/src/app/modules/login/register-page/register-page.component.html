@@ -5,32 +5,30 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username" />
+        <input matInput maxlength="50" formControlName="username" />
         <mat-error
           *ngIf="!username.valid && (username.touched || username.dirty)"
-          class="error"
         >
           <div *ngIf="username?.errors?.['required']">
             A Username is required!
           </div>
-          <div
-            *ngIf="username?.errors?.['minlength'] || username?.errors?.['maxlength']"
-          >
-            The Username needs to be between 5 and 12 characters
+          <div *ngIf="username?.errors?.['minlength']">
+            Min length <strong>5</strong> required
+          </div>
+          <div *ngIf="username?.errors?.['maxlength']">
+            Max length <strong>12</strong> exceeded
           </div>
           <div *ngIf="username?.errors?.userNameExists">
             This username is taken. Please choose a different one.
           </div>
         </mat-error>
+        <mat-hint>Length <strong>5-12</strong></mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" />
-        <mat-error
-          *ngIf="!email.valid && (email.touched || email.dirty)"
-          class="error"
-        >
+        <mat-error *ngIf="!email.valid && (email.touched || email.dirty)">
           <div *ngIf="email?.errors?.['required']">An Email is required!</div>
           <div *ngIf="email?.errors?.['email']">
             Your entry needs to follow the email format
@@ -53,20 +51,22 @@
         }}</mat-icon>
         <mat-error
           *ngIf="!password.valid && (password.touched || password.dirty)"
-          class="error"
         >
           <div *ngIf="password?.errors?.['required']">
             A Password is required!
           </div>
-          <div
-            *ngIf="password?.errors?.['minlength'] || password?.errors?.['maxlength'] || password?.errors?.['pattern']"
-          >
-            Your password needs to be at least <strong>5</strong> characters
-            long, at least <strong>1</strong> upper & <strong>1</strong> lower
-            case, <strong>1</strong> number, and have at least
-            <strong>1</strong> special character (@!#$% etc.)
+          <div *ngIf="password.errors.minlength">
+            Min length <strong>5</strong> required
+          </div>
+          <div *ngIf="password.errors.pattern">
+            <strong>1</strong> uppercase and <strong>1</strong> special
+            character (#?!@$%^&*-) required
           </div>
         </mat-error>
+        <mat-hint
+          >Min length <strong>5</strong>; Use <strong>1</strong> uppercase and
+          <strong>1</strong> special character</mat-hint
+        >
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -79,17 +79,15 @@
         <mat-icon matSuffix (click)="hide = !hide">{{
           hide ? "visibility_off" : "visibility"
         }}</mat-icon>
-        <mat-error
-          *ngIf="!regForm.valid && (confirm.touched || confirm.dirty)"
-          class="error"
-        >
+        <mat-error *ngIf="!regForm.valid && (confirm.touched || confirm.dirty)">
           <div *ngIf="confirm?.errors?.required">
             A Confirmation is required!
           </div>
-          <div *ngIf="regForm?.errors?.notMatch">
+          <!-- <div *ngIf="regForm?.errors?.notMatch">
             Your password and confirmation need to match
-          </div>
+          </div> -->
         </mat-error>
+        <mat-hint>Please re-enter password</mat-hint>
       </mat-form-field>
 
       <button
@@ -97,13 +95,13 @@
         class="register-button"
         color="primary"
         type="submit"
-        [disabled]="!regForm.valid"
+        [disabled]="!regForm.valid || password.value !== confirm.value"
       >
         Register
       </button>
       <div class="form-footer">
         <div class="agreement">
-          <input type="checkbox" name="agreement" id="" /><label for="agreement"
+          <input type="checkbox" formControlName="agreement" /><label
             >Agreement</label
           >
         </div>

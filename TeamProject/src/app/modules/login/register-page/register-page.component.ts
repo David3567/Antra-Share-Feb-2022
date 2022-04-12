@@ -42,13 +42,13 @@ export class RegisterPageComponent implements OnInit {
     this.regForm = this.build.group({
       username: ["", [Validators.minLength(5), Validators.maxLength(12), Validators.required], this.checkUsernameExists()],
       email: ["", [Validators.email, Validators.required], this.checkEmailExists()],
-      password: ["", [Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]],
-      confirm: ["", [Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$"), Validators.required]]
+      password: ["", [Validators.minLength(5), Validators.pattern("^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{0,}$"), Validators.required]],
+      confirm: ["", [Validators.required]],
+      agreement: [false, Validators.requiredTrue]
     },
-      {
-        validator: this.matchPassword
-      }
-
+      // {
+      //   validator: this.matchPassword
+      // }
     );
   }
 
