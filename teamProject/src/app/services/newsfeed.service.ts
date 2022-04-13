@@ -18,7 +18,9 @@ const httpOptions = {
 export class NewsfeedService {
 
   likedNews:News[] = [];
+  pagedNews:News[] = [];
   subjectLikedNews$ = new BehaviorSubject(this.likedNews);
+  subjectPagedNews$ = new BehaviorSubject(this.pagedNews);
 
   baseUrl:string = "http://localhost:4231"
   
@@ -45,17 +47,35 @@ export class NewsfeedService {
     this.subjectLikedNews$.next(this.likedNews)
   }
 
-  loadNumberNewsPerPage(pageIndex:number, numberNewsPerPage:number):Observable<News[]>{
-    return this.httpclient.get<News[]>([this.baseUrl,"api","news",pageIndex,numberNewsPerPage].join("/"))
+  loadNumberNewsPerPage(pageIndex:number, numberNewsPerPage:number):void{
+    this.httpclient.get<News[]>([this.baseUrl,"api","news",pageIndex,numberNewsPerPage].join("/")).subscribe(
+      data=>{
+        this.pagedNews = this.pagedNews.concat(data)
+        this.sortNewsArrayWithTime();
+        this.subjectPagedNews$.next(this.pagedNews)
+      }
+    )
+  }
+
+  getNewsArray():Observable<News[]>{
+    return this.subjectPagedNews$.asObservable();
+  }
+
+  sortNewsArrayWithTime():void{
+    this.pagedNews.sort((a:News,b:News)=>{
+      //early post on top
+      //return -(a.publishedTime.localeCompare(b.publishedTime));
+      //new post on top
+      return (a.publishedTime.localeCompare(b.publishedTime));
+    });
   }
 
 
-  post(contentText: string = "default"): Observable<any> {
+  post(contentText:string,imageURL:string =' ', videoURL:string=' '): Observable<any> {
     return this.httpclient.post([this.baseUrl+'/api/news'].join(), {
-      //publisherName:this.auth.getUserName(),
       content:{
-        video:" ",
-        image:"http://via.placeholder.com/640x360",
+        video:videoURL,
+        image:imageURL,
         text:contentText
       }
     }, httpOptions);

@@ -14,12 +14,16 @@ export class NavBarComponent implements OnInit {
 
   isCollapsed = false;
 
-  constructor(@Inject(MENU_TOKEN) public menus:Menu[]) { }
+  constructor(@Inject(MENU_TOKEN) public menus: Menu[], private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
 
-  logout(): void {
+  logOut(): void {
+    localStorage.removeItem('token');
+    setTimeout(() => {
+      this.router.navigateByUrl("http://localhost:4200/login")
+    }, 2000)
   }
 }

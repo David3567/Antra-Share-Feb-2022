@@ -21,9 +21,7 @@ export class DefaultComponent implements OnInit {
     this.subscribeNewsService = this.newsfeedservice
     .getLikedList()
     .subscribe((data:any)=>{
-      //console.log(data)
       this.likedList = data;
-      //console.log(this.likedList)
     })
   }
 

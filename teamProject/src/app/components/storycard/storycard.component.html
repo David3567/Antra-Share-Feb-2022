@@ -15,7 +15,7 @@
   
     <ng-template #coverTemplate >
       <ng-container *ngIf="hasImage">
-        <img alt="example" src={{news.content.image}} alt='picture not found'/>
+        <img src={{news.content.image}} alt='picture not found' [height]/>
       </ng-container>
     </ng-template>
   

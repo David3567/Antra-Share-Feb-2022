@@ -1,52 +1,44 @@
-<nz-layout >
-    <nz-layout>
-        <nz-content nz-row>
-            <div nz-col nzSpan="8">
-                <button class="contentArea_postbtn" nz-button [nzType]="'primary'" (click)="showModal()"><span>Create Post</span></button>
-            </div>
-            <div nz-col nzSpan="8">
-                <app-storycard *ngFor="let item of newsList" 
-                [news]="item"
-                (addLikeEmitter)="addLike($event)"
-                (removeLikeEmitter)="deleteLiked($event)">
-                </app-storycard>
-            </div>
-            <div nz-col nzSpan="8"></div>
-        </nz-content>
-    </nz-layout>
+<nz-layout>
+  <nz-layout>
+    <nz-content nz-row>
+      <div nz-col nzSpan="8">
+        <button class="contentArea_postbtn" nz-button [nzType]="'primary'" (click)="showModal()"><span>Create
+            Post</span></button>
+      </div>
+      <div nz-col nzSpan="8">
+        <app-storycard *ngFor="let item of newsList" [news]="item" (addLikeEmitter)="addLike($event)"
+          (removeLikeEmitter)="deleteLiked($event)">
+        </app-storycard>
+      </div>
+      <div nz-col nzSpan="8"></div>
+    </nz-content>
+  </nz-layout>
 </nz-layout>
 
-<nz-modal [(nzVisible)]="modalIsVisible" nzTitle="Create Post" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkText]="'Post'">
-    <ng-container *nzModalContent>
-        <form [formGroup]="myForm">
-        <nz-input-group [nzSuffix]="inputClearTpl">
-            <input type="text" nz-input placeholder="Title" formControlName="title"/>
-          </nz-input-group>
-          <ng-template #inputClearTpl>
-            <i
-              nz-icon
-              class="ant-input-clear-icon"
-              nzTheme="fill"
-              nzType="close-circle"
-              *ngIf="inputValue"
-              (click)="inputValue = null"
-            ></i>
-          </ng-template>
-          <br />
-          <br />
-          <nz-input-group [nzSuffix]="textAreaClearTpl" class="ant-input-affix-wrapper-textarea-with-clear-btn">
-            <textarea nzSize="large" nzAutosize= '{minRows: 5, maxRows: 20}' nz-input placeholder="Content" formControlName="contentText"></textarea>
-          </nz-input-group>
-          <ng-template #textAreaClearTpl>
-            <i
-              nz-icon
-              class="ant-input-clear-icon"
-              nzTheme="fill"
-              nzType="close-circle"
-              *ngIf="textValue"
-              (click)="textValue = null"
-            ></i>
-          </ng-template>
-        </form>
-    </ng-container>
-  </nz-modal>
+<nz-modal [(nzVisible)]="modalIsVisible" nzTitle="Create Post" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+  [nzOkText]="'Post'">
+  <ng-container *nzModalContent>
+    <form [formGroup]="myForm">
+      <nz-input-group [nzSuffix]="inputClearTpl">
+        <input type="text" nz-input placeholder="ImageURL Optional" formControlName="imageURL" />
+      </nz-input-group>
+      <nz-input-group [nzSuffix]="inputClearTpl">
+        <input type="text" nz-input placeholder="VideoURL Optional" formControlName="videoURL" />
+      </nz-input-group>
+      <ng-template #inputClearTpl>
+        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+          (click)="inputValue = null"></i>
+      </ng-template>
+      <br />
+      <br />
+      <nz-input-group [nzSuffix]="textAreaClearTpl" class="ant-input-affix-wrapper-textarea-with-clear-btn">
+        <textarea nzSize="large" nzAutosize='{minRows: 5, maxRows: 20}' nz-input placeholder="Content"
+          formControlName="contentText"></textarea>
+      </nz-input-group>
+      <ng-template #textAreaClearTpl>
+        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="textValue"
+          (click)="textValue = null"></i>
+      </ng-template>
+    </form>
+  </ng-container>
+</nz-modal>
