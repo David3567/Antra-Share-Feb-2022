@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRe
 import { News } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fromEvent, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-newsfeed',
@@ -20,6 +22,13 @@ export class NewsfeedComponent implements OnInit, OnChanges{
   inputValue: string | null = null;
   textValue: string | null = null;
 
+  scrollBar$!:Observable<any>;
+
+  newsAcceptor$!:Observable<News[]>;
+  numberNewsPerPage:number = 5;
+  currentPageIndex:number = 1;
+
+
   myForm: FormGroup = this.formbuilder.group({
     title: ['', [Validators.required]],
     contentText: ['', [Validators.required]],
@@ -36,30 +45,30 @@ export class NewsfeedComponent implements OnInit, OnChanges{
   constructor(private formbuilder: FormBuilder, private cdr:ChangeDetectorRef, public newsfeedservice: NewsfeedService) { }
 
   ngOnInit(): void {
-    this.newsfeedservice.getNewsFromDataBase()
-      .subscribe(
-        (data) => { 
-          this.newsList = data;
-          this.newsList=this.newsList.filter(item=>{
-            if(item.content.image==null)
-            {
-              item.content.image='http://via.placeholder.com/640x360';
-              return item;
-            }
-            else if(item.content.image.slice(0,4)==='http')
-              return item;
-            else {
-              item.content.image='http://via.placeholder.com/640x360';
-              return item;
-            };
-          })
-          this.cdr.detectChanges();
-         }
-      )
+    // this.newsfeedservice.getNewsFromDataBase()
+    //   .subscribe(
+    //     (data) => { 
+    //       this.newsList = data;
+    //       this.newsList = this.newsList.reverse();
+    //       this.cdr.detectChanges();
+    //      }
+    //   )
+    this.newsfeedservice.loadNumberNewsPerPage(this.currentPageIndex,this.numberNewsPerPage).subscribe(
+      (data)=>{
+        this.newsList = data;
+        this.cdr.detectChanges();
+      }
+    );
+    
+    this.scrollBar$ = fromEvent(document,'scroll')
+    this.scrollBar$.pipe(map(
+      (data)=>{
+        console.log(data)
+      }
+    )).subscribe();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
 
   showModal(){
@@ -93,13 +102,13 @@ export class NewsfeedComponent implements OnInit, OnChanges{
           console.log(data);
           setTimeout(() => {
             this.modalIsVisible = false;
-            //location.reload();
+            location.reload();
           }, 1000);
         },
         (err) => {
           setTimeout(() => {
             console.log('error')
-            //setTimeout(() => location.reload(), 1000);
+            setTimeout(() => location.reload(), 1000);
           }, 2000);
         }
       )
