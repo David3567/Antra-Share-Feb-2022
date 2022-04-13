@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRe
 import { News } from 'src/app/interfaces/news.model';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fromEvent, Observable } from 'rxjs';
+import { debounceTime, finalize, first, map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-newsfeed',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./newsfeed.component.less'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class NewsfeedComponent implements OnInit, OnChanges{
+export class NewsfeedComponent implements OnInit, OnDestroy {
 
   newsList!: News[];
   completed: boolean = false;
@@ -20,8 +22,16 @@ export class NewsfeedComponent implements OnInit, OnChanges{
   inputValue: string | null = null;
   textValue: string | null = null;
 
+  scrollBar$!: Observable<any>;
+
+  newsAcceptor$!: Observable<News[]>;
+  numberNewsPerPage: number = 5;
+  currentPageIndex: number = 1;
+
+
   myForm: FormGroup = this.formbuilder.group({
-    title: ['', [Validators.required]],
+    imageURL: [''],
+    videoURL:[''],
     contentText: ['', [Validators.required]],
   })
 
@@ -33,48 +43,60 @@ export class NewsfeedComponent implements OnInit, OnChanges{
     return this.myForm.get('contentText');
   }
 
-  constructor(private formbuilder: FormBuilder, private cdr:ChangeDetectorRef, public newsfeedservice: NewsfeedService) { }
+  constructor(private formbuilder: FormBuilder, private cdr: ChangeDetectorRef, public newsfeedservice: NewsfeedService) { }
 
   ngOnInit(): void {
-    this.newsfeedservice.getNewsFromDataBase()
-      .subscribe(
-        (data) => { 
-          this.newsList = data;
-          this.newsList=this.newsList.filter(item=>{
-            if(item.content.image==null)
-            {
-              item.content.image='http://via.placeholder.com/640x360';
-              return item;
-            }
-            else if(item.content.image.slice(0,4)==='http')
-              return item;
-            else {
-              item.content.image='http://via.placeholder.com/640x360';
-              return item;
-            };
-          })
-          this.cdr.detectChanges();
-         }
-      )
+    this.newsfeedservice.getNewsArray().subscribe(
+      data=>{
+        this.newsList = data
+        this.cdr.detectChanges();
+      }
+    );
+
+    this.newsfeedservice.loadNumberNewsPerPage(1,this.numberNewsPerPage);
+    
+    this.scrollBar$ = fromEvent(document, 'scroll');
+    this.scrollBar$.pipe(map(
+      () => ({
+        scrollBarYposition: window.scrollY,
+        scrollBarTotalHeight: document.body.scrollHeight - document.documentElement.clientHeight,
+      })
+    ),
+    debounceTime(500)
+    ).subscribe(
+      data => {
+        if((data.scrollBarYposition/data.scrollBarTotalHeight)>=0.9){
+          let pageIndex = this.newsList.length/5;
+          if(pageIndex%1===0)
+            this.newsfeedservice.loadNumberNewsPerPage(pageIndex+1,this.numberNewsPerPage)
+          else alert('no more news')
+        }
+      })
+  }//ngOnInit
+
+
+  pushNews(element:News){
+    this.newsList.push(element);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+  ngOnDestroy(): void {
+    this.scrollBar$.pipe(
+      first())
   }
 
-  showModal(){
+  showModal() {
     this.modalIsVisible = true;
   }
 
-  handleCancel(){
+  handleCancel() {
     this.modalIsVisible = false;
   }
 
-  handleOk(){
+  handleOk() {
     this.onSubmit();
   }
 
-  addLike(news:News){
+  addLike(news: News) {
     this.newsfeedservice.addToLikeList(news);
   }
 
@@ -86,10 +108,11 @@ export class NewsfeedComponent implements OnInit, OnChanges{
     location.href = "http://localhost:4200/login";
   }
 
-  onSubmit(){
-    if(this.myForm.valid){
-      this.newsfeedservice.post(this.myForm.get('contentText')?.value).subscribe(
-        data=>{
+  onSubmit() {
+    if (this.myForm.valid) {
+      this.newsfeedservice.post(this.myForm.get('contentText')?.value,this.myForm.get('imageURL')?.value,this.myForm.get('videoURL')?.value)
+      .subscribe(
+        data => {
           console.log(data);
           setTimeout(() => {
             this.modalIsVisible = false;
@@ -97,14 +120,11 @@ export class NewsfeedComponent implements OnInit, OnChanges{
           }, 1000);
         },
         (err) => {
-          setTimeout(() => {
-            console.log('error')
-            setTimeout(() => location.reload(), 1000);
-          }, 2000);
+          if(err.error!=null)
+            alert(err.error)
+          else alert('Some unknown error happened')
         }
       )
-      
-      
     }
   }
 }

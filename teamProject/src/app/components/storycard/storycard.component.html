@@ -13,8 +13,10 @@
       </div>
     </ng-template>
   
-    <ng-template #coverTemplate>
-      <img alt="example" src={{news.content.image}} alt='picture not found'/>
+    <ng-template #coverTemplate >
+      <ng-container *ngIf="hasImage">
+        <img src={{news.content.image}} alt='picture not found' [height]/>
+      </ng-container>
     </ng-template>
   
     <ng-template #actionSetting>

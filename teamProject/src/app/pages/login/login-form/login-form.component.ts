@@ -43,9 +43,6 @@ export class LoginFormComponent implements OnInit {
       (data) => {
         localStorage.setItem('token', data.bearerToken);
         this.authenService.saveJwtToken(data.bearerToken);
-
-        //this.jwtService.getJWT(data);
-        //this.jwtService.DecodeToken();
         
         setTimeout(() => {
           this.router.navigateByUrl('default/newsfeed');

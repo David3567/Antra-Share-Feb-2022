@@ -1,26 +1,28 @@
-<nz-layout>
-  <nz-header>
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="horizontal">
-      <li nz-menu-item>Login</li>
-    </ul>
-  </nz-header>
-  <nz-content>
-    <div class="inner-content">
-      <div class="page_container">
-        <div class="page_container-language">
-          <i nz-icon nzType="font-size" nzTheme="outline"></i>
-        </div>
-        <div class="page_content">
-          <div class="page_content-head">
-            <img class="page_content-headlogo" src="assets/image/antra.jpg" alt="logo" />
-            <span class="page_content-headtitle">Antra Login</span>
+<div class="pageHeight">
+  <nz-layout>
+    <nz-header>
+      <div class="logo"></div>
+      <ul nz-menu nzTheme="dark" nzMode="horizontal">
+        <li nz-menu-item>Login</li>
+      </ul>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content pageHeight">
+        <div class="page_container">
+          <div class="page_container-language">
+            <i nz-icon nzType="font-size" nzTheme="outline"></i>
           </div>
-          <div class="page_content-description">Login to your account at antra</div>
+          <div class="page_content">
+            <div class="page_content-head">
+              <img class="page_content-headlogo" src="assets/image/antra.jpg" alt="logo" />
+              <span class="page_content-headtitle">Antra Login</span>
+            </div>
+            <div class="page_content-description">Login to your account at antra</div>
+          </div>
+          <router-outlet></router-outlet>
         </div>
-        <router-outlet></router-outlet>
       </div>
-    </div>
-  </nz-content>
-  <nz-footer>Antra Team TripleThreat 2022 Feb</nz-footer>
-</nz-layout>
+    </nz-content>
+    <nz-footer>Antra Team TripleThreat 2022 Feb</nz-footer>
+  </nz-layout>
+</div>

@@ -1,17 +1,12 @@
 
-import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Comment } from 'src/app/interfaces/comment.model';
 import { News } from 'src/app/interfaces/news.model';
 import { AuthenService } from 'src/app/services/authen.service';
 import { NewsfeedService } from 'src/app/services/newsfeed.service';
 
-import { __spreadArrays } from 'tslib';
-
-import { JwtService } from "src/app/services/jwt.service";
-import { Router } from '@angular/router';
 
 
 
@@ -39,7 +34,7 @@ export class StorycardComponent implements OnInit {
   inputValue?:string;
   canDelete?:boolean;
   canDeleteComment:boolean[] = new Array(5).fill(false);
-
+  hasImage!:boolean;
 
   constructor(private newsfeedservice:NewsfeedService, private authen:AuthenService, private router: Router) { }
 
@@ -47,7 +42,9 @@ export class StorycardComponent implements OnInit {
   ngOnInit(): void {
     if(this.news?.comment.length<=5)
      this.showForward = false;
-     this.canDelete = this.authen.grantDeleteAccessbility(this.news?.publisherName)
+    this.canDelete = this.authen.grantDeleteAccessbility(this.news?.publisherName)
+    this.hasImage = (this.news?.content.image==null)?false:true;
+    
   }
 
   addLike() {

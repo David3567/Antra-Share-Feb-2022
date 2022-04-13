@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { News } from '../interfaces/news.model';
+import { AuthenService } from './authen.service';
+import { Comment } from '../interfaces/comment.model';
+
 
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +18,9 @@ const httpOptions = {
 export class NewsfeedService {
 
   likedNews:News[] = [];
+  pagedNews:News[] = [];
   subjectLikedNews$ = new BehaviorSubject(this.likedNews);
+  subjectPagedNews$ = new BehaviorSubject(this.pagedNews);
 
   baseUrl:string = "http://localhost:4231"
   
@@ -22,10 +28,7 @@ export class NewsfeedService {
   }
 
   getNewsFromDataBase(){
-    let data = this.httpclient.get<News[]>("http://localhost:4231/api/news")
-    //data.subscribe(data=>{console.log(data);
-    //data.subscribe(data=>{})
-    return data;
+    return this.httpclient.get<News[]>([this.baseUrl+'/api/news'].join())
   }
   
   getLikedList(){
@@ -34,7 +37,6 @@ export class NewsfeedService {
 
   addToLikeList(news:News){
     this.likedNews.push(news);
-    console.log(this.likedNews)
     this.subjectLikedNews$.next(this.likedNews)
   }
 
@@ -42,38 +44,52 @@ export class NewsfeedService {
     this.likedNews = this.likedNews.filter((news)=>{
         return news._id != liked._id;
     })
-    console.log(this.likedNews)
     this.subjectLikedNews$.next(this.likedNews)
   }
 
-  post(contentText: string = "default"): Observable<any> {
-    const username = localStorage.getItem('username');
-    if(username!=null){
-      return this.httpclient.post('http://localhost:4231/api/news', {
-        publisherName: username,
-        content:{
-          video:" ",
-          image:"http://via.placeholder.com/640x360",
-          text:contentText
-        }
-      }, httpOptions);
-    }
-    else return of('not success, username lost');
+  loadNumberNewsPerPage(pageIndex:number, numberNewsPerPage:number):void{
+    this.httpclient.get<News[]>([this.baseUrl,"api","news",pageIndex,numberNewsPerPage].join("/")).subscribe(
+      data=>{
+        this.pagedNews = this.pagedNews.concat(data)
+        this.sortNewsArrayWithTime();
+        this.subjectPagedNews$.next(this.pagedNews)
+      }
+    )
+  }
+
+  getNewsArray():Observable<News[]>{
+    return this.subjectPagedNews$.asObservable();
+  }
+
+  sortNewsArrayWithTime():void{
+    this.pagedNews.sort((a:News,b:News)=>{
+      //early post on top
+      //return -(a.publishedTime.localeCompare(b.publishedTime));
+      //new post on top
+      return (a.publishedTime.localeCompare(b.publishedTime));
+    });
+  }
+
+
+  post(contentText:string,imageURL:string =' ', videoURL:string=' '): Observable<any> {
+    return this.httpclient.post([this.baseUrl+'/api/news'].join(), {
+      content:{
+        video:videoURL,
+        image:imageURL,
+        text:contentText
+      }
+    }, httpOptions);
+    
   }
 
   patchComment(postid:string, contentText: string = "default"): Observable<any> {
-    const username = localStorage.getItem('username');
-    if(username!=null){
       return this.httpclient.patch('http://localhost:4231/api/news/addComment/' + postid, {
-        publisherName: username,
         content:{
           video:" ",
           image:" ",
           text:contentText
         }
       }, httpOptions);
-    }
-    else return of('not success, username lost');
   }
 
   deleteNews(_id:string){
