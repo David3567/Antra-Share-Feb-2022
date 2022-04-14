@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { AppUserAuth } from './core/services/interface/app-user-auth';
 import jwt_decode from "jwt-decode";
+import { JwtService } from './core/services/jwt.service';
 
 @Component({
   selector: 'app-root',
@@ -11,36 +12,35 @@ import jwt_decode from "jwt-decode";
 })
 export class AppComponent {
   title = 'Sprint1';
+  login!: boolean;
+  username!:string;
   securityObj: AppUserAuth  = new AppUserAuth();
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private jwt: JwtService
+    
   ) {
-    this.securityObj = this.authService.securityObj;
+    this.securityObj = this.jwt.getjwt();
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem("bearerToken");
-    console.log("code here", token);
+    this.onlogin();
+  }
 
+  onlogin(){
+    this.login = this.authService.getlogin();
+    this.username = this.jwt.getjwt().userName;
+  }
 
+  onlogout() {
+    console.log(this.securityObj);
+    this.username = '';
+    this.authService.logout();
+    this.login = this.authService.getlogin();
+    this.router.navigate(['login']);
 
-    if (token) {
-      const decoded: any = jwt_decode(token);
-      console.log("Decode here", decoded);
-
-
-
-      const newSecurityObj = {
-        userName: decoded.userName,
-        isAuthenticated: decoded.userRole==="admin",
-        claim: decoded.claim,
-        userEmail: decoded.userEmail,
-      };
-      this.authService.securityObj = newSecurityObj;
-      this.securityObj = newSecurityObj;
-    }
   }
 
 }

@@ -1,7 +1,7 @@
 
 <div class="comment_container">
 <h2 mat-dialog-title>Comments</h2>
-
+<div class="comment">
 <mat-dialog-content *ngFor="let comment of commentsPerpage">
   <div class="comment_title">
     <div><mat-icon>face</mat-icon></div>
@@ -24,19 +24,22 @@
 <br />
 
 
-<div class="pagination">
+<div class="button">
+  <mat-dialog-actions align="center">
   <div>
-    <button (click)="onClickAddComment()"> Add comment</button>
+    <button mat-button (click)="onClickAddComment()"> Add comment</button>
   </div>
   <button
-    class="btn btn-previous"
+    mat-button
+    class="prevbtn"
     (click)="onPrevious()"
     [disabled]="start <= 0"
   >
-    Previous
+    Prev
   </button>
 
   <button
+    mat-button
     class="btn btn-number"
     *ngFor="let item of pages; let i = index"
     (click)="onGetPage(i)"
@@ -48,8 +51,11 @@
     {{ i + 1 }}
   </button>
 
-  <button class="btn btn-next" (click)="onNext()" [disabled]="end >= max">
+  <button
+    mat-button class="nextbtn" (click)="onNext()" [disabled]="end >= max">
     Next
   </button>
+</mat-dialog-actions>
+</div>
 </div>
 </div>

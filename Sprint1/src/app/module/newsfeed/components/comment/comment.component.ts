@@ -34,7 +34,8 @@ export class StoryCommentComponent implements OnInit {
     private data: { story: Story },
     private variableValue: VariableValue,
     public dialog: MatDialog,
-    private deleteService: DeleteService
+    private deleteService: DeleteService,
+    private storyService: StoryService
   ) {}
   //
   // console.log("dfadsf")
@@ -105,19 +106,20 @@ export class StoryCommentComponent implements OnInit {
     });
   }
   onDeleteComment(comment: Comments) {
-    console.log(comment._id);
-    console.log(this.data.story._id);
-    if (confirm('Do you want to delete this comment??')) {
+    //if (confirm('Do you want to delete this comment??')) 
       this.deleteService
         .deleteComment(this.data.story._id, comment._id)
-        .subscribe(() => {
-          this.display = true;
-          console.log(this.data.story.comment)
-          //this.data.story.comment =  this.data.story.comment.filter((comment) =>  comment._id!=this.data.story.comment._id);
+        .subscribe((del) => {
+          this.comments = this.comments.filter(
+            (data) => data._id !== comment._id
+          );
+          this.storyService.getStories().subscribe((data: any) => {
+            this.storyService.storiesS$.next(data);
+          });
+          this.countpage();
+          this.commentsPerpage = [...this.comments.slice(this.start, this.end)];
         });
-        this.deleteCommentEmitter.emit(comment._id)
-
-    }
+    
   }
 
   private countpage() {

@@ -1,3 +1,8 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
 mat-card {
   width: 40%;
   min-width: 450px;
@@ -6,6 +11,7 @@ mat-card {
   display: flex;
   flex-direction: column;
 }
+
 mat-card-title {
   display: flex;
   flex-direction: row;
@@ -19,65 +25,55 @@ mat-card-content {
   text-align: center;
   height: 85%;
 }
-.story {
-  width: 90%;
-  height: var(--form-box-height);
-  padding-left: 2%;
-  margin-left: 10%;
-  margin-bottom: 2%;
-  background-color: azure;
-  /* border: 1px solid red; */
-  border-radius: 40px;
-  box-shadow: 15px 10px #695c5c;
-
-}
-.story-user-detail {
-  padding-top: 10px;
-  padding-bottom: 5px;
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-}
-.story-dashboard {
+.middle {
   flex-grow: 1;
   width: 90%;
   margin-left: 5%;
   display: flex;
   flex-direction: column;
 }
-
-.story-dashboard-content-img {
-  padding-top: var(--pading-to-top);
-  height: var(--form-box-width);
-  width: var(--image-width-size);
-  align-self: center;
-  
+mat-card-content img {
+  height:16em;
 }
-div.story-dashboard-viewer {
-  padding-top: var(--pading-to-top);
-  width: 100%;
-  bottom: 10px;
+
+mat-card-title {
+  margin-bottom: 30px;
+}
+
+mat-card-content .newsfeed_action {
+  padding-top: 10px;
+  flex-grow: 0;
   display: flex;
-  justify-content: space-around;
-}
-.avatar {
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  border-top: 1px solid gainsboro;
 }
 
-.material-icons-favorite {
-  color: #884242;
+.likebtn,
+.commentbtn {
+  flex: 50%;
+  width: 100%;
 }
 
-button {
-  width: 200px;
-  background-color: inherit;
-  /* border: none; */
+.newsfeed_action label {
+  margin-left: 15px;
 }
 
-.liked {
-  cursor: pointer;
-  color: rgb(248, 4, 4);
+.title_time {
+  font-size: medium;
+}
+
+.title_name {
+  font-size: medium;
+}
+
+.like {
+  color: red;
+}
+.image, .video {
+  border: 1px solid blud;
+  flex-grow: 0;
+}
+.text {
+  text-align: left;
+  flex-grow: 1;
+  padding: 40px;
 }

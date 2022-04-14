@@ -4,6 +4,7 @@ import { pipe, tap } from 'rxjs';
 import { AppUser } from './interface/app-user';
 import { AppUserAuth } from './interface/app-user-auth';
 import { Users } from './interface/register.model';
+import { JwtService } from './jwt.service';
 
 const API_URL = 'http://localhost:4231/api';
 const httpOptions = {
@@ -19,15 +20,16 @@ const httpOptions = {
 export class AuthService {
   private securityObject: AppUserAuth = new AppUserAuth();
 
-  constructor(private http: HttpClient) {}
-
-  set securityObj(newObj: AppUserAuth) {
-    this.securityObject = newObj;
+  getlogin(){
+    if(localStorage.getItem('bearerToken')){
+      return true;
+    }
+    return false;
   }
 
-  get securityObj() {
-    return this.securityObject;
-  }
+
+  constructor(private http: HttpClient, private jwt: JwtService) {}
+
 
   login(entity: AppUser) {
     this.resetSecurityObject();
@@ -37,10 +39,7 @@ export class AuthService {
       .pipe(
         tap((data: any) => {
           Object.assign(this.securityObject, data.body);
-          localStorage.setItem('bearerToken', this.securityObject.bearerToken!);
-          localStorage.setItem('userName', this.securityObject.userName);
-          localStorage.setItem('userEmail', this.securityObject.userEmail);
-
+          this.jwt.setjwt(this.securityObject);
         })
       );
   }
@@ -93,7 +92,7 @@ export class AuthService {
       canAccessCategories: false,
       canAddCategory: false,
     };
-
+    this.jwt.setjwt(this.securityObject);
     localStorage.removeItem('bearerToken');
     localStorage.removeItem('userName');
     localStorage.removeItem('userEmail');

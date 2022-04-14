@@ -14,6 +14,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { JwtService } from 'src/app/core/services/jwt.service';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -27,9 +29,10 @@ import { MatInputModule } from '@angular/material/input';
     StoryCommentComponent,
     AddCommentComponent,
   ],
-  providers: [VariableValue],
+  providers: [VariableValue, JwtService],
   exports: [NewsfeedComponent],
   imports: [
+    RouterModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,

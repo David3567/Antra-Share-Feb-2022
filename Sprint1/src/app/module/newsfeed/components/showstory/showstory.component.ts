@@ -9,6 +9,7 @@ import jwt_decode from 'jwt-decode';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
+import { JwtService } from 'src/app/core/services/jwt.service';
 
 @Component({
   selector: 'app-story',
@@ -17,7 +18,6 @@ import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
 })
 export class StoryComponent implements OnInit {
   @Input('inStory') storyDetail!: Story;
-  securityObj: AppUserAuth  = new AppUserAuth();
   
   @Output() deleteStoryEmitter = new EventEmitter<string>();
   likedme: boolean = false;
@@ -29,10 +29,9 @@ export class StoryComponent implements OnInit {
     public variableValue: VariableValue,
     private authService: AuthService,
     private router: Router,
-    private deleteService: DeleteService
+    private deleteService: DeleteService,
+    private jwt: JwtService,
   ) {
-    this.securityObj = this.authService.securityObj;
-    // console.log("SHow", this.securityObj);
   }
 
   ngOnInit(): void {
@@ -89,16 +88,16 @@ export class StoryComponent implements OnInit {
   checkUserRole(): boolean {
     // console.log("SHow", this.securityObj);
     if (
-      this.securityObj.isAuthenticated ||
-      this.storyDetail.publisherName === this.securityObj.userName
+      this.jwt.getjwt().isAuthenticated ||
+      this.storyDetail.publisherName === this.jwt.getjwt().userName
     ) {
       return true;
     } else {
       return false;
     }
   }
-  lookProfile(username: string) {
-    console.log(['profile', username].join('/'));
-    this.router.navigate([['profile', username].join('/')]);
-  }
+  // lookProfile(username: string) {
+  //   // console.log(['profile', username].join('/'));
+  //   this.router.navigate(['profile', {username:username}]);
+  // }
 }

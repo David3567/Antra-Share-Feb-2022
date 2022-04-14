@@ -50,6 +50,6 @@
 
 <div class="story_container">
   
-  <app-story (deleteStoryEmitter)="onDelete($event)" *ngFor="let story of stories" [inStory]="story"></app-story>
+  <app-story class="story" (deleteStoryEmitter)="onDelete($event)" *ngFor="let story of stories" [inStory]="story"></app-story>
 
 </div>

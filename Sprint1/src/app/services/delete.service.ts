@@ -32,7 +32,7 @@ export class DeleteService {
   }
   deleteComment(postId: string | undefined, commentId: string | undefined) {
     return this.http.delete(
-      [this.variableValue.baseUrl, this.DComment, postId, commentId].join('/'),httpOptions
+      [this.variableValue.baseUrl, this.DComment, postId, commentId].join('/')
     );
   }
 }

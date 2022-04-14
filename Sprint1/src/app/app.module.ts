@@ -12,6 +12,8 @@ import { HomeModule } from './module/home/home.module';
 
 import {MatMenuModule} from '@angular/material/menu';
 import { ProfileModule } from './module/profile/profile.module';
+import { JwtService } from './core/services/jwt.service';
+import { VariableValue } from './services/variable.service';
 
 @NgModule({
   declarations: [	AppComponent ],
@@ -26,7 +28,7 @@ import { ProfileModule } from './module/profile/profile.module';
     MatMenuModule,
     ProfileModule
   ],
-  providers: [],
+  providers: [JwtService, VariableValue],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

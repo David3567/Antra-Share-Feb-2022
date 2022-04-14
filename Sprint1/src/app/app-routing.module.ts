@@ -28,13 +28,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    children:[
-      {
-        path: ':username',
-        component: ProfileComponent,
-        canActivate: [ProfileGuard],
-      }
-    ]
+    canActivate:[ProfileGuard],
+    // children:[
+    //   {
+    //     path: '{username:username}',
+    //     component: ProfileComponent,
+    //     canActivate: [ProfileGuard],
+    //   }
+    // ]
   },
   {
     path: 'setting',

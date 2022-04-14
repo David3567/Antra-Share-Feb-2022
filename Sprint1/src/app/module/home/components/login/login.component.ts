@@ -15,6 +15,7 @@ import { catchError, map, Observable, of, switchMap, tap, timer } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AppUser } from 'src/app/core/services/interface/app-user';
 import { AppUserAuth } from 'src/app/core/services/interface/app-user-auth';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private app: AppComponent
   ) {
     this.form = this.fb.group(
       {
@@ -73,6 +75,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe(
       (info) => {
         this.securityObj = info.body;
+        this.app.onlogin();
+        console.log(this.securityObj);
         if (this.returnUrl) {
           this.router.navigateByUrl(this.returnUrl);
         } 

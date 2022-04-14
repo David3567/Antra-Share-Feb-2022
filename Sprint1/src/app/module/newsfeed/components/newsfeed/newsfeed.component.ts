@@ -17,6 +17,8 @@ import { VariableValue } from 'src/app/services/variable.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PostStoryService } from 'src/app/services/post-story.service';
 import jwt_decode from 'jwt-decode';
+import { JwtService } from 'src/app/core/services/jwt.service';
+
 
 @Component({
   selector: 'app-newsfeed',
@@ -45,7 +47,8 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
     public dialog: MatDialog,
     private variableValue: VariableValue,
     private fb: FormBuilder,
-    private PostStoryService: PostStoryService
+    private PostStoryService: PostStoryService,
+    private jwt: JwtService
   ) {}
 
   ngOnInit(): void {
@@ -79,24 +82,15 @@ export class NewsfeedComponent implements OnInit, OnDestroy, OnChanges {
   }
 //new post
   onSubmit() {
-    let date = new Date();
-    const token = localStorage.getItem('bearerToken');
-    let pbName: string = '';
-    if (token) {
-      const decoded: any = jwt_decode(token);
-      pbName = decoded.userName;
-    }
-
     this.story = {
-      publisherName: pbName,
-      publishedTime: date,
+      publisherName: this.jwt.getjwt().userName,
+      publishedTime: new Date(),
       content: {
         image: this.image?.value,
         video: this.video?.value,
         text: this.text?.value,
       },
     };
-
     // this.stories = [this.story,...this.stories]
     this.PostStoryService.postNews(this.story).subscribe((data) => {
       this.stories = [data, ...this.stories];

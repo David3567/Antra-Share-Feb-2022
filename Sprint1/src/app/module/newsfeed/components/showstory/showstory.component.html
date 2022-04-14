@@ -2,10 +2,10 @@
   
     <mat-card-title>
     <div><mat-icon>face</mat-icon></div>
-    <div>
-      <button (click)="lookProfile(storyDetail.publisherName)">{{storyDetail.publisherName}}</button>
+    <div class="title_name">
+      <a  [routerLink]="['/profile']" [queryParams]="{username:storyDetail.publisherName}">{{storyDetail.publisherName}}</a>
     </div>
-    <div>{{ storyDetail.publishedTime | date }}</div>
+    <div class="title_time">{{ storyDetail.publishedTime | date }}</div>
     <button
       mat-icon-button
       *ngIf="checkUserRole()"
@@ -17,17 +17,25 @@
   </mat-card-title>
 
   <mat-card-content>
-  <div class="story-dashboard">
+  <div class="middle">
+    <div class="image">
     <img
-      class="story-dashboard-content-img"
+      class="img"
       src="{{ storyDetail.content?.image }}"
       alt=""
     />
+    </div>
+    <div class="text">
+      <h3> {{ storyDetail.content?.text }} </h3>
+    </div>
   </div>
-  <div class="story-dashboard-viewer">
+  <div class="newsfeed_action">
+    <div class="commentbtn">
     <button (click)="onClickComment(storyDetail)">
       <mat-icon> comment</mat-icon> {{ storyDetail.comment?.length }}
     </button>
+  </div>
+  <div class="likebtn">
     <button (click)="addToLikeList(storyDetail)">
       <mat-icon
         [id]="storyDetail._id"
@@ -41,6 +49,7 @@
         >favorite</mat-icon
       >{{ storyDetail.likedIdList!.length }}
     </button>
+  </div>
   </div>
 </mat-card-content>
 </mat-card>

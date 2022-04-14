@@ -1,53 +1,4 @@
-.avatar {
-    vertical-align: middle;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-  .story-user-detail{
-    background-color: antiquewhite;
-    height: 100px;
-    padding-left: 20px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 5px 2px #695c5c;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    right: 0;
-    left: 0;
-    bottom: 16%;
-    width: 50%;
-    height: var(--bar-height);
-    margin: 0px auto 0px;
-    padding: 0px 0px;
-  }
-  .btn{
-    font-size: var(--font-btn-size);
-    cursor: pointer;
-  }
-  .btn:hover{
-    color: var(--button-hover-color);
-  }
-  /* .btn:focus{
-    background-color: var(--button-focus-color)
-  } */
-  .btn-previous,.btn-next{
-    width: 100px;
-  }
-  .btn-number{
-    width: var(--bar-height);
-  }
-  .btn:disabled{
-    background-color: #cccccc;
-    color: #666666;
-    cursor: not-allowed;
-  }
-
-  .comment_container {
+.comment_container {
     display: flex;
     flex-direction: column;
     height: 800px;
@@ -80,3 +31,10 @@ mat-dialog-content{
 .comment_text {
     height: 30px;
 }
+
+
+
+
+.btn-number{
+    width: var(--bar-height);
+  }

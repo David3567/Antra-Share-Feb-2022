@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Story } from './interface/news.model';
 import { VariableValue } from './variable.service';
 
@@ -11,6 +11,8 @@ export class StoryService {
   private path = 'news';
   likeListByUser: Story[] = [];
   subjectLikeList$ = new BehaviorSubject(this.likeListByUser);
+  newComment$ = new Subject<Comment>();
+  storiesS$ = new Subject<Story[]>();
   constructor(private http: HttpClient, private variableValue: VariableValue) {}
   getStories() {
     return this.http.get(

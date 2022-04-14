@@ -9,6 +9,7 @@ import { Comments } from 'src/app/services/interface/news.model';
 import { AddCommentService } from 'src/app/services/add-comment.service';
 import { VariableValue } from 'src/app/services/variable.service';
 import jwt_decode from 'jwt-decode';
+import { JwtService } from 'src/app/core/services/jwt.service';
 
 @Component({
   selector: 'app-add-comment',
@@ -28,6 +29,7 @@ export class AddCommentComponent implements OnInit {
     return this.form.get('text');
   }
   constructor(
+    private jwt: JwtService,
     public dialogRef: MatDialogRef<AddCommentComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { _id: string },
@@ -47,17 +49,9 @@ export class AddCommentComponent implements OnInit {
     };
   }
   onSubmit() {
-    let date = new Date();
-    const token = localStorage.getItem('bearerToken');
-    let pbName: string = '';
-    if (token) {
-      const decoded: any = jwt_decode(token);
-      pbName = decoded.name;
-    }
-
     this.comment = {
-      publisherName: pbName,
-      publishedTime: date,
+      publisherName: this.jwt.getjwt().userName,
+      publishedTime: new Date(),
       content: {
         image: this.image?.value,
         video: this.video?.value,
@@ -67,7 +61,9 @@ export class AddCommentComponent implements OnInit {
     this.addCommentService
       .addComment(this.data._id, this.comment)
       .subscribe((data) => {
+        console.log(data)
       });
+  
       //updata
     this.dialogRef.close(this.comment);
     this.variableValue.newComment.push({

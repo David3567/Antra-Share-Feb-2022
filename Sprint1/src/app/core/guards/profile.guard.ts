@@ -3,26 +3,28 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { delay, Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { AppUserAuth } from '../services/interface/app-user-auth';
+import { JwtService } from '../services/jwt.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileGuard implements CanActivate {
-  securityObj: AppUserAuth  = new AppUserAuth();
-  username1!:string;
-  username2!:string;
+
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private jwt:JwtService ,
   ) {
-    this.securityObj = this.authService.securityObj;
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log(this.securityObj.isAuthenticated);
-      console.log(this.securityObj.userName);
-      console.log(route.params["username"] === this.securityObj.userName);
-      if(this.securityObj.isAuthenticated || route.params["username"] == this.securityObj.userName) return true;
+      // console.log(
+      //   route.queryParams
+      // );
+      // console.log("admin", this.jwt.getjwt().isAuthenticated);
+      // console.log(this.jwt.getjwt().userName);
+      // console.log(route.params["username"]);
+      // console.log(route.params["username"] === this.jwt.getjwt().userName);
+      if(this.jwt.getjwt().isAuthenticated || route.queryParams["username"] == this.jwt.getjwt().userName) return true;
       else return false;
   }
 }
