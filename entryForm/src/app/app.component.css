@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100vw; 
+    height: 100vh;
+}
+
+form {
+    border: 1px solid black; 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    row-gap: 10px; 
+    width: 300px;
+}
+
+header {
+    font-weight: bold; 
+    text-align: center; 
+    font-size: 22px;
+}
+
+button[type=submit] {
+    background-color: rgb(255, 72, 72); 
+    color: white; 
+    border: transparent; 
+    padding: 3px; 
+    border-radius: 3px;
+}
