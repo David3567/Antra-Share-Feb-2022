@@ -1,0 +1,23 @@
+<section>
+  <div class="card">
+    <p class="red container">Patient Check-In</p>
+    <p class="blue container">Hi there, let's confirm it's you</p>
+    <p class="black container">
+      Enter the patients date of birth and ZIP code to start check-in
+    </p>
+    <form>
+      <label for="birthdate">Patient's date of birth</label>
+      <input
+        type="text"
+        id="birthdate"
+        name="birthdate"
+        placeholder="MM/DD/YYYY"
+        [(ngModel)]="user.birthdate"
+      />
+      <label for="zip">Zip Code</label>
+      <input type="text" id="zip" name="zip" [(ngModel)]="user.zipcode" />
+
+      <button type="submit" (click)="onSubmit()">Continue</button>
+    </form>
+  </div>
+</section>
