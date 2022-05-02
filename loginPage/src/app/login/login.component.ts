@@ -16,11 +16,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user);
+    console.log('input', this.user);
     const temp = this.userService.getUser();
-    console.log(temp);
+    console.log('database', temp);
 
-    console.log(temp.indexOf({ birthdate: '1', zipcode: '1' }));
+    for (let i = 0; i < temp.length; i++) {
+      if (this.user.birthdate === temp[i].birthdate && this.user.zipcode === temp[i].zipcode) {
+        console.log(true);
+        return;
+      }
+    }
+    console.log(false);
+
+    // console.log(temp.indexOf({ birthdate: '1', zipcode: '1' }));
     // if (temp.includes(this.user)) {
     //   console.log('yes');
     // } else {
