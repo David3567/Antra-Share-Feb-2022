@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
-import { UserLogin } from '../interfaces/userlogin';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -8,7 +8,11 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: any = {};
+  private user: User = { birthdate: '', zipcode: '' };
+
+  setUser() {
+    return this.user;
+  }
 
   constructor(private userService: UserService) { }
 
@@ -17,23 +21,16 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log('input', this.user);
-    const temp = this.userService.getUser();
-    console.log('database', temp);
+    const users = this.userService.getUsers();
+    console.log('database', users);
 
-    for (let i = 0; i < temp.length; i++) {
-      if (this.user.birthdate === temp[i].birthdate && this.user.zipcode === temp[i].zipcode) {
-        console.log(true);
-        return;
+    for (let i = 0; i < users.length; i++) {
+      if (this.user.birthdate === users[i].birthdate && this.user.zipcode === users[i].zipcode) {
+        return alert('Login successful.');
       }
     }
-    console.log(false);
 
-    // console.log(temp.indexOf({ birthdate: '1', zipcode: '1' }));
-    // if (temp.includes(this.user)) {
-    //   console.log('yes');
-    // } else {
-    //   console.log('no');
-    // }
+    return alert('Login failed.');
   }
 
 }
