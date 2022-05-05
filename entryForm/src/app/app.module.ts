@@ -4,15 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { LoginComponent } from './components/login/login.component';
+import { StoreModule } from '@ngrx/store';
+import { loginReducer } from './stateManagement/login.reducer';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConfirmComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({login: loginReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

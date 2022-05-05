@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="form">
+        <h2 class="title">Confirmation</h2>
+        <h2 class="title2">Here is your visit</h2>
+        <div class="content-wrapper">
+            <div class="top">
+                Verify the details of your visit
+                <br>
+                Complete consents and
+                <br>
+                Choose communication preferences
+            </div>
+            <div class="bottom">
+                <div class="bold">Vaccination</div>
+                <div class="bold">Thursday, January 13, at 3:00PM</div>
+                <br>
+                <p class="bold">Who</p>
+                <div>{{patient.firstName}} {{patient.lastName}}</div>
+                <br>
+                <p class="bold">Where</p>
+                <address>{{patient.address}}</address>
+                <br>
+                <p class="bold">Before you start</p>
+                <div>
+                    If you are inactive for 15 min, we'll
+                    <br>
+                    end this session and your changes
+                    <br>
+                    won't be saved
+                </div>
+
+            </div>
+            <button >Start check-in</button>
+
+        </div>
+    </div>
+</div>

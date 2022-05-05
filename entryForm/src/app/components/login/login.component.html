@@ -1,0 +1,38 @@
+<div class="wrapper">
+    <form #contactForm="ngForm" 
+          (ngSubmit)="onSubmit(contactForm)">
+      <header>Patient Entry Form</header>
+      <div>Hi There. Let's confrim it's you. Enter the patient's date of birth and zip code to start check in.</div>
+      <hr style="width: 100%;">
+      <label 
+        for="DOB" 
+        id="" 
+        style="text-align: center;"
+      >Patient's date of birth</label>
+      <input 
+        type="date" 
+        name="DOB" 
+        id="DOB" 
+        #DOB="ngModel" 
+        ngModel 
+        required>
+        
+      <div style="text-align: center;">Patient's zipcode (5 digits)</div>
+      <input 
+        type="zip" 
+        name="zipcode" 
+        #zipcode="ngModel" 
+        ngModel 
+        pattern="(\d{5}([\-]\d{4})?)" 
+        required>
+      <button 
+        type="submit" 
+        [disabled]="!contactForm.valid" 
+        [ngStyle]="{'backgroundColor': !contactForm.valid ? 'gray' : null}"
+      >Continue</button>
+      <div style="width: 258px; height: 25px;">
+        <div *ngIf="zipcode.touched && DOB.touched && !validated" style="color: red">Please enter valid values</div>
+        <div *ngIf="isLoading" style="color: green">Loading...</div>
+      </div>
+    </form>
+  </div>
