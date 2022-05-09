@@ -8,12 +8,14 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { LoginComponent } from './components/login/login.component';
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from './stateManagement/login.reducer';
+import { ZipcodeDirective } from './zipcode.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmComponent,
-    LoginComponent
+    LoginComponent,
+    ZipcodeDirective
   ],
   imports: [
     BrowserModule,

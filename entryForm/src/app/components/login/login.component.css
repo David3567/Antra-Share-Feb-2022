@@ -33,3 +33,7 @@ button[type=submit]:hover {
     cursor: pointer;
     box-shadow: 0 0 2px 2px darkred;
 }
+
+.blue {
+    background-color: blue;
+}

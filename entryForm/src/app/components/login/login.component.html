@@ -21,7 +21,8 @@
       <input 
         type="zip" 
         name="zipcode" 
-        #zipcode="ngModel" 
+        #zipcode="ngModel"
+        [zipcode]="true"
         ngModel 
         pattern="(\d{5}([\-]\d{4})?)" 
         required>
