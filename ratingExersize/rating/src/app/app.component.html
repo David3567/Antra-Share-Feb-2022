@@ -1,0 +1,10 @@
+<h1>Rating List</h1>
+<div style="display: flex; column-gap: 10px">
+  <p>Average post rating: {{updateAverageRating()}}</p>
+  <app-stars *ngIf="update" [default]="getAverageRating()" style="padding-top: 6px;"></app-stars>
+</div>
+<app-post  
+  *ngFor="let post of posts; let i = index" 
+  [postIndex]="i" 
+  [post]="post"
+  (rateEmitter)="updateRates($event)"></app-post>

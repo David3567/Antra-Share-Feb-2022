@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="star" 
+    *ngFor="let star of rates; let i =index" 
+    id="star"
+    (click)="choose(i)"
+    >{{ star?.chosen ? '&#9733;' : '&#9734;'}}</div>
+</div>

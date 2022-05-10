@@ -1,0 +1,5 @@
+<div>
+    <h3>{{post.name}}</h3>
+    <p>{{post.content}}</p>
+    <app-stars [default]="post.rate" (chosenRating)="recordRating($event)"></app-stars>
+</div>

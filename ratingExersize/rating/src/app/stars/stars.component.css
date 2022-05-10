@@ -1,0 +1,10 @@
+.container {
+    display: flex; 
+    column-gap: 2px;
+
+}
+
+.star {
+    cursor: pointer;
+    font-size: 25px;
+}
