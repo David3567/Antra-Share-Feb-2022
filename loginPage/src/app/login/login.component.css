@@ -55,6 +55,10 @@ form input {
   text-align: center;
 }
 
+.invalid {
+  background-color: pink;
+}
+
 form button {
   height: 35px;
   width: 50%;
@@ -67,4 +71,8 @@ form button {
 
 form button:hover {
   cursor: pointer;
+}
+
+form button:disabled {
+  background-color: grey;
 }

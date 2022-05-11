@@ -5,18 +5,31 @@
     <p class="black container">
       Enter the patients date of birth and ZIP code to start check-in
     </p>
-    <form>
+    <form #loginForm="ngForm">
       <label for="birthdate">Patient's date of birth</label>
       <input
         type="date"
         id="birthdate"
         name="birthdate"
+        required
         [(ngModel)]="setUser().birthdate"
       />
       <label for="zip">Zip Code</label>
-      <input type="text" id="zip" name="zip" [(ngModel)]="setUser().zipcode" />
+      <input
+        type="text"
+        id="zip"
+        name="zip"
+        minlength="5"
+        maxlength="5"
+        pattern="[0-9]+"
+        required
+        appZipcode
+        [(ngModel)]="setUser().zipcode"
+      />
 
-      <button type="submit" (click)="onSubmit()">Continue</button>
+      <button type="submit" (click)="onSubmit()" [disabled]="!loginForm.valid">
+        Continue
+      </button>
     </form>
   </div>
 </section>
