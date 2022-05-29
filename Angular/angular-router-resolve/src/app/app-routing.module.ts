@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'product2',
     component: Product2Component,
-    resolve: { products: ProductlistResolverResolver },
+    resolve: { ps: ProductlistResolverResolver },
   },
   {
     path: 'product2/:id',

@@ -18,11 +18,12 @@ import { TodoInterceptor } from './services/interceptors/todo.interceptor';
 import { CatcherrorInterceptor } from './services/interceptors/catcherror.interceptor';
 import { todoreducer } from './Ngrx/todo.reducer';
 import { TodoEffect } from './Ngrx/todo.effect';
+import { LikedislikeComponent } from './likedislike/likedislike.component';
 
 export const baseUrl = new InjectionToken<string>('');
 
 @NgModule({
-  declarations: [AppComponent, TodolistComponent, TodoitemComponent],
+  declarations: [AppComponent, TodolistComponent, TodoitemComponent, LikedislikeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

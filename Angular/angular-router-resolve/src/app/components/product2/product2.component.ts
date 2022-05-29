@@ -18,7 +18,7 @@ export class Product2Component {
   ) {}
 
   ngOnInit() {
-    this.products = this.route.snapshot.data['products'];
+    this.products = this.route.snapshot.data['ps'];
   }
 
   ngAfterViewInit(): void {
