@@ -6,51 +6,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./likedislike.component.scss'],
 })
 export class LikedislikeComponent implements OnInit {
-  hasChosen: boolean = false;
-  hasLiked: boolean = false;
-
   likedCounter = 100;
   dislikedCounter = 25;
+  status = Status.UNSELECTED;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   like() {
-    if (!this.hasChosen) {
-      this.hasChosen = true;
-      this.hasLiked = true;
-      this.likedCounter++;
-    } else {
-      if (!this.hasLiked) {
-        this.hasLiked = true;
-        this.likedCounter++;
-        this.dislikedCounter--;
-      } else {
-        this.hasChosen = false;
-        this.hasLiked = false;
-        this.likedCounter--;
-      }
+    if (this.status === Status.UNSELECTED) {
+      this.likedCounter++ && (this.status = Status.LIKEED);
+    } else if (this.status === Status.LIKEED) {
+      this.likedCounter-- && (this.status = Status.UNSELECTED);
+    } else if (this.status === Status.DISLIKEED) {
+      this.dislikedCounter-- &&
+        this.likedCounter++ &&
+        (this.status = Status.LIKEED);
     }
   }
 
   dislike() {
-    if (!this.hasChosen) {
-      this.hasChosen = true;
-      this.hasLiked = false;
-      this.dislikedCounter++;
-    } else {
-      if (this.hasLiked) {
-        this.hasLiked = false;
-        this.likedCounter--;
-        this.dislikedCounter++;
-      } else {
-        this.hasChosen = false;
-        this.hasLiked = false;
-        this.dislikedCounter--;
-      }
+    if (this.status === Status.UNSELECTED) {
+      this.dislikedCounter++ && (this.status = Status.DISLIKEED);
+    } else if (this.status === Status.LIKEED) {
+      this.likedCounter-- &&
+        this.dislikedCounter++ &&
+        (this.status = Status.DISLIKEED);
+    } else if (this.status === Status.DISLIKEED) {
+      this.dislikedCounter-- && (this.status = Status.UNSELECTED);
     }
   }
 }
 
-enum Status {}
+enum Status {
+  LIKEED = 'liked',
+  DISLIKEED = 'disliked',
+  UNSELECTED = 'unselected',
+}

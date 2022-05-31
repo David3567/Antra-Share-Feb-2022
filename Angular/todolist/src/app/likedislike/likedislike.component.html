@@ -1,2 +1,6 @@
-<button (click)="like()">Like | {{ likedCounter }}</button>
-<button (click)="dislike()">Dislike | {{ dislikedCounter }}</button>
+<button class="btn" (click)="like()">
+  Like | <span>{{ likedCounter }}</span>
+</button>
+<button class="btn" (click)="dislike()">
+  Dislike | <span>{{ dislikedCounter }}</span>
+</button>
