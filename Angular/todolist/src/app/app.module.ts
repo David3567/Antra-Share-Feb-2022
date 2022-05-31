@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodolistComponent } from './todolist/todolist.component';
 import { TodoitemComponent } from './todoitem/todoitem.component';
-import { TodolistService } from './services/todolist.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoInterceptor } from './services/interceptors/todo.interceptor';
 import { CatcherrorInterceptor } from './services/interceptors/catcherror.interceptor';
@@ -23,7 +22,12 @@ import { LikedislikeComponent } from './likedislike/likedislike.component';
 export const baseUrl = new InjectionToken<string>('');
 
 @NgModule({
-  declarations: [AppComponent, TodolistComponent, TodoitemComponent, LikedislikeComponent],
+  declarations: [
+    AppComponent,
+    TodolistComponent,
+    TodoitemComponent,
+    LikedislikeComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
