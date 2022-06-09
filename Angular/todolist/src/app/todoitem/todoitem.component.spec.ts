@@ -1,12 +1,7 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-  TestComponentRenderer,
-} from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TodoitemComponent } from './todoitem.component';
-import { TodolistComponent } from '../todolist/todolist.component';
 import { Todo } from '../interfaces/todo.model';
 
 @Component({
