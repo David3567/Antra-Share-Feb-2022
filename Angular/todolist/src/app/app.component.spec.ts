@@ -9,7 +9,6 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      // imports: [RouterTestingModule],
       declarations: [AppComponent],
     }).compileComponents();
 
@@ -30,7 +29,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'todolist app is runni555ng!'
+      'todolist app is running!'
     );
   });
 });
