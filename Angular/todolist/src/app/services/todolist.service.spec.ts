@@ -42,13 +42,14 @@ describe('TodolistService', () => {
   });
 
   it('should get todos via getTodos method', () => {
+    //& when the getTodos be triggered in the service, it will return Observable<Todo[]>;
     spyOn(service, 'getTodos').withArgs().and.returnValue(of(todos));
 
     service.getTodos().subscribe((data) => {
-      // console.log('called');
       expect(data.length).toBe(2);
       expect(data).toEqual(todos);
     });
+
     expect(service.getTodos).toHaveBeenCalled();
   });
 
@@ -60,8 +61,8 @@ describe('TodolistService', () => {
       completed: false,
     };
     service.addTodo(todo).subscribe((data) => {
-      console.log(123);
-    });
+      console.log(data);
+    }, fail);
     const req = httpTestingController.expectOne(
       [service.baseUrl, service.path].join('/')
     );
