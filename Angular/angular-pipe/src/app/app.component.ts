@@ -14,12 +14,13 @@ export class AppComponent implements OnInit, OnDestroy {
   //   name: 'jojo',
   //   age: 12,
   //   company: 'jump',
+  //   sex: 'female'
   // };
 
-  // users: any;
-  // users$: any;
+  users: any;
+  users$: any;
 
-  // subscription!: Subscription;
+  subscription!: Subscription;
 
   showString = true;
   pipeString =
@@ -33,16 +34,18 @@ export class AppComponent implements OnInit, OnDestroy {
     //   this.users = users;
     // },
     // err => {});
-    // this.users$ = this.dataService.getUsers();
+    this.users$ = this.dataService.getUsers();
   }
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
+  }
+
+  removeSort() {
+    return 0;
   }
 
   control() {
     this.showString = !this.showString;
   }
-  // removeSort() {
-  //   return 0;
-  // }
+
 }
