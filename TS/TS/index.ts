@@ -80,6 +80,9 @@
 //     age: 18
 // };
 
+//& interface vs. type
+// https://medium.com/@martin_hotell/interface-vs-type-alias-in-typescript-2-7-2a8f1777af4c
+
 // // void and never
 // function foo(): never {
 //     // while (true) {};
