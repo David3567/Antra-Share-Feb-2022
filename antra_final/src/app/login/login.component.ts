@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   errorText: string = '';
 
   get email() {
-    return this.form.get('email');
+    return this.userLoginInfo.userEmail;
   }
 
   get password() {
